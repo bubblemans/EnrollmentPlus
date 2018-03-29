@@ -37,7 +37,7 @@ An app to help De Anza students schedule and even register classes.
    */
    ```
    - if else comment
-   ```
+   ```swift
    if count >= 20  {
    // Check if the user play this game over 20 times.
    }
@@ -49,14 +49,14 @@ An app to help De Anza students schedule and even register classes.
    }
    ```
    - Variable
-   ```
+   ```swift
    var name = "Alvin" // the user's name
    ```
 3. One tab is 4 spaces.
 4. if-else statement
    - A space after if or else, and a space before open curly bracket.
    - Do not put else after close curly bracket.
-   ```
+   ```swift
    if commit == true {
    ...
    }
