@@ -20,7 +20,7 @@ An app to help De Anza students schedule and even register classes.
    */  
    ```
    - Function's comment
-   ```
+   ```swift
    /**
       Simple function purpose or definition.
       
@@ -35,5 +35,5 @@ An app to help De Anza students schedule and even register classes.
       @param nodeB [int] [the order of second node]
       @return [bool] [true if success, false if fail]
    */
-        
+   ```
 3. One tab is 4 spaces.
