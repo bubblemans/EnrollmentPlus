@@ -28,7 +28,7 @@ An app to help De Anza students schedule and even register classes.
       @return parameter's name [type] [simple additional notes]
    */  
    
-   ex:
+   ex
    /**
       Function swap two different nodes.
       @param nodeA [int] [the order of first node]
@@ -36,4 +36,33 @@ An app to help De Anza students schedule and even register classes.
       @return [bool] [true if success, false if fail]
    */
    ```
+   - if else comment
+   ```
+   if count >= 20  {
+   // Check if the user play this game over 20 times.
+   }
+   else if count >= 10 {
+   // Check if the user play this game between 10 times and 20 times.
+   }
+   else {
+   // Check if the user play this game less than 10 times.
+   }
+   ```
+   - Variable
+   ```
+   var name = "Alvin" // the user's name
+   ```
 3. One tab is 4 spaces.
+4. if-else statement
+   - A space after if or else, and a space before open curly bracket.
+   - Do not put else after close curly bracket.
+   ```
+   if commit == true {
+   }
+   else {
+   }
+   ```
+
+
+
+
