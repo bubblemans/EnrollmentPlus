@@ -13,12 +13,14 @@ class TableViewController: UITableViewController {
     // test 2D array
     let testArray = [
         ["CIS22A", "CIS22B", "CIS22C"],
-        ["MATH1A", "MATH1B", "MATH1C", "MATH1D", "MATH2A", "MATH2B"],
         ["EWRT1A", "EWRT1B", "EWRT2"],
+        ["MATH1A", "MATH1B", "MATH1C", "MATH1D", "MATH2A", "MATH2B"],
         ["PHYS4A", "PHYS4B", "PHYS4C", "PHYS4D"]
     ]
     
-    let sectionTitle = ["CIS", "MATH", "EWRT", "PHYS"]
+    let sectionTitle = ["CIS", "EWRT", "MATH", "PHYS"]
+    
+    let indexTitle = ["C", "E", "M", "P"]
     
     let cellId = "cellId"
     
@@ -31,6 +33,9 @@ class TableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        navigationItem.title = "Classes"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,9 +68,13 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = sectionTitle[section]
-        label.backgroundColor = UIColor.red
+        label.backgroundColor = UIColor.lightGray
         
         return label
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return indexTitle
     }
 
     /*
