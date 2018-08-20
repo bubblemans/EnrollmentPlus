@@ -105,12 +105,21 @@ class TableViewController: UITableViewController {
             }
         }.resume()
     }
+    
+    @objc func reloadTableView() {
+        print("test reset button")
+        courseTest.data.remove(at: 0)
+        departmentList.remove(at: 0)
+        self.tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
         navigationItem.title = "Classes"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(reloadTableView))
         navigationController?.navigationBar.prefersLargeTitles = true
         
         downloadJson()
