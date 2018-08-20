@@ -67,9 +67,13 @@ class TableViewController: UITableViewController {
     }
     
     @objc func reloadTableView() {
-        print("test reset button")
-        courseTest.data.remove(at: 0)
-        sectionInfo.departmentList.remove(at: 0)
+        courseTest.data.removeAll()
+        courseTest.data.append([dataTest])
+        courseTest.total = 0
+        sectionInfo.departmentList.removeAll()
+        sectionInfo.isExpanded.removeAll()
+        
+        downloadJson()
         self.tableView.reloadData()
     }
     
@@ -81,6 +85,10 @@ class TableViewController: UITableViewController {
         navigationItem.title = "Classes"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(reloadTableView))
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self as? UISearchResultsUpdating
+        navigationItem.titleView = searchController.searchBar
         
         downloadJson()
     }
