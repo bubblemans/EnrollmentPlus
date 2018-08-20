@@ -24,52 +24,11 @@ class TableViewController: UITableViewController {
     
     let cellId = "cellId"
     
-    struct Lectures: Decodable {
-        let id: Int?
-        let title: String?
-        let days: String?
-        let times: String?
-        let instructor: String?
-        let location: String?
-        let course_id: Int?
-        let created_at: String?
-        let updated_at: String?
-    }
-    
-    struct Data: Decodable {
-        let id: Int?
-        let crn: String?
-        let course: String?
-        let created_at: String?
-        let updated_at: String?
-        let department: String?
-        let status: String?
-        let campus: String?
-        let units: Double?
-        let seats_availible: Int?
-        let waitlist_slots_availible: Int?
-        let waitlist_slots_capacity: Int?
-        let quarter: String?
-        var lectures: [Lectures]
-    }
-    
-    struct Courses: Decodable {
-        let total: Int?
-        var data: [Data]
-    }
-    
-    struct Courses2D {
-        var total: Int?
-        var data: [[Data]]
-    }
-    
     var lectureTest = Lectures(id: 0, title: "", days: "", times: "", instructor: "", location: "", course_id: 0, created_at: "", updated_at: "")
     lazy var dataTest = Data(id: 0, crn: "", course: "", created_at: "", updated_at: "", department: "", status: "", campus: "", units: 0.0, seats_availible: 0, waitlist_slots_availible: 0, waitlist_slots_capacity: 0, quarter: "", lectures: [lectureTest])
     lazy var courseTest = Courses2D(total: 0, data: [[dataTest]])
     
-    var departmentList: [String] = []
-    var numOfRowInSect:[Int] = []
-    var numSect = 0
+    var sectionInfo = SectionInfo(departmentList: [], isExpanded: [true])
     var index = 0
     
     func downloadJson() {
@@ -88,7 +47,8 @@ class TableViewController: UITableViewController {
                 while index < course.total! - 1{
                     temp.append(course.data[index])
                     if course.data[index].department != course.data[index + 1].department {
-                        self.departmentList.append(course.data[index].department!)
+                        self.sectionInfo.departmentList.append(course.data[index].department!)
+                        self.sectionInfo.isExpanded.append(true)
                         self.courseTest.data.append(temp)
                         temp = []
                     }
@@ -109,7 +69,7 @@ class TableViewController: UITableViewController {
     @objc func reloadTableView() {
         print("test reset button")
         courseTest.data.remove(at: 0)
-        departmentList.remove(at: 0)
+        sectionInfo.departmentList.remove(at: 0)
         self.tableView.reloadData()
     }
     
@@ -140,7 +100,10 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return courseTest.data[section].count
+        if sectionInfo.isExpanded[section] {
+            return courseTest.data[section].count
+        }
+        return 0
     }
 
     
@@ -166,17 +129,46 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
-       
-        if departmentList.count != 0 {
-            label.text = departmentList[section]
+        
+        let button = UIButton(type: .system)
+        
+        if sectionInfo.departmentList.count != 0 {
+            button.setTitle(sectionInfo.departmentList[section], for: .normal)
+            button.setTitleColor(UIColor.white, for: .normal)
+            button.backgroundColor = UIColor.lightGray
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+            button.addTarget(self, action: #selector(handleExpand), for: .touchUpInside)
         } else {
-            return label
+            return button
         }
         
-        label.backgroundColor = UIColor.lightGray
+        button.tag = section
 
-        return label
+        return button
+    }
+    
+    @objc func handleExpand(button: UIButton) {
+        
+        var indexPaths = [IndexPath]()
+        
+        let section = button.tag
+        
+        for row in courseTest.data[section].indices {
+            let indexPath = IndexPath(row: row, section: section)
+            indexPaths.append(indexPath)
+        }
+        
+        sectionInfo.isExpanded[section] = !sectionInfo.isExpanded[section]
+        
+        if sectionInfo.isExpanded[section] {
+            tableView.insertRows(at: indexPaths, with: .fade)
+        } else {
+            tableView.deleteRows(at: indexPaths, with: .fade)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 36
     }
     
 //    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
