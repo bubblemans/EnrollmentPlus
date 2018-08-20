@@ -28,7 +28,7 @@ class TableViewController: UITableViewController {
     lazy var dataTest = Data(id: 0, crn: "", course: "", created_at: "", updated_at: "", department: "", status: "", campus: "", units: 0.0, seats_availible: 0, waitlist_slots_availible: 0, waitlist_slots_capacity: 0, quarter: "", lectures: [lectureTest])
     lazy var courseTest = Courses2D(total: 0, data: [[dataTest]])
     
-    var sectionInfo = SectionInfo(departmentList: [], isExpanded: [true])
+    var sectionInfo = SectionInfo(departmentList: [], isExpanded: [])
     var index = 0
     
     func downloadJson() {
@@ -99,6 +99,10 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        
+        if sectionInfo.isExpanded.count == 0 {
+            return 0
+        }
         
         if sectionInfo.isExpanded[section] {
             return courseTest.data[section].count
