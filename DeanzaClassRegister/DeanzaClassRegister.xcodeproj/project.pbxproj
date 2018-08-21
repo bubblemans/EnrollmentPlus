@@ -64,9 +64,9 @@
 			children = (
 				E13EE0BF20E3100800BBD60D /* AppDelegate.swift */,
 				E13EE0C120E3100800BBD60D /* ViewController.swift */,
-				E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */,
 				E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */,
 				E17EC3F9212AE09200AA1D46 /* SectionInfo.swift */,
+				E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */,
 				E13EE0C320E3100800BBD60D /* Main.storyboard */,
 				E13EE0C920E3100C00BBD60D /* Assets.xcassets */,
 				E13EE0CB20E3100C00BBD60D /* LaunchScreen.storyboard */,

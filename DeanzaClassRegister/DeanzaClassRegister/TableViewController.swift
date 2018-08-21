@@ -10,26 +10,11 @@ import UIKit
 
 class TableViewController: UITableViewController {
 
-//    // test 2D array
-//    let testArray = [
-//        ["CIS22A", "CIS22B", "CIS22C"],
-//        ["EWRT1A", "EWRT1B", "EWRT2"],
-//        ["MATH1A", "MATH1B", "MATH1C", "MATH1D", "MATH2A", "MATH2B"],
-//        ["PHYS4A", "PHYS4B", "PHYS4C", "PHYS4D"]
-//    ]
-//
-//    let sectionTitle = ["CIS", "EWRT", "MATH", "PHYS"]
-//
-//    let indexTitle = ["C", "E", "M", "P"]
-    
     let cellId = "cellId"
     
-    var lectureTest = Lectures(id: 0, title: "", days: "", times: "", instructor: "", location: "", course_id: 0, created_at: "", updated_at: "")
-    lazy var dataTest = Data(id: 0, crn: "", course: "", created_at: "", updated_at: "", department: "", status: "", campus: "", units: 0.0, seats_availible: 0, waitlist_slots_availible: 0, waitlist_slots_capacity: 0, quarter: "", lectures: [lectureTest])
-    lazy var courseTest = Courses2D(total: 0, data: [[dataTest]])
+    var courseTest = Courses2D(total: 0, data: [])
     
     var sectionInfo = SectionInfo(departmentList: [], isExpanded: [])
-    var index = 0
     
     func downloadJson() {
         let jsonUrlString = "https://api.daclassplanner.com/courses?sortBy=course"
@@ -42,7 +27,6 @@ class TableViewController: UITableViewController {
                 let course = try JSONDecoder().decode(Courses.self, from: data)
                 var index = 0
                 var temp: [Data] = []
-                self.courseTest.data.remove(at: 0)
                 
                 while index < course.total! - 1{
                     temp.append(course.data[index])
@@ -54,6 +38,7 @@ class TableViewController: UITableViewController {
                     }
                     index = index + 1
                 }
+                
                 self.courseTest.total = course.total
                 
                 DispatchQueue.main.async {
@@ -68,8 +53,8 @@ class TableViewController: UITableViewController {
     
     @objc func reloadTableView() {
         courseTest.data.removeAll()
-        courseTest.data.append([dataTest])
         courseTest.total = 0
+        
         sectionInfo.departmentList.removeAll()
         sectionInfo.isExpanded.removeAll()
         
@@ -88,6 +73,7 @@ class TableViewController: UITableViewController {
         
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self as? UISearchResultsUpdating
+        searchController.searchBar.placeholder = "try me"
         navigationItem.titleView = searchController.searchBar
         
         downloadJson()
