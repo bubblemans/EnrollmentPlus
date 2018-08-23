@@ -178,7 +178,8 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let destination = detailViewController()
-        destination.course = courseTest.data[indexPath.row] 
+        destination.courses = courseTest.data[indexPath.section]
+        destination.row = indexPath.row
         navigationController?.pushViewController(destination, animated: true)
         
     }

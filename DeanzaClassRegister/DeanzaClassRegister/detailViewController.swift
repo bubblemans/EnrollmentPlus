@@ -9,7 +9,11 @@
 import UIKit
 
 class detailViewController: UIViewController {
-    var course: [Data] = []
+    
+    var courses: [Data] = []
+    var row = 0
+    lazy var course = courses[row]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,7 +24,8 @@ class detailViewController: UIViewController {
     }
     
     func setupDetailView() {
-        print(course[0].course)
+        print(course.course as Any)
+        
     }
 
     override func didReceiveMemoryWarning() {
