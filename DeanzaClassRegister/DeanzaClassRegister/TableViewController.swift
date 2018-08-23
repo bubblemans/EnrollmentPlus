@@ -65,6 +65,13 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupNavigationbar()
+        
+        downloadJson()
+    }
+    
+    private func setupNavigationbar() {
+        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
         navigationItem.title = "Classes"
@@ -73,10 +80,9 @@ class TableViewController: UITableViewController {
         
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self as? UISearchResultsUpdating
-        searchController.searchBar.placeholder = "try me"
+//        searchController.searchBar.placeholder = "try me"
         navigationItem.titleView = searchController.searchBar
-        
-        downloadJson()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -167,6 +173,14 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 36
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let destination = detailViewController()
+        destination.course = courseTest.data[indexPath.row] 
+        navigationController?.pushViewController(destination, animated: true)
+        
     }
     
 //    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
