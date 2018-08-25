@@ -12,7 +12,8 @@ class TableViewController: UITableViewController {
 
     let cellId = "cellId"
     
-    var courseTest = Courses2D(total: 0, data: [])
+    var currentCourses = Courses2D(total: 0, data: [])
+    var allCourses = Courses2D(total: 0, data: [])
     
     var sectionInfo = SectionInfo(departmentList: [], isExpanded: [])
     
@@ -33,13 +34,14 @@ class TableViewController: UITableViewController {
                     if course.data[index].department != course.data[index + 1].department {
                         self.sectionInfo.departmentList.append(course.data[index].department!)
                         self.sectionInfo.isExpanded.append(true)
-                        self.courseTest.data.append(temp)
+                        self.currentCourses.data.append(temp)
                         temp = []
                     }
                     index = index + 1
                 }
                 
-                self.courseTest.total = course.total
+                self.currentCourses.total = course.total
+               self.allCourses = self.currentCourses
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -52,8 +54,8 @@ class TableViewController: UITableViewController {
     }
     
     @objc func reloadTableView() {
-        courseTest.data.removeAll()
-        courseTest.total = 0
+        currentCourses.data.removeAll()
+        currentCourses.total = 0
         
         sectionInfo.departmentList.removeAll()
         sectionInfo.isExpanded.removeAll()
@@ -68,23 +70,27 @@ class TableViewController: UITableViewController {
         setupNavigationbar()
         
         downloadJson()
+        
     }
     
     private func setupNavigationbar() {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.autocapitalizationType = .none
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        definesPresentationContext = false
+        
         navigationItem.title = "Classes"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(reloadTableView))
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self as? UISearchResultsUpdating
-//        searchController.searchBar.placeholder = "try me"
-        navigationItem.titleView = searchController.searchBar
-
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -94,7 +100,7 @@ class TableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return courseTest.data.count
+        return currentCourses.data.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,7 +111,7 @@ class TableViewController: UITableViewController {
         }
         
         if sectionInfo.isExpanded[section] {
-            return courseTest.data[section].count
+            return currentCourses.data[section].count
         }
         return 0
     }
@@ -119,13 +125,13 @@ class TableViewController: UITableViewController {
         
         
         var status: String
-        if courseTest.data[indexPath.section][indexPath.row].status != nil {
-            status = courseTest.data[indexPath.section][indexPath.row].status!
+        if currentCourses.data[indexPath.section][indexPath.row].status != nil {
+            status = currentCourses.data[indexPath.section][indexPath.row].status!
         } else {
             status = "nil"
         }
         
-        let text = courseTest.data[indexPath.section][indexPath.row].crn! + blank + courseTest.data[indexPath.section][indexPath.row].course! + blank +  courseTest.data[indexPath.section][indexPath.row].lectures[0].instructor! + blank + status
+        let text = currentCourses.data[indexPath.section][indexPath.row].crn! + blank + currentCourses.data[indexPath.section][indexPath.row].course! + blank +  currentCourses.data[indexPath.section][indexPath.row].lectures[0].instructor! + blank + status
         
         cell.textLabel?.text = text
         
@@ -157,7 +163,7 @@ class TableViewController: UITableViewController {
         
         let section = button.tag
         
-        for row in courseTest.data[section].indices {
+        for row in currentCourses.data[section].indices {
             let indexPath = IndexPath(row: row, section: section)
             indexPaths.append(indexPath)
         }
@@ -178,59 +184,48 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let destination = detailViewController()
-        destination.courses = courseTest.data[indexPath.section]
+        destination.courses = currentCourses.data[indexPath.section]
         destination.row = indexPath.row
         navigationController?.pushViewController(destination, animated: true)
         
     }
-    
-//    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-//        return indexTitle
-//    }
+}
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+extension TableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        var counter = 0
+        
+        if let text = searchController.searchBar.text, !text.isEmpty {
+            
+            sectionInfo.departmentList.removeAll()
+            sectionInfo.isExpanded.removeAll()
+            currentCourses.data.removeAll()
+            
+            for departmentCourses in allCourses.data {
+                let courses = departmentCourses.filter({ (course) -> Bool in
+                    if course.course!.lowercased().contains(text.lowercased()), sectionInfo.departmentList.isEmpty || course.department != sectionInfo.departmentList[sectionInfo.departmentList.count - 1] {
+                        sectionInfo.departmentList.append(course.department!)
+                        sectionInfo.isExpanded.append(true)
+                    }
+                    counter += 1
+                    return course.course!.lowercased().contains(text.lowercased())
+                })
+                if !courses.isEmpty {
+                    currentCourses.data.append(courses)
+                }
+            }
+            currentCourses.total = counter
+        } else {
+            sectionInfo.departmentList.removeAll()
+            sectionInfo.isExpanded.removeAll()
+            
+            for departmentCourses in allCourses.data {
+                sectionInfo.departmentList.append(departmentCourses[0].department!)
+                sectionInfo.isExpanded.append(true)
+            }
+            currentCourses = allCourses
+        }
+        
+        self.tableView.reloadData()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
