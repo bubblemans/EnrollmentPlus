@@ -12,10 +12,8 @@ class TableViewController: UITableViewController {
 
     let cellId = "cellId"
     
-    var currentCourses = Courses2D(total: 0, data: [])
-    var allCourses = Courses2D(total: 0, data: [])
-    
-    var sectionInfo = SectionInfo(departmentList: [], isExpanded: [])
+    var currentCourses = Courses2D(total: 0, data: [], departmentList: [], isExpanded: [])
+    var allCourses = Courses2D(total: 0, data: [], departmentList: [], isExpanded: [])
     
     func downloadJson() {
         let jsonUrlString = "https://api.daclassplanner.com/courses?sortBy=course"
@@ -32,8 +30,8 @@ class TableViewController: UITableViewController {
                 while index < course.total! - 1{
                     temp.append(course.data[index])
                     if course.data[index].department != course.data[index + 1].department {
-                        self.sectionInfo.departmentList.append(course.data[index].department!)
-                        self.sectionInfo.isExpanded.append(true)
+                        self.currentCourses.departmentList.append(course.data[index].department!)
+                        self.currentCourses.isExpanded.append(true)
                         self.currentCourses.data.append(temp)
                         temp = []
                     }
@@ -41,13 +39,14 @@ class TableViewController: UITableViewController {
                 }
                 
                 self.currentCourses.total = course.total
-               self.allCourses = self.currentCourses
+                self.allCourses = self.currentCourses
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
                 
             } catch let jsonError {
+                // TODO: alert
                 print("Json Error", jsonError)
             }
         }.resume()
@@ -57,8 +56,8 @@ class TableViewController: UITableViewController {
         currentCourses.data.removeAll()
         currentCourses.total = 0
         
-        sectionInfo.departmentList.removeAll()
-        sectionInfo.isExpanded.removeAll()
+        currentCourses.departmentList.removeAll()
+        currentCourses.isExpanded.removeAll()
         
         downloadJson()
         self.tableView.reloadData()
@@ -77,6 +76,7 @@ class TableViewController: UITableViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
+        // searchController
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.searchBar.autocapitalizationType = .none
@@ -84,6 +84,7 @@ class TableViewController: UITableViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = false
         
+        // navigationController
         navigationItem.title = "Classes"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(reloadTableView))
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -106,11 +107,11 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        if sectionInfo.isExpanded.count == 0 {
+        if currentCourses.isExpanded.count == 0 {
             return 0
         }
         
-        if sectionInfo.isExpanded[section] {
+        if currentCourses.isExpanded[section] {
             return currentCourses.data[section].count
         }
         return 0
@@ -122,12 +123,12 @@ class TableViewController: UITableViewController {
 
         // Configure the cell...
         let blank = "    "
-        
-        
         var status: String
+        
         if currentCourses.data[indexPath.section][indexPath.row].status != nil {
             status = currentCourses.data[indexPath.section][indexPath.row].status!
         } else {
+            // transform json's null to swift's nil
             status = "nil"
         }
         
@@ -142,8 +143,8 @@ class TableViewController: UITableViewController {
         
         let button = UIButton(type: .system)
         
-        if sectionInfo.departmentList.count != 0 {
-            button.setTitle(sectionInfo.departmentList[section], for: .normal)
+        if currentCourses.departmentList.count != 0 {
+            button.setTitle(currentCourses.departmentList[section], for: .normal)
             button.setTitleColor(UIColor.white, for: .normal)
             button.backgroundColor = UIColor.lightGray
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
@@ -168,9 +169,9 @@ class TableViewController: UITableViewController {
             indexPaths.append(indexPath)
         }
         
-        sectionInfo.isExpanded[section] = !sectionInfo.isExpanded[section]
+        currentCourses.isExpanded[section] = !currentCourses.isExpanded[section]
         
-        if sectionInfo.isExpanded[section] {
+        if currentCourses.isExpanded[section] {
             tableView.insertRows(at: indexPaths, with: .fade)
         } else {
             tableView.deleteRows(at: indexPaths, with: .fade)
@@ -187,7 +188,6 @@ class TableViewController: UITableViewController {
         destination.courses = currentCourses.data[indexPath.section]
         destination.row = indexPath.row
         navigationController?.pushViewController(destination, animated: true)
-        
     }
 }
 
@@ -196,16 +196,17 @@ extension TableViewController: UISearchResultsUpdating {
         var counter = 0
         
         if let text = searchController.searchBar.text, !text.isEmpty {
+            // there is user input
             
-            sectionInfo.departmentList.removeAll()
-            sectionInfo.isExpanded.removeAll()
+            currentCourses.departmentList.removeAll()
+            currentCourses.isExpanded.removeAll()
             currentCourses.data.removeAll()
             
             for departmentCourses in allCourses.data {
                 let courses = departmentCourses.filter({ (course) -> Bool in
-                    if course.course!.lowercased().contains(text.lowercased()), sectionInfo.departmentList.isEmpty || course.department != sectionInfo.departmentList[sectionInfo.departmentList.count - 1] {
-                        sectionInfo.departmentList.append(course.department!)
-                        sectionInfo.isExpanded.append(true)
+                    if course.course!.lowercased().contains(text.lowercased()), currentCourses.departmentList.isEmpty || course.department != currentCourses.departmentList[currentCourses.departmentList.count - 1] {
+                        currentCourses.departmentList.append(course.department!)
+                        currentCourses.isExpanded.append(true)
                     }
                     counter += 1
                     return course.course!.lowercased().contains(text.lowercased())
@@ -216,12 +217,14 @@ extension TableViewController: UISearchResultsUpdating {
             }
             currentCourses.total = counter
         } else {
-            sectionInfo.departmentList.removeAll()
-            sectionInfo.isExpanded.removeAll()
+            // no user input
+            
+            currentCourses.departmentList.removeAll()
+            currentCourses.isExpanded.removeAll()
             
             for departmentCourses in allCourses.data {
-                sectionInfo.departmentList.append(departmentCourses[0].department!)
-                sectionInfo.isExpanded.append(true)
+                currentCourses.departmentList.append(departmentCourses[0].department!)
+                currentCourses.isExpanded.append(true)
             }
             currentCourses = allCourses
         }
