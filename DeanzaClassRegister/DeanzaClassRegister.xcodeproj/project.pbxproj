@@ -19,7 +19,6 @@
 		E13EE0CD20E3100C00BBD60D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E13EE0CB20E3100C00BBD60D /* LaunchScreen.storyboard */; };
 		E17EC3F6211EE5D100AA1D46 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */; };
 		E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */; };
-		E17EC3FA212AE09200AA1D46 /* SectionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F9212AE09200AA1D46 /* SectionInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +36,6 @@
 		E13EE0CE20E3100C00BBD60D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses2D.swift; sourceTree = "<group>"; };
-		E17EC3F9212AE09200AA1D46 /* SectionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +56,6 @@
 				E13665EB213250800009EF0D /* Courses.swift */,
 				E13665ED2132508E0009EF0D /* Data.swift */,
 				E13665EF213250970009EF0D /* Lecture.swift */,
-				E17EC3F9212AE09200AA1D46 /* SectionInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,7 +175,6 @@
 				E13EE0C820E3100800BBD60D /* DeanzaClassRegister.xcdatamodeld in Sources */,
 				E13EE0C220E3100800BBD60D /* ViewController.swift in Sources */,
 				E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */,
-				E17EC3FA212AE09200AA1D46 /* SectionInfo.swift in Sources */,
 				E13665F0213250970009EF0D /* Lecture.swift in Sources */,
 				E13665EC213250800009EF0D /* Courses.swift in Sources */,
 				E13EE0C020E3100800BBD60D /* AppDelegate.swift in Sources */,

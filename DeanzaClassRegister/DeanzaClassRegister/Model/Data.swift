@@ -14,7 +14,7 @@ struct Data: Decodable {
     let course: String?
     let created_at: String?
     let updated_at: String?
-    let department: String?
+    var department: String?
     let status: String?
     let campus: String?
     let units: Double?

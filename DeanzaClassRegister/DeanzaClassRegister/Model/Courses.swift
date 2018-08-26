@@ -9,6 +9,6 @@
 import Foundation
 
 struct Courses: Decodable {
-    let total: Int?
+    var total: Int?
     var data: [Data]
 }

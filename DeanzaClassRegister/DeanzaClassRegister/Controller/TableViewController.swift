@@ -23,7 +23,9 @@ class TableViewController: UITableViewController {
             guard let data = data else { return }
             
             do {
-                let course = try JSONDecoder().decode(Courses.self, from: data)
+                var course = self.sortCourses(courses: try JSONDecoder().decode(Courses.self, from: data))
+                course = self.sortDepartment(courses: course)
+                
                 var index = 0
                 var temp: [Data] = []
                 
@@ -50,6 +52,35 @@ class TableViewController: UITableViewController {
                 print("Json Error", jsonError)
             }
         }.resume()
+    }
+    
+    func sortCourses(courses: Courses) -> Courses {
+        var resultCourses = courses
+        
+        for current in 0..<courses.data.count {
+            var min = current
+            for walk in current..<courses.data.count {
+                if courses.data[min].course! < courses.data[walk].course! {
+                    min = walk
+                }
+                resultCourses.data.swapAt(min, walk)
+            }
+        }
+        resultCourses.total = courses.total
+        
+        return resultCourses
+    }
+    
+    func sortDepartment(courses: Courses) -> Courses {
+        var resultCourses = courses
+        var index = 0
+        
+        while index < resultCourses.data.count {
+            resultCourses.data[index].department! = resultCourses.data[index].course!.components(separatedBy: " ")[0]
+            index += 1
+        }
+        
+        return resultCourses
     }
     
     @objc func reloadTableView() {
@@ -110,7 +141,7 @@ class TableViewController: UITableViewController {
         if currentCourses.isExpanded.count == 0 {
             return 0
         }
-        
+
         if currentCourses.isExpanded[section] {
             return currentCourses.data[section].count
         }
@@ -201,18 +232,27 @@ extension TableViewController: UISearchResultsUpdating {
             currentCourses.departmentList.removeAll()
             currentCourses.isExpanded.removeAll()
             currentCourses.data.removeAll()
-            
+            var index = 0
             for departmentCourses in allCourses.data {
                 let courses = departmentCourses.filter({ (course) -> Bool in
-                    if course.course!.lowercased().contains(text.lowercased()), currentCourses.departmentList.isEmpty || course.department != currentCourses.departmentList[currentCourses.departmentList.count - 1] {
-                        currentCourses.departmentList.append(course.department!)
-                        currentCourses.isExpanded.append(true)
+                    
+                    let targetText = course.course!.lowercased() + course.crn! + course.lectures[0].instructor!.lowercased()
+                    
+                    if currentCourses.departmentList.isEmpty || course.department != currentCourses.departmentList[currentCourses.departmentList.count - 1] {
+                        if targetText.contains(text.lowercased()) {
+                            currentCourses.departmentList.append(course.department!)
+                            currentCourses.isExpanded.append(true)
+                        }
                     }
+
                     counter += 1
-                    return course.course!.lowercased().contains(text.lowercased())
+                    return targetText.contains(text.lowercased())
                 })
+                
                 if !courses.isEmpty {
+                    
                     currentCourses.data.append(courses)
+                    index += 1
                 }
             }
             currentCourses.total = counter
