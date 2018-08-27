@@ -9,13 +9,13 @@
 import Foundation
 
 struct Lectures: Decodable {
-    let id: Int?
-    let title: String?
-    let days: String?
-    let times: String?
-    let instructor: String?
-    let location: String?
-    let course_id: Int?
-    let created_at: String?
-    let updated_at: String?
+    var id: Int?
+    var title: String?
+    var days: String?
+    var times: String?
+    var instructor: String?
+    var location: String?
+    var course_id: Int?
+    var created_at: String?
+    var updated_at: String?
 }

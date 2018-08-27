@@ -10,12 +10,12 @@ import UIKit
 
 class TableViewController: UITableViewController {
 
-    let cellId = "cellId"
+    private let cellId = "cellId"
     
     var currentCourses = Courses2D(total: 0, data: [], departmentList: [], isExpanded: [])
     var allCourses = Courses2D(total: 0, data: [], departmentList: [], isExpanded: [])
     
-    func downloadJson() {
+    private func downloadJson() {
         let jsonUrlString = "https://api.daclassplanner.com/courses?sortBy=course"
         guard let url = URL(string: jsonUrlString) else { return }
         
@@ -54,7 +54,7 @@ class TableViewController: UITableViewController {
         }.resume()
     }
     
-    func sortCourses(courses: Courses) -> Courses {
+    private func sortCourses(courses: Courses) -> Courses {
         var resultCourses = courses
         
         for current in 0..<courses.data.count {
@@ -71,7 +71,7 @@ class TableViewController: UITableViewController {
         return resultCourses
     }
     
-    func sortDepartment(courses: Courses) -> Courses {
+    private func sortDepartment(courses: Courses) -> Courses {
         var resultCourses = courses
         var index = 0
         

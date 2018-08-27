@@ -9,18 +9,18 @@
 import Foundation
 
 struct Data: Decodable {
-    let id: Int?
-    let crn: String?
-    let course: String?
-    let created_at: String?
-    let updated_at: String?
+    var id: Int?
+    var crn: String?
+    var course: String?
+    var created_at: String?
+    var updated_at: String?
     var department: String?
-    let status: String?
-    let campus: String?
-    let units: Double?
-    let seats_availible: Int?
-    let waitlist_slots_availible: Int?
-    let waitlist_slots_capacity: Int?
-    let quarter: String?
+    var status: String?
+    var campus: String?
+    var units: Double?
+    var seats_availible: Int?
+    var waitlist_slots_availible: Int?
+    var waitlist_slots_capacity: Int?
+    var quarter: String?
     var lectures: [Lectures]
 }
