@@ -33,7 +33,7 @@ class TableViewController: UITableViewController {
                     temp.append(course.data[index])
                     if course.data[index].department != course.data[index + 1].department {
                         self.currentCourses.departmentList.append(course.data[index].department!)
-                        self.currentCourses.isExpanded.append(true)
+                        self.currentCourses.isExpanded.append(false)
                         self.currentCourses.data.append(temp)
                         temp = []
                     }
@@ -71,7 +71,7 @@ class TableViewController: UITableViewController {
         return resultCourses
     }
     
-    private func sortDepartment(courses: Courses) -> Courses {
+    func sortDepartment(courses: Courses) -> Courses {
         var resultCourses = courses
         var index = 0
         
@@ -105,7 +105,7 @@ class TableViewController: UITableViewController {
     
     private func setupNavigationbar() {
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: cellId)
         
         // searchController
         let searchController = UISearchController(searchResultsController: nil)
@@ -150,24 +150,38 @@ class TableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-
-        // Configure the cell...
-        let blank = "    "
-        var status: String
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableViewCell
+        cell.course = currentCourses.data[indexPath.section][indexPath.row].course!
+        cell.instructor = currentCourses.data[indexPath.section][indexPath.row].lectures[0].instructor!
         
         if currentCourses.data[indexPath.section][indexPath.row].status != nil {
-            status = currentCourses.data[indexPath.section][indexPath.row].status!
+            cell.status = currentCourses.data[indexPath.section][indexPath.row].status!
         } else {
-            // transform json's null to swift's nil
-            status = "nil"
+            cell.status = "nil"
         }
         
-        let text = currentCourses.data[indexPath.section][indexPath.row].crn! + blank + currentCourses.data[indexPath.section][indexPath.row].course! + blank +  currentCourses.data[indexPath.section][indexPath.row].lectures[0].instructor! + blank + status
-        
-        cell.textLabel?.text = text
+
+//        // Configure the cell...
+//        let blank = "    "
+//        var status: String
+//        
+//        if currentCourses.data[indexPath.section][indexPath.row].status != nil {
+//            status = currentCourses.data[indexPath.section][indexPath.row].status!
+//        } else {
+//            // transform json's null to swift's nil
+//            status = "nil"
+//        }
+//        
+//        let text = currentCourses.data[indexPath.section][indexPath.row].crn! + blank + currentCourses.data[indexPath.section][indexPath.row].course! + blank +  currentCourses.data[indexPath.section][indexPath.row].lectures[0].instructor! + blank + status
+//        
+//        cell.textLabel?.text = text
+//        cell.textLabel?.numberOfLines = 2
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -177,7 +191,7 @@ class TableViewController: UITableViewController {
         if currentCourses.departmentList.count != 0 {
             button.setTitle(currentCourses.departmentList[section], for: .normal)
             button.setTitleColor(UIColor.white, for: .normal)
-            button.backgroundColor = UIColor.lightGray
+            button.backgroundColor = UIColor.gray
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
             button.addTarget(self, action: #selector(handleExpand), for: .touchUpInside)
         } else {
@@ -214,7 +228,6 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         let destination = detailViewController()
         destination.courses = currentCourses.data[indexPath.section]
         destination.row = indexPath.row

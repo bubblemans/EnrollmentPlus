@@ -11,6 +11,7 @@
 		E13665EC213250800009EF0D /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665EB213250800009EF0D /* Courses.swift */; };
 		E13665EE2132508E0009EF0D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665ED2132508E0009EF0D /* Data.swift */; };
 		E13665F0213250970009EF0D /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665EF213250970009EF0D /* Lecture.swift */; };
+		E13665F72136C5EA0009EF0D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665F62136C5EA0009EF0D /* TableViewCell.swift */; };
 		E13EE0C020E3100800BBD60D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13EE0BF20E3100800BBD60D /* AppDelegate.swift */; };
 		E13EE0C220E3100800BBD60D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13EE0C120E3100800BBD60D /* ViewController.swift */; };
 		E13EE0C520E3100800BBD60D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E13EE0C320E3100800BBD60D /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 		E13665EB213250800009EF0D /* Courses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
 		E13665ED2132508E0009EF0D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		E13665EF213250970009EF0D /* Lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecture.swift; sourceTree = "<group>"; };
+		E13665F62136C5EA0009EF0D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		E13EE0BC20E3100800BBD60D /* DeanzaClassRegister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeanzaClassRegister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E13EE0BF20E3100800BBD60D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E13EE0C120E3100800BBD60D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		E13665F52136C5060009EF0D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E13665F62136C5EA0009EF0D /* TableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E13EE0B320E3100800BBD60D = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +100,7 @@
 			children = (
 				E13EE0BF20E3100800BBD60D /* AppDelegate.swift */,
 				E13EE0C120E3100800BBD60D /* ViewController.swift */,
+				E13665F52136C5060009EF0D /* View */,
 				E13665F1213250E40009EF0D /* Model */,
 				E13665F2213251110009EF0D /* Controller */,
 				E13EE0C320E3100800BBD60D /* Main.storyboard */,
@@ -177,6 +188,7 @@
 				E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */,
 				E13665F0213250970009EF0D /* Lecture.swift in Sources */,
 				E13665EC213250800009EF0D /* Courses.swift in Sources */,
+				E13665F72136C5EA0009EF0D /* TableViewCell.swift in Sources */,
 				E13EE0C020E3100800BBD60D /* AppDelegate.swift in Sources */,
 				E13665EA212EE3610009EF0D /* detailViewController.swift in Sources */,
 				E13665EE2132508E0009EF0D /* Data.swift in Sources */,
