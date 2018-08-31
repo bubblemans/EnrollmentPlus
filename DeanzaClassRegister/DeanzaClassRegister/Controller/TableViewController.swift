@@ -175,23 +175,6 @@ class TableViewController: UITableViewController {
             cell.status = "nil"
         }
         
-
-//        // Configure the cell...
-//        let blank = "    "
-//        var status: String
-//        
-//        if currentCourses.data[indexPath.section][indexPath.row].status != nil {
-//            status = currentCourses.data[indexPath.section][indexPath.row].status!
-//        } else {
-//            // transform json's null to swift's nil
-//            status = "nil"
-//        }
-//        
-//        let text = currentCourses.data[indexPath.section][indexPath.row].crn! + blank + currentCourses.data[indexPath.section][indexPath.row].course! + blank +  currentCourses.data[indexPath.section][indexPath.row].lectures[0].instructor! + blank + status
-//        
-//        cell.textLabel?.text = text
-//        cell.textLabel?.numberOfLines = 2
-        
         return cell
     }
     
@@ -247,6 +230,25 @@ class TableViewController: UITableViewController {
         destination.courses = currentCourses.data[indexPath.section]
         destination.row = indexPath.row
         navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return setupIndexTitle()
+    }
+    
+    private func setupIndexTitle() -> [String] {
+        var indexTitleList: [String] = []
+        
+        if !currentCourses.departmentList.isEmpty {
+            for department in currentCourses.departmentList {
+                for char in department {
+                    indexTitleList.append(String(char))
+                    break
+                }
+            }
+        }
+        
+        return indexTitleList
     }
 }
 
