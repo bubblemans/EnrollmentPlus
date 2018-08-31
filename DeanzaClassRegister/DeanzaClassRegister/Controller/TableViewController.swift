@@ -117,7 +117,22 @@ class TableViewController: UITableViewController {
         
         // navigationController
         navigationItem.title = "Classes"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(reloadTableView))
+        
+            // leftbarButton
+        let buttonframe = CGRect(x: 0, y: 0, width: 25, height: 25)
+        let buttonImage = UIImage(named: "refresh")
+        
+        let reloadButtomItem = UIButton(frame: buttonframe)
+        
+        reloadButtomItem.widthAnchor.constraint(equalToConstant: buttonframe.width).isActive = true
+        reloadButtomItem.heightAnchor.constraint(equalToConstant: buttonframe.height).isActive = true
+        
+        reloadButtomItem.setImage(buttonImage, for: UIControlState())
+        reloadButtomItem.addTarget(self, action: #selector(reloadTableView), for: .touchUpInside)
+        reloadButtomItem.contentMode = .scaleAspectFit
+        reloadButtomItem.tintColor = UIColor.blue
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: reloadButtomItem)
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false

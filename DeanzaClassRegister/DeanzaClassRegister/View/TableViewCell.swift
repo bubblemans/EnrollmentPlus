@@ -49,16 +49,12 @@ class TableViewCell: UITableViewCell {
         addSubview(statusLabel)
         
         // courseLabel
-//        addConstraint(NSLayoutConstraint(item: courseLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 10))
         addConstraint(NSLayoutConstraint(item: courseLabel, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 10))
         
         // instructorLabel
-//        addConstraint(NSLayoutConstraint(item: instructorLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 5))
         addConstraint(NSLayoutConstraint(item: instructorLabel, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 120))
         
-        
         // statusLabel
-//        addConstraint(NSLayoutConstraint(item: statusLabel, attribute: .top, relatedBy: .equal, toItem: instructorLabel, attribute: .bottom, multiplier: 1, constant: 5))
         addConstraint(NSLayoutConstraint(item: statusLabel, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 260))
     }
     
@@ -70,7 +66,11 @@ class TableViewCell: UITableViewCell {
         if let instructor = instructor {
             let text = instructor
             if text.count > 12 {
-                instructorLabel.text = text.components(separatedBy: " ")[1]
+                if text.components(separatedBy: " ")[0].count > text.components(separatedBy: " ")[1].count {
+                    instructorLabel.text = text.components(separatedBy: " ")[1]
+                } else {
+                    instructorLabel.text = text.components(separatedBy: " ")[0]
+                }
             } else {
                 instructorLabel.text = text
             }
