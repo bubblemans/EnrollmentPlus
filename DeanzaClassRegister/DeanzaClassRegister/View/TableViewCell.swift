@@ -52,7 +52,7 @@ class TableViewCell: UITableViewCell {
         addConstraint(NSLayoutConstraint(item: courseLabel, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 10))
         
         // instructorLabel
-        addConstraint(NSLayoutConstraint(item: instructorLabel, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 120))
+        addConstraint(NSLayoutConstraint(item: instructorLabel, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 130))
         
         // statusLabel
         addConstraint(NSLayoutConstraint(item: statusLabel, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 260))
@@ -66,11 +66,7 @@ class TableViewCell: UITableViewCell {
         if let instructor = instructor {
             let text = instructor
             if text.count > 12 {
-                if text.components(separatedBy: " ")[0].count > text.components(separatedBy: " ")[1].count {
-                    instructorLabel.text = text.components(separatedBy: " ")[1]
-                } else {
-                    instructorLabel.text = text.components(separatedBy: " ")[0]
-                }
+                instructorLabel.text = text.components(separatedBy: " ")[0].count > text.components(separatedBy: " ")[1].count ? text.components(separatedBy: " ")[1]: text.components(separatedBy: " ")[0]
             } else {
                 instructorLabel.text = text
             }

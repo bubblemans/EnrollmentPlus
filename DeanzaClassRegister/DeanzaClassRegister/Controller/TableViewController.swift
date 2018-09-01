@@ -14,6 +14,9 @@ class TableViewController: UITableViewController {
     
     var currentCourses = Courses2D(total: 0, data: [], departmentList: [], isExpanded: [])
     var allCourses = Courses2D(total: 0, data: [], departmentList: [], isExpanded: [])
+    var favoriteList: [Data] = []
+    var planList: [Data] = []
+    var subscribeList: [Data] = []
     
     private func downloadJson() {
         let jsonUrlString = "https://api.daclassplanner.com/courses?sortBy=course"
@@ -118,24 +121,32 @@ class TableViewController: UITableViewController {
         // navigationController
         navigationItem.title = "Classes"
         
-            // leftbarButton
-        let buttonframe = CGRect(x: 0, y: 0, width: 25, height: 25)
-        let buttonImage = UIImage(named: "refresh")
+        // refreshButton
+        let refreshButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadTableView))
         
-        let reloadButtomItem = UIButton(frame: buttonframe)
+        // favoriteListButton
+        let favoritebuttonFrame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        let favoritebuttonImage = UIImage(named: "favoriteList")
         
-        reloadButtomItem.widthAnchor.constraint(equalToConstant: buttonframe.width).isActive = true
-        reloadButtomItem.heightAnchor.constraint(equalToConstant: buttonframe.height).isActive = true
+        let favoriteListButtonItem = UIButton(frame: favoritebuttonFrame)
         
-        reloadButtomItem.setImage(buttonImage, for: UIControlState())
-        reloadButtomItem.addTarget(self, action: #selector(reloadTableView), for: .touchUpInside)
-        reloadButtomItem.contentMode = .scaleAspectFit
-        reloadButtomItem.tintColor = UIColor.blue
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: reloadButtomItem)
+        favoriteListButtonItem.widthAnchor.constraint(equalToConstant: favoritebuttonFrame.width).isActive = true
+        favoriteListButtonItem.heightAnchor.constraint(equalToConstant: favoritebuttonFrame.height).isActive = true
         
+        favoriteListButtonItem.setImage(favoritebuttonImage, for: UIControlState())
+        favoriteListButtonItem.addTarget(self, action: #selector(printFavoriteList), for: .touchUpInside)
+        favoriteListButtonItem.contentMode = .scaleAspectFit
+        
+        navigationItem.rightBarButtonItems = [refreshButtonItem, UIBarButtonItem(customView: favoriteListButtonItem)]
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    @objc func printFavoriteList() {
+        for i in favoriteList {
+            print(i.course!, i.lectures[0].instructor!)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -189,7 +200,7 @@ class TableViewController: UITableViewController {
         if currentCourses.departmentList.count != 0 {
             button.setTitle(currentCourses.departmentList[section], for: .normal)
             button.setTitleColor(UIColor.white, for: .normal)
-            button.backgroundColor = UIColor.gray
+            button.backgroundColor = #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
             button.addTarget(self, action: #selector(handleExpand), for: .touchUpInside)
         } else {
@@ -250,6 +261,87 @@ class TableViewController: UITableViewController {
         
         return indexTitleList
     }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let favorite = favoriteAction(at: indexPath)
+        let plan = planAction(at: indexPath)
+        let swipeAction = UISwipeActionsConfiguration(actions: [favorite, plan])
+        swipeAction.performsFirstActionWithFullSwipe = false
+        
+        
+        return swipeAction
+    }
+    
+    private func favoriteAction(at indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "Favorite") { (action, view, completion) in
+            self.updateDataList(at: indexPath, with: &self.favoriteList)
+            completion(true)
+        }
+        
+        action.image = #imageLiteral(resourceName: "favorite")
+        action.backgroundColor = containData(at: indexPath, with: favoriteList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        
+        return action
+    }
+    
+    private func planAction(at indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "plan") { (action, view, completion) in
+            self.updateDataList(at: indexPath, with: &self.planList)
+            completion(true)
+        }
+        
+        action.image = #imageLiteral(resourceName: "plus")
+        action.backgroundColor = containData(at: indexPath, with: planList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        
+        return action
+    }
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let subcribe = subscribeAction(at: indexPath)
+        let swipeAction = UISwipeActionsConfiguration(actions: [subcribe])
+        swipeAction.performsFirstActionWithFullSwipe = false
+        
+        return swipeAction
+    }
+    
+    private func subscribeAction(at indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal , title: "subscribe") { (action, view, completion) in
+            self.updateDataList(at: indexPath, with: &self.subscribeList)
+            
+            completion(true)
+        }
+        
+        action.image = #imageLiteral(resourceName: "alarm")
+        action.backgroundColor = containData(at: indexPath, with: subscribeList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        
+        return action
+    }
+    
+    private func containData(at indexPath: IndexPath, with datas: [Data]) -> Int {
+        var index = -1
+        for indice in datas.indices {
+            if datas[indice].crn == currentCourses.data[indexPath.section][indexPath.row].crn {
+                index = Int(indice)
+                return index
+            }
+        }
+        return index
+    }
+    
+    private func updateDataList(at indexPath: IndexPath, with datas: inout [Data]) {
+        if datas.isEmpty {
+            datas.append(self.currentCourses.data[indexPath.section][indexPath.row])
+        } else {
+            let index = self.containData(at: indexPath, with: datas)
+            
+            if index != -1 {
+                datas.remove(at: index)
+            } else {
+                datas.append(self.currentCourses.data[indexPath.section][indexPath.row])
+            }
+        }
+    }
+
 }
 
 extension TableViewController: UISearchResultsUpdating {
@@ -262,6 +354,7 @@ extension TableViewController: UISearchResultsUpdating {
             currentCourses.departmentList.removeAll()
             currentCourses.isExpanded.removeAll()
             currentCourses.data.removeAll()
+            
             var index = 0
             for departmentCourses in allCourses.data {
                 let courses = departmentCourses.filter({ (course) -> Bool in
@@ -286,19 +379,13 @@ extension TableViewController: UISearchResultsUpdating {
                 }
             }
             currentCourses.total = counter
+            
         } else {
             // no user input
-            
-            currentCourses.departmentList.removeAll()
-            currentCourses.isExpanded.removeAll()
-            
-            for departmentCourses in allCourses.data {
-                currentCourses.departmentList.append(departmentCourses[0].department!)
-                currentCourses.isExpanded.append(true)
-            }
             currentCourses = allCourses
         }
         
         self.tableView.reloadData()
     }
 }
+

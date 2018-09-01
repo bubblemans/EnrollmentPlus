@@ -18,7 +18,9 @@ class detailViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.white
+        navigationItem.largeTitleDisplayMode = .never
         
+        navigationItem.title = course.course!
 
         setupDetailView()
     }
