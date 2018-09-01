@@ -359,7 +359,7 @@ extension TableViewController: UISearchResultsUpdating {
             for departmentCourses in allCourses.data {
                 let courses = departmentCourses.filter({ (course) -> Bool in
                     
-                    let targetText = course.course!.lowercased() + course.crn! + course.lectures[0].instructor!.lowercased()
+                    let targetText = course.course!.lowercased() + course.lectures[0].instructor!.lowercased() + course.lectures[0].instructor!.lowercased() + course.crn!.lowercased()
                     
                     if currentCourses.departmentList.isEmpty || course.department != currentCourses.departmentList[currentCourses.departmentList.count - 1] {
                         if targetText.contains(text.lowercased()) {
