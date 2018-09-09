@@ -169,7 +169,7 @@ class detailViewController: UIViewController {
         clockView.addSubview(titleLabel)
         
         let leadingTimesLabel = UILabel()
-        leadingTimesLabel.text = "Instructor"
+        leadingTimesLabel.text = "Times"
         leadingTimesLabel.textColor = .black
         leadingTimesLabel.frame = CGRect(x: 15, y: 55, width: 100, height: 30)
         clockView.addSubview(leadingTimesLabel)
@@ -205,7 +205,7 @@ class detailViewController: UIViewController {
         locationView.addSubview(titleLabel)
         
         let leadingLocationLabel = UILabel()
-        leadingLocationLabel.text = "Instructor"
+        leadingLocationLabel.text = "Location"
         leadingLocationLabel.textColor = .black
         leadingLocationLabel.frame = CGRect(x: 15, y: 55, width: 100, height: 30)
         locationView.addSubview(leadingLocationLabel)
@@ -224,7 +224,7 @@ class detailViewController: UIViewController {
         
         scrollView.addSubview(statsView)
         statsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 490).isActive = true
-        statsView.heightAnchor.constraint(equalToConstant: 180).isActive = true
+        statsView.heightAnchor.constraint(equalToConstant: 190).isActive = true
         statsView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         statsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         
@@ -243,7 +243,7 @@ class detailViewController: UIViewController {
         let leadingStatusLabel = UILabel()
         leadingStatusLabel.text = "Status"
         leadingStatusLabel.textColor = .black
-        leadingStatusLabel.frame = CGRect(x: 15, y: 55, width: 100, height: 30)
+        leadingStatusLabel.frame = CGRect(x: 15, y: 55, width: 180, height: 30)
         statsView.addSubview(leadingStatusLabel)
         
         let trailingStatusLabel = UILabel()
@@ -253,13 +253,13 @@ class detailViewController: UIViewController {
             trailingStatusLabel.text = "nil"
         }
         trailingStatusLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
-        trailingStatusLabel.frame = CGRect(x: 120, y: 55, width: 100, height: 30)
+        trailingStatusLabel.frame = CGRect(x: 200, y: 55, width: 100, height: 30)
         statsView.addSubview(trailingStatusLabel)
         
         let leadingSeatsAvailableLabel = UILabel()
         leadingSeatsAvailableLabel.text = "Seats_available"
         leadingSeatsAvailableLabel.textColor = .black
-        leadingSeatsAvailableLabel.frame = CGRect(x: 15, y: 85, width: 130, height: 30)
+        leadingSeatsAvailableLabel.frame = CGRect(x: 15, y: 85, width: 180, height: 30)
         statsView.addSubview(leadingSeatsAvailableLabel)
         
         let trailingSeatsAvailableLabel = UILabel()
@@ -269,13 +269,13 @@ class detailViewController: UIViewController {
             trailingSeatsAvailableLabel.text = "nil"
         }
         trailingSeatsAvailableLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
-        trailingSeatsAvailableLabel.frame = CGRect(x: 150, y: 85, width: 100, height: 30)
+        trailingSeatsAvailableLabel.frame = CGRect(x: 200, y: 85, width: 100, height: 30)
         statsView.addSubview(trailingSeatsAvailableLabel)
         
         let leadingWaitlistSlotsAvailableLabel = UILabel()
         leadingWaitlistSlotsAvailableLabel.text = "Waitlist_slots_available"
         leadingWaitlistSlotsAvailableLabel.textColor = .black
-        leadingWaitlistSlotsAvailableLabel.frame = CGRect(x: 15, y: 115, width: 130, height: 30)
+        leadingWaitlistSlotsAvailableLabel.frame = CGRect(x: 15, y: 115, width: 180, height: 30)
         statsView.addSubview(leadingWaitlistSlotsAvailableLabel)
         
         let trailingWaitlistSlotsAvailableLabel = UILabel()
@@ -285,13 +285,13 @@ class detailViewController: UIViewController {
             trailingWaitlistSlotsAvailableLabel.text = "nil"
         }
         trailingWaitlistSlotsAvailableLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
-        trailingWaitlistSlotsAvailableLabel.frame = CGRect(x: 150, y: 115, width: 300, height: 30)
+        trailingWaitlistSlotsAvailableLabel.frame = CGRect(x: 200, y: 115, width: 300, height: 30)
         statsView.addSubview(trailingWaitlistSlotsAvailableLabel)
         
         let leadingWaitlistSlotsCapacityLabel = UILabel()
         leadingWaitlistSlotsCapacityLabel.text = "Waitlist_slots_capacity"
         leadingWaitlistSlotsCapacityLabel.textColor = .black
-        leadingWaitlistSlotsCapacityLabel.frame = CGRect(x: 15, y: 145, width: 130, height: 30)
+        leadingWaitlistSlotsCapacityLabel.frame = CGRect(x: 15, y: 145, width: 180, height: 30)
         statsView.addSubview(leadingWaitlistSlotsCapacityLabel)
         
         let trailingWaitlistSlotsCapacityLabel = UILabel()
@@ -301,7 +301,7 @@ class detailViewController: UIViewController {
             trailingWaitlistSlotsCapacityLabel.text = "nil"
         }
         trailingWaitlistSlotsCapacityLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
-        trailingWaitlistSlotsCapacityLabel.frame = CGRect(x: 150, y: 145, width: 300, height: 30)
+        trailingWaitlistSlotsCapacityLabel.frame = CGRect(x: 200, y: 145, width: 300, height: 30)
         statsView.addSubview(trailingWaitlistSlotsCapacityLabel)
     }
 
