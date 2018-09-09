@@ -65,8 +65,8 @@
 		E13665F2213251110009EF0D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E13665E9212EE3610009EF0D /* detailViewController.swift */,
 				E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */,
+				E13665E9212EE3610009EF0D /* detailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

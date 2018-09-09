@@ -86,7 +86,7 @@ class TableViewController: UITableViewController {
         return resultCourses
     }
     
-    @objc func reloadTableView() {
+    @objc private func refreshTableView() {
         currentCourses.data.removeAll()
         currentCourses.total = 0
         
@@ -103,7 +103,6 @@ class TableViewController: UITableViewController {
         setupNavigationbar()
         
         downloadJson()
-        
     }
     
     private func setupNavigationbar() {
@@ -122,7 +121,7 @@ class TableViewController: UITableViewController {
         navigationItem.title = "Classes"
         
         // refreshButton
-        let refreshButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadTableView))
+        let refreshButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshTableView))
         
         // favoriteListButton
         let favoritebuttonFrame = CGRect(x: 0, y: 0, width: 25, height: 25)
@@ -290,7 +289,7 @@ class TableViewController: UITableViewController {
             completion(true)
         }
         
-        action.image = #imageLiteral(resourceName: "plus")
+        action.image = #imageLiteral(resourceName: "calendar")
         action.backgroundColor = containData(at: indexPath, with: planList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         
         return action
