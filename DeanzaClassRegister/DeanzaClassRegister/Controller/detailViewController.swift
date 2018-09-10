@@ -19,7 +19,6 @@ class detailViewController: UIViewController {
 
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = course.course!
-        
         setUpScrollView()
 
     }
@@ -78,7 +77,7 @@ class detailViewController: UIViewController {
         if (trailingTitleLabel.text?.count)! > 60 {
             trailingTitleLabel.frame = CGRect(x: 120, y: 115, width: 250, height: 70)
             trailingTitleLabel.numberOfLines = 3
-        } else if (trailingTitleLabel.text?.count)! > 25 {
+        } else if (trailingTitleLabel.text?.count)! > 35 {
             trailingTitleLabel.frame = CGRect(x: 120, y: 135, width: 250, height: 50)
             trailingTitleLabel.numberOfLines = 2
         } else {
@@ -283,7 +282,7 @@ class detailViewController: UIViewController {
         statsView.addSubview(leadingSeatsAvailableLabel)
         
         let trailingSeatsAvailableLabel = UILabel()
-        if let seatsAvailable = course.seats_availible {
+        if let seatsAvailable = course.seats_available {
             trailingSeatsAvailableLabel.text = String(seatsAvailable)
         } else {
             trailingSeatsAvailableLabel.text = "nil"
@@ -299,7 +298,7 @@ class detailViewController: UIViewController {
         statsView.addSubview(leadingWaitlistSlotsAvailableLabel)
         
         let trailingWaitlistSlotsAvailableLabel = UILabel()
-        if let waitlistSlotsAvailable = course.seats_availible {
+        if let waitlistSlotsAvailable = course.seats_available {
             trailingWaitlistSlotsAvailableLabel.text = String(waitlistSlotsAvailable)
         } else {
             trailingWaitlistSlotsAvailableLabel.text = "nil"
@@ -315,7 +314,7 @@ class detailViewController: UIViewController {
         statsView.addSubview(leadingWaitlistSlotsCapacityLabel)
         
         let trailingWaitlistSlotsCapacityLabel = UILabel()
-        if let waitlistSlotsCapacity = course.seats_availible {
+        if let waitlistSlotsCapacity = course.seats_available {
             trailingWaitlistSlotsCapacityLabel.text = String(waitlistSlotsCapacity)
         } else {
             trailingWaitlistSlotsCapacityLabel.text = "nil"

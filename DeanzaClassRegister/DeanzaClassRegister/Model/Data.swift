@@ -18,8 +18,8 @@ struct Data: Decodable {
     var status: String?
     var campus: String?
     var units: Double?
-    var seats_availible: Int?
-    var waitlist_slots_availible: Int?
+    var seats_available: Int?
+    var waitlist_slots_available: Int?
     var waitlist_slots_capacity: Int?
     var quarter: String?
     var lectures: [Lectures]
