@@ -1,0 +1,21 @@
+PODS:
+  - SVProgressHUD (2.2.5)
+
+DEPENDENCIES:
+  - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
+
+EXTERNAL SOURCES:
+  SVProgressHUD:
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+
+CHECKOUT OPTIONS:
+  SVProgressHUD:
+    :commit: d860511141f71fa0fb40c3241a0701be06ad7838
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+
+SPEC CHECKSUMS:
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+
+PODFILE CHECKSUM: e236d601fd815036d732c1fcfe8b711b6bdcf745
+
+COCOAPODS: 1.5.3

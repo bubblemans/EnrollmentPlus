@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class TableViewController: UITableViewController {
 
@@ -21,6 +22,9 @@ class TableViewController: UITableViewController {
     private func downloadJson() {
         let jsonUrlString = "https://api.daclassplanner.com/courses?sortBy=course"
         guard let url = URL(string: jsonUrlString) else { return }
+        
+        SVProgressHUD.show(withStatus: "Loading...")
+        SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { return }
@@ -54,6 +58,8 @@ class TableViewController: UITableViewController {
                 // TODO: alert
                 print("Json Error", jsonError)
             }
+            
+            SVProgressHUD.dismiss()
         }.resume()
     }
     

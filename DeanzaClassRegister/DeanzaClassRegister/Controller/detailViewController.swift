@@ -55,8 +55,8 @@ class detailViewController: UIViewController {
         infoView.backgroundColor = .white
         scrollView.addSubview(infoView)
         
-        infoView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        infoView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        infoView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 10).isActive = true
+        infoView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         infoView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         infoView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         
@@ -71,6 +71,30 @@ class detailViewController: UIViewController {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
         titleLabel.frame = CGRect(x: 60, y: 10, width: 300, height: 40)
         infoView.addSubview(titleLabel)
+        
+        let trailingTitleLabel = UILabel()
+        trailingTitleLabel.text = course.lectures[0].title!
+        trailingTitleLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
+        if (trailingTitleLabel.text?.count)! > 60 {
+            trailingTitleLabel.frame = CGRect(x: 120, y: 115, width: 250, height: 70)
+            trailingTitleLabel.numberOfLines = 3
+        } else if (trailingTitleLabel.text?.count)! > 25 {
+            trailingTitleLabel.frame = CGRect(x: 120, y: 135, width: 250, height: 50)
+            trailingTitleLabel.numberOfLines = 2
+        } else {
+            trailingTitleLabel.frame = CGRect(x: 120, y: 135, width: 250, height: 30)
+        }
+        infoView.addSubview(trailingTitleLabel)
+        
+        let leadingTitleLabel = UILabel()
+        leadingTitleLabel.text = "Title"
+        leadingTitleLabel.textColor = .black
+        if (trailingTitleLabel.text?.count)! > 60 {
+            leadingTitleLabel.frame = CGRect(x: 15, y: 115, width: 100, height: 30)
+        } else {
+            leadingTitleLabel.frame = CGRect(x: 15, y: 135, width: 100, height: 30)
+        }
+        infoView.addSubview(leadingTitleLabel)
         
         let leadingCourseLabel = UILabel()
         leadingCourseLabel.text = "Course"
@@ -87,26 +111,22 @@ class detailViewController: UIViewController {
         let leadingCRNLabel = UILabel()
         leadingCRNLabel.text = "CRN"
         leadingCRNLabel.textColor = .black
-        leadingCRNLabel.frame = CGRect(x: 15, y: 85, width: 100, height: 30)
+        if (trailingTitleLabel.text?.count)! > 60 {
+            leadingCRNLabel.frame = CGRect(x: 15, y: 85, width: 100, height: 30)
+        } else {
+            leadingCRNLabel.frame = CGRect(x: 15, y: 95, width: 100, height: 30)
+        }
         infoView.addSubview(leadingCRNLabel)
         
         let trailingCRNLabel = UILabel()
         trailingCRNLabel.text = course.crn!
         trailingCRNLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
-        trailingCRNLabel.frame = CGRect(x: 120, y: 85, width: 100, height: 30)
+        if (trailingTitleLabel.text?.count)! > 60 {
+            trailingCRNLabel.frame = CGRect(x: 120, y: 85, width: 100, height: 30)
+        } else {
+            trailingCRNLabel.frame = CGRect(x: 120, y: 95, width: 100, height: 30)
+        }
         infoView.addSubview(trailingCRNLabel)
-        
-        let leadingTitleLabel = UILabel()
-        leadingTitleLabel.text = "Title"
-        leadingTitleLabel.textColor = .black
-        leadingTitleLabel.frame = CGRect(x: 15, y: 115, width: 100, height: 30)
-        infoView.addSubview(leadingTitleLabel)
-        
-        let trailingTitleLabel = UILabel()
-        trailingTitleLabel.text = course.lectures[0].title!
-        trailingTitleLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
-        trailingTitleLabel.frame = CGRect(x: 120, y: 115, width: 300, height: 30)
-        infoView.addSubview(trailingTitleLabel)
     }
     
     func setUpProfileView() {
@@ -115,7 +135,7 @@ class detailViewController: UIViewController {
         profileView.backgroundColor = .white
         
         scrollView.addSubview(profileView)
-        profileView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 160).isActive = true
+        profileView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 220).isActive = true
         profileView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         profileView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         profileView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
@@ -151,7 +171,7 @@ class detailViewController: UIViewController {
         clockView.backgroundColor = .white
         
         scrollView.addSubview(clockView)
-        clockView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 270).isActive = true
+        clockView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 330).isActive = true
         clockView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         clockView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         clockView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
@@ -187,7 +207,7 @@ class detailViewController: UIViewController {
         locationView.backgroundColor = .white
         
         scrollView.addSubview(locationView)
-        locationView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 380).isActive = true
+        locationView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 440).isActive = true
         locationView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         locationView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         locationView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
@@ -223,7 +243,7 @@ class detailViewController: UIViewController {
         statsView.backgroundColor = .white
         
         scrollView.addSubview(statsView)
-        statsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 490).isActive = true
+        statsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 550).isActive = true
         statsView.heightAnchor.constraint(equalToConstant: 190).isActive = true
         statsView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         statsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true

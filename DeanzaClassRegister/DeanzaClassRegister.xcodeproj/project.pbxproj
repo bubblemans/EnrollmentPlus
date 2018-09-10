@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19F12CA4588F8DA3C365B554 /* Pods_DeanzaClassRegister.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D8EB13270FB3FCA86AA013 /* Pods_DeanzaClassRegister.framework */; };
 		E13665EA212EE3610009EF0D /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665E9212EE3610009EF0D /* detailViewController.swift */; };
 		E13665EC213250800009EF0D /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665EB213250800009EF0D /* Courses.swift */; };
 		E13665EE2132508E0009EF0D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665ED2132508E0009EF0D /* Data.swift */; };
@@ -23,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5883375924B84AA7FAC4B927 /* Pods-DeanzaClassRegister.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeanzaClassRegister.release.xcconfig"; path = "Pods/Target Support Files/Pods-DeanzaClassRegister/Pods-DeanzaClassRegister.release.xcconfig"; sourceTree = "<group>"; };
+		71F65DD780C002CC4C57B85C /* Pods-DeanzaClassRegister.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeanzaClassRegister.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DeanzaClassRegister/Pods-DeanzaClassRegister.debug.xcconfig"; sourceTree = "<group>"; };
+		92D8EB13270FB3FCA86AA013 /* Pods_DeanzaClassRegister.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DeanzaClassRegister.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E13665E9212EE3610009EF0D /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
 		E13665EB213250800009EF0D /* Courses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
 		E13665ED2132508E0009EF0D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -45,12 +49,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19F12CA4588F8DA3C365B554 /* Pods_DeanzaClassRegister.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A82995D78026AFB02460A980 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92D8EB13270FB3FCA86AA013 /* Pods_DeanzaClassRegister.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E13665F1213250E40009EF0D /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +97,8 @@
 			children = (
 				E13EE0BE20E3100800BBD60D /* DeanzaClassRegister */,
 				E13EE0BD20E3100800BBD60D /* Products */,
+				ED66A9EBB45D7A871A7C6B54 /* Pods */,
+				A82995D78026AFB02460A980 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +127,15 @@
 			path = DeanzaClassRegister;
 			sourceTree = "<group>";
 		};
+		ED66A9EBB45D7A871A7C6B54 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				71F65DD780C002CC4C57B85C /* Pods-DeanzaClassRegister.debug.xcconfig */,
+				5883375924B84AA7FAC4B927 /* Pods-DeanzaClassRegister.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,9 +143,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E13EE0D120E3100C00BBD60D /* Build configuration list for PBXNativeTarget "DeanzaClassRegister" */;
 			buildPhases = (
+				1207D69B54CDC6BCCA9E1CC5 /* [CP] Check Pods Manifest.lock */,
 				E13EE0B820E3100800BBD60D /* Sources */,
 				E13EE0B920E3100800BBD60D /* Frameworks */,
 				E13EE0BA20E3100800BBD60D /* Resources */,
+				F5F21FE026325FC6B0D80DDC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -177,6 +203,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1207D69B54CDC6BCCA9E1CC5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DeanzaClassRegister-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5F21FE026325FC6B0D80DDC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DeanzaClassRegister/Pods-DeanzaClassRegister-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DeanzaClassRegister/Pods-DeanzaClassRegister-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E13EE0B820E3100800BBD60D /* Sources */ = {
@@ -334,14 +399,12 @@
 		};
 		E13EE0D220E3100C00BBD60D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71F65DD780C002CC4C57B85C /* Pods-DeanzaClassRegister.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DeanzaClassRegister/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Alvin.DeanzaClassRegister;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -351,14 +414,12 @@
 		};
 		E13EE0D320E3100C00BBD60D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5883375924B84AA7FAC4B927 /* Pods-DeanzaClassRegister.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DeanzaClassRegister/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Alvin.DeanzaClassRegister;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
