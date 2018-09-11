@@ -9,15 +9,16 @@
 import UIKit
 import SVProgressHUD
 
+var favoriteList: [Data] = []
+var planList: [Data] = []
+var subscribeList: [Data] = []
+
 class TableViewController: UITableViewController {
 
     private let cellId = "cellId"
     
     var currentCourses = Courses2D(total: 0, data: [], departmentList: [], isExpanded: [])
     var allCourses = Courses2D(total: 0, data: [], departmentList: [], isExpanded: [])
-    var favoriteList: [Data] = []
-    var planList: [Data] = []
-    var subscribeList: [Data] = []
     
     private func downloadJson() {
         let jsonUrlString = "https://api.daclassplanner.com/courses?sortBy=course"
@@ -279,24 +280,26 @@ class TableViewController: UITableViewController {
     
     private func favoriteAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Favorite") { (action, view, completion) in
-            self.updateDataList(at: indexPath, with: &self.favoriteList)
+            self.updateDataList(at: self.currentCourses.data[indexPath.section][indexPath.row], with: &favoriteList)
             completion(true)
         }
         
         action.image = #imageLiteral(resourceName: "favorite")
-        action.backgroundColor = containData(at: indexPath, with: favoriteList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        let data = currentCourses.data[indexPath.section][indexPath.row]
+        action.backgroundColor = containData(at: data, from: favoriteList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         
         return action
     }
     
     private func planAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "plan") { (action, view, completion) in
-            self.updateDataList(at: indexPath, with: &self.planList)
+            self.updateDataList(at: self.currentCourses.data[indexPath.section][indexPath.row], with: &planList)
             completion(true)
         }
         
         action.image = #imageLiteral(resourceName: "calendar")
-        action.backgroundColor = containData(at: indexPath, with: planList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        let data = currentCourses.data[indexPath.section][indexPath.row]
+        action.backgroundColor = containData(at: data, from: planList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         
         return action
     }
@@ -311,21 +314,22 @@ class TableViewController: UITableViewController {
     
     private func subscribeAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal , title: "subscribe") { (action, view, completion) in
-            self.updateDataList(at: indexPath, with: &self.subscribeList)
+            self.updateDataList(at: self.currentCourses.data[indexPath.section][indexPath.row], with: &subscribeList)
             
             completion(true)
         }
         
         action.image = #imageLiteral(resourceName: "alarm")
-        action.backgroundColor = containData(at: indexPath, with: subscribeList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        let data = currentCourses.data[indexPath.section][indexPath.row]
+        action.backgroundColor = containData(at: data, from: subscribeList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         
         return action
     }
     
-    private func containData(at indexPath: IndexPath, with datas: [Data]) -> Int {
+    open func containData(at target: Data, from datas: [Data]) -> Int {
         var index = -1
         for indice in datas.indices {
-            if datas[indice].crn == currentCourses.data[indexPath.section][indexPath.row].crn {
+            if datas[indice].crn == target.crn {
                 index = Int(indice)
                 return index
             }
@@ -333,16 +337,16 @@ class TableViewController: UITableViewController {
         return index
     }
     
-    private func updateDataList(at indexPath: IndexPath, with datas: inout [Data]) {
+    open func updateDataList(at target: Data, with datas: inout [Data]) {
         if datas.isEmpty {
-            datas.append(self.currentCourses.data[indexPath.section][indexPath.row])
+            datas.append(target)
         } else {
-            let index = self.containData(at: indexPath, with: datas)
+            let index = self.containData(at: target, from: datas)
             
             if index != -1 {
                 datas.remove(at: index)
             } else {
-                datas.append(self.currentCourses.data[indexPath.section][indexPath.row])
+                datas.append(target)
             }
         }
     }

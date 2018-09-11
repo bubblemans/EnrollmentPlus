@@ -30,13 +30,12 @@ class detailViewController: UIViewController {
         scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
 
-    
-        
         setUpInfoView()
         setUpProfileView()
         setUpClockView()
         setUpLocationView()
         setUpStatsView()
+        setUpOptionsView()
         
     }
     
@@ -322,6 +321,177 @@ class detailViewController: UIViewController {
         trailingWaitlistSlotsCapacityLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
         trailingWaitlistSlotsCapacityLabel.frame = CGRect(x: 200, y: 145, width: 300, height: 30)
         statsView.addSubview(trailingWaitlistSlotsCapacityLabel)
+    }
+    
+    let subscribeButton: UIButton = {
+        let bt = UIButton()
+        
+        bt.layer.cornerRadius = 20
+        bt.layer.borderWidth = 2
+        
+        let subcribeImage = UIImage(named: "subscribe")?.withRenderingMode(.alwaysTemplate)
+        bt.setImage(subcribeImage, for: UIControlState())
+        
+        bt.addTarget(self, action: #selector(handleSubscribe), for: .touchUpInside)
+        return bt
+    }()
+    
+    let planButton: UIButton = {
+        let bt = UIButton()
+        
+        bt.layer.cornerRadius = 20
+        bt.layer.borderWidth = 2
+        
+        let planImage = UIImage(named: "calendar")?.withRenderingMode(.alwaysTemplate)
+        bt.setImage(planImage, for: UIControlState())
+        
+        bt.addTarget(self, action: #selector(handlePlan), for: .touchUpInside)
+        return bt
+    }()
+    
+    let favoriteButton: UIButton = {
+        let bt = UIButton()
+        
+        bt.layer.cornerRadius = 20
+        bt.layer.borderWidth = 2
+        
+        let favoriteImage = UIImage(named: "star")?.withRenderingMode(.alwaysTemplate)
+        bt.setImage(favoriteImage, for: UIControlState())
+        
+        bt.addTarget(self, action: #selector(handleFavorite), for: .touchUpInside)
+        return bt
+    }()
+    
+    func setUpOptionsView() {
+        
+        // optionsView
+        let optionsView = UIView()
+        optionsView.translatesAutoresizingMaskIntoConstraints = false
+        optionsView.backgroundColor = .white
+        
+        scrollView.addSubview(optionsView)
+        optionsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 743).isActive = true
+        optionsView.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        optionsView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+        optionsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        
+        // subcribeButton
+        optionsView.addSubview(subscribeButton)
+        subscribeButton.translatesAutoresizingMaskIntoConstraints = false
+        optionsView.addConstraint(NSLayoutConstraint(item: subscribeButton, attribute: .centerY, relatedBy: .equal, toItem: optionsView, attribute: .centerY, multiplier: 1, constant: 0))
+        optionsView.addConstraint(NSLayoutConstraint(item: subscribeButton, attribute: .leading, relatedBy: .equal, toItem: optionsView, attribute: .leading, multiplier: 1, constant: 5))
+        optionsView.addConstraint(NSLayoutConstraint(item: subscribeButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 140))
+        optionsView.addConstraint(NSLayoutConstraint(item: subscribeButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40))
+        
+        let controller = TableViewController()
+        subscribeButton.isSelected = controller.containData(at: course, from: subscribeList) != -1
+        subscribeButton.tintColor = subscribeButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        
+        var titleColor: UIColor = subscribeButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        var title = subscribeButton.isSelected ? "Subscribing" : "Subscribe"
+        subscribeButton.setTitle(title, for: UIControlState())
+        subscribeButton.setTitleColor(titleColor, for: UIControlState())
+        
+        subscribeButton.layer.borderColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        subscribeButton.backgroundColor = subscribeButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        // planButton
+        optionsView.addSubview(planButton)
+        planButton.translatesAutoresizingMaskIntoConstraints = false
+        optionsView.addConstraint(NSLayoutConstraint(item: planButton, attribute: .centerY, relatedBy: .equal, toItem: optionsView, attribute: .centerY, multiplier: 1, constant: 0))
+        optionsView.addConstraint(NSLayoutConstraint(item: planButton, attribute: .leading, relatedBy: .equal, toItem: subscribeButton, attribute: .trailing, multiplier: 1, constant: 5))
+        optionsView.addConstraint(NSLayoutConstraint(item: planButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 120))
+        optionsView.addConstraint(NSLayoutConstraint(item: planButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40))
+
+        planButton.isSelected = controller.containData(at: course, from: planList) != -1
+        planButton.tintColor = planButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        
+        titleColor = planButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        title = planButton.isSelected ? "Planned" : "Plan"
+        planButton.setTitle(title, for: UIControlState())
+        planButton.setTitleColor(titleColor, for: UIControlState())
+        
+        planButton.layer.borderColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        planButton.backgroundColor = planButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        // favoriteButton
+        optionsView.addSubview(favoriteButton)
+        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
+        optionsView.addConstraint(NSLayoutConstraint(item: favoriteButton, attribute: .centerY, relatedBy: .equal, toItem: optionsView, attribute: .centerY, multiplier: 1, constant: 0))
+        optionsView.addConstraint(NSLayoutConstraint(item: favoriteButton, attribute: .leading, relatedBy: .equal, toItem: planButton, attribute: .trailing, multiplier: 1, constant: 5))
+        optionsView.addConstraint(NSLayoutConstraint(item: favoriteButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 95))
+        optionsView.addConstraint(NSLayoutConstraint(item: favoriteButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40))
+
+        favoriteButton.isSelected = controller.containData(at: course, from: favoriteList) != -1
+        favoriteButton.tintColor = favoriteButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        
+        titleColor = favoriteButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        title = favoriteButton.isSelected ? "Liked" : "Like"
+        favoriteButton.setTitle(title, for: UIControlState())
+        favoriteButton.setTitleColor(titleColor, for: UIControlState())
+        
+        favoriteButton.layer.borderColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        favoriteButton.backgroundColor = favoriteButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        
+    }
+    
+    @objc func handleSubscribe() {
+
+        let controller = TableViewController()
+        controller.updateDataList(at: course, with: &subscribeList)
+        
+        subscribeButton.isSelected  = !subscribeButton.isSelected
+        
+        let tintColor: UIColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        subscribeButton.tintColor = tintColor
+        
+        let textColor: UIColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        subscribeButton.setTitleColor(textColor, for: UIControlState())
+        
+        subscribeButton.layer.borderColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        subscribeButton.backgroundColor = subscribeButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        let title = subscribeButton.isSelected ? "Subscribing" : "Subscribe"
+        subscribeButton.setTitle(title, for: UIControlState())
+    }
+    
+    @objc func handlePlan() {
+        let controller = TableViewController()
+        controller.updateDataList(at: course, with: &planList)
+        
+        planButton.isSelected  = !planButton.isSelected
+        
+        let tintColor: UIColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        planButton.tintColor = tintColor
+        
+        let textColor: UIColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        planButton.setTitleColor(textColor, for: UIControlState())
+        
+        planButton.layer.borderColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        planButton.backgroundColor = planButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        let title = planButton.isSelected ? "Planned" : "Plan"
+        planButton.setTitle(title, for: UIControlState())
+    }
+    
+    @objc func handleFavorite() {
+        let controller = TableViewController()
+        controller.updateDataList(at: course, with: &favoriteList)
+        
+        favoriteButton.isSelected  = !favoriteButton.isSelected
+        
+        let tintColor: UIColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        favoriteButton.tintColor = tintColor
+        
+        let textColor: UIColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        favoriteButton.setTitleColor(textColor, for: UIControlState())
+        
+        favoriteButton.layer.borderColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        favoriteButton.backgroundColor = favoriteButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        let title = favoriteButton.isSelected ? "Liked" : "Like"
+        favoriteButton.setTitle(title, for: UIControlState())
     }
 
     override func didReceiveMemoryWarning() {
