@@ -12,56 +12,75 @@ import SVProgressHUD
 var favoriteList: [Data] = []
 var planList: [Data] = []
 var subscribeList: [Data] = []
+var isFirstTime = true
 
 class TableViewController: UITableViewController {
-
+    
     private let cellId = "cellId"
     
     var currentCourses = Courses2D(total: 0, data: [], departmentList: [], isExpanded: [])
     var allCourses = Courses2D(total: 0, data: [], departmentList: [], isExpanded: [])
     
+    var selectedIndexPath: IndexPath?
+    
+    let blackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        return view
+    }()
+    
     private func downloadJson() {
         let jsonUrlString = "https://api.daclassplanner.com/courses?sortBy=course"
         guard let url = URL(string: jsonUrlString) else { return }
         
-        SVProgressHUD.show(withStatus: "Loading...")
-        SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else { return }
+        if let window = UIApplication.shared.keyWindow {
+            window.addSubview(blackView)
+            blackView.alpha = 0.5
+            blackView.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
             
-            do {
-                var course = self.sortCourses(courses: try JSONDecoder().decode(Courses.self, from: data))
-                course = self.sortDepartment(courses: course)
+            SVProgressHUD.show(withStatus: "Loading...")
+            SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+            
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                guard let data = data else { return }
                 
-                var index = 0
-                var temp: [Data] = []
-                
-                while index < course.total! - 1{
-                    temp.append(course.data[index])
-                    if course.data[index].department != course.data[index + 1].department {
-                        self.currentCourses.departmentList.append(course.data[index].department!)
-                        self.currentCourses.isExpanded.append(false)
-                        self.currentCourses.data.append(temp)
-                        temp = []
+                do {
+                    var course = self.sortCourses(courses: try JSONDecoder().decode(Courses.self, from: data))
+                    course = self.sortDepartment(courses: course)
+                    
+                    var index = 0
+                    var temp: [Data] = []
+                    
+                    while index < course.total! - 1{
+                        temp.append(course.data[index])
+                        if course.data[index].department != course.data[index + 1].department {
+                            self.currentCourses.departmentList.append(course.data[index].department!)
+                            self.currentCourses.isExpanded.append(false)
+                            self.currentCourses.data.append(temp)
+                            temp = []
+                        }
+                        index = index + 1
                     }
-                    index = index + 1
+                    
+                    self.currentCourses.total = course.total
+                    self.allCourses = self.currentCourses
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    
+                } catch let jsonError {
+                    // TODO: alert
+                    print("Json Error", jsonError)
                 }
                 
-                self.currentCourses.total = course.total
-                self.allCourses = self.currentCourses
-                
+                SVProgressHUD.dismiss()
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                    self.blackView.alpha = 0
                 }
                 
-            } catch let jsonError {
-                // TODO: alert
-                print("Json Error", jsonError)
-            }
-            
-            SVProgressHUD.dismiss()
-        }.resume()
+                }.resume()
+        }
     }
     
     private func sortCourses(courses: Courses) -> Courses {
@@ -108,8 +127,13 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
 
         setupNavigationbar()
-        
-        downloadJson()
+
+        if isFirstTime {
+            downloadJson()
+        } else {
+            // TODO: have to save the data somewhere(maybe coredata)
+            self.tableView.reloadData()
+        }
     }
     
     private func setupNavigationbar() {
@@ -129,21 +153,17 @@ class TableViewController: UITableViewController {
         
         // refreshButton
         let refreshButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshTableView))
+        navigationItem.rightBarButtonItems = [refreshButtonItem]
         
-        // favoriteListButton
-        let favoritebuttonFrame = CGRect(x: 0, y: 0, width: 25, height: 25)
-        let favoritebuttonImage = UIImage(named: "favoriteList")
+        // menuButton
+        let menubuttonFrame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        let menubuttonImage = UIImage(named: "list")
+        let menuButton = MenuButton(frame: menubuttonFrame, image: menubuttonImage!)
+        menuButton.baseController = self 
         
-        let favoriteListButtonItem = UIButton(frame: favoritebuttonFrame)
+        navigationItem.rightBarButtonItems = [refreshButtonItem]
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton)
         
-        favoriteListButtonItem.widthAnchor.constraint(equalToConstant: favoritebuttonFrame.width).isActive = true
-        favoriteListButtonItem.heightAnchor.constraint(equalToConstant: favoritebuttonFrame.height).isActive = true
-        
-        favoriteListButtonItem.setImage(favoritebuttonImage, for: UIControlState())
-        favoriteListButtonItem.addTarget(self, action: #selector(printFavoriteList), for: .touchUpInside)
-        favoriteListButtonItem.contentMode = .scaleAspectFit
-        
-        navigationItem.rightBarButtonItems = [refreshButtonItem, UIBarButtonItem(customView: favoriteListButtonItem)]
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -397,4 +417,6 @@ extension TableViewController: UISearchResultsUpdating {
         self.tableView.reloadData()
     }
 }
+
+
 
