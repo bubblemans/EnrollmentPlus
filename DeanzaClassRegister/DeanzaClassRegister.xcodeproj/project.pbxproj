@@ -31,6 +31,7 @@
 		E13EE0CD20E3100C00BBD60D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E13EE0CB20E3100C00BBD60D /* LaunchScreen.storyboard */; };
 		E17EC3F6211EE5D100AA1D46 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */; };
 		E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */; };
+		E1E2665F2154B488006AE824 /* PhotoOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E2665E2154B488006AE824 /* PhotoOptionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		E13EE0CE20E3100C00BBD60D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses2D.swift; sourceTree = "<group>"; };
+		E1E2665E2154B488006AE824 /* PhotoOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOptionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				E13665F62136C5EA0009EF0D /* TableViewCell.swift */,
-				E13C5F80214B86AA0046F80C /* MenuCollectionViewCell.swift */,
 				E13C5F95215165350046F80C /* MenuButton.swift */,
+				E13C5F80214B86AA0046F80C /* MenuCollectionViewCell.swift */,
+				E1E2665E2154B488006AE824 /* PhotoOptionsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				E13665F72136C5EA0009EF0D /* TableViewCell.swift in Sources */,
 				E13EE0C020E3100800BBD60D /* AppDelegate.swift in Sources */,
 				E13C5F96215165350046F80C /* MenuButton.swift in Sources */,
+				E1E2665F2154B488006AE824 /* PhotoOptionsView.swift in Sources */,
 				E13C5F7F21481F9B0046F80C /* MenuLauncher.swift in Sources */,
 				E13665EA212EE3610009EF0D /* detailViewController.swift in Sources */,
 				E13C5F8D214B93300046F80C /* HelpViewController.swift in Sources */,
