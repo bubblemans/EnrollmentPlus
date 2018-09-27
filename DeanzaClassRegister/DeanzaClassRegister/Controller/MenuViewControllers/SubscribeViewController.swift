@@ -8,9 +8,57 @@
 
 import UIKit
 
-class SubscribeViewController: MenuBaseViewController {
+class SubscribeViewController: MenuBaseViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    let cellId = "cellId"
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return subscribeList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableViewCell
+        cell.course = subscribeList[indexPath.row].course!
+        cell.instructor = subscribeList[indexPath.row].lectures[0].instructor!
+        
+        if subscribeList[indexPath.row].status != nil {
+            cell.status = subscribeList[indexPath.row].status!
+        } else {
+            cell.status = "nil"
+        }
+        
+        cell.selectionStyle = .none
+        
+        return cell
+    }
+    
+    let tableView: UITableView = {
+        let view = UITableView()
+        view.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.9372549057, blue: 0.9568627477, alpha: 1)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.addSubview(tableView)
+        tableView.frame = view.frame
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: cellId)
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

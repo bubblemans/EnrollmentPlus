@@ -9,8 +9,24 @@
 import UIKit
 
 class SettingViewController: MenuBaseViewController {
+    
+    let scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentSize.height = 1000
+        view.backgroundColor = .white
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addSubview(scrollView)
     }
 }
+
+
+
+
+
+
 
