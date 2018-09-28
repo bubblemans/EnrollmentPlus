@@ -46,6 +46,34 @@ class SubscribeViewController: MenuBaseViewController, UITableViewDataSource, UI
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(TableViewCell.self, forCellReuseIdentifier: cellId)
+        
+        navigationItem.title = "Subscribe"
+        
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let subscribe = subscribeAction(at: indexPath)
+        let action = UISwipeActionsConfiguration(actions: [subscribe])
+        
+        return action
+    }
+    
+    private func subscribeAction(at indexPath: IndexPath) -> UIContextualAction{
+        let controller = TableViewController()
+        let action = UIContextualAction(style: .destructive, title: "subscribe") { (action, view, completion) in
+            
+            let index = controller.containData(at: subscribeList[indexPath.row], from: subscribeList)
+            if index != -1 {
+                subscribeList.remove(at: index)
+            } else {
+                print("Can't find the data.")
+            }
+            completion(true)
+        }
+        action.image = #imageLiteral(resourceName: "alarm")
+        let data = subscribeList[indexPath.row]
+        action.backgroundColor = controller.containData(at: data, from: subscribeList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        return action
     }
 }
 
