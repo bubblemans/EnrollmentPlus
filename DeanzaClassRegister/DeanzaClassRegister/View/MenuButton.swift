@@ -23,10 +23,10 @@ class MenuButton: UIButton {
     convenience init(frame: CGRect, image: UIImage) {
         self.init(frame: frame)
         self.frame = frame
-        
         self.widthAnchor.constraint(equalToConstant: frame.width).isActive = true
         self.heightAnchor.constraint(equalToConstant: frame.height).isActive = true
         
+        self.tintColor = .white
         self.setImage(image, for: UIControlState())
         self.addTarget(self, action: #selector(handleMenu), for: .touchUpInside)
         self.contentMode = .scaleAspectFit

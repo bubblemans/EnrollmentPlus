@@ -20,6 +20,7 @@ class SettingViewController: MenuBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Setting"
         self.view.addSubview(scrollView)
     }
 }

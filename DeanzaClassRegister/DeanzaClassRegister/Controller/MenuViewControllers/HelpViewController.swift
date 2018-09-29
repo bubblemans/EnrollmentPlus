@@ -11,5 +11,6 @@ import UIKit
 class HelpViewController: MenuBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Help"
     }
 }

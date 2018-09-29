@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		19F12CA4588F8DA3C365B554 /* Pods_DeanzaClassRegister.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D8EB13270FB3FCA86AA013 /* Pods_DeanzaClassRegister.framework */; };
+		E1153659215F1BD800244F81 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1153658215F1BD800244F81 /* NotificationCell.swift */; };
 		E13665EA212EE3610009EF0D /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665E9212EE3610009EF0D /* detailViewController.swift */; };
 		E13665EC213250800009EF0D /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665EB213250800009EF0D /* Courses.swift */; };
 		E13665EE2132508E0009EF0D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665ED2132508E0009EF0D /* Data.swift */; };
@@ -37,6 +38,7 @@
 		5883375924B84AA7FAC4B927 /* Pods-DeanzaClassRegister.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeanzaClassRegister.release.xcconfig"; path = "Pods/Target Support Files/Pods-DeanzaClassRegister/Pods-DeanzaClassRegister.release.xcconfig"; sourceTree = "<group>"; };
 		71F65DD780C002CC4C57B85C /* Pods-DeanzaClassRegister.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeanzaClassRegister.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DeanzaClassRegister/Pods-DeanzaClassRegister.debug.xcconfig"; sourceTree = "<group>"; };
 		92D8EB13270FB3FCA86AA013 /* Pods_DeanzaClassRegister.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DeanzaClassRegister.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1153658215F1BD800244F81 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		E13665E9212EE3610009EF0D /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
 		E13665EB213250800009EF0D /* Courses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
 		E13665ED2132508E0009EF0D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				E13665F62136C5EA0009EF0D /* TableViewCell.swift */,
+				E1153658215F1BD800244F81 /* NotificationCell.swift */,
 				E13C5F95215165350046F80C /* MenuButton.swift */,
 				E13C5F80214B86AA0046F80C /* MenuCollectionViewCell.swift */,
 			);
@@ -299,6 +302,7 @@
 				E13665F72136C5EA0009EF0D /* TableViewCell.swift in Sources */,
 				E13EE0C020E3100800BBD60D /* AppDelegate.swift in Sources */,
 				E13C5F96215165350046F80C /* MenuButton.swift in Sources */,
+				E1153659215F1BD800244F81 /* NotificationCell.swift in Sources */,
 				E13C5F7F21481F9B0046F80C /* MenuLauncher.swift in Sources */,
 				E13665EA212EE3610009EF0D /* detailViewController.swift in Sources */,
 				E13C5F8D214B93300046F80C /* HelpViewController.swift in Sources */,

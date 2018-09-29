@@ -17,7 +17,7 @@ class MenuBaseViewController: UIViewController {
         super.viewDidLoad()
         
         let menubuttonFrame = CGRect(x: 0, y: 0, width: 25, height: 25)
-        let menubuttonImage = UIImage(named: "list")
+        let menubuttonImage = UIImage(named: "list")?.withRenderingMode(.alwaysTemplate)
         let menuButton = MenuButton(frame: menubuttonFrame, image: menubuttonImage!)
         menuButton.baseController = baseController
         menuButton.selectedIndexPath = selectedIndexPath

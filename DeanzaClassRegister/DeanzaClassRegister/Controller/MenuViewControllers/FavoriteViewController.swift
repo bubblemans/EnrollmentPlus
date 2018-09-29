@@ -39,6 +39,7 @@ class FavoriteViewController: MenuBaseViewController, UITableViewDataSource, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = "Favorite"
         
         tableView.delegate = self
