@@ -313,6 +313,9 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             self.baseController?.navigationItem.title = title
             self.baseController?.navigationItem.largeTitleDisplayMode = .never
             self.baseController?.navigationController?.pushViewController(destination, animated: true)
+            self.baseController?.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+            self.baseController?.navigationController?.navigationBar.tintColor = .white
+            self.baseController?.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         }
     }
     

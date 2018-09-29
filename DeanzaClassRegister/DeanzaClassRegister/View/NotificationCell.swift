@@ -21,7 +21,7 @@ class NotificationCell: UICollectionViewCell {
         return view
     }()
     
-    let titleLabel: UILabel = {
+    let nameLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -32,6 +32,7 @@ class NotificationCell: UICollectionViewCell {
         let label = UILabel()
         label.backgroundColor = .white
         label.textColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
     
@@ -45,7 +46,7 @@ class NotificationCell: UICollectionViewCell {
         super.init(frame: frame)
         self.backgroundColor = .white
         setupImageView()
-        setupTitleLabel()
+        setupNameLabel()
         setupTimeLabel()
         setupDetailLabel()
     }
@@ -58,14 +59,14 @@ class NotificationCell: UICollectionViewCell {
     
     private func setupTimeLabel() {
         addSubview(timeLabel)
-        timeLabel.frame = CGRect(x: 295, y: 10, width: 75, height: 30)
-        timeLabel.text = "11:24 PM"
+        timeLabel.frame = CGRect(x: 245, y: 10, width: 135, height: 30)
+        timeLabel.text = "11/24/95 11:24 PM"
     }
     
-    private func setupTitleLabel() {
-        addSubview(titleLabel)
-        titleLabel.frame = CGRect(x: 105, y: 10, width: 180, height: 30)
-        titleLabel.text = "This is title here..."
+    private func setupNameLabel() {
+        addSubview(nameLabel)
+        nameLabel.frame = CGRect(x: 105, y: 10, width: 130, height: 30)
+        nameLabel.text = "This is title here..."
         
     }
     

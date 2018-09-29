@@ -49,10 +49,6 @@ class SubscribeViewController: MenuBaseViewController, UITableViewDataSource, UI
         tableView.register(TableViewCell.self, forCellReuseIdentifier: cellId)
         
         navigationItem.title = "Subscribe"
-        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
