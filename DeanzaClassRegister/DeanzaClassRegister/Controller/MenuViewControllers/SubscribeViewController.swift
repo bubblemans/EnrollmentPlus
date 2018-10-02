@@ -41,14 +41,17 @@ class SubscribeViewController: MenuBaseViewController, UITableViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.addSubview(tableView)
-        tableView.frame = view.frame
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: cellId)
-        
         navigationItem.title = "Subscribe"
+        
+        if subscribeList.count != 0 {
+            self.view.addSubview(tableView)
+            tableView.frame = view.frame
+            tableView.dataSource = self
+            tableView.delegate = self
+            tableView.register(TableViewCell.self, forCellReuseIdentifier: cellId)
+        } else {
+            view.backgroundColor = .white
+        }
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

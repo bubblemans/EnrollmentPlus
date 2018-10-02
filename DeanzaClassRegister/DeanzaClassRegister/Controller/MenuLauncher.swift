@@ -47,8 +47,8 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
     
     
     private let cellId = "cellId"
-    let labelString = ["Home", "Subscribe", "Favorite", "Notification", "Settings", "Help", "Log out"]
-    let imageString = ["home", "subscribe", "star", "mail", "settings", "information", "logout"]
+    let labelString = ["Home", "MyList", "Notification", "Settings", "Help", "Log out"]
+    let imageString = ["home", "shoppingList", "mail", "settings", "information", "logout"]
     var baseController: TableViewController?
     
     let menuView: UIView = {
@@ -265,13 +265,8 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             destination.selectedIndexPath = indexPath
             isFirstTime = false
             handlePushAnimate(title: title, destination: destination)
-        case "Subscribe":
-            let destination = SubscribeViewController()
-            destination.baseController = baseController
-            destination.selectedIndexPath = indexPath
-            handlePushAnimate(title: title, destination: destination)
-        case "Favorite":
-            let destination = FavoriteViewController()
+        case "MyList":
+            let destination = MyListViewController()
             destination.baseController = baseController
             destination.selectedIndexPath = indexPath
             handlePushAnimate(title: title, destination: destination)

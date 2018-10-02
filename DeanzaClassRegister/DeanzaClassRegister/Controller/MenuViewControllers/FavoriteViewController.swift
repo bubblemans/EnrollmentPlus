@@ -39,14 +39,17 @@ class FavoriteViewController: MenuBaseViewController, UITableViewDataSource, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.title = "Favorite"
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: cellId)
-        view.addSubview(tableView)
-        tableView.frame = view.frame
+        if favoriteList.count != 0 {
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.register(TableViewCell.self, forCellReuseIdentifier: cellId)
+            view.addSubview(tableView)
+            tableView.frame = view.frame
+        } else {
+            view.backgroundColor = .white
+        }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

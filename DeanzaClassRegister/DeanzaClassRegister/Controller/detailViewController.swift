@@ -36,7 +36,6 @@ class detailViewController: UIViewController {
         setUpLocationView()
         setUpStatsView()
         setUpOptionsView()
-        
     }
     
     lazy var scrollView: UIScrollView = {
