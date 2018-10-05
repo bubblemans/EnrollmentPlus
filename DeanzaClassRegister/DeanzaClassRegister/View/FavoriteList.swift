@@ -11,6 +11,7 @@ import UIKit
 class FavoriteList: UIView, UITableViewDelegate, UITableViewDataSource {
     
     let cellId = "cellId"
+    var myListController: MyListViewController?
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableViewCell
@@ -54,6 +55,8 @@ class FavoriteList: UIView, UITableViewDelegate, UITableViewDataSource {
             if favoriteList.count == 0 {
                 self.dismissTableView()
             }
+            
+            self.myListController?.animateScrollView()
             completion(true)
         }
         

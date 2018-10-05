@@ -49,8 +49,9 @@ class SubscribeList: UIView, UITableViewDataSource, UITableViewDelegate {
             
             if subscribeList.count == 0 {
                 self.dismissTableView()
-                self.myListController?.animateFavoriteView()
             }
+            
+            self.myListController?.animateFavoriteView()
             
             completion(true)
         }
