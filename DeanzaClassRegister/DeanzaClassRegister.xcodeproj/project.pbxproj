@@ -16,8 +16,6 @@
 		E13665F72136C5EA0009EF0D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665F62136C5EA0009EF0D /* TableViewCell.swift */; };
 		E13C5F7F21481F9B0046F80C /* MenuLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13C5F7E21481F9B0046F80C /* MenuLauncher.swift */; };
 		E13C5F81214B86AA0046F80C /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13C5F80214B86AA0046F80C /* MenuCollectionViewCell.swift */; };
-		E13C5F85214B92F60046F80C /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13C5F84214B92F60046F80C /* SubscribeViewController.swift */; };
-		E13C5F87214B930E0046F80C /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13C5F86214B930E0046F80C /* FavoriteViewController.swift */; };
 		E13C5F89214B93190046F80C /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13C5F88214B93190046F80C /* NotificationViewController.swift */; };
 		E13C5F8B214B93250046F80C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13C5F8A214B93250046F80C /* SettingViewController.swift */; };
 		E13C5F8D214B93300046F80C /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13C5F8C214B93300046F80C /* HelpViewController.swift */; };
@@ -49,8 +47,6 @@
 		E13665F62136C5EA0009EF0D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		E13C5F7E21481F9B0046F80C /* MenuLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLauncher.swift; sourceTree = "<group>"; };
 		E13C5F80214B86AA0046F80C /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
-		E13C5F84214B92F60046F80C /* SubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
-		E13C5F86214B930E0046F80C /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		E13C5F88214B93190046F80C /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		E13C5F8A214B93250046F80C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		E13C5F8C214B93300046F80C /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
@@ -130,8 +126,6 @@
 		E13C5F90214B93450046F80C /* MenuViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E13C5F84214B92F60046F80C /* SubscribeViewController.swift */,
-				E13C5F86214B930E0046F80C /* FavoriteViewController.swift */,
 				E13C5F88214B93190046F80C /* NotificationViewController.swift */,
 				E13C5F8A214B93250046F80C /* SettingViewController.swift */,
 				E13C5F8C214B93300046F80C /* HelpViewController.swift */,
@@ -303,9 +297,7 @@
 				E13EE0C220E3100800BBD60D /* ViewController.swift in Sources */,
 				E13C5F89214B93190046F80C /* NotificationViewController.swift in Sources */,
 				E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */,
-				E13C5F85214B92F60046F80C /* SubscribeViewController.swift in Sources */,
 				E13C5F8B214B93250046F80C /* SettingViewController.swift in Sources */,
-				E13C5F87214B930E0046F80C /* FavoriteViewController.swift in Sources */,
 				E13665F0213250970009EF0D /* Lecture.swift in Sources */,
 				E1F739242162EA5C0024EA8E /* FavoriteList.swift in Sources */,
 				E13665EC213250800009EF0D /* Courses.swift in Sources */,

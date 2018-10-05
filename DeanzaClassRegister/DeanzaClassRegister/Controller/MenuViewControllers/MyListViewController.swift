@@ -12,21 +12,28 @@ class MyListViewController: MenuBaseViewController {
     
     let subscribeListView = SubscribeList()
     let favoriteListView = FavoriteList()
-    
+    let subscribeHeight = CGFloat(subscribeList.count * 44 + 44)
+    let favoriteHeight = CGFloat(favoriteList.count * 44 + 44)
     
     override func viewDidLoad() {
-        
-        navigationItem.title = "List"
         super.viewDidLoad()
+        navigationItem.title = "My List"
         view.backgroundColor = #colorLiteral(red: 0.9572939277, green: 0.9572939277, blue: 0.9572939277, alpha: 1)
         view.addSubview(subscribeListView)
         view.addSubview(favoriteListView)
-        
-        let subscribeHeight = CGFloat(subscribeList.count * 60)
-        let favoriteHeight = CGFloat(favoriteList.count * 60)
+        subscribeListView.myListController = self
         
         subscribeListView.frame = CGRect(x: 0, y: 100, width: view.frame.width, height: subscribeHeight)
-        favoriteListView.frame = CGRect(x: 0, y: 130 + subscribeHeight, width: view.frame.width, height: favoriteHeight)
+        favoriteListView.frame = CGRect(x: 0, y: 100 + 30 + subscribeHeight, width: view.frame.width, height: favoriteHeight)
+    }
+    
+    open func animateFavoriteView() {
+        if favoriteList.count > 0 && subscribeList.count == 0{
+            UIView.animate(withDuration: 0.5) {
+                print("hehe")
+                self.favoriteListView.frame = CGRect(x: 0, y: 100, width: self.view.frame.width, height: self.favoriteHeight)
+            }
+        }
     }
 }
 
