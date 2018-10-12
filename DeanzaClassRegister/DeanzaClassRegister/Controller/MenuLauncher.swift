@@ -120,7 +120,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             // imageButton
             menuView.addSubview(imageButton)
             imageButton.frame = CGRect(x: profileView.frame.origin.x + profileView.frame.width - 50, y: profileView.frame.origin.y + profileView.frame.height - 50, width: 50, height: 50)
-            imageButton.setImage(UIImage(named: "camera"), for: UIControlState())
+            imageButton.setImage(UIImage(named: "camera"), for: UIControl.State())
             imageButton.backgroundColor = .white
             imageButton.layer.cornerRadius = 25
             imageButton.layer.borderWidth = 1
@@ -208,9 +208,12 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         
-        if let image = info[UIImagePickerControllerEditedImage] {
+        if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] {
             profileView.image = image as? UIImage
             picker.dismiss(animated: true, completion: nil)
         } else {
@@ -310,7 +313,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             self.baseController?.navigationController?.pushViewController(destination, animated: true)
             self.baseController?.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
             self.baseController?.navigationController?.navigationBar.tintColor = .white
-            self.baseController?.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+            self.baseController?.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         }
     }
     
@@ -336,3 +339,13 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
 
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
+}

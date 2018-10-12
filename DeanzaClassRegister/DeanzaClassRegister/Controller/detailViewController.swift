@@ -329,7 +329,7 @@ class detailViewController: UIViewController {
         bt.layer.borderWidth = 2
         
         let subcribeImage = UIImage(named: "subscribe")?.withRenderingMode(.alwaysTemplate)
-        bt.setImage(subcribeImage, for: UIControlState())
+        bt.setImage(subcribeImage, for: UIControl.State())
         
         bt.addTarget(self, action: #selector(handleSubscribe), for: .touchUpInside)
         return bt
@@ -342,7 +342,7 @@ class detailViewController: UIViewController {
         bt.layer.borderWidth = 2
         
         let planImage = UIImage(named: "calendar")?.withRenderingMode(.alwaysTemplate)
-        bt.setImage(planImage, for: UIControlState())
+        bt.setImage(planImage, for: UIControl.State())
         
         bt.addTarget(self, action: #selector(handlePlan), for: .touchUpInside)
         return bt
@@ -355,7 +355,7 @@ class detailViewController: UIViewController {
         bt.layer.borderWidth = 2
         
         let favoriteImage = UIImage(named: "star")?.withRenderingMode(.alwaysTemplate)
-        bt.setImage(favoriteImage, for: UIControlState())
+        bt.setImage(favoriteImage, for: UIControl.State())
         
         bt.addTarget(self, action: #selector(handleFavorite), for: .touchUpInside)
         return bt
@@ -388,8 +388,8 @@ class detailViewController: UIViewController {
         
         var titleColor: UIColor = subscribeButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
         var title = subscribeButton.isSelected ? "Subscribing" : "Subscribe"
-        subscribeButton.setTitle(title, for: UIControlState())
-        subscribeButton.setTitleColor(titleColor, for: UIControlState())
+        subscribeButton.setTitle(title, for: UIControl.State())
+        subscribeButton.setTitleColor(titleColor, for: UIControl.State())
         
         subscribeButton.layer.borderColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
         subscribeButton.backgroundColor = subscribeButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -407,8 +407,8 @@ class detailViewController: UIViewController {
         
         titleColor = planButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
         title = planButton.isSelected ? "Planned" : "Plan"
-        planButton.setTitle(title, for: UIControlState())
-        planButton.setTitleColor(titleColor, for: UIControlState())
+        planButton.setTitle(title, for: UIControl.State())
+        planButton.setTitleColor(titleColor, for: UIControl.State())
         
         planButton.layer.borderColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
         planButton.backgroundColor = planButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -426,8 +426,8 @@ class detailViewController: UIViewController {
         
         titleColor = favoriteButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
         title = favoriteButton.isSelected ? "Liked" : "Like"
-        favoriteButton.setTitle(title, for: UIControlState())
-        favoriteButton.setTitleColor(titleColor, for: UIControlState())
+        favoriteButton.setTitle(title, for: UIControl.State())
+        favoriteButton.setTitleColor(titleColor, for: UIControl.State())
         
         favoriteButton.layer.borderColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
         favoriteButton.backgroundColor = favoriteButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -446,13 +446,13 @@ class detailViewController: UIViewController {
         subscribeButton.tintColor = tintColor
         
         let textColor: UIColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        subscribeButton.setTitleColor(textColor, for: UIControlState())
+        subscribeButton.setTitleColor(textColor, for: UIControl.State())
         
         subscribeButton.layer.borderColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
         subscribeButton.backgroundColor = subscribeButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         let title = subscribeButton.isSelected ? "Subscribing" : "Subscribe"
-        subscribeButton.setTitle(title, for: UIControlState())
+        subscribeButton.setTitle(title, for: UIControl.State())
     }
     
     @objc func handlePlan() {
@@ -465,13 +465,13 @@ class detailViewController: UIViewController {
         planButton.tintColor = tintColor
         
         let textColor: UIColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        planButton.setTitleColor(textColor, for: UIControlState())
+        planButton.setTitleColor(textColor, for: UIControl.State())
         
         planButton.layer.borderColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
         planButton.backgroundColor = planButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         let title = planButton.isSelected ? "Planned" : "Plan"
-        planButton.setTitle(title, for: UIControlState())
+        planButton.setTitle(title, for: UIControl.State())
     }
     
     @objc func handleFavorite() {
@@ -484,13 +484,13 @@ class detailViewController: UIViewController {
         favoriteButton.tintColor = tintColor
         
         let textColor: UIColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        favoriteButton.setTitleColor(textColor, for: UIControlState())
+        favoriteButton.setTitleColor(textColor, for: UIControl.State())
         
         favoriteButton.layer.borderColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
         favoriteButton.backgroundColor = favoriteButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         let title = favoriteButton.isSelected ? "Liked" : "Like"
-        favoriteButton.setTitle(title, for: UIControlState())
+        favoriteButton.setTitle(title, for: UIControl.State())
     }
 
     override func didReceiveMemoryWarning() {

@@ -13,7 +13,7 @@ class TableViewCell: UITableViewCell {
     var instructor: String?
     var status: String?
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style:  style, reuseIdentifier: reuseIdentifier)
         setupCourseInfoLabel()
     }

@@ -27,7 +27,7 @@ class MenuButton: UIButton {
         self.heightAnchor.constraint(equalToConstant: frame.height).isActive = true
         
         self.tintColor = .white
-        self.setImage(image, for: UIControlState())
+        self.setImage(image, for: UIControl.State())
         self.addTarget(self, action: #selector(handleMenu), for: .touchUpInside)
         self.contentMode = .scaleAspectFit
     }

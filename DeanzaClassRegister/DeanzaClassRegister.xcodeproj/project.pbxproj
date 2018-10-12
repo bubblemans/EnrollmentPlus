@@ -30,6 +30,8 @@
 		E13EE0CD20E3100C00BBD60D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E13EE0CB20E3100C00BBD60D /* LaunchScreen.storyboard */; };
 		E17EC3F6211EE5D100AA1D46 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */; };
 		E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */; };
+		E1C727F9217003110074ECA0 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727F8217003110074ECA0 /* SettingCell.swift */; };
+		E1C727FB217065380074ECA0 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FA217065380074ECA0 /* PreferenceView.swift */; };
 		E1F739202162E84B0024EA8E /* MyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F7391F2162E84B0024EA8E /* MyListViewController.swift */; };
 		E1F739222162E8AF0024EA8E /* SubscribeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F739212162E8AF0024EA8E /* SubscribeList.swift */; };
 		E1F739242162EA5C0024EA8E /* FavoriteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F739232162EA5C0024EA8E /* FavoriteList.swift */; };
@@ -63,6 +65,8 @@
 		E13EE0CE20E3100C00BBD60D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses2D.swift; sourceTree = "<group>"; };
+		E1C727F8217003110074ECA0 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		E1C727FA217065380074ECA0 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		E1F7391F2162E84B0024EA8E /* MyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewController.swift; sourceTree = "<group>"; };
 		E1F739212162E8AF0024EA8E /* SubscribeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeList.swift; sourceTree = "<group>"; };
 		E1F739232162EA5C0024EA8E /* FavoriteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteList.swift; sourceTree = "<group>"; };
@@ -114,11 +118,13 @@
 			isa = PBXGroup;
 			children = (
 				E13665F62136C5EA0009EF0D /* TableViewCell.swift */,
+				E1C727F8217003110074ECA0 /* SettingCell.swift */,
 				E1F739212162E8AF0024EA8E /* SubscribeList.swift */,
 				E1F739232162EA5C0024EA8E /* FavoriteList.swift */,
 				E1153658215F1BD800244F81 /* NotificationCell.swift */,
 				E13C5F95215165350046F80C /* MenuButton.swift */,
 				E13C5F80214B86AA0046F80C /* MenuCollectionViewCell.swift */,
+				E1C727FA217065380074ECA0 /* PreferenceView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -127,11 +133,11 @@
 			isa = PBXGroup;
 			children = (
 				E13C5F88214B93190046F80C /* NotificationViewController.swift */,
-				E13C5F8A214B93250046F80C /* SettingViewController.swift */,
 				E13C5F8C214B93300046F80C /* HelpViewController.swift */,
 				E13C5F8E214B933E0046F80C /* LogOutViewController.swift */,
 				E13C5F97215170330046F80C /* MenuBaseViewController.swift */,
 				E1F7391F2162E84B0024EA8E /* MyListViewController.swift */,
+				E13C5F8A214B93250046F80C /* SettingViewController.swift */,
 			);
 			path = MenuViewControllers;
 			sourceTree = "<group>";
@@ -214,6 +220,7 @@
 				TargetAttributes = {
 					E13EE0BB20E3100800BBD60D = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -305,9 +312,11 @@
 				E13EE0C020E3100800BBD60D /* AppDelegate.swift in Sources */,
 				E13C5F96215165350046F80C /* MenuButton.swift in Sources */,
 				E1153659215F1BD800244F81 /* NotificationCell.swift in Sources */,
+				E1C727F9217003110074ECA0 /* SettingCell.swift in Sources */,
 				E1F739222162E8AF0024EA8E /* SubscribeList.swift in Sources */,
 				E13C5F7F21481F9B0046F80C /* MenuLauncher.swift in Sources */,
 				E13665EA212EE3610009EF0D /* detailViewController.swift in Sources */,
+				E1C727FB217065380074ECA0 /* PreferenceView.swift in Sources */,
 				E1F739202162E84B0024EA8E /* MyListViewController.swift in Sources */,
 				E13C5F8D214B93300046F80C /* HelpViewController.swift in Sources */,
 				E13665EE2132508E0009EF0D /* Data.swift in Sources */,
@@ -466,7 +475,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Alvin.DeanzaClassRegister;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -484,7 +493,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Alvin.DeanzaClassRegister;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

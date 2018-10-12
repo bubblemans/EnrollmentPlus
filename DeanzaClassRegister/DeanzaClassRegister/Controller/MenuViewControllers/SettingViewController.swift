@@ -8,20 +8,34 @@
 
 import UIKit
 
+let preferenceOption = ["Edit Profile", "Change Photo", "Change Password"]
+let notiOption = ["Push Notification", "Email Notification"]
+let prefIcon = ["profile", "camera", "lock"]
+let notiIcon = ["subscribe", "mail"]
+
 class SettingViewController: MenuBaseViewController {
     
-    let scrollView: UIScrollView = {
-        let view = UIScrollView()
+    let preferenceView: PreferenceView = {
+        let view = PreferenceView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentSize.height = 1000
-        view.backgroundColor = .white
         return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
         navigationItem.title = "Setting"
-        self.view.addSubview(scrollView)
+        
+        setupPreferenceView()
+    }
+    
+    private func setupPreferenceView() {
+        let count = CGFloat(preferenceOption.count)
+        view.addSubview(preferenceView)
+        preferenceView.topAnchor.constraint(equalTo: view.topAnchor, constant: 88).isActive = true
+        preferenceView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        preferenceView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        preferenceView.heightAnchor.constraint(equalToConstant: 44 * count + 44).isActive = true
     }
 }
 
