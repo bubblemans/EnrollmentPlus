@@ -21,12 +21,19 @@ class SettingViewController: MenuBaseViewController {
         return view
     }()
     
+    let notifView: NotificationView = {
+        let view = NotificationView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
         navigationItem.title = "Setting"
         
         setupPreferenceView()
+        setupNotiView()
     }
     
     private func setupPreferenceView() {
@@ -36,6 +43,18 @@ class SettingViewController: MenuBaseViewController {
         preferenceView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         preferenceView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         preferenceView.heightAnchor.constraint(equalToConstant: 44 * count + 44).isActive = true
+        
+        preferenceView.baseController = self.baseController
+    }
+    
+    private func setupNotiView() {
+        
+        let count = CGFloat(notiOption.count)
+        view.addSubview(notifView)
+        notifView.topAnchor.constraint(equalTo: preferenceView.bottomAnchor, constant: 44).isActive = true
+        notifView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        notifView.heightAnchor.constraint(equalToConstant: 44 * count + 44).isActive = true
+        notifView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
     }
 }
 

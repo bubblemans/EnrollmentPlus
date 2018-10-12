@@ -32,6 +32,9 @@
 		E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */; };
 		E1C727F9217003110074ECA0 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727F8217003110074ECA0 /* SettingCell.swift */; };
 		E1C727FB217065380074ECA0 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FA217065380074ECA0 /* PreferenceView.swift */; };
+		E1C727FD21714B9E0074ECA0 /* NotifactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */; };
+		E1C727FF2171542F0074ECA0 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */; };
+		E1C728012171564A0074ECA0 /* ChangePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C728002171564A0074ECA0 /* ChangePhotoViewController.swift */; };
 		E1F739202162E84B0024EA8E /* MyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F7391F2162E84B0024EA8E /* MyListViewController.swift */; };
 		E1F739222162E8AF0024EA8E /* SubscribeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F739212162E8AF0024EA8E /* SubscribeList.swift */; };
 		E1F739242162EA5C0024EA8E /* FavoriteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F739232162EA5C0024EA8E /* FavoriteList.swift */; };
@@ -67,6 +70,9 @@
 		E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses2D.swift; sourceTree = "<group>"; };
 		E1C727F8217003110074ECA0 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		E1C727FA217065380074ECA0 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
+		E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifactionView.swift; sourceTree = "<group>"; };
+		E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		E1C728002171564A0074ECA0 /* ChangePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhotoViewController.swift; sourceTree = "<group>"; };
 		E1F7391F2162E84B0024EA8E /* MyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewController.swift; sourceTree = "<group>"; };
 		E1F739212162E8AF0024EA8E /* SubscribeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeList.swift; sourceTree = "<group>"; };
 		E1F739232162EA5C0024EA8E /* FavoriteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteList.swift; sourceTree = "<group>"; };
@@ -125,6 +131,7 @@
 				E13C5F95215165350046F80C /* MenuButton.swift */,
 				E13C5F80214B86AA0046F80C /* MenuCollectionViewCell.swift */,
 				E1C727FA217065380074ECA0 /* PreferenceView.swift */,
+				E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -138,6 +145,8 @@
 				E13C5F97215170330046F80C /* MenuBaseViewController.swift */,
 				E1F7391F2162E84B0024EA8E /* MyListViewController.swift */,
 				E13C5F8A214B93250046F80C /* SettingViewController.swift */,
+				E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */,
+				E1C728002171564A0074ECA0 /* ChangePhotoViewController.swift */,
 			);
 			path = MenuViewControllers;
 			sourceTree = "<group>";
@@ -299,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1C727FF2171542F0074ECA0 /* EditProfileViewController.swift in Sources */,
 				E13C5F8F214B933E0046F80C /* LogOutViewController.swift in Sources */,
 				E13EE0C820E3100800BBD60D /* DeanzaClassRegister.xcdatamodeld in Sources */,
 				E13EE0C220E3100800BBD60D /* ViewController.swift in Sources */,
@@ -307,8 +317,10 @@
 				E13C5F8B214B93250046F80C /* SettingViewController.swift in Sources */,
 				E13665F0213250970009EF0D /* Lecture.swift in Sources */,
 				E1F739242162EA5C0024EA8E /* FavoriteList.swift in Sources */,
+				E1C727FD21714B9E0074ECA0 /* NotifactionView.swift in Sources */,
 				E13665EC213250800009EF0D /* Courses.swift in Sources */,
 				E13665F72136C5EA0009EF0D /* TableViewCell.swift in Sources */,
+				E1C728012171564A0074ECA0 /* ChangePhotoViewController.swift in Sources */,
 				E13EE0C020E3100800BBD60D /* AppDelegate.swift in Sources */,
 				E13C5F96215165350046F80C /* MenuButton.swift in Sources */,
 				E1153659215F1BD800244F81 /* NotificationCell.swift in Sources */,
