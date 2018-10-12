@@ -3,7 +3,7 @@
 //  DeanzaClassRegister
 //
 //  Created by Karen Jin on 10/8/18.
-//  Copyright © 2018 Alvin Lin. All rights reserved.
+//  Copyright © 2018 Karen Jin. All rights reserved.
 //
 
 import UIKit
@@ -15,8 +15,19 @@ class SignInViewController: UIViewController {
     var label = UILabel()
     var usernameTextfield = UITextField()
     var passwordTextfield = UITextField()
-    var forgotPasswordLabel = UILabel()
-    
+  //  var forgotPasswordLabel = UILabel()
+    var forgotPasswordLabel : UILabel!{
+        didSet{
+            // Create forget password label
+            forgotPasswordLabel.frame = CGRect(x: 220, y: 480, width: self.view.frame.width, height: 40)
+            forgotPasswordLabel.text = "Forgot Password?"
+            forgotPasswordLabel.textColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
+            forgotPasswordLabel.font = UIFont(name: "Helvetica", size: 12)
+            forgotPasswordLabel.underline()
+            self.view.addSubview(forgotPasswordLabel)
+        }
+    }
+
     
     
     let rectangleView: UIView = {
@@ -135,14 +146,33 @@ class SignInViewController: UIViewController {
         
         self.view.addSubview(passwordTextfield)
         
-        // Create forget password label
-        forgotPasswordLabel.frame = CGRect(x: 220, y: 480, width: self.view.frame.width, height: 40)
-        forgotPasswordLabel.text = "Forgot Password?"
-        forgotPasswordLabel.textColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
-        forgotPasswordLabel.font = UIFont(name: "Helvetica", size: 12)
-        self.view.addSubview(forgotPasswordLabel)
+        let signInButton = UIButton.init(type: .system)
+        signInButton.frame = CGRect(x: 70.0, y: 590.0, width: 274.0, height: 40.0)
+        signInButton.setTitle("Sign In", for: .normal)
+        signInButton.layer.cornerRadius = signInButton.frame.height / 2
+        // code for border line of button
+//        signInButton.layer.borderWidth = 1.0
+//        signInButton.layer.borderColor = UIColor.white.cgColor
+        signInButton.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+        signInButton.setTitleColor(UIColor.white, for: .normal)
+        signInButton.addTarget(self, action: #selector(buttonClicked(_ :)), for: .touchUpInside)
+        self.view.addSubview(signInButton)
+        
+        let signUpButton = UIButton.init(type: .system)
+        signUpButton.frame = CGRect(x: 70.0, y: 670.0, width: 274.0, height: 40.0)
+        signUpButton.setTitle("Sign Up", for: .normal)
+        // need to set text bold
+        signUpButton.layer.cornerRadius = signUpButton.frame.height / 2
+        signUpButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        signUpButton.setTitleColor(#colorLiteral(red: 0.4078431373, green: 0.007843137255, blue: 0.1490196078, alpha: 1), for: .normal)
+        self.view.addSubview(signUpButton)
         
 
+        
+
+
+
+        
         
 //        let image : UIImage = UIImage(named: "logo.png")!
 //        bgImage = UIImageView(image: image)
@@ -167,7 +197,9 @@ class SignInViewController: UIViewController {
         
         
     }
-    
+    @objc func buttonClicked(_ : UIButton){
+         print("Button is Clicked")
+    }
 
     /*
     // MARK: - Navigation
