@@ -35,6 +35,10 @@ class NotificationView: UIView, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.reloadRows(at: [indexPath], with: .none)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

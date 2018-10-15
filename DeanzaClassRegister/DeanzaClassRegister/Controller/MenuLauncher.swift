@@ -8,6 +8,8 @@
 
 import UIKit
 
+var userImage = UIImage(named: "user")?.withRenderingMode(.alwaysTemplate)
+
 class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     let photoOptions = ["Choose from Library...", "Take Photo...", "Cancel"]
@@ -61,7 +63,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
     let profileView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = UIImage(named: "user")?.withRenderingMode(.alwaysTemplate)
+        view.image = userImage
         return view
     }()
     
@@ -209,12 +211,13 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         
         if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] {
-            profileView.image = image as? UIImage
+            userImage = image as! UIImage
+            profileView.image = userImage
             picker.dismiss(animated: true, completion: nil)
         } else {
             // TODO: alert

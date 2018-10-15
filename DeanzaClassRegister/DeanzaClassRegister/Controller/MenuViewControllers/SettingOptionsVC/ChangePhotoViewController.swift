@@ -1,5 +1,5 @@
 //
-//  EditProfileViewController.swift
+//  ChangePhotoViewController.swift
 //  DeanzaClassRegister
 //
 //  Created by Alvin Lin on 2018/10/12.
@@ -8,11 +8,16 @@
 
 import UIKit
 
-class EditProfileController: UIViewController {
-    var baseController: TableViewController?
+class ChangePhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
     }
 }
+
+
+
+
+
+

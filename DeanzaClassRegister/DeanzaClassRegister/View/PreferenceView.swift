@@ -8,9 +8,9 @@
 
 import UIKit
 
-class PreferenceView: UIView,UITableViewDataSource, UITableViewDelegate {
+class PreferenceView: UIView, UITableViewDataSource, UITableViewDelegate {
     let cellId = "cellId"
-    var baseController: TableViewController?
+    var baseController: SettingViewController?
     
     let tableView: UITableView = {
         let view = UITableView()
@@ -52,6 +52,7 @@ class PreferenceView: UIView,UITableViewDataSource, UITableViewDelegate {
         } else if indexPath.row == 2 {
             
         }
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
     
     override init(frame: CGRect) {
@@ -76,6 +77,8 @@ class PreferenceView: UIView,UITableViewDataSource, UITableViewDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(SettingCell.self, forCellReuseIdentifier: cellId)
+        
+        tableView.isScrollEnabled = false
     }
     
     private func setupLabel() {

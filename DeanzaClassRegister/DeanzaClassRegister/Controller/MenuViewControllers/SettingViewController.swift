@@ -44,7 +44,7 @@ class SettingViewController: MenuBaseViewController {
         preferenceView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         preferenceView.heightAnchor.constraint(equalToConstant: 44 * count + 44).isActive = true
         
-        preferenceView.baseController = self.baseController
+        preferenceView.baseController = self
     }
     
     private func setupNotiView() {
