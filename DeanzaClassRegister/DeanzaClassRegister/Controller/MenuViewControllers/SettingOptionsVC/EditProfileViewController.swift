@@ -162,6 +162,7 @@ class EditProfileController: UIViewController, UITableViewDelegate, UITableViewD
             let height = CGFloat(150)
             
             photoOptionsView.frame = CGRect(x: (window.frame.width - width) / 2, y: window.frame.height, width: width, height: height)
+            photoOptionsView.baseController = self
             blackView.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
             blackView.alpha = 0
             

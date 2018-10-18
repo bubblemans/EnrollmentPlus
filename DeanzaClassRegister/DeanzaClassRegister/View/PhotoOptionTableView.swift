@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoOptionTableView: UITableView, UITableViewDataSource, UITableViewDelegate  {
+class PhotoOptionTableView: UITableView, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     let photoOptions = ["Choose from Library...", "Take Photo...", "Cancel"]
     let cellId = "cellId"
     var baseController: EditProfileController?
@@ -30,79 +30,80 @@ class PhotoOptionTableView: UITableView, UITableViewDataSource, UITableViewDeleg
         return 50
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if indexPath == IndexPath(row: 0, section: 0) {
-//            photoLibrary()
-//            photoOptionsView.reloadData()
-//        } else if indexPath == IndexPath(row: 1, section: 0) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath == IndexPath(row: 0, section: 0) {
+            photoLibrary()
+            self.reloadData()
+        } else if indexPath == IndexPath(row: 1, section: 0) {
 //            camera()
-//            photoOptionsView.reloadData()
-//        } else {
-//            cancel()
-//            photoOptionsView.reloadData()
-//        }
-//    }
+            self.reloadData()
+        } else {
+            cancel()
+            self.reloadData()
+        }
+    }
     
     func cancel() {
         if let window = UIApplication.shared.keyWindow {
             UIView.animate(withDuration: 0.5) {
                 let width = CGFloat(window.frame.width - 20)
                 let height = CGFloat(150)
+                self.frame = CGRect(x: (window.frame.width - width) / 2, y: window.frame.height, width: width, height: height)
                 
-//                self.photoOptionsView.frame = CGRect(x: (window.frame.width - width) / 2, y: window.frame.height, width: width, height: height)
+                self.baseController?.blackView.alpha = 0
             }
         }
     }
     
-//    func photoLibrary() {
-//        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-//            let imagePicker = UIImagePickerController()
-//            imagePicker.sourceType = .photoLibrary
-//            imagePicker.delegate = self
-//            imagePicker.allowsEditing = true
-//            baseController?.present(imagePicker, animated: true, completion: nil)
-//
-//            if let window = UIApplication.shared.keyWindow {
-////                blackView.alpha = 0
-//                UIView.animate(withDuration: 0.5) {
-//                    let width = CGFloat(window.frame.width - 20)
-//                    let height = CGFloat(150)
-//
-//                    self.photoOptionsView.frame = CGRect(x: (window.frame.width - width) / 2, y: window.frame.height, width: width, height: height)
-//                }
-//            }
-//        } else {
-//            print("The photo library is not available.")
-//        }
-//    }
-//
-//    func camera() {
-//        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-//            let imagePicker = UIImagePickerController()
-//            imagePicker.sourceType = .camera
-//            imagePicker.cameraDevice = .front
-//            imagePicker.delegate = self
-//            imagePicker.allowsEditing = true
-//            baseController?.present(imagePicker, animated: true, completion: nil)
-//        } else {
-//            print("The camera is not available.")
-//        }
-//    }
+    func photoLibrary() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            baseController?.present(imagePicker, animated: true, completion: nil)
+
+            if let window = UIApplication.shared.keyWindow {
+                baseController?.blackView.alpha = 0
+                UIView.animate(withDuration: 0.5) {
+                    let width = CGFloat(window.frame.width - 20)
+                    let height = CGFloat(150)
+
+                    self.frame = CGRect(x: (window.frame.width - width) / 2, y: window.frame.height, width: width, height: height)
+                }
+            }
+        } else {
+            print("The photo library is not available.")
+        }
+    }
+
+    func camera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = .camera
+            imagePicker.cameraDevice = .front
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            baseController?.present(imagePicker, animated: true, completion: nil)
+        } else {
+            print("The camera is not available.")
+        }
+    }
     
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        // Local variable inserted by Swift 4.2 migrator.
-//        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-//        
-//        
-//        if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] {
-//            userImage = image as! UIImage
-//            profileView.image = userImage
-//            picker.dismiss(animated: true, completion: nil)
-//        } else {
-//            // TODO: alert
-//            print("No image found.")
-//        }
-//    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        
+        
+        if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] {
+            userImage = image as! UIImage
+            baseController?.photoView.image = userImage
+            picker.dismiss(animated: true, completion: nil)
+        } else {
+            // TODO: alert
+            print("No image found.")
+        }
+    }
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -114,4 +115,15 @@ class PhotoOptionTableView: UITableView, UITableViewDataSource, UITableViewDeleg
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+    return input.rawValue
 }
