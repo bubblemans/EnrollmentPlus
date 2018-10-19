@@ -32,7 +32,23 @@ class NotificationView: UIView, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SettingCell
         cell.iconName = notiIcon[indexPath.row]
         cell.optionLabelText = notiOption[indexPath.row]
+        
+        let notiSwitch = UISwitch()
+        notiSwitch.setOn(true, animated: false)
+        notiSwitch.isOn = true
+        notiSwitch.addTarget(self, action: #selector(switchValueDidChange), for: .valueChanged)
+        
+        cell.accessoryView = notiSwitch
+        
         return cell
+    }
+    
+    @objc func switchValueDidChange(_ sender: UISwitch) {
+        if  sender.isOn {
+            print("ison")
+        } else {
+            print("isoff")
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
