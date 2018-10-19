@@ -63,7 +63,8 @@ class PreferenceView: UIView, UITableViewDataSource, UITableViewDelegate {
         } else if indexPath.row == 1 {
             handleChangePhoto()
         } else if indexPath.row == 2 {
-            
+            let destination = ChangePasswordVC()
+            baseController?.present(destination, animated: true, completion: nil)
         }
         tableView.reloadRows(at: [indexPath], with: .none)
     }
