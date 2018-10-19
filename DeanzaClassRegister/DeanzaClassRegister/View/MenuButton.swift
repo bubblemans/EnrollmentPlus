@@ -8,6 +8,7 @@
 
 import UIKit
 
+let menuLanucher = MenuLauncher()
 class MenuButton: UIButton {
     var baseController: TableViewController?
     var selectedIndexPath: IndexPath?
@@ -31,8 +32,6 @@ class MenuButton: UIButton {
         self.addTarget(self, action: #selector(handleMenu), for: .touchUpInside)
         self.contentMode = .scaleAspectFit
     }
-    
-    let menuLanucher = MenuLauncher()
     
     @objc func handleMenu() {
         menuLanucher.showMenu()

@@ -60,7 +60,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
         return view
     }()
     
-    let profileView: UIImageView = {
+    lazy var profileView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = userImage

@@ -34,7 +34,6 @@
 		E1C727FB217065380074ECA0 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FA217065380074ECA0 /* PreferenceView.swift */; };
 		E1C727FD21714B9E0074ECA0 /* NotifactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */; };
 		E1C727FF2171542F0074ECA0 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */; };
-		E1C728012171564A0074ECA0 /* ChangePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C728002171564A0074ECA0 /* ChangePhotoViewController.swift */; };
 		E1ECAF9C217262F0006C9714 /* EditProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ECAF9B217262F0006C9714 /* EditProfileCell.swift */; };
 		E1ECAF9E217444FF006C9714 /* PhotoOptionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ECAF9D217444FF006C9714 /* PhotoOptionTableView.swift */; };
 		E1F739202162E84B0024EA8E /* MyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F7391F2162E84B0024EA8E /* MyListViewController.swift */; };
@@ -74,7 +73,6 @@
 		E1C727FA217065380074ECA0 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifactionView.swift; sourceTree = "<group>"; };
 		E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		E1C728002171564A0074ECA0 /* ChangePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhotoViewController.swift; sourceTree = "<group>"; };
 		E1ECAF9B217262F0006C9714 /* EditProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileCell.swift; sourceTree = "<group>"; };
 		E1ECAF9D217444FF006C9714 /* PhotoOptionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOptionTableView.swift; sourceTree = "<group>"; };
 		E1F7391F2162E84B0024EA8E /* MyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewController.swift; sourceTree = "<group>"; };
@@ -127,8 +125,6 @@
 		E13665F52136C5060009EF0D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E1ECAF9B217262F0006C9714 /* EditProfileCell.swift */,
-				E1ECAF9D217444FF006C9714 /* PhotoOptionTableView.swift */,
 				E13665F62136C5EA0009EF0D /* TableViewCell.swift */,
 				E1C727F8217003110074ECA0 /* SettingCell.swift */,
 				E1F739212162E8AF0024EA8E /* SubscribeList.swift */,
@@ -136,6 +132,26 @@
 				E1153658215F1BD800244F81 /* NotificationCell.swift */,
 				E13C5F95215165350046F80C /* MenuButton.swift */,
 				E13C5F80214B86AA0046F80C /* MenuCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E138C48B217A56F500766FE4 /* SettingVC */ = {
+			isa = PBXGroup;
+			children = (
+				E13C5F8A214B93250046F80C /* SettingViewController.swift */,
+				E138C48C217A571200766FE4 /* View */,
+				E1F7391F2162E84B0024EA8E /* MyListViewController.swift */,
+				E1ECAF9A21726148006C9714 /* SettingOptionsVC */,
+			);
+			path = SettingVC;
+			sourceTree = "<group>";
+		};
+		E138C48C217A571200766FE4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E1ECAF9B217262F0006C9714 /* EditProfileCell.swift */,
+				E1ECAF9D217444FF006C9714 /* PhotoOptionTableView.swift */,
 				E1C727FA217065380074ECA0 /* PreferenceView.swift */,
 				E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */,
 			);
@@ -149,9 +165,7 @@
 				E13C5F8C214B93300046F80C /* HelpViewController.swift */,
 				E13C5F8E214B933E0046F80C /* LogOutViewController.swift */,
 				E13C5F97215170330046F80C /* MenuBaseViewController.swift */,
-				E1F7391F2162E84B0024EA8E /* MyListViewController.swift */,
-				E13C5F8A214B93250046F80C /* SettingViewController.swift */,
-				E1ECAF9A21726148006C9714 /* SettingOptionsVC */,
+				E138C48B217A56F500766FE4 /* SettingVC */,
 			);
 			path = MenuViewControllers;
 			sourceTree = "<group>";
@@ -195,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */,
-				E1C728002171564A0074ECA0 /* ChangePhotoViewController.swift */,
 			);
 			path = SettingOptionsVC;
 			sourceTree = "<group>";
@@ -335,7 +348,6 @@
 				E1C727FD21714B9E0074ECA0 /* NotifactionView.swift in Sources */,
 				E13665EC213250800009EF0D /* Courses.swift in Sources */,
 				E13665F72136C5EA0009EF0D /* TableViewCell.swift in Sources */,
-				E1C728012171564A0074ECA0 /* ChangePhotoViewController.swift in Sources */,
 				E13EE0C020E3100800BBD60D /* AppDelegate.swift in Sources */,
 				E13C5F96215165350046F80C /* MenuButton.swift in Sources */,
 				E1153659215F1BD800244F81 /* NotificationCell.swift in Sources */,

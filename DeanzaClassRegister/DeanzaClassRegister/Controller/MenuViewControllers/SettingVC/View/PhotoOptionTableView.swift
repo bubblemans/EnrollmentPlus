@@ -11,7 +11,9 @@ import UIKit
 class PhotoOptionTableView: UITableView, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     let photoOptions = ["Choose from Library...", "Take Photo...", "Cancel"]
     let cellId = "cellId"
-    var baseController: EditProfileController?
+    var baseController: UIViewController?
+    var blackView: UIView?
+    var photoView: UIImageView?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photoOptions.count
@@ -35,7 +37,7 @@ class PhotoOptionTableView: UITableView, UITableViewDataSource, UITableViewDeleg
             photoLibrary()
             self.reloadData()
         } else if indexPath == IndexPath(row: 1, section: 0) {
-//            camera()
+            camera()
             self.reloadData()
         } else {
             cancel()
@@ -50,7 +52,7 @@ class PhotoOptionTableView: UITableView, UITableViewDataSource, UITableViewDeleg
                 let height = CGFloat(150)
                 self.frame = CGRect(x: (window.frame.width - width) / 2, y: window.frame.height, width: width, height: height)
                 
-                self.baseController?.blackView.alpha = 0
+                self.blackView!.alpha = 0
             }
         }
     }
@@ -64,7 +66,7 @@ class PhotoOptionTableView: UITableView, UITableViewDataSource, UITableViewDeleg
             baseController?.present(imagePicker, animated: true, completion: nil)
 
             if let window = UIApplication.shared.keyWindow {
-                baseController?.blackView.alpha = 0
+                self.blackView!.alpha = 0
                 UIView.animate(withDuration: 0.5) {
                     let width = CGFloat(window.frame.width - 20)
                     let height = CGFloat(150)
@@ -97,7 +99,12 @@ class PhotoOptionTableView: UITableView, UITableViewDataSource, UITableViewDeleg
         
         if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] {
             userImage = image as! UIImage
-            baseController?.photoView.image = userImage
+            if let photoView = photoView {
+                photoView.image = userImage
+                menuLanucher.profileView.image = userImage
+            } else {
+                menuLanucher.profileView.image = userImage
+            }
             picker.dismiss(animated: true, completion: nil)
         } else {
             // TODO: alert

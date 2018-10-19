@@ -10,7 +10,7 @@ import UIKit
 
 class PreferenceView: UIView, UITableViewDataSource, UITableViewDelegate {
     let cellId = "cellId"
-    var baseController: SettingViewController?
+    var baseController: UIViewController?
     
     let tableView: UITableView = {
         let view = UITableView()
@@ -24,6 +24,20 @@ class PreferenceView: UIView, UITableViewDataSource, UITableViewDelegate {
         label.text = "PREFERENCES"
         label.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         return label
+    }()
+    
+    let blackView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black
+        return view
+    }()
+    
+    let photoOptionsView: PhotoOptionTableView = {
+        let view = PhotoOptionTableView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 10
+        return view
     }()
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -47,12 +61,52 @@ class PreferenceView: UIView, UITableViewDataSource, UITableViewDelegate {
             let destination = EditProfileController()
             baseController?.present(destination, animated: true, completion: nil)
         } else if indexPath.row == 1 {
-            let destination = ChangePhotoViewController()
-            baseController?.navigationController?.pushViewController(destination, animated: true)
+            handleChangePhoto()
         } else if indexPath.row == 2 {
             
         }
         tableView.reloadRows(at: [indexPath], with: .none)
+    }
+    
+    @objc private func handleChangePhoto() {
+        if let window = UIApplication.shared.keyWindow {
+            
+            let width = CGFloat(window.frame.width - 20)
+            let height = CGFloat(150)
+            
+            photoOptionsView.frame = CGRect(x: (window.frame.width - width) / 2, y: window.frame.height, width: width, height: height)
+            photoOptionsView.baseController = baseController
+            photoOptionsView.blackView = blackView
+            
+            
+            blackView.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
+            blackView.alpha = 0
+            
+            UIView.animate(withDuration: 0.5) {
+                window.addSubview(self.blackView)
+                self.blackView.alpha = 0.5
+                self.blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.handleDismissPhotoOptions)))
+                
+                window.addSubview(self.photoOptionsView)
+                
+                
+                self.photoOptionsView.frame = CGRect(x: (window.frame.width - width) / 2, y: window.frame.height - height - 20, width: width, height: height)
+                
+                
+            }
+        }
+    }
+    
+    @objc private func handleDismissPhotoOptions() {
+        if let window = UIApplication.shared.keyWindow {
+            UIView.animate(withDuration: 0.5) {
+                let width = CGFloat(window.frame.width - 20)
+                let height = CGFloat(150)
+                
+                self.blackView.alpha = 0
+                self.photoOptionsView.frame = CGRect(x: (window.frame.width - width) / 2, y: window.frame.height, width: width, height: height)
+            }
+        }
     }
     
     override init(frame: CGRect) {
