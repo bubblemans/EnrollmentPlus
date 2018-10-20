@@ -27,6 +27,11 @@
 		E13C5F98215170330046F80C /* MenuBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13C5F97215170330046F80C /* MenuBaseViewController.swift */; };
 		9C320BB2216C0686007DD292 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C320BB1216C0686007DD292 /* SignInViewController.swift */; };
 		9C320BB7217096EF007DD292 /* UnderlineForUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C320BB6217096EF007DD292 /* UnderlineForUILabel.swift */; };
+		9C6955ED217A643700E496FB /* forgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6955EC217A643700E496FB /* forgetPasswordViewController.swift */; };
+		9C9423312175513A0079C986 /* SignupUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9423302175513A0079C986 /* SignupUsernameViewController.swift */; };
+		9C94233721781BD60079C986 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94233621781BD60079C986 /* PageViewController.swift */; };
+		9C94233921781DCB0079C986 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94233821781DCB0079C986 /* ViewController2.swift */; };
+		9C94233B21781F570079C986 /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94233A21781F570079C986 /* ViewController3.swift */; };
 		E13EE0C020E3100800BBD60D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13EE0BF20E3100800BBD60D /* AppDelegate.swift */; };
 		E13EE0C220E3100800BBD60D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13EE0C120E3100800BBD60D /* ViewController.swift */; };
 		E13EE0C520E3100800BBD60D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E13EE0C320E3100800BBD60D /* Main.storyboard */; };
@@ -69,6 +74,11 @@
 		E13C5F97215170330046F80C /* MenuBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBaseViewController.swift; sourceTree = "<group>"; };
 		9C320BB1216C0686007DD292 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		9C320BB6217096EF007DD292 /* UnderlineForUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineForUILabel.swift; sourceTree = "<group>"; };
+		9C6955EC217A643700E496FB /* forgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgetPasswordViewController.swift; sourceTree = "<group>"; };
+		9C9423302175513A0079C986 /* SignupUsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupUsernameViewController.swift; sourceTree = "<group>"; };
+		9C94233621781BD60079C986 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		9C94233821781DCB0079C986 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		9C94233A21781F570079C986 /* ViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
 		E13EE0BC20E3100800BBD60D /* DeanzaClassRegister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeanzaClassRegister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E13EE0BF20E3100800BBD60D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E13EE0C120E3100800BBD60D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +138,12 @@
 				E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */,
 				E13665E9212EE3610009EF0D /* detailViewController.swift */,
 				E13C5F90214B93450046F80C /* MenuViewControllers */,
+				9C320BB1216C0686007DD292 /* SignInViewController.swift */,
+				9C94233621781BD60079C986 /* PageViewController.swift */,
+				9C6955EC217A643700E496FB /* forgetPasswordViewController.swift */,
+				9C9423302175513A0079C986 /* SignupUsernameViewController.swift */,
+				9C94233821781DCB0079C986 /* ViewController2.swift */,
+				9C94233A21781F570079C986 /* ViewController3.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -360,6 +376,11 @@
 			files = (
 				E138C494217A935200766FE4 /* OldPasswordTB.swift in Sources */,
 				E1C727FF2171542F0074ECA0 /* EditProfileViewController.swift in Sources */,
+				9C9423312175513A0079C986 /* SignupUsernameViewController.swift in Sources */,
+				9C94233921781DCB0079C986 /* ViewController2.swift in Sources */,
+				9C94233B21781F570079C986 /* ViewController3.swift in Sources */,
+				9C94233721781BD60079C986 /* PageViewController.swift in Sources */,
+				9C6955ED217A643700E496FB /* forgetPasswordViewController.swift in Sources */,
 				9C320BB2216C0686007DD292 /* SignInViewController.swift in Sources */,
 				9C320BB7217096EF007DD292 /* UnderlineForUILabel.swift in Sources */,
 				E13EE0C820E3100800BBD60D /* DeanzaClassRegister.xcdatamodeld in Sources */,
