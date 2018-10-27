@@ -61,6 +61,15 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
     }()
     
     let checkBox = Checkbox(frame: CGRect(x: 70, y: 500, width: 20, height: 20))
+    
+    let signUpLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Don't have an account?"
+        label.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        label.textAlignment = .center
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +85,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         setupSignUpBT()
         setupForgotPSButton()
         setupCheckBox()
+        setupSignLabel()
     }
     
     private func setupBackgroundImage() {
@@ -206,6 +216,14 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         rememberMeButton.leadingAnchor.constraint(equalTo: passwordTextfield.leadingAnchor, constant: -15).isActive = true
         rememberMeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         rememberMeButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+    }
+    
+    private func setupSignLabel() {
+        view.addSubview(signUpLabel)
+        signUpLabel.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 2).isActive = true
+        signUpLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        signUpLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        signUpLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
     @objc private func handleRememberMe() {
