@@ -1,8 +1,14 @@
 PODS:
+  - SimpleCheckbox (1.5.0)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - SimpleCheckbox
   - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SimpleCheckbox
 
 EXTERNAL SOURCES:
   SVProgressHUD:
@@ -14,8 +20,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 SPEC CHECKSUMS:
+  SimpleCheckbox: 1e59697852ef3caa56a0ed1b40be0f034763b9b9
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: e236d601fd815036d732c1fcfe8b711b6bdcf745
+PODFILE CHECKSUM: 29bafe7ef3e956a9c30da3827107582954becb79
 
 COCOAPODS: 1.5.3

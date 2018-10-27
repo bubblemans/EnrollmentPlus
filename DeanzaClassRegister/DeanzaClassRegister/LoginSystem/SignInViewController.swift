@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SimpleCheckbox
 
 class SignInViewController: UIViewController, UINavigationControllerDelegate {
     var userLogoImageView: UIImageView!
@@ -47,6 +48,19 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         bt.translatesAutoresizingMaskIntoConstraints = false
         return bt
     }()
+    
+    let rememberMeButton: UIButton = {
+        let bt = UIButton()
+        bt.translatesAutoresizingMaskIntoConstraints = false
+        bt.setTitle("Remember Me", for: .normal)
+        bt.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
+        bt.backgroundColor = .clear
+        bt.contentHorizontalAlignment = .left
+        bt.addTarget(self, action: #selector(handleRememberMe), for: .touchUpInside)
+        return bt
+    }()
+    
+    let checkBox = Checkbox(frame: CGRect(x: 70, y: 500, width: 20, height: 20))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +75,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         setupSignInBT()
         setupSignUpBT()
         setupForgotPSButton()
+        setupCheckBox()
     }
     
     private func setupBackgroundImage() {
@@ -175,6 +190,27 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         signUpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 670).isActive = true
         signUpButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         signUpButton.widthAnchor.constraint(equalToConstant: 274).isActive = true
+    }
+    
+    private func setupCheckBox() {
+        checkBox.checkmarkStyle = .tick
+        checkBox.useHapticFeedback = true
+        checkBox.checkedBorderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        checkBox.uncheckedBorderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        checkBox.checkmarkColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        checkBox.addTarget(self, action: #selector(handleRememberMe), for: .touchUpInside)
+        view.addSubview(checkBox)
+        
+        view.addSubview(rememberMeButton)
+        rememberMeButton.topAnchor.constraint(equalTo: passwordTextfield.bottomAnchor, constant: 35).isActive = true
+        rememberMeButton.leadingAnchor.constraint(equalTo: passwordTextfield.leadingAnchor, constant: -15).isActive = true
+        rememberMeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        rememberMeButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+    }
+    
+    @objc private func handleRememberMe() {
+        print("remember me")
+        checkBox.isChecked = !checkBox.isChecked
     }
     
     @objc private func handleForgetPassword() {
