@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignupUsernameViewController: UIViewController {
+class SignUpVC: UIViewController {
     
     // Username Textfield
     let usernameTextfield : UITextField = {
@@ -37,11 +37,9 @@ class SignupUsernameViewController: UIViewController {
         return passTextfield
     }()
     
-    // closure = nested functions
     let signupButton2 : UIButton = {
         let signupBtn2 = UIButton()
         signupBtn2.setTitle("Done", for: .normal)
-//        signupBtn2.layer.cornerRadius = signupBtn2.frame.height / 2
         signupBtn2.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         signupBtn2.setTitleColor(#colorLiteral(red: 0.4078431373, green: 0.007843137255, blue: 0.1490196078, alpha: 1), for: .normal)
         return signupBtn2
@@ -53,11 +51,8 @@ class SignupUsernameViewController: UIViewController {
         imgView.image = UIImage(named: "imageView-grey-background_people.png")
         imgView.layer.borderWidth = 4
         imgView.layer.masksToBounds = false
-    //    imgView.layer.cornerRadius = imgView.frame.size.width / 2
         imgView.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         imgView.clipsToBounds = true
-        
-        
         return imgView
     }()
     
@@ -78,6 +73,7 @@ class SignupUsernameViewController: UIViewController {
         backgroundImage.image = UIImage(named: "best-poly-backgrounds.png")
         backgroundImage.contentMode = .scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
+        
         // background color
         self.view.backgroundColor = #colorLiteral(red: 0.4078431373, green: 0.007843137255, blue: 0.1490196078, alpha: 0.5)
         
@@ -144,14 +140,4 @@ class SignupUsernameViewController: UIViewController {
         
         
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -237,7 +237,8 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
     
     @objc private func handleSignUp() {
         
-        let destination = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+//        let destination = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        let destination = SignUpVC()
         self.present(destination, animated: true, completion: nil)
     }
     

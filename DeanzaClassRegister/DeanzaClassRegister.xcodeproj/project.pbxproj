@@ -11,10 +11,7 @@
 		9C320BB2216C0686007DD292 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C320BB1216C0686007DD292 /* SignInViewController.swift */; };
 		9C320BB7217096EF007DD292 /* UnderlineForUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C320BB6217096EF007DD292 /* UnderlineForUILabel.swift */; };
 		9C6955ED217A643700E496FB /* forgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6955EC217A643700E496FB /* forgetPasswordViewController.swift */; };
-		9C9423312175513A0079C986 /* SignupUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9423302175513A0079C986 /* SignupUsernameViewController.swift */; };
-		9C94233721781BD60079C986 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94233621781BD60079C986 /* PageViewController.swift */; };
-		9C94233921781DCB0079C986 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94233821781DCB0079C986 /* ViewController2.swift */; };
-		9C94233B21781F570079C986 /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94233A21781F570079C986 /* ViewController3.swift */; };
+		9C9423312175513A0079C986 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9423302175513A0079C986 /* SignUpVC.swift */; };
 		E1153659215F1BD800244F81 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1153658215F1BD800244F81 /* NotificationCell.swift */; };
 		E13665EA212EE3610009EF0D /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665E9212EE3610009EF0D /* detailViewController.swift */; };
 		E13665EC213250800009EF0D /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665EB213250800009EF0D /* Courses.swift */; };
@@ -58,10 +55,7 @@
 		9C320BB1216C0686007DD292 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		9C320BB6217096EF007DD292 /* UnderlineForUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineForUILabel.swift; sourceTree = "<group>"; };
 		9C6955EC217A643700E496FB /* forgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgetPasswordViewController.swift; sourceTree = "<group>"; };
-		9C9423302175513A0079C986 /* SignupUsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupUsernameViewController.swift; sourceTree = "<group>"; };
-		9C94233621781BD60079C986 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		9C94233821781DCB0079C986 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
-		9C94233A21781F570079C986 /* ViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
+		9C9423302175513A0079C986 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		E1153658215F1BD800244F81 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		E13665E9212EE3610009EF0D /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
 		E13665EB213250800009EF0D /* Courses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
@@ -241,11 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				9C320BB1216C0686007DD292 /* SignInViewController.swift */,
-				9C94233621781BD60079C986 /* PageViewController.swift */,
 				9C6955EC217A643700E496FB /* forgetPasswordViewController.swift */,
-				9C9423302175513A0079C986 /* SignupUsernameViewController.swift */,
-				9C94233821781DCB0079C986 /* ViewController2.swift */,
-				9C94233A21781F570079C986 /* ViewController3.swift */,
+				9C9423302175513A0079C986 /* SignUpVC.swift */,
 			);
 			path = LoginSystem;
 			sourceTree = "<group>";
@@ -385,10 +376,7 @@
 			files = (
 				E138C494217A935200766FE4 /* OldPasswordTB.swift in Sources */,
 				E1C727FF2171542F0074ECA0 /* EditProfileViewController.swift in Sources */,
-				9C9423312175513A0079C986 /* SignupUsernameViewController.swift in Sources */,
-				9C94233921781DCB0079C986 /* ViewController2.swift in Sources */,
-				9C94233B21781F570079C986 /* ViewController3.swift in Sources */,
-				9C94233721781BD60079C986 /* PageViewController.swift in Sources */,
+				9C9423312175513A0079C986 /* SignUpVC.swift in Sources */,
 				9C6955ED217A643700E496FB /* forgetPasswordViewController.swift in Sources */,
 				9C320BB2216C0686007DD292 /* SignInViewController.swift in Sources */,
 				9C320BB7217096EF007DD292 /* UnderlineForUILabel.swift in Sources */,
@@ -567,7 +555,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DeanzaClassRegister/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Alvin.DeanzaClassRegister;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -582,7 +573,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DeanzaClassRegister/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Alvin.DeanzaClassRegister;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
