@@ -291,11 +291,11 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             destination.baseController = baseController
             destination.selectedIndexPath = indexPath
             handlePushAnimate(title: title, destination: destination)
-//        case "Log out":
-//            let destination = LogOutViewController()
-//            destination.baseController = baseController
-//            destination.selectedIndexPath = indexPath
-//            handlePushAnimate(title: title, destination: destination)
+        case "Log out":
+            let destination = SignInViewController()
+            baseController?.present(destination, animated: true, completion: {
+                self.baseController?.navigationController?.popToRootViewController(animated: false)
+            })
         default:
             let destination = TableViewController()
             isFirstTime = false
