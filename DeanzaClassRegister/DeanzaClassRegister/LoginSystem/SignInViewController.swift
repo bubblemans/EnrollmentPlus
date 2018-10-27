@@ -22,10 +22,11 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
   
     let forgotPasswordButton : UIButton = {
         let bt = UIButton()
-        bt.setTitle("Forgot Password?", for: .normal)
-        bt.setTitleColor(#colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1), for: .normal)
-        bt.titleLabel?.font = UIFont(name: "Helvetica", size: 12)
-//        bt.underline()
+        let atr = [NSAttributedString.Key.font: UIFont(name: "Helvetica", size: 14), NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), NSAttributedString.Key.underlineStyle: 1] as [NSAttributedString.Key : Any]
+        let btTitleStr = NSMutableAttributedString(string: "Forgot Password?", attributes: atr)
+        
+        bt.setAttributedTitle(btTitleStr, for: .normal)
+        bt.translatesAutoresizingMaskIntoConstraints = false
         return bt
     }()
 
@@ -52,7 +53,6 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         
         setupBackgroundImage()
         setupRectangleView()
-        setupForgotPSLabel()
         setupLayer()
         setupLogoView()
         setupKeyLogoView()
@@ -60,6 +60,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         setupPF()
         setupSignInBT()
         setupSignUpBT()
+        setupForgotPSButton()
     }
     
     private func setupBackgroundImage() {
@@ -74,7 +75,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     private func setupRectangleView() {
-        backgroundImage.addSubview(rectangleView)
+        view.addSubview(rectangleView)
         rectangleView.frame = CGRect(x: 34, y: 246, width: 346, height: 517)
         rectangleView.layer.cornerRadius = 21
         rectangleView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -85,9 +86,14 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         rectangleView.layer.shouldRasterize = true
     }
     
-    private func setupForgotPSLabel() {
-        self.view.addSubview(forgotPasswordButton)
-        forgotPasswordButton.frame = CGRect(x: 220, y: 480, width: self.view.frame.width, height: 40)
+    private func setupForgotPSButton() {
+        view.addSubview(forgotPasswordButton)
+        forgotPasswordButton.topAnchor.constraint(equalTo: passwordTextfield.bottomAnchor, constant: 5).isActive = true
+        forgotPasswordButton.trailingAnchor.constraint(equalTo: passwordTextfield.trailingAnchor).isActive = true
+        forgotPasswordButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        forgotPasswordButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        
+        forgotPasswordButton.addTarget(self, action: #selector(handleForgetPassword), for: .touchUpInside)
     }
     
     private func setupLayer() {
@@ -144,23 +150,35 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     private func setupSignInBT() {
-        signInButton.frame = CGRect(x: 70.0, y: 590.0, width: 274.0, height: 40.0)
+        view.addSubview(signInButton)
         signInButton.setTitle("Sign In", for: .normal)
-        signInButton.layer.cornerRadius = signInButton.frame.height / 2
+        signInButton.layer.cornerRadius = 40 / 2
         signInButton.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
         signInButton.setTitleColor(UIColor.white, for: .normal)
         signInButton.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-        backgroundImage.addSubview(signInButton)
+        
+        signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        signInButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 600).isActive = true
+        signInButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        signInButton.widthAnchor.constraint(equalToConstant: 274).isActive = true
     }
     
     private func setupSignUpBT() {
-        signUpButton.frame = CGRect(x: 70.0, y: 670.0, width: 274.0, height: 40.0)
+        view.addSubview(signUpButton)
         signUpButton.setTitle("Sign Up", for: .normal)
-        signUpButton.layer.cornerRadius = signUpButton.frame.height / 2
+        signUpButton.layer.cornerRadius = 40 / 2
         signUpButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         signUpButton.setTitleColor(#colorLiteral(red: 0.4078431373, green: 0.007843137255, blue: 0.1490196078, alpha: 1), for: .normal)
         signUpButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
-        self.view.addSubview(signUpButton)
+    
+        signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        signUpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 670).isActive = true
+        signUpButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        signUpButton.widthAnchor.constraint(equalToConstant: 274).isActive = true
+    }
+    
+    @objc private func handleForgetPassword() {
+        print("forget password")
     }
     
     @objc private func handleSignUp() {
