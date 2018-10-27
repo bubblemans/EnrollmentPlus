@@ -9,62 +9,71 @@
 import UIKit
 
 class SignInViewController: UIViewController, UINavigationControllerDelegate {
-    var imageView: UIImageView!
     var userLogoImageView: UIImageView!
     var keyLogoImageView: UIImageView!
-    var label = UILabel()
     var usernameTextfield = UITextField()
     var passwordTextfield = UITextField()
-  //  var forgotPasswordLabel = UILabel()
-    let forgotPasswordLabel : UILabel = {
-            // Create forget password label
-        let forgotPasswordLabel = UILabel()
-        forgotPasswordLabel.text = "Forgot Password?"
-        forgotPasswordLabel.textColor = #colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1)
-        forgotPasswordLabel.font = UIFont(name: "Helvetica", size: 12)
-        forgotPasswordLabel.underline()
-        return forgotPasswordLabel
+    
+    let backgroundImage: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+  
+    let forgotPasswordButton : UIButton = {
+        let bt = UIButton()
+        bt.setTitle("Forgot Password?", for: .normal)
+        bt.setTitleColor(#colorLiteral(red: 0.6078431373, green: 0.6078431373, blue: 0.6078431373, alpha: 1), for: .normal)
+        bt.titleLabel?.font = UIFont(name: "Helvetica", size: 12)
+//        bt.underline()
+        return bt
     }()
 
-    
-    
     let rectangleView: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.9098039216, blue: 0.9098039216, alpha: 1)
         return view
-    }() // Why didn't put it in viewDidLoad
+    }()
     
-//    let circleView: UIView = {
-//        let viewC = UIView()
-//        viewC.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.9098039216, blue: 0.9098039216, alpha: 1)
-//        return viewC
-//    } ()
+    let signInButton: UIButton = {
+        let bt = UIButton()
+        bt.translatesAutoresizingMaskIntoConstraints = false
+        return bt
+    }()
+    
+    let signUpButton: UIButton = {
+        let bt = UIButton()
+        bt.translatesAutoresizingMaskIntoConstraints = false
+        return bt
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-/*
-        // Add a grey circle under the logo to make a grey stroke and shadow effect
-        greyCircle.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.9098039216, blue: 0.9098039216, alpha: 1)
-        //        sublayer.shadowOffset = CGSize(width: 3, height: 3)
-        greyCircle.frame = CGRect(x: 150, y: 180, width: 120, height: 120)
-        greyCircle.borderColor = #colorLiteral(red: 0.9098039216, green: 0.9098039216, blue: 0.9098039216, alpha: 1)
-        greyCircle.borderWidth = 5.0
-        greyCircle.cornerRadius = 60
-        //        sublayer.cornerRadius = sublayer.bounds.width / 2
-        self.view.layer.addSublayer(greyCircle)
-*/
         
+        setupBackgroundImage()
+        setupRectangleView()
+        setupForgotPSLabel()
+        setupLayer()
+        setupLogoView()
+        setupKeyLogoView()
+        setupUserTF()
+        setupPF()
+        setupSignInBT()
+        setupSignUpBT()
+    }
+    
+    private func setupBackgroundImage() {
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "best-poly-backgrounds.png")
-        backgroundImage.contentMode = UIViewContentMode.scaleAspectFill
+        backgroundImage.contentMode = .scaleAspectFill
         self.view.addSubview(backgroundImage)
         backgroundImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         backgroundImage.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         backgroundImage.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         backgroundImage.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
-        // Below Code Make a grey rectangle with round corner
+    }
+    
+    private func setupRectangleView() {
         backgroundImage.addSubview(rectangleView)
         rectangleView.frame = CGRect(x: 34, y: 246, width: 346, height: 517)
         rectangleView.layer.cornerRadius = 21
@@ -74,29 +83,18 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         rectangleView.layer.shadowRadius = 21
         rectangleView.layer.shadowPath = UIBezierPath(rect: rectangleView.bounds).cgPath
         rectangleView.layer.shouldRasterize = true
-
-//         Below Code make a image with a grey inner border
-//        imageView = UIImageView(frame: CGRect(x: 120, y: 200, width: 100, height: 100))
-//        imageView.image = UIImage(named:"logo.png")
-//        imageView.layer.masksToBounds = true
-//        imageView.layer.borderWidth = 6
-//        imageView.layer.borderColor = #colorLiteral(red: 0.9098039216, green: 0.9098039216, blue: 0.9098039216, alpha: 1)
-//        imageView.layer.cornerRadius = imageView.bounds.width / 2
-//
-//        imageView.contentMode = .scaleAspectFit
-//        self.view.addSubview(imageView)
-
-        
-        self.view.addSubview(forgotPasswordLabel)
-        forgotPasswordLabel.frame = CGRect(x: 220, y: 480, width: self.view.frame.width, height: 40)
-        
-        // Below Code Use CALayer make a grey circle shape with a grey border
+    }
+    
+    private func setupForgotPSLabel() {
+        self.view.addSubview(forgotPasswordButton)
+        forgotPasswordButton.frame = CGRect(x: 220, y: 480, width: self.view.frame.width, height: 40)
+    }
+    
+    private func setupLayer() {
         let sublayer = CALayer()
         sublayer.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.9098039216, blue: 0.9098039216, alpha: 1)
-//        sublayer.shadowOffset = CGSize(width: 3, height: 3)
+        
         sublayer.frame = CGRect(x: 150, y: 180, width: 120, height: 120)
-//        sublayer.borderColor = #colorLiteral(red: 0.9098039216, green: 0.9098039216, blue: 0.9098039216, alpha: 1)
-//        sublayer.borderWidth = 5.0
         sublayer.cornerRadius = sublayer.frame.width / 2
         
         self.view.layer.addSublayer(sublayer)
@@ -117,83 +115,52 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         whiteBoxKey.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         whiteBoxKey.frame = CGRect(x: 70, y: 420, width: 274, height: 40)
         self.view.layer.addSublayer(whiteBoxKey)
-        
+    }
+    
+    private func setupLogoView() {
         userLogoImageView = UIImageView(frame: CGRect(x: 80, y: 357, width: 23, height: 23))
         userLogoImageView.image = UIImage(named:"userlogo.png")
-        
-/*
-        // center the image
-        userLogoImageView.contentMode = .scaleAspectFit
-*/
         self.view.addSubview(userLogoImageView)
-        
+    }
+
+    private func setupKeyLogoView() {
         keyLogoImageView = UIImageView(frame: CGRect(x: 80, y: 428, width: 23, height: 23))
         keyLogoImageView.image = UIImage(named:"keylogo.png")
-
         self.view.addSubview(keyLogoImageView)
-
-/*
-        // Create UILabel
-        label.frame = CGRect(x: 0, y:100, width: self.view.frame.width, height:120 )
-        label.text = "Welcome to De Anza Class Register App"
-        label.textAlignment = .center
-        label.textColor = UIColor.white
-        label.backgroundColor = UIColor.darkGray
-        label.font = UIFont(name: "Helvetica", size: 22)
-        
-        self.view.addSubview(label)
- */
-        // Create Textfield placeholder For username
+    }
+    
+    private func setupUserTF() {
         usernameTextfield.frame = CGRect(x: 114, y: 350, width: 224, height: 40)
         usernameTextfield.placeholder = "Username"
-        
+        usernameTextfield.layer.cornerRadius = 20
         self.view.addSubview(usernameTextfield)
-        
-        // Create Textfield placeholder for password
+    }
+    
+    private func setupPF() {
         passwordTextfield.frame = CGRect(x: 114, y: 420, width: 224, height: 40)
         passwordTextfield.placeholder = "Password"
-        
+        passwordTextfield.layer.cornerRadius = 20
         self.view.addSubview(passwordTextfield)
-        
-        let signInButton = UIButton.init(type: .system)
+    }
+    
+    private func setupSignInBT() {
         signInButton.frame = CGRect(x: 70.0, y: 590.0, width: 274.0, height: 40.0)
         signInButton.setTitle("Sign In", for: .normal)
         signInButton.layer.cornerRadius = signInButton.frame.height / 2
-        // code for border line of button
-//        signInButton.layer.borderWidth = 1.0
-//        signInButton.layer.borderColor = UIColor.white.cgColor
         signInButton.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
         signInButton.setTitleColor(UIColor.white, for: .normal)
-        signInButton.addTarget(self, action: #selector(buttonClicked(_ :)), for: .touchUpInside)
-        self.view.addSubview(signInButton)
-        
-        let signUpButton = UIButton.init(type: .system)
+        signInButton.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+        backgroundImage.addSubview(signInButton)
+    }
+    
+    private func setupSignUpBT() {
         signUpButton.frame = CGRect(x: 70.0, y: 670.0, width: 274.0, height: 40.0)
         signUpButton.setTitle("Sign Up", for: .normal)
-        // need to set text bold
         signUpButton.layer.cornerRadius = signUpButton.frame.height / 2
         signUpButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         signUpButton.setTitleColor(#colorLiteral(red: 0.4078431373, green: 0.007843137255, blue: 0.1490196078, alpha: 1), for: .normal)
         signUpButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         self.view.addSubview(signUpButton)
-        
-//        let image : UIImage = UIImage(named: "logo.png")!
-//        bgImage = UIImageView(image: image)
-//        bgImage!.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
-//        self.view.addSubview(bgImage)
-        
-//        let image = UIImage(named: "AppLogo.png")
-//        let imageView = UIImageView(image: image)
-//        imageView.addSubview(imageView)
-//        imageView.frame = CGRect(x: 0,y: 0, width: 100, height: 200)
-        
-//        viewC.addSubview(circleView)
-//        rectangleView.frame = CGRect(x: 136, y: 194, width: 104, height: 104)
-//        rectangleView.layer.cornerRadius = 50
-        
-
-
-        
     }
     
     @objc private func handleSignUp() {
@@ -202,7 +169,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         self.present(destination, animated: true, completion: nil)
     }
     
-    @objc func buttonClicked(_ : UIButton){
+    @objc func buttonClicked(){
          print("Button is Clicked")
     }
 

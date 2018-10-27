@@ -13,27 +13,27 @@ class SignupUsernameViewController: UIViewController {
     // Username Textfield
     let usernameTextfield : UITextField = {
         let userTextfield = UITextField()
-        userTextfield.attributedPlaceholder = NSAttributedString(string:"Username(Email): ",attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+        userTextfield.attributedPlaceholder = NSAttributedString(string:"Username(Email): ",attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         userTextfield.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 0.5)
         userTextfield.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        userTextfield.borderStyle = UITextBorderStyle.roundedRect
+        userTextfield.borderStyle = UITextField.BorderStyle.roundedRect
         userTextfield.autocorrectionType = UITextAutocorrectionType.no
         userTextfield.keyboardType = UIKeyboardType.default
         userTextfield.returnKeyType = UIReturnKeyType.done
-        userTextfield.clearButtonMode = UITextFieldViewMode.whileEditing
+        userTextfield.clearButtonMode = UITextField.ViewMode.whileEditing
         return userTextfield
     } ()
     
     let passwordTextfield : UITextField = {
         let passTextfield = UITextField()
-        passTextfield.attributedPlaceholder = NSAttributedString(string:"Password: ", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+        passTextfield.attributedPlaceholder = NSAttributedString(string:"Password: ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         passTextfield.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 0.5)
         passTextfield.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        passTextfield.borderStyle = UITextBorderStyle.roundedRect
+        passTextfield.borderStyle = UITextField.BorderStyle.roundedRect
         passTextfield.autocorrectionType = UITextAutocorrectionType.no
         passTextfield.keyboardType = UIKeyboardType.default
         passTextfield.returnKeyType = UIReturnKeyType.done
-        passTextfield.clearButtonMode = UITextFieldViewMode.whileEditing
+        passTextfield.clearButtonMode = UITextField.ViewMode.whileEditing
         return passTextfield
     }()
     
@@ -76,7 +76,7 @@ class SignupUsernameViewController: UIViewController {
         // background Image
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "best-poly-backgrounds.png")
-        backgroundImage.contentMode = UIViewContentMode.scaleAspectFill
+        backgroundImage.contentMode = .scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
         // background color
         self.view.backgroundColor = #colorLiteral(red: 0.4078431373, green: 0.007843137255, blue: 0.1490196078, alpha: 0.5)
