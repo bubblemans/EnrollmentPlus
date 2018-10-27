@@ -10,6 +10,8 @@ import UIKit
 
 class SignUpVC: UIViewController {
     
+    var isNextable = false
+    
     let usernameTextfield : UITextField = {
         let userTextfield = UITextField()
         userTextfield.attributedPlaceholder = NSAttributedString(string:"  Username ",attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
@@ -55,10 +57,7 @@ class SignUpVC: UIViewController {
     let signUpButton : UIButton = {
         let bt = UIButton()
         bt.setTitle("Next", for: .normal)
-        bt.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        bt.setTitleColor(#colorLiteral(red: 0.4078431373, green: 0.007843137255, blue: 0.1490196078, alpha: 1), for: .normal)
         return bt
-        
     }()
     
     let backButton: UIButton = {
@@ -83,6 +82,20 @@ class SignUpVC: UIViewController {
         let picButton = UIButton()
         picButton.setBackgroundImage(UIImage(named:"upload_your_profile_picture_camera.png"), for: .normal)
         return picButton
+    }()
+    
+    let photoOptionsView: PhotoOptionTableView = {
+        let view = PhotoOptionTableView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
+    let blackView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black
+        return view
     }()
     
     override func viewDidLoad() {
@@ -123,6 +136,7 @@ class SignUpVC: UIViewController {
         usernameTextfield.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 370).isActive = true
         usernameTextfield.widthAnchor.constraint(equalToConstant: 250).isActive = true
         usernameTextfield.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        usernameTextfield.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
     
     private func setupPassTextfield() {
@@ -132,6 +146,7 @@ class SignUpVC: UIViewController {
         passwordTextfield.topAnchor.constraint(equalTo: usernameTextfield.bottomAnchor, constant: 15).isActive = true
         passwordTextfield.widthAnchor.constraint(equalToConstant: 250).isActive = true
         passwordTextfield.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        passwordTextfield.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
     
     private func setupPhoneTextfield() {
@@ -140,6 +155,7 @@ class SignUpVC: UIViewController {
         phoneTextField.topAnchor.constraint(equalTo: passwordTextfield.bottomAnchor, constant: 15).isActive = true
         phoneTextField.widthAnchor.constraint(equalToConstant: 250).isActive = true
         phoneTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        phoneTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
     
     private func setupSignupBt(){
@@ -152,6 +168,10 @@ class SignUpVC: UIViewController {
         signUpButton.heightAnchor.constraint(equalToConstant: height).isActive = true
         signUpButton.layer.cornerRadius = height / 2
         signUpButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        
+        signUpButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        signUpButton.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
+        signUpButton.isUserInteractionEnabled = false
     }
     
     private func setupBackButton() {
@@ -186,19 +206,68 @@ class SignUpVC: UIViewController {
         addPicButton.addTarget(self, action: #selector(handlePhoto), for: .touchUpInside)
     }
     
-    @objc private func handlePhoto() {
-        
+    @objc private func textDidChange(_ textField: UITextField) {
+        if usernameTextfield.text!.count != 0 && passwordTextfield.text!.count != 0 && phoneTextField.text!.count != 0 {
+            isNextable = true
+            signUpButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            signUpButton.setTitleColor(#colorLiteral(red: 0.4078431373, green: 0.007843137255, blue: 0.1490196078, alpha: 1), for: .normal)
+            signUpButton.isUserInteractionEnabled = true
+        } else {
+            isNextable = false
+            signUpButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            signUpButton.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
+            signUpButton.isUserInteractionEnabled = false
+        }
     }
     
     @objc private func handleSignUp() {
-        print("sign up")
+        print("signup")
     }
     
     @objc private func handleBack() {
         dismiss(animated: true, completion: nil)
     }
     
+    @objc private func handlePhoto() {
+        if let window = UIApplication.shared.keyWindow {
+            
+            let width = CGFloat(window.frame.width - 20)
+            let height = CGFloat(150)
+            
+            photoOptionsView.frame = CGRect(x: (window.frame.width - width) / 2, y: window.frame.height, width: width, height: height)
+            photoOptionsView.baseController = self
+            photoOptionsView.blackView = blackView
+            photoOptionsView.photoView = imageView
+            
+            blackView.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
+            blackView.alpha = 0
+            
+            UIView.animate(withDuration: 0.5) {
+                window.addSubview(self.blackView)
+                self.blackView.alpha = 0.5
+                self.blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.handleDismissPhotoOptions)))
+                
+                window.addSubview(self.photoOptionsView)
+                
+                
+                self.photoOptionsView.frame = CGRect(x: (window.frame.width - width) / 2, y: window.frame.height - height - 20, width: width, height: height)
+                
+                
+            }
+        }
+    }
     
+    @objc private func handleDismissPhotoOptions() {
+        if let window = UIApplication.shared.keyWindow {
+            UIView.animate(withDuration: 0.5) {
+                let width = CGFloat(window.frame.width - 20)
+                let height = CGFloat(150)
+                
+                self.blackView.alpha = 0
+                self.photoOptionsView.frame = CGRect(x: (window.frame.width - width) / 2, y: window.frame.height, width: width, height: height)
+            }
+        }
+    }
     
 }
 
