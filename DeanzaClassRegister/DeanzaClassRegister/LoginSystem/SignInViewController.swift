@@ -15,6 +15,8 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
     var usernameTextfield = UITextField()
     var passwordTextfield = UITextField()
     
+    var isSignUpable = false
+    
     let backgroundImage: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -167,6 +169,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         usernameTextfield.autocorrectionType = .no
         usernameTextfield.autocapitalizationType = .none
         usernameTextfield.clearButtonMode = .whileEditing
+        usernameTextfield.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         self.view.addSubview(usernameTextfield)
     }
     
@@ -178,16 +181,18 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         passwordTextfield.autocorrectionType = .no
         passwordTextfield.clearButtonMode = .whileEditing
         passwordTextfield.isSecureTextEntry = true
+        passwordTextfield.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         self.view.addSubview(passwordTextfield)
     }
     
     private func setupSignInBT() {
         view.addSubview(signInButton)
+        signInButton.isUserInteractionEnabled = false
         signInButton.setTitle("Sign In", for: .normal)
         signInButton.layer.cornerRadius = 40 / 2
-        signInButton.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+        signInButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         signInButton.setTitleColor(UIColor.white, for: .normal)
-        signInButton.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+        signInButton.addTarget(self, action: #selector(handleSignIn), for: .touchUpInside)
         
         signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         signInButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 600).isActive = true
@@ -233,6 +238,18 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         signUpLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
+    @objc private func textDidChange() {
+        if usernameTextfield.text!.count != 0 && passwordTextfield.text!.count != 0 {
+            isSignUpable = true
+            signInButton.isUserInteractionEnabled = true
+            signInButton.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+        } else {
+            isSignUpable = false
+            signInButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            signInButton.isUserInteractionEnabled = false
+        }
+    }
+    
     @objc private func handleRememberMe() {
         print("remember me")
         checkBox.isChecked = !checkBox.isChecked
@@ -243,24 +260,20 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     @objc private func handleSignUp() {
-        
-//        let destination = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         let destination = SignUpVC()
         self.present(destination, animated: true, completion: nil)
     }
     
-    @objc func buttonClicked(){
-         print("Button is Clicked")
+    @objc func handleSignIn(){
+        let tabVC = TabBarController()
+        present(tabVC, animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+
+
+
+
+
+
+

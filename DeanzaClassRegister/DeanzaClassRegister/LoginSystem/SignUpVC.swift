@@ -203,7 +203,7 @@ class SignUpVC: UIViewController {
     }
     
     @objc private func textDidChange(_ textField: UITextField) {
-        if usernameTextfield.text!.count != 0 && passwordTextfield.text!.count != 0 && phoneTextField.text!.count != 0 {
+        if usernameTextfield.text!.count != 0 && passwordTextfield.text!.count != 0 {
             isNextable = true
             signUpButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             signUpButton.setTitleColor(#colorLiteral(red: 0.4078431373, green: 0.007843137255, blue: 0.1490196078, alpha: 1), for: .normal)
@@ -217,7 +217,8 @@ class SignUpVC: UIViewController {
     }
     
     @objc private func handleSignUp() {
-        print("signup")
+        let tabVC = TabBarController()
+        present(tabVC, animated: true, completion: nil)
     }
     
     @objc private func handleBack() {

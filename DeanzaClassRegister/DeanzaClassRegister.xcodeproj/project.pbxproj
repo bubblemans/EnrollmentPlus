@@ -34,6 +34,7 @@
 		E13EE0C820E3100800BBD60D /* DeanzaClassRegister.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E13EE0C620E3100800BBD60D /* DeanzaClassRegister.xcdatamodeld */; };
 		E13EE0CA20E3100C00BBD60D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E13EE0C920E3100C00BBD60D /* Assets.xcassets */; };
 		E13EE0CD20E3100C00BBD60D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E13EE0CB20E3100C00BBD60D /* LaunchScreen.storyboard */; };
+		E17A5BC221855ECB00C1F807 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17A5BC121855ECB00C1F807 /* TabBarController.swift */; };
 		E17EC3F6211EE5D100AA1D46 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */; };
 		E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */; };
 		E1C727F9217003110074ECA0 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727F8217003110074ECA0 /* SettingCell.swift */; };
@@ -79,6 +80,7 @@
 		E13EE0C920E3100C00BBD60D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E13EE0CC20E3100C00BBD60D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E13EE0CE20E3100C00BBD60D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E17A5BC121855ECB00C1F807 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses2D.swift; sourceTree = "<group>"; };
 		E1C727F8217003110074ECA0 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		E13EE0BE20E3100800BBD60D /* DeanzaClassRegister */ = {
 			isa = PBXGroup;
 			children = (
+				E17A5BC121855ECB00C1F807 /* TabBarController.swift */,
 				E1C319E52183E45600CC6DDF /* LoginSystem */,
 				E13EE0BF20E3100800BBD60D /* AppDelegate.swift */,
 				E13EE0C120E3100800BBD60D /* ViewController.swift */,
@@ -381,6 +384,7 @@
 				E13665EC213250800009EF0D /* Courses.swift in Sources */,
 				E13665F72136C5EA0009EF0D /* TableViewCell.swift in Sources */,
 				E13EE0C020E3100800BBD60D /* AppDelegate.swift in Sources */,
+				E17A5BC221855ECB00C1F807 /* TabBarController.swift in Sources */,
 				E138C490217A905C00766FE4 /* ChangePasswordVC.swift in Sources */,
 				E13C5F96215165350046F80C /* MenuButton.swift in Sources */,
 				E1153659215F1BD800244F81 /* NotificationCell.swift in Sources */,
