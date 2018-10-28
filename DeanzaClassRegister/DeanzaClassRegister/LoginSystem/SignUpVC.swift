@@ -19,8 +19,6 @@ class SignUpVC: UIViewController {
         userTextfield.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         userTextfield.borderStyle = UITextField.BorderStyle.roundedRect
         userTextfield.autocorrectionType = UITextAutocorrectionType.no
-        userTextfield.keyboardType = UIKeyboardType.default
-        userTextfield.returnKeyType = UIReturnKeyType.done
         userTextfield.clearButtonMode = UITextField.ViewMode.whileEditing
         userTextfield.autocapitalizationType = .none
         return userTextfield
@@ -33,8 +31,6 @@ class SignUpVC: UIViewController {
         passTextfield.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         passTextfield.borderStyle = UITextField.BorderStyle.roundedRect
         passTextfield.autocorrectionType = UITextAutocorrectionType.no
-        passTextfield.keyboardType = UIKeyboardType.default
-        passTextfield.returnKeyType = UIReturnKeyType.done
         passTextfield.clearButtonMode = UITextField.ViewMode.whileEditing
         passTextfield.autocapitalizationType = .none
         passTextfield.isSecureTextEntry = true

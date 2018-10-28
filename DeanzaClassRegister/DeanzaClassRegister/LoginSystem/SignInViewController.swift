@@ -164,6 +164,9 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         usernameTextfield.frame = CGRect(x: 114, y: 350, width: 224, height: 40)
         usernameTextfield.placeholder = "Username"
         usernameTextfield.layer.cornerRadius = 20
+        usernameTextfield.autocorrectionType = .no
+        usernameTextfield.autocapitalizationType = .none
+        usernameTextfield.clearButtonMode = .whileEditing
         self.view.addSubview(usernameTextfield)
     }
     
@@ -171,6 +174,10 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         passwordTextfield.frame = CGRect(x: 114, y: 420, width: 224, height: 40)
         passwordTextfield.placeholder = "Password"
         passwordTextfield.layer.cornerRadius = 20
+        passwordTextfield.autocapitalizationType = .none
+        passwordTextfield.autocorrectionType = .no
+        passwordTextfield.clearButtonMode = .whileEditing
+        passwordTextfield.isSecureTextEntry = true
         self.view.addSubview(passwordTextfield)
     }
     
