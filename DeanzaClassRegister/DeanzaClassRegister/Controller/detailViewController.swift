@@ -383,7 +383,7 @@ class detailViewController: UIViewController {
         optionsView.addConstraint(NSLayoutConstraint(item: subscribeButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40))
         
         let controller = TableViewController()
-        subscribeButton.isSelected = controller.containData(at: course, from: subscribeList) != -1
+//        subscribeButton.isSelected = controller.containData(at: course, from: subscribeList) != -1
         subscribeButton.tintColor = subscribeButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
         
         var titleColor: UIColor = subscribeButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
@@ -402,7 +402,7 @@ class detailViewController: UIViewController {
         optionsView.addConstraint(NSLayoutConstraint(item: planButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 120))
         optionsView.addConstraint(NSLayoutConstraint(item: planButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40))
 
-        planButton.isSelected = controller.containData(at: course, from: planList) != -1
+//        planButton.isSelected = controller.containData(at: course, from: planList) != -1
         planButton.tintColor = planButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
         
         titleColor = planButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
@@ -421,7 +421,7 @@ class detailViewController: UIViewController {
         optionsView.addConstraint(NSLayoutConstraint(item: favoriteButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 95))
         optionsView.addConstraint(NSLayoutConstraint(item: favoriteButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40))
 
-        favoriteButton.isSelected = controller.containData(at: course, from: favoriteList) != -1
+//        favoriteButton.isSelected = controller.containData(at: course, from: favoriteList) != -1
         favoriteButton.tintColor = favoriteButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
         
         titleColor = favoriteButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
@@ -438,7 +438,7 @@ class detailViewController: UIViewController {
     @objc func handleSubscribe() {
 
         let controller = TableViewController()
-        controller.updateDataList(at: course, with: &subscribeList)
+//        controller.updateDataList(at: course, with: &subscribeList)
         
         subscribeButton.isSelected  = !subscribeButton.isSelected
         
@@ -457,7 +457,7 @@ class detailViewController: UIViewController {
     
     @objc func handlePlan() {
         let controller = TableViewController()
-        controller.updateDataList(at: course, with: &planList)
+//        controller.updateDataList(at: course, with: &planList)
         
         planButton.isSelected  = !planButton.isSelected
         
@@ -476,7 +476,7 @@ class detailViewController: UIViewController {
     
     @objc func handleFavorite() {
         let controller = TableViewController()
-        controller.updateDataList(at: course, with: &favoriteList)
+//        controller.updateDataList(at: course, with: &favoriteList)
         
         favoriteButton.isSelected  = !favoriteButton.isSelected
         

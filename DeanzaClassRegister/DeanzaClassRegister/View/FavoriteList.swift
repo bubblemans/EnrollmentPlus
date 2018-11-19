@@ -17,7 +17,7 @@ class FavoriteList: UIView, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableViewCell
         
         cell.course = favoriteList[indexPath.row].course!
-        cell.instructor = favoriteList[indexPath.row].lectures[0].instructor!
+//        cell.instructor = favoriteList[indexPath.row].lectures[0].instructor!
         
         if favoriteList[indexPath.row].status != nil {
             cell.status = favoriteList[indexPath.row].status!

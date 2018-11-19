@@ -9,17 +9,17 @@
 import UIKit
 import SVProgressHUD
 
-var favoriteList: [Data] = []
-var planList: [Data] = []
-var subscribeList: [Data] = []
+var favoriteList: [BriefData] = []
+var planList: [BriefData] = []
+var subscribeList: [BriefData] = []
 var isFirstTime = true
 
 class TableViewController: UITableViewController {
     
     private let cellId = "cellId"
     
-    var currentCourses = Courses2D(total: 0, data: [], departmentList: [], isExpanded: [])
-    var allCourses = Courses2D(total: 0, data: [], departmentList: [], isExpanded: [])
+    var currentCourses = BriefCourses2D(total: 0, data: [], departmentList: [], isExpanded: [])
+    var allCourses = BriefCourses2D(total: 0, data: [], departmentList: [], isExpanded: [])
     
     var selectedIndexPath: IndexPath?
     
@@ -45,13 +45,13 @@ class TableViewController: UITableViewController {
                 guard let data = data else { return }
                 
                 do {
-                    var course = self.sortCourses(courses: try JSONDecoder().decode(Courses.self, from: data))
+                    var course = self.sortCourses(courses: try JSONDecoder().decode(BriefCourses.self, from: data))
                     course = self.sortDepartment(courses: course)
                     
                     print(course)
                     
                     var index = 0
-                    var temp: [Data] = []
+                    var temp: [BriefData] = []
                     
                     while index < course.total! - 1{
                         temp.append(course.data[index])
@@ -85,7 +85,7 @@ class TableViewController: UITableViewController {
         }
     }
     
-    private func sortCourses(courses: Courses) -> Courses {
+    private func sortCourses(courses: BriefCourses) -> BriefCourses {
         var resultCourses = courses
         
         for current in 0..<courses.data.count {
@@ -102,7 +102,7 @@ class TableViewController: UITableViewController {
         return resultCourses
     }
     
-    func sortDepartment(courses: Courses) -> Courses {
+    func sortDepartment(courses: BriefCourses) -> BriefCourses {
         var resultCourses = courses
         var index = 0
         
@@ -173,7 +173,7 @@ class TableViewController: UITableViewController {
     
     @objc func printFavoriteList() {
         for i in favoriteList {
-            print(i.course!, i.lectures[0].instructor!)
+            print(i.course!, i.cached_lecture.instructor!)
         }
     }
     
@@ -206,7 +206,7 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableViewCell
         cell.course = currentCourses.data[indexPath.section][indexPath.row].course!
-        cell.instructor = currentCourses.data[indexPath.section][indexPath.row].lectures[0].instructor!
+        cell.instructor = currentCourses.data[indexPath.section][indexPath.row].cached_lecture.instructor!
         
         if currentCourses.data[indexPath.section][indexPath.row].status != nil {
             cell.status = currentCourses.data[indexPath.section][indexPath.row].status!
@@ -266,8 +266,8 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destination = detailViewController()
-        destination.courses = currentCourses.data[indexPath.section]
-        destination.row = indexPath.row
+//        destination.courses = currentCourses.data[indexPath.section]
+//        destination.row = indexPath.row
         navigationController?.pushViewController(destination, animated: true)
     }
     
@@ -348,7 +348,7 @@ class TableViewController: UITableViewController {
         return action
     }
     
-    open func containData(at target: Data, from datas: [Data]) -> Int {
+    open func containData(at target: BriefData, from datas: [BriefData]) -> Int {
         var index = -1
         for indice in datas.indices {
             if datas[indice].crn == target.crn {
@@ -359,7 +359,7 @@ class TableViewController: UITableViewController {
         return index
     }
     
-    open func updateDataList(at target: Data, with datas: inout [Data]) {
+    open func updateDataList(at target: BriefData, with datas: inout [BriefData]) {
         if datas.isEmpty {
             datas.append(target)
         } else {
@@ -390,7 +390,7 @@ extension TableViewController: UISearchResultsUpdating {
             for departmentCourses in allCourses.data {
                 let courses = departmentCourses.filter({ (course) -> Bool in
                     
-                    let targetText = course.course!.lowercased() + course.lectures[0].instructor!.lowercased() + course.lectures[0].instructor!.lowercased() + course.crn!.lowercased()
+                    let targetText = course.course!.lowercased() + course.cached_lecture.instructor!.lowercased() + course.cached_lecture.instructor!.lowercased() + course.crn!.lowercased()
                     
                     if currentCourses.departmentList.isEmpty || course.department != currentCourses.departmentList[currentCourses.departmentList.count - 1] {
                         if targetText.contains(text.lowercased()) {

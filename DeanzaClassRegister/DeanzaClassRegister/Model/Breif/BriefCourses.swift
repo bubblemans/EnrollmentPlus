@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct BriefCourses {
+struct BriefCourses: Codable {
     var total: Int?
     var data: [BriefData]
 }

@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct BriefCourses2D {
+struct BriefCourses2D: Codable {
     var total: Int?
-    var data: [[Data]]
+    var data: [[BriefData]]
     var departmentList: [String]
     var isExpanded: [Bool]
 }

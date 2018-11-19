@@ -17,7 +17,7 @@ class SubscribeList: UIView, UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableViewCell
         
         cell.course = subscribeList[indexPath.row].course!
-        cell.instructor = subscribeList[indexPath.row].lectures[0].instructor!
+//        cell.instructor = subscribeList[indexPath.row].lectures[0].instructor!
         
         if subscribeList[indexPath.row].status != nil {
             cell.status = subscribeList[indexPath.row].status!

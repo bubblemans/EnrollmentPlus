@@ -14,5 +14,5 @@ struct BriefData: Codable {
     var course: String?
     var department: String?
     var status: String?
-    var cached_lecture: [Cached_lecture]
+    var cached_lecture: Cached_lecture
 }
