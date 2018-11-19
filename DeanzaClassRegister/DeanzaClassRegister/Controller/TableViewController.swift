@@ -48,6 +48,8 @@ class TableViewController: UITableViewController {
                     var course = self.sortCourses(courses: try JSONDecoder().decode(Courses.self, from: data))
                     course = self.sortDepartment(courses: course)
                     
+                    print(course)
+                    
                     var index = 0
                     var temp: [Data] = []
                     
