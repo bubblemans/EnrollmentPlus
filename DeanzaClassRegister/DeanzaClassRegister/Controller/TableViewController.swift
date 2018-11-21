@@ -48,7 +48,7 @@ class TableViewController: UITableViewController {
                     var course = self.sortCourses(courses: try JSONDecoder().decode(BriefCourses.self, from: data))
                     course = self.sortDepartment(courses: course)
                     
-                    print(course)
+//                    print(course)
                     
                     var index = 0
                     var temp: [BriefData] = []
@@ -266,8 +266,8 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destination = detailViewController()
-//        destination.courses = currentCourses.data[indexPath.section]
-//        destination.row = indexPath.row
+        destination.id = currentCourses.data[indexPath.section][indexPath.row].id
+        destination.briefData = currentCourses.data[indexPath.section][indexPath.row]
         navigationController?.pushViewController(destination, animated: true)
     }
     
@@ -308,7 +308,7 @@ class TableViewController: UITableViewController {
         
         action.image = #imageLiteral(resourceName: "favorite")
         let data = currentCourses.data[indexPath.section][indexPath.row]
-        action.backgroundColor = containData(at: data, from: favoriteList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        action.backgroundColor = containData(at: data.id, from: favoriteList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         
         return action
     }
@@ -321,7 +321,7 @@ class TableViewController: UITableViewController {
         
         action.image = #imageLiteral(resourceName: "calendar")
         let data = currentCourses.data[indexPath.section][indexPath.row]
-        action.backgroundColor = containData(at: data, from: planList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        action.backgroundColor = containData(at: data.id, from: planList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         
         return action
     }
@@ -343,15 +343,15 @@ class TableViewController: UITableViewController {
         
         action.image = #imageLiteral(resourceName: "alarm")
         let data = currentCourses.data[indexPath.section][indexPath.row]
-        action.backgroundColor = containData(at: data, from: subscribeList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        action.backgroundColor = containData(at: data.id, from: subscribeList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         
         return action
     }
     
-    open func containData(at target: BriefData, from datas: [BriefData]) -> Int {
+    open func containData(at target: Int?, from datas: [BriefData]) -> Int {
         var index = -1
         for indice in datas.indices {
-            if datas[indice].crn == target.crn {
+            if datas[indice].id == target! {
                 index = Int(indice)
                 return index
             }
@@ -363,7 +363,7 @@ class TableViewController: UITableViewController {
         if datas.isEmpty {
             datas.append(target)
         } else {
-            let index = self.containData(at: target, from: datas)
+            let index = self.containData(at: target.id, from: datas)
             
             if index != -1 {
                 datas.remove(at: index)

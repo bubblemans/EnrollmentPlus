@@ -45,7 +45,7 @@ class FavoriteList: UIView, UITableViewDelegate, UITableViewDataSource {
         
         let controller = TableViewController()
         let data = favoriteList[indexPath.row]
-        let index = controller.containData(at: data, from: favoriteList)
+        let index = controller.containData(at: data.id, from: favoriteList)
         
         let action = UIContextualAction(style: .destructive, title: "favorite") { (action, view, completion) in
             favoriteList.remove(at: index)
@@ -61,7 +61,7 @@ class FavoriteList: UIView, UITableViewDelegate, UITableViewDataSource {
         }
         
         action.image = #imageLiteral(resourceName: "star")
-        action.backgroundColor = controller.containData(at: data, from: favoriteList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        action.backgroundColor = controller.containData(at: data.id, from: favoriteList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         
         return action
     }
