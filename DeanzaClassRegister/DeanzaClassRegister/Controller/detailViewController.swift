@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class detailViewController: UIViewController {
     
@@ -29,27 +30,41 @@ class detailViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = detailData?.lectures[0].title!
     }
+    let blackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        return view
+    }()
     
     private func downloadData() {
-        let urlString = "https://api.daclassplanner.com/courses/" + String(id!)
-        guard let url = URL(string: urlString) else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        if let window = UIApplication.shared.keyWindow {
+            window.addSubview(blackView)
+            blackView.alpha = 0.5
+            blackView.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
             
-            if let error = error {
-                print(error)
-            } else {
-                guard response != nil else { return }
-                guard data != nil else { return }
-                self.detailData = try! JSONDecoder().decode(Data.self, from: data!)
-                print(self.detailData!)
-            }
+            SVProgressHUD.show(withStatus: "Loading...")
+            SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+            let urlString = "https://api.daclassplanner.com/courses/" + String(id!)
+            guard let url = URL(string: urlString) else { return }
             
-            DispatchQueue.main.async {
-                self.setupNav()
-                self.setUpScrollView()
-            }
-        }.resume()
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                
+                if let error = error {
+                    print(error)
+                } else {
+                    guard response != nil else { return }
+                    guard data != nil else { return }
+                    self.detailData = try! JSONDecoder().decode(Data.self, from: data!)
+                    print(self.detailData!)
+                }
+                SVProgressHUD.dismiss()
+                DispatchQueue.main.async {
+                    self.setupNav()
+                    self.setUpScrollView()
+                    self.blackView.alpha = 0
+                }
+            }.resume()
+        }
     }
 
     func setUpScrollView() {
@@ -64,13 +79,14 @@ class detailViewController: UIViewController {
         setUpClockView()
         setUpLocationView()
         setUpStatsView()
+        setupDetailView()
         setUpOptionsView()
     }
 
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentSize.height = 1000
+        view.contentSize.height = 1500
         view.backgroundColor = #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
         return view
     }()
@@ -326,7 +342,7 @@ class detailViewController: UIViewController {
         statsView.addSubview(leadingWaitlistSlotsAvailableLabel)
 
         let trailingWaitlistSlotsAvailableLabel = UILabel()
-        if let waitlistSlotsAvailable = detailData?.seats_available {
+        if let waitlistSlotsAvailable = detailData?.waitlist_slots_available{
             trailingWaitlistSlotsAvailableLabel.text = String(waitlistSlotsAvailable)
         } else {
             trailingWaitlistSlotsAvailableLabel.text = "nil"
@@ -342,7 +358,7 @@ class detailViewController: UIViewController {
         statsView.addSubview(leadingWaitlistSlotsCapacityLabel)
 
         let trailingWaitlistSlotsCapacityLabel = UILabel()
-        if let waitlistSlotsCapacity = detailData?.seats_available {
+        if let waitlistSlotsCapacity = detailData?.waitlist_slots_capacity {
             trailingWaitlistSlotsCapacityLabel.text = String(waitlistSlotsCapacity)
         } else {
             trailingWaitlistSlotsCapacityLabel.text = "nil"
@@ -350,6 +366,115 @@ class detailViewController: UIViewController {
         trailingWaitlistSlotsCapacityLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
         trailingWaitlistSlotsCapacityLabel.frame = CGRect(x: 200, y: 145, width: 300, height: 30)
         statsView.addSubview(trailingWaitlistSlotsCapacityLabel)
+    }
+    
+    private func  setupDetailView() {
+        let detailView = UIView()
+        detailView.backgroundColor = .white
+        detailView.translatesAutoresizingMaskIntoConstraints = false
+        
+        scrollView.addSubview(detailView)
+        detailView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 750).isActive = true
+        detailView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        detailView.heightAnchor.constraint(equalToConstant: 660).isActive = true
+        detailView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        
+        let infoImage = UIImageView()
+        infoImage.image = UIImage(named: "detail")
+        infoImage.frame = CGRect(x: 10, y: 10, width: 35, height: 35)
+        infoImage.contentMode = .scaleAspectFit
+        detailView.addSubview(infoImage)
+        
+        let titleLabel = UILabel()
+        titleLabel.text = "Detail  Info"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        titleLabel.frame = CGRect(x: 60, y: 10, width: 300, height: 40)
+        detailView.addSubview(titleLabel)
+        
+        let leadingQuarterLabel = UILabel()
+        leadingQuarterLabel.text = "Quarter"
+        leadingQuarterLabel.textColor = .black
+        leadingQuarterLabel.frame = CGRect(x: 15, y: 55, width: 180, height: 30)
+        detailView.addSubview(leadingQuarterLabel)
+        
+        let trailingQuarterLabel = UILabel()
+        if let quarter = detailData?.quarter {
+            trailingQuarterLabel.text = quarter
+        } else {
+            trailingQuarterLabel.text = "nil"
+        }
+        trailingQuarterLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
+        trailingQuarterLabel.frame = CGRect(x: 200, y: 55, width: 100, height: 30)
+        detailView.addSubview(trailingQuarterLabel)
+        
+        let leadingDescriptionLabel = UILabel()
+        leadingDescriptionLabel.text = "Description"
+        leadingDescriptionLabel.textColor = .black
+        leadingDescriptionLabel.frame = CGRect(x: 15, y: 85, width: 180, height: 30)
+        detailView.addSubview(leadingDescriptionLabel)
+        
+        let trailingDescriptionLabel = UILabel()
+        if let quarter = detailData?.description {
+            trailingDescriptionLabel.text = quarter
+        } else {
+            trailingDescriptionLabel.text = "nil"
+        }
+        trailingDescriptionLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
+        trailingDescriptionLabel.numberOfLines = 6
+        trailingDescriptionLabel.frame = CGRect(x: 35, y: 115, width: 350, height: 120)
+        detailView.addSubview(trailingDescriptionLabel)
+        
+        let leadingMaterialLabel = UILabel()
+        leadingMaterialLabel.text = "Material"
+        leadingMaterialLabel.textColor = .black
+        leadingMaterialLabel.frame = CGRect(x: 15, y: 235, width: 180, height: 30)
+        detailView.addSubview(leadingMaterialLabel)
+        
+        let trailingMaterialLabel = UILabel()
+        if let material = detailData?.class_material {
+            trailingMaterialLabel.text = String(material)
+        } else {
+            trailingMaterialLabel.text = "nil"
+        }
+        trailingMaterialLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
+        trailingMaterialLabel.numberOfLines = 4
+        trailingMaterialLabel.frame = CGRect(x: 35, y: 265, width: 350, height: 90)
+        detailView.addSubview(trailingMaterialLabel)
+        
+        let leadingPrerequisitesNoteLabel = UILabel()
+        leadingPrerequisitesNoteLabel.text = "Prerequisites Note"
+        leadingPrerequisitesNoteLabel.textColor = .black
+        leadingPrerequisitesNoteLabel.frame = CGRect(x: 15, y: 355, width: 180, height: 30)
+        detailView.addSubview(leadingPrerequisitesNoteLabel)
+        
+        let trailingPrerequisitesNoteLabel = UILabel()
+        guard let prerequisitesNote = detailData?.prerequisites_note else { return }
+        if prerequisitesNote.count != 0 {
+             trailingPrerequisitesNoteLabel.text = String(prerequisitesNote)
+        } else {
+            trailingPrerequisitesNoteLabel.text = "nil"
+        }
+        trailingPrerequisitesNoteLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
+        trailingPrerequisitesNoteLabel.frame = CGRect(x: 35, y: 385, width: 350, height: 120)
+        detailView.addSubview(trailingPrerequisitesNoteLabel)
+        
+        let leadingPrerequisiteLabel = UILabel()
+        leadingPrerequisiteLabel.text = "Prerequisite"
+        leadingPrerequisiteLabel.textColor = .black
+        leadingPrerequisiteLabel.frame = CGRect(x: 15, y: 505, width: 180, height: 30)
+        detailView.addSubview(leadingPrerequisiteLabel)
+        
+        let trailingPrerequisiteLabel = UILabel()
+        guard let prerequisite = detailData?.prerequisites_advisory else { return }
+        if prerequisitesNote.count != 0 {
+            trailingPrerequisiteLabel.text = String(prerequisite)
+        } else {
+            trailingPrerequisiteLabel.text = "nil"
+        }
+        trailingPrerequisiteLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
+        trailingPrerequisiteLabel.numberOfLines = 3
+        trailingPrerequisiteLabel.frame = CGRect(x: 35, y: 535, width: 250, height: 120)
+        detailView.addSubview(trailingPrerequisiteLabel)
     }
 
     let subscribeButton: UIButton = {
@@ -399,7 +524,7 @@ class detailViewController: UIViewController {
         optionsView.backgroundColor = .white
 
         scrollView.addSubview(optionsView)
-        optionsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 743).isActive = true
+        optionsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 1410).isActive = true
         optionsView.heightAnchor.constraint(equalToConstant: 75).isActive = true
         optionsView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         optionsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
@@ -428,7 +553,7 @@ class detailViewController: UIViewController {
         optionsView.addSubview(planButton)
         planButton.translatesAutoresizingMaskIntoConstraints = false
         optionsView.addConstraint(NSLayoutConstraint(item: planButton, attribute: .centerY, relatedBy: .equal, toItem: optionsView, attribute: .centerY, multiplier: 1, constant: 0))
-        optionsView.addConstraint(NSLayoutConstraint(item: planButton, attribute: .leading, relatedBy: .equal, toItem: subscribeButton, attribute: .trailing, multiplier: 1, constant: 5))
+        optionsView.addConstraint(NSLayoutConstraint(item: planButton, attribute: .leading, relatedBy: .equal, toItem: subscribeButton, attribute: .trailing, multiplier: 1, constant: 15))
         optionsView.addConstraint(NSLayoutConstraint(item: planButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 120))
         optionsView.addConstraint(NSLayoutConstraint(item: planButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40))
 
@@ -447,7 +572,7 @@ class detailViewController: UIViewController {
         optionsView.addSubview(favoriteButton)
         favoriteButton.translatesAutoresizingMaskIntoConstraints = false
         optionsView.addConstraint(NSLayoutConstraint(item: favoriteButton, attribute: .centerY, relatedBy: .equal, toItem: optionsView, attribute: .centerY, multiplier: 1, constant: 0))
-        optionsView.addConstraint(NSLayoutConstraint(item: favoriteButton, attribute: .leading, relatedBy: .equal, toItem: planButton, attribute: .trailing, multiplier: 1, constant: 5))
+        optionsView.addConstraint(NSLayoutConstraint(item: favoriteButton, attribute: .leading, relatedBy: .equal, toItem: planButton, attribute: .trailing, multiplier: 1, constant: 15))
         optionsView.addConstraint(NSLayoutConstraint(item: favoriteButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 95))
         optionsView.addConstraint(NSLayoutConstraint(item: favoriteButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40))
 
