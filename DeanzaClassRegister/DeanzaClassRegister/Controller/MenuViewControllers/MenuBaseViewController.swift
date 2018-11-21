@@ -19,6 +19,7 @@ class MenuBaseViewController: UIViewController {
         let menubuttonFrame = CGRect(x: 0, y: 0, width: 25, height: 25)
         let menubuttonImage = UIImage(named: "list")?.withRenderingMode(.alwaysTemplate)
         let menuButton = MenuButton(frame: menubuttonFrame, image: menubuttonImage!)
+        menuButton.tintColor = .black
         menuButton.baseController = baseController
         menuButton.selectedIndexPath = selectedIndexPath
         

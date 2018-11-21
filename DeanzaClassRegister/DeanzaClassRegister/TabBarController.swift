@@ -17,7 +17,7 @@ class TabBarController: UITabBarController {
     }
     
     private func setupTabBar() {
-        let calendarVC = UIViewController()
+        let calendarVC = CalendarVC()
         let caledarImage = UIImage(named: "calendar")
         calendarVC.tabBarItem = UITabBarItem(title: "Calendar", image: caledarImage, tag: 1)
         
@@ -25,7 +25,7 @@ class TabBarController: UITabBarController {
         let courseImage = UIImage(named: "courses")
         courseListVC.tabBarItem = UITabBarItem(title: "Course", image: courseImage, tag: 0)
         
-        let controllers = [calendarVC, courseListVC]
+        let controllers = [courseListVC, calendarVC]
         self.viewControllers = controllers.map {
             UINavigationController(rootViewController: $0)
         }

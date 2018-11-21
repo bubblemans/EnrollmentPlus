@@ -40,6 +40,9 @@
 		E13EE0C820E3100800BBD60D /* DeanzaClassRegister.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E13EE0C620E3100800BBD60D /* DeanzaClassRegister.xcdatamodeld */; };
 		E13EE0CA20E3100C00BBD60D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E13EE0C920E3100C00BBD60D /* Assets.xcassets */; };
 		E13EE0CD20E3100C00BBD60D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E13EE0CB20E3100C00BBD60D /* LaunchScreen.storyboard */; };
+		E149232F21A5E86D0090514F /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149232E21A5E86D0090514F /* CalendarVC.swift */; };
+		E149233121A5EB300090514F /* CalendarTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149233021A5EB300090514F /* CalendarTimeView.swift */; };
+		E149233521A5EDAC0090514F /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149233421A5EDAC0090514F /* CalendarDayView.swift */; };
 		E17A5BC221855ECB00C1F807 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17A5BC121855ECB00C1F807 /* TabBarController.swift */; };
 		E17EC3F6211EE5D100AA1D46 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */; };
 		E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */; };
@@ -92,6 +95,9 @@
 		E13EE0C920E3100C00BBD60D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E13EE0CC20E3100C00BBD60D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E13EE0CE20E3100C00BBD60D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E149232E21A5E86D0090514F /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
+		E149233021A5EB300090514F /* CalendarTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTimeView.swift; sourceTree = "<group>"; };
+		E149233421A5EDAC0090514F /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		E17A5BC121855ECB00C1F807 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses2D.swift; sourceTree = "<group>"; };
@@ -241,10 +247,11 @@
 		E13EE0BE20E3100800BBD60D /* DeanzaClassRegister */ = {
 			isa = PBXGroup;
 			children = (
-				E17A5BC121855ECB00C1F807 /* TabBarController.swift */,
-				E1C319E52183E45600CC6DDF /* LoginSystem */,
 				E13EE0BF20E3100800BBD60D /* AppDelegate.swift */,
 				E13EE0C120E3100800BBD60D /* ViewController.swift */,
+				E17A5BC121855ECB00C1F807 /* TabBarController.swift */,
+				E149233221A5EB610090514F /* Calendar */,
+				E1C319E52183E45600CC6DDF /* LoginSystem */,
 				E13665F52136C5060009EF0D /* View */,
 				E13665F1213250E40009EF0D /* Model */,
 				E13665F2213251110009EF0D /* Controller */,
@@ -255,6 +262,24 @@
 				E13EE0C620E3100800BBD60D /* DeanzaClassRegister.xcdatamodeld */,
 			);
 			path = DeanzaClassRegister;
+			sourceTree = "<group>";
+		};
+		E149233221A5EB610090514F /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				E149232E21A5E86D0090514F /* CalendarVC.swift */,
+				E149233321A5EB810090514F /* View */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		E149233321A5EB810090514F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E149233021A5EB300090514F /* CalendarTimeView.swift */,
+				E149233421A5EDAC0090514F /* CalendarDayView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E1C319E52183E45600CC6DDF /* LoginSystem */ = {
@@ -402,6 +427,7 @@
 			files = (
 				E138C494217A935200766FE4 /* OldPasswordTB.swift in Sources */,
 				E1C727FF2171542F0074ECA0 /* EditProfileViewController.swift in Sources */,
+				E149233121A5EB300090514F /* CalendarTimeView.swift in Sources */,
 				9C9423312175513A0079C986 /* SignUpVC.swift in Sources */,
 				9C6955ED217A643700E496FB /* forgetPasswordViewController.swift in Sources */,
 				9C320BB2216C0686007DD292 /* SignInViewController.swift in Sources */,
@@ -432,6 +458,7 @@
 				E13C5F7F21481F9B0046F80C /* MenuLauncher.swift in Sources */,
 				E13665EA212EE3610009EF0D /* detailViewController.swift in Sources */,
 				E1C727FB217065380074ECA0 /* PreferenceView.swift in Sources */,
+				E149232F21A5E86D0090514F /* CalendarVC.swift in Sources */,
 				E1F739202162E84B0024EA8E /* MyListViewController.swift in Sources */,
 				E13C5F8D214B93300046F80C /* HelpViewController.swift in Sources */,
 				E1ECAF9C217262F0006C9714 /* EditProfileCell.swift in Sources */,
@@ -441,6 +468,7 @@
 				E13C5F98215170330046F80C /* MenuBaseViewController.swift in Sources */,
 				E1012B3D21A257BC009A59FF /* BriefData.swift in Sources */,
 				E13C5F81214B86AA0046F80C /* MenuCollectionViewCell.swift in Sources */,
+				E149233521A5EDAC0090514F /* CalendarDayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
