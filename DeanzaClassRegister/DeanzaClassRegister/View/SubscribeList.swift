@@ -17,7 +17,7 @@ class SubscribeList: UIView, UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableViewCell
         
         cell.course = subscribeList[indexPath.row].course!
-        cell.instructor = subscribeList[indexPath.row].lectures[0].instructor!
+//        cell.instructor = subscribeList[indexPath.row].lectures[0].instructor!
         
         if subscribeList[indexPath.row].status != nil {
             cell.status = subscribeList[indexPath.row].status!
@@ -40,7 +40,7 @@ class SubscribeList: UIView, UITableViewDataSource, UITableViewDelegate {
         
         let controller = TableViewController()
         let data = subscribeList[indexPath.row]
-        let index = controller.containData(at: data, from: subscribeList)
+        let index = controller.containData(at: data.id, from: subscribeList)
         
         let action = UIContextualAction(style: .destructive, title: "subscribe") { (action, view, completion) in
             subscribeList.remove(at: index)
@@ -57,7 +57,7 @@ class SubscribeList: UIView, UITableViewDataSource, UITableViewDelegate {
         }
         
         action.image = #imageLiteral(resourceName: "alarm")
-        action.backgroundColor = controller.containData(at: data, from: subscribeList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        action.backgroundColor = controller.containData(at: data.id, from: subscribeList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         
         return action
     }

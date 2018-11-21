@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		19F12CA4588F8DA3C365B554 /* Pods_DeanzaClassRegister.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D8EB13270FB3FCA86AA013 /* Pods_DeanzaClassRegister.framework */; };
+		9C320BB2216C0686007DD292 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C320BB1216C0686007DD292 /* SignInViewController.swift */; };
+		9C6955ED217A643700E496FB /* forgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6955EC217A643700E496FB /* forgetPasswordViewController.swift */; };
+		9C9423312175513A0079C986 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9423302175513A0079C986 /* SignUpVC.swift */; };
+		E1012B3921A11693009A59FF /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1012B3821A11693009A59FF /* Info.swift */; };
+		E1012B3B21A116C0009A59FF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1012B3A21A116C0009A59FF /* User.swift */; };
+		E1012B3D21A257BC009A59FF /* BriefData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1012B3C21A257BC009A59FF /* BriefData.swift */; };
+		E1012B3F21A25838009A59FF /* Cached_lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1012B3E21A25838009A59FF /* Cached_lecture.swift */; };
+		E1012B4121A258DC009A59FF /* BriefCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1012B4021A258DC009A59FF /* BriefCourses.swift */; };
+		E1012B4521A2595C009A59FF /* BriefCourses2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1012B4421A2595C009A59FF /* BriefCourses2D.swift */; };
 		E1153659215F1BD800244F81 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1153658215F1BD800244F81 /* NotificationCell.swift */; };
 		E13665EA212EE3610009EF0D /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665E9212EE3610009EF0D /* detailViewController.swift */; };
 		E13665EC213250800009EF0D /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13665EB213250800009EF0D /* Courses.swift */; };
@@ -31,6 +40,7 @@
 		E13EE0C820E3100800BBD60D /* DeanzaClassRegister.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E13EE0C620E3100800BBD60D /* DeanzaClassRegister.xcdatamodeld */; };
 		E13EE0CA20E3100C00BBD60D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E13EE0C920E3100C00BBD60D /* Assets.xcassets */; };
 		E13EE0CD20E3100C00BBD60D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E13EE0CB20E3100C00BBD60D /* LaunchScreen.storyboard */; };
+		E17A5BC221855ECB00C1F807 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17A5BC121855ECB00C1F807 /* TabBarController.swift */; };
 		E17EC3F6211EE5D100AA1D46 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */; };
 		E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */; };
 		E1C727F9217003110074ECA0 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727F8217003110074ECA0 /* SettingCell.swift */; };
@@ -48,6 +58,15 @@
 		5883375924B84AA7FAC4B927 /* Pods-DeanzaClassRegister.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeanzaClassRegister.release.xcconfig"; path = "Pods/Target Support Files/Pods-DeanzaClassRegister/Pods-DeanzaClassRegister.release.xcconfig"; sourceTree = "<group>"; };
 		71F65DD780C002CC4C57B85C /* Pods-DeanzaClassRegister.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeanzaClassRegister.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DeanzaClassRegister/Pods-DeanzaClassRegister.debug.xcconfig"; sourceTree = "<group>"; };
 		92D8EB13270FB3FCA86AA013 /* Pods_DeanzaClassRegister.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DeanzaClassRegister.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C320BB1216C0686007DD292 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		9C6955EC217A643700E496FB /* forgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgetPasswordViewController.swift; sourceTree = "<group>"; };
+		9C9423302175513A0079C986 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		E1012B3821A11693009A59FF /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		E1012B3A21A116C0009A59FF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E1012B3C21A257BC009A59FF /* BriefData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefData.swift; sourceTree = "<group>"; };
+		E1012B3E21A25838009A59FF /* Cached_lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cached_lecture.swift; sourceTree = "<group>"; };
+		E1012B4021A258DC009A59FF /* BriefCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefCourses.swift; sourceTree = "<group>"; };
+		E1012B4421A2595C009A59FF /* BriefCourses2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefCourses2D.swift; sourceTree = "<group>"; };
 		E1153658215F1BD800244F81 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		E13665E9212EE3610009EF0D /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
 		E13665EB213250800009EF0D /* Courses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
@@ -73,6 +92,7 @@
 		E13EE0C920E3100C00BBD60D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E13EE0CC20E3100C00BBD60D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E13EE0CE20E3100C00BBD60D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E17A5BC121855ECB00C1F807 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses2D.swift; sourceTree = "<group>"; };
 		E1C727F8217003110074ECA0 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -106,13 +126,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E13665F1213250E40009EF0D /* Model */ = {
+		E1012B4221A2591F009A59FF /* Breif */ = {
+			isa = PBXGroup;
+			children = (
+				E1012B4421A2595C009A59FF /* BriefCourses2D.swift */,
+				E1012B4021A258DC009A59FF /* BriefCourses.swift */,
+				E1012B3C21A257BC009A59FF /* BriefData.swift */,
+				E1012B3E21A25838009A59FF /* Cached_lecture.swift */,
+			);
+			path = Breif;
+			sourceTree = "<group>";
+		};
+		E1012B4321A25930009A59FF /* Detail */ = {
 			isa = PBXGroup;
 			children = (
 				E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */,
 				E13665EB213250800009EF0D /* Courses.swift */,
 				E13665ED2132508E0009EF0D /* Data.swift */,
 				E13665EF213250970009EF0D /* Lecture.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		E13665F1213250E40009EF0D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E1012B4221A2591F009A59FF /* Breif */,
+				E1012B4321A25930009A59FF /* Detail */,
+				E1012B3821A11693009A59FF /* Info.swift */,
+				E1012B3A21A116C0009A59FF /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -199,6 +241,8 @@
 		E13EE0BE20E3100800BBD60D /* DeanzaClassRegister */ = {
 			isa = PBXGroup;
 			children = (
+				E17A5BC121855ECB00C1F807 /* TabBarController.swift */,
+				E1C319E52183E45600CC6DDF /* LoginSystem */,
 				E13EE0BF20E3100800BBD60D /* AppDelegate.swift */,
 				E13EE0C120E3100800BBD60D /* ViewController.swift */,
 				E13665F52136C5060009EF0D /* View */,
@@ -211,6 +255,16 @@
 				E13EE0C620E3100800BBD60D /* DeanzaClassRegister.xcdatamodeld */,
 			);
 			path = DeanzaClassRegister;
+			sourceTree = "<group>";
+		};
+		E1C319E52183E45600CC6DDF /* LoginSystem */ = {
+			isa = PBXGroup;
+			children = (
+				9C320BB1216C0686007DD292 /* SignInViewController.swift */,
+				9C6955EC217A643700E496FB /* forgetPasswordViewController.swift */,
+				9C9423302175513A0079C986 /* SignUpVC.swift */,
+			);
+			path = LoginSystem;
 			sourceTree = "<group>";
 		};
 		E1ECAF9A21726148006C9714 /* SettingOptionsVC */ = {
@@ -327,10 +381,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DeanzaClassRegister/Pods-DeanzaClassRegister-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SimpleCheckbox/SimpleCheckbox.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleCheckbox.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -346,10 +402,16 @@
 			files = (
 				E138C494217A935200766FE4 /* OldPasswordTB.swift in Sources */,
 				E1C727FF2171542F0074ECA0 /* EditProfileViewController.swift in Sources */,
+				9C9423312175513A0079C986 /* SignUpVC.swift in Sources */,
+				9C6955ED217A643700E496FB /* forgetPasswordViewController.swift in Sources */,
+				9C320BB2216C0686007DD292 /* SignInViewController.swift in Sources */,
 				E13EE0C820E3100800BBD60D /* DeanzaClassRegister.xcdatamodeld in Sources */,
 				E13EE0C220E3100800BBD60D /* ViewController.swift in Sources */,
 				E13C5F89214B93190046F80C /* NotificationViewController.swift in Sources */,
 				E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */,
+				E1012B4121A258DC009A59FF /* BriefCourses.swift in Sources */,
+				E1012B3F21A25838009A59FF /* Cached_lecture.swift in Sources */,
+				E1012B4521A2595C009A59FF /* BriefCourses2D.swift in Sources */,
 				E13C5F8B214B93250046F80C /* SettingViewController.swift in Sources */,
 				E13665F0213250970009EF0D /* Lecture.swift in Sources */,
 				E1ECAF9E217444FF006C9714 /* PhotoOptionTableView.swift in Sources */,
@@ -359,9 +421,12 @@
 				E13665EC213250800009EF0D /* Courses.swift in Sources */,
 				E13665F72136C5EA0009EF0D /* TableViewCell.swift in Sources */,
 				E13EE0C020E3100800BBD60D /* AppDelegate.swift in Sources */,
+				E17A5BC221855ECB00C1F807 /* TabBarController.swift in Sources */,
 				E138C490217A905C00766FE4 /* ChangePasswordVC.swift in Sources */,
 				E13C5F96215165350046F80C /* MenuButton.swift in Sources */,
+				E1012B3921A11693009A59FF /* Info.swift in Sources */,
 				E1153659215F1BD800244F81 /* NotificationCell.swift in Sources */,
+				E1012B3B21A116C0009A59FF /* User.swift in Sources */,
 				E1C727F9217003110074ECA0 /* SettingCell.swift in Sources */,
 				E1F739222162E8AF0024EA8E /* SubscribeList.swift in Sources */,
 				E13C5F7F21481F9B0046F80C /* MenuLauncher.swift in Sources */,
@@ -374,6 +439,7 @@
 				E13665EE2132508E0009EF0D /* Data.swift in Sources */,
 				E17EC3F6211EE5D100AA1D46 /* TableViewController.swift in Sources */,
 				E13C5F98215170330046F80C /* MenuBaseViewController.swift in Sources */,
+				E1012B3D21A257BC009A59FF /* BriefData.swift in Sources */,
 				E13C5F81214B86AA0046F80C /* MenuCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

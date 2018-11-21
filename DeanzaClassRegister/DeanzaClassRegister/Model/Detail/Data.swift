@@ -22,5 +22,9 @@ struct Data: Decodable {
     var waitlist_slots_available: Int?
     var waitlist_slots_capacity: Int?
     var quarter: String?
+    var description: String?
+    var class_material: String?
+    var prerequisites_note: String?
+    var prerequisites_advisory: String?
     var lectures: [Lectures]
 }
