@@ -20,12 +20,6 @@ class CalendarVC: MenuBaseViewController {
         return view
     }()
     
-    let timeView: CalendarTimeView = {
-        let view = CalendarTimeView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     let dayView: CalendarDayView = {
         let view = CalendarDayView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +39,6 @@ class CalendarVC: MenuBaseViewController {
         setupScrollView()
         setupDayView()
         setupCalendarView()
-//        setupTimeView()
     }
     
     private func setupScrollView() {
@@ -54,11 +47,6 @@ class CalendarVC: MenuBaseViewController {
         scrollView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         scrollView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         scrollView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-    }
-    
-    private func setupTimeView() {
-        scrollView.addSubview(timeView)
-        timeView.frame = CGRect(x: 0, y: 44, width: CGFloat(width / 6), height: scrollView.contentSize.height)
     }
     
     private func setupCalendarView() {
