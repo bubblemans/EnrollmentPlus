@@ -455,6 +455,7 @@ class detailViewController: UIViewController {
             trailingPrerequisitesNoteLabel.text = "nil"
         }
         trailingPrerequisitesNoteLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
+        trailingPrerequisitesNoteLabel.numberOfLines = 3
         trailingPrerequisitesNoteLabel.frame = CGRect(x: 35, y: 385, width: 350, height: 120)
         detailView.addSubview(trailingPrerequisitesNoteLabel)
         
@@ -524,7 +525,7 @@ class detailViewController: UIViewController {
         optionsView.backgroundColor = .white
 
         scrollView.addSubview(optionsView)
-        optionsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 1410).isActive = true
+        optionsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 1420).isActive = true
         optionsView.heightAnchor.constraint(equalToConstant: 75).isActive = true
         optionsView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         optionsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true

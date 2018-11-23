@@ -10,10 +10,12 @@ import UIKit
 
 class CalendarVC: MenuBaseViewController {
     
+    let width = 414.0
+    
     let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentSize.height = 16 * 70
+        view.contentSize.height = 16 * 70 + 50
         view.backgroundColor = .white
         return view
     }()
@@ -30,14 +32,20 @@ class CalendarVC: MenuBaseViewController {
         return view
     }()
     
+    let calendarView: CalendarView = {
+        let view = CalendarView()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScrollView()
-        setupTimeView()
         setupDayView()
-        
+        setupCalendarView()
+//        setupTimeView()
     }
     
     private func setupScrollView() {
@@ -50,15 +58,16 @@ class CalendarVC: MenuBaseViewController {
     
     private func setupTimeView() {
         scrollView.addSubview(timeView)
-        timeView.frame = CGRect(x: 0, y: 44, width: 70, height: scrollView.contentSize.height)
-//        timeView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-//        timeView.topAnchor.constraint(equalTo: view.topAnchor, constant: 88).isActive = true
-//        timeView.heightAnchor.constraint(equalToConstant: scrollView.contentSize.height).isActive = true
-//        timeView.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        timeView.frame = CGRect(x: 0, y: 44, width: CGFloat(width / 6), height: scrollView.contentSize.height)
+    }
+    
+    private func setupCalendarView() {
+        scrollView.addSubview(calendarView)
+        calendarView.frame = CGRect(x: 0, y: dayView.frame.maxY + 50, width: 414, height: 16 * 70)
     }
     
     private func setupDayView() {
-        scrollView.addSubview(dayView)
+        view.addSubview(dayView)
         dayView.topAnchor.constraint(equalTo: view.topAnchor, constant: 88).isActive = true
         dayView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         dayView.heightAnchor.constraint(equalToConstant: 50).isActive = true

@@ -43,6 +43,7 @@
 		E149232F21A5E86D0090514F /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149232E21A5E86D0090514F /* CalendarVC.swift */; };
 		E149233121A5EB300090514F /* CalendarTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149233021A5EB300090514F /* CalendarTimeView.swift */; };
 		E149233521A5EDAC0090514F /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149233421A5EDAC0090514F /* CalendarDayView.swift */; };
+		E149233721A617270090514F /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149233621A617270090514F /* CalendarView.swift */; };
 		E17A5BC221855ECB00C1F807 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17A5BC121855ECB00C1F807 /* TabBarController.swift */; };
 		E17EC3F6211EE5D100AA1D46 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */; };
 		E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */; };
@@ -50,6 +51,7 @@
 		E1C727FB217065380074ECA0 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FA217065380074ECA0 /* PreferenceView.swift */; };
 		E1C727FD21714B9E0074ECA0 /* NotifactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */; };
 		E1C727FF2171542F0074ECA0 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */; };
+		E1C7E32521A7ABCD005EB72A /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C7E32421A7ABCD005EB72A /* CalendarCell.swift */; };
 		E1ECAF9C217262F0006C9714 /* EditProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ECAF9B217262F0006C9714 /* EditProfileCell.swift */; };
 		E1ECAF9E217444FF006C9714 /* PhotoOptionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ECAF9D217444FF006C9714 /* PhotoOptionTableView.swift */; };
 		E1F739202162E84B0024EA8E /* MyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F7391F2162E84B0024EA8E /* MyListViewController.swift */; };
@@ -98,6 +100,7 @@
 		E149232E21A5E86D0090514F /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		E149233021A5EB300090514F /* CalendarTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTimeView.swift; sourceTree = "<group>"; };
 		E149233421A5EDAC0090514F /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
+		E149233621A617270090514F /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		E17A5BC121855ECB00C1F807 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses2D.swift; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 		E1C727FA217065380074ECA0 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifactionView.swift; sourceTree = "<group>"; };
 		E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		E1C7E32421A7ABCD005EB72A /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		E1ECAF9B217262F0006C9714 /* EditProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileCell.swift; sourceTree = "<group>"; };
 		E1ECAF9D217444FF006C9714 /* PhotoOptionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOptionTableView.swift; sourceTree = "<group>"; };
 		E1F7391F2162E84B0024EA8E /* MyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewController.swift; sourceTree = "<group>"; };
@@ -278,6 +282,8 @@
 			children = (
 				E149233021A5EB300090514F /* CalendarTimeView.swift */,
 				E149233421A5EDAC0090514F /* CalendarDayView.swift */,
+				E149233621A617270090514F /* CalendarView.swift */,
+				E1C7E32421A7ABCD005EB72A /* CalendarCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -426,10 +432,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E138C494217A935200766FE4 /* OldPasswordTB.swift in Sources */,
+				E1C7E32521A7ABCD005EB72A /* CalendarCell.swift in Sources */,
 				E1C727FF2171542F0074ECA0 /* EditProfileViewController.swift in Sources */,
 				E149233121A5EB300090514F /* CalendarTimeView.swift in Sources */,
 				9C9423312175513A0079C986 /* SignUpVC.swift in Sources */,
 				9C6955ED217A643700E496FB /* forgetPasswordViewController.swift in Sources */,
+				E149233721A617270090514F /* CalendarView.swift in Sources */,
 				9C320BB2216C0686007DD292 /* SignInViewController.swift in Sources */,
 				E13EE0C820E3100800BBD60D /* DeanzaClassRegister.xcdatamodeld in Sources */,
 				E13EE0C220E3100800BBD60D /* ViewController.swift in Sources */,

@@ -280,6 +280,11 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             let destination = NotificationViewController()
             destination.baseController = baseController
             destination.selectedIndexPath = indexPath
+//            if baseController == nil {
+//                print("nil")
+//            } else {
+//                print("not nil")
+//            }
             handlePushAnimate(title: title, destination: destination)
         case "Settings":
             let destination = SettingViewController()

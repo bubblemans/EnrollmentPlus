@@ -17,13 +17,14 @@ class TabBarController: UITabBarController {
     }
     
     private func setupTabBar() {
-        let calendarVC = CalendarVC()
-        let caledarImage = UIImage(named: "calendar")
-        calendarVC.tabBarItem = UITabBarItem(title: "Calendar", image: caledarImage, tag: 1)
-        
         let courseListVC = TableViewController()
         let courseImage = UIImage(named: "courses")
         courseListVC.tabBarItem = UITabBarItem(title: "Course", image: courseImage, tag: 0)
+        
+        let calendarVC = CalendarVC()
+        let caledarImage = UIImage(named: "calendar")
+        calendarVC.tabBarItem = UITabBarItem(title: "Calendar", image: caledarImage, tag: 1)
+        calendarVC.baseController = courseListVC
         
         let controllers = [courseListVC, calendarVC]
         self.viewControllers = controllers.map {
