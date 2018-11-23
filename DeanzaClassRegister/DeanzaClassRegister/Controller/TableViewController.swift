@@ -362,6 +362,17 @@ class TableViewController: UITableViewController {
         return index
     }
     
+    open func containData(at target: Int?, from datas: [Data]) -> Int {
+        var index = -1
+        for indice in datas.indices {
+            if datas[indice].id == target! {
+                index = Int(indice)
+                return index
+            }
+        }
+        return index
+    }
+    
     private func updataCalendarList(at data: BriefData) {
         var detailData: Data?
         if calendarList.isEmpty {
@@ -384,6 +395,9 @@ class TableViewController: UITableViewController {
         } else {
             for calendarCourse in calendarList {
                 if data.id == calendarCourse.id {
+                    // if the element is in the list, it needs to be deleted
+                    let index = containData(at: data.id, from: calendarList)
+                    calendarList.remove(at: index)
                     return
                 }
             }
