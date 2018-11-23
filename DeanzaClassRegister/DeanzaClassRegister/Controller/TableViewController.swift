@@ -12,6 +12,7 @@ import SVProgressHUD
 var favoriteList: [BriefData] = []
 var planList: [BriefData] = []
 var subscribeList: [BriefData] = []
+var calendarList: [Data] = []
 var isFirstTime = true
 
 class TableViewController: UITableViewController {
@@ -303,6 +304,7 @@ class TableViewController: UITableViewController {
     private func favoriteAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Favorite") { (action, view, completion) in
             self.updateDataList(at: self.currentCourses.data[indexPath.section][indexPath.row], with: &favoriteList)
+            
             completion(true)
         }
         
@@ -316,6 +318,7 @@ class TableViewController: UITableViewController {
     private func planAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "plan") { (action, view, completion) in
             self.updateDataList(at: self.currentCourses.data[indexPath.section][indexPath.row], with: &planList)
+            self.updataCalendarList(at: self.currentCourses.data[indexPath.section][indexPath.row])
             completion(true)
         }
         
@@ -357,6 +360,51 @@ class TableViewController: UITableViewController {
             }
         }
         return index
+    }
+    
+    private func updataCalendarList(at data: BriefData) {
+        var detailData: Data?
+        if calendarList.isEmpty {
+            let urlString = "https://api.daclassplanner.com/courses/" + String(data.id!)
+            guard let url = URL(string: urlString) else { return }
+            
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    guard response != nil else { return }
+                    guard data != nil else { return }
+                    detailData = try! JSONDecoder().decode(Data.self, from: data!)
+                }
+                DispatchQueue.main.async {
+                    guard let newData = detailData else { return }
+                    calendarList.append(newData)
+                }
+            }.resume()
+        } else {
+            for calendarCourse in calendarList {
+                if data.id == calendarCourse.id {
+                    return
+                }
+            }
+            
+            let urlString = "https://api.daclassplanner.com/courses/" + String(data.id!)
+            guard let url = URL(string: urlString) else { return }
+            
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    guard response != nil else { return }
+                    guard data != nil else { return }
+                    detailData = try! JSONDecoder().decode(Data.self, from: data!)
+                }
+                DispatchQueue.main.async {
+                    guard let newData = detailData else { return }
+                    calendarList.append(newData)
+                }
+                }.resume()
+        }
     }
     
     open func updateDataList(at target: BriefData, with datas: inout [BriefData]) {

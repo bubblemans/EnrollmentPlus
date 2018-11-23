@@ -20,7 +20,7 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     }()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let num = (5 + 1) * 16
+        let num = (5 + 1) * 17
         return num
     }
     
