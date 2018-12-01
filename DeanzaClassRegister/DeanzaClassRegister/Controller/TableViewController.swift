@@ -128,8 +128,8 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupNavigationbar()
+        print(token)
 
         if isFirstTime {
             downloadJson()
@@ -304,7 +304,7 @@ class TableViewController: UITableViewController {
     private func favoriteAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Favorite") { (action, view, completion) in
             self.updateDataList(at: self.currentCourses.data[indexPath.section][indexPath.row], with: &favoriteList)
-            
+            self.postSubscribe(data: self.currentCourses.data[indexPath.section][indexPath.row], type: "like")
             completion(true)
         }
         
@@ -319,6 +319,7 @@ class TableViewController: UITableViewController {
         let action = UIContextualAction(style: .normal, title: "plan") { (action, view, completion) in
             self.updateDataList(at: self.currentCourses.data[indexPath.section][indexPath.row], with: &planList)
             self.updataCalendarList(at: self.currentCourses.data[indexPath.section][indexPath.row])
+            self.postSubscribe(data: self.currentCourses.data[indexPath.section][indexPath.row], type: "calendar")
             completion(true)
         }
         
@@ -340,7 +341,7 @@ class TableViewController: UITableViewController {
     private func subscribeAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal , title: "subscribe") { (action, view, completion) in
             self.updateDataList(at: self.currentCourses.data[indexPath.section][indexPath.row], with: &subscribeList)
-            
+            self.postSubscribe(data: self.currentCourses.data[indexPath.section][indexPath.row], type: "subscribe")
             completion(true)
         }
         
@@ -371,6 +372,39 @@ class TableViewController: UITableViewController {
             }
         }
         return index
+    }
+    
+    private func postSubscribe(data: BriefData, type: String) {
+        var subscribeInfo = SubscribeJson(crn: data.crn!, type: type)
+        let subscribeJson = try! JSONEncoder().encode(subscribeInfo)
+        
+        let url = URL(string:"https://api.daclassplanner.com/subscribe")
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.httpBody = subscribeJson
+//        print(urlRequest.allHTTPHeaderFields)
+        
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            print("here")
+            if let error = error {
+                print(error)
+                return
+            } else {
+                print("no error")
+            }
+            if let response = response {
+//                print(response)
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8))
+            } else {
+                print("no data")
+            }
+        }.resume()
+        
+        
     }
     
     private func updataCalendarList(at data: BriefData) {

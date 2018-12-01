@@ -52,6 +52,8 @@
 		E1C727FD21714B9E0074ECA0 /* NotifactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */; };
 		E1C727FF2171542F0074ECA0 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */; };
 		E1C7E32521A7ABCD005EB72A /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C7E32421A7ABCD005EB72A /* CalendarCell.swift */; };
+		E1E15F9321B1F7CB008B5D6C /* SubscribeJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E15F9221B1F7CB008B5D6C /* SubscribeJson.swift */; };
+		E1E15F9521B1FADD008B5D6C /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E15F9421B1FADD008B5D6C /* Token.swift */; };
 		E1ECAF9C217262F0006C9714 /* EditProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ECAF9B217262F0006C9714 /* EditProfileCell.swift */; };
 		E1ECAF9E217444FF006C9714 /* PhotoOptionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ECAF9D217444FF006C9714 /* PhotoOptionTableView.swift */; };
 		E1F739202162E84B0024EA8E /* MyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F7391F2162E84B0024EA8E /* MyListViewController.swift */; };
@@ -109,6 +111,8 @@
 		E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifactionView.swift; sourceTree = "<group>"; };
 		E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		E1C7E32421A7ABCD005EB72A /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		E1E15F9221B1F7CB008B5D6C /* SubscribeJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeJson.swift; sourceTree = "<group>"; };
+		E1E15F9421B1FADD008B5D6C /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		E1ECAF9B217262F0006C9714 /* EditProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileCell.swift; sourceTree = "<group>"; };
 		E1ECAF9D217444FF006C9714 /* PhotoOptionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOptionTableView.swift; sourceTree = "<group>"; };
 		E1F7391F2162E84B0024EA8E /* MyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 				E1012B4321A25930009A59FF /* Detail */,
 				E1012B3821A11693009A59FF /* Info.swift */,
 				E1012B3A21A116C0009A59FF /* User.swift */,
+				E1E15F9221B1F7CB008B5D6C /* SubscribeJson.swift */,
+				E1E15F9421B1FADD008B5D6C /* Token.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -434,6 +440,7 @@
 				E138C494217A935200766FE4 /* OldPasswordTB.swift in Sources */,
 				E1C7E32521A7ABCD005EB72A /* CalendarCell.swift in Sources */,
 				E1C727FF2171542F0074ECA0 /* EditProfileViewController.swift in Sources */,
+				E1E15F9321B1F7CB008B5D6C /* SubscribeJson.swift in Sources */,
 				E149233121A5EB300090514F /* CalendarTimeView.swift in Sources */,
 				9C9423312175513A0079C986 /* SignUpVC.swift in Sources */,
 				9C6955ED217A643700E496FB /* forgetPasswordViewController.swift in Sources */,
@@ -469,6 +476,7 @@
 				E149232F21A5E86D0090514F /* CalendarVC.swift in Sources */,
 				E1F739202162E84B0024EA8E /* MyListViewController.swift in Sources */,
 				E13C5F8D214B93300046F80C /* HelpViewController.swift in Sources */,
+				E1E15F9521B1FADD008B5D6C /* Token.swift in Sources */,
 				E1ECAF9C217262F0006C9714 /* EditProfileCell.swift in Sources */,
 				E138C492217A90FA00766FE4 /* NewPasswordTableView.swift in Sources */,
 				E13665EE2132508E0009EF0D /* Data.swift in Sources */,
