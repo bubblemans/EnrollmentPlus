@@ -55,6 +55,7 @@ class CalendarVC: MenuBaseViewController {
             numOfClass = numOfClass + 1
             renewFrame()
         }
+        numOfClass = 0
     }
     
     private func createObservers() {
@@ -76,6 +77,7 @@ class CalendarVC: MenuBaseViewController {
             numOfClass = numOfClass + 1
             renewFrame()
         }
+        numOfClass = 0
         print(calendarList)
     }
     
@@ -110,7 +112,6 @@ class CalendarVC: MenuBaseViewController {
             let button = UIButton()
             button.frame = CGRect(x: x[0], y: y, width: wid, height: height)
             button.layer.cornerRadius = 10
-            print(numOfClass)
             button.backgroundColor = colors[numOfClass]
             button.setTitle(data.course!, for: .normal)
             button.setTitleColor(.white, for: .normal)
@@ -165,7 +166,6 @@ class CalendarVC: MenuBaseViewController {
     
     private func insertByDay(days: String) {
         let wid = width / 6
-//        print(days)
 
         if days[0] == "M" {
             x[0] = wid + 1
@@ -190,7 +190,6 @@ class CalendarVC: MenuBaseViewController {
     }
     
     private func insertByTime(time: String) {
-//        print(time)
         let startHour = time[0..<2]
         let startMinute = time[3..<5]
         let endHour = time[9..<11]
@@ -198,34 +197,27 @@ class CalendarVC: MenuBaseViewController {
         let startAmOrPm = time[6..<8]
         let endAmOrPm = time[15..<17]
         
-//        print(startHour)
-//        print(startMinute)
-//        print(endHour)
-//        print(endMinute)
-//        print(startAmOrPm)
-//        print(endAmOrPm)
-        
         if startAmOrPm == "AM" {
             guard let startHour = Double(startHour) else { return }
             guard let startMinute = Double(startMinute) else { return }
-            y = 44 + (startHour - 8) * 70 + Double(startMinute) / Double(60.0) * Double(70)
+            y = 49 + (startHour - 7) * 70 + Double(startMinute) / Double(60.0) * Double(70)
         } else if startAmOrPm == "PM" {
             guard let startHour = Double(startHour) else { return }
             guard let startMinute = Double(startMinute) else { return }
-            y = 44 + (startHour - 8 + 12) * 70 + Double(startMinute) / Double(60.0) * Double(70)
+            y = 49 + (startHour - 7 + 12) * 70 + Double(startMinute) / Double(60.0) * Double(70)
         }
         
         var endingY = 0.0
         if endAmOrPm == "AM" {
             guard let endHour = Double(endHour) else { return }
             guard let endMinute = Double(endMinute) else { return }
-            endingY = Double(44) + Double(endHour - 8) * Double(70)
+            endingY = Double(49) + Double(endHour - 7) * Double(70)
             let minute = Double(endMinute) / Double(60.0) * Double(70)
             endingY = endingY + minute
         } else if endAmOrPm == "PM" {
             guard let endHour = Double(endHour) else { return }
             guard let endMinute = Double(endMinute) else { return }
-            endingY = Double(44) + Double(endHour - 8 + 12) * Double(70)
+            endingY = Double(49) + Double(endHour - 7 + 12) * Double(70)
             let minute = Double(endMinute) / Double(60.0) * Double(70)
             endingY = endingY + minute
         }
