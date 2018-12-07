@@ -204,9 +204,10 @@
 			isa = PBXGroup;
 			children = (
 				E13C5F8A214B93250046F80C /* SettingViewController.swift */,
-				E138C48C217A571200766FE4 /* View */,
 				E1F7391F2162E84B0024EA8E /* MyListViewController.swift */,
-				E1ECAF9A21726148006C9714 /* SettingOptionsVC */,
+				E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */,
+				E138C48F217A905C00766FE4 /* ChangePasswordVC.swift */,
+				E138C48C217A571200766FE4 /* View */,
 			);
 			path = SettingVC;
 			sourceTree = "<group>";
@@ -302,15 +303,6 @@
 				9C9423302175513A0079C986 /* SignUpVC.swift */,
 			);
 			path = LoginSystem;
-			sourceTree = "<group>";
-		};
-		E1ECAF9A21726148006C9714 /* SettingOptionsVC */ = {
-			isa = PBXGroup;
-			children = (
-				E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */,
-				E138C48F217A905C00766FE4 /* ChangePasswordVC.swift */,
-			);
-			path = SettingOptionsVC;
 			sourceTree = "<group>";
 		};
 		ED66A9EBB45D7A871A7C6B54 /* Pods */ = {

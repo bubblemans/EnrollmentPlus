@@ -407,26 +407,9 @@ class TableViewController: UITableViewController {
         
     }
     
-    private func updataCalendarList(at data: BriefData) {
+    open func updataCalendarList(at data: BriefData) {
         var detailData: Data?
-        if calendarList.isEmpty {
-            let urlString = "https://api.daclassplanner.com/courses/" + String(data.id!)
-            guard let url = URL(string: urlString) else { return }
-            
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if let error = error {
-                    print(error)
-                } else {
-                    guard response != nil else { return }
-                    guard data != nil else { return }
-                    detailData = try! JSONDecoder().decode(Data.self, from: data!)
-                }
-                DispatchQueue.main.async {
-                    guard let newData = detailData else { return }
-                    calendarList.append(newData)
-                }
-            }.resume()
-        } else {
+        if !calendarList.isEmpty {
             for calendarCourse in calendarList {
                 if data.id == calendarCourse.id {
                     // if the element is in the list, it needs to be deleted
@@ -435,24 +418,67 @@ class TableViewController: UITableViewController {
                     return
                 }
             }
-            
-            let urlString = "https://api.daclassplanner.com/courses/" + String(data.id!)
-            guard let url = URL(string: urlString) else { return }
-            
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if let error = error {
-                    print(error)
-                } else {
-                    guard response != nil else { return }
-                    guard data != nil else { return }
-                    detailData = try! JSONDecoder().decode(Data.self, from: data!)
-                }
-                DispatchQueue.main.async {
-                    guard let newData = detailData else { return }
-                    calendarList.append(newData)
-                }
-                }.resume()
         }
+        let urlString = "https://api.daclassplanner.com/courses/" + String(data.id!)
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                print(error)
+            } else {
+                guard response != nil else { return }
+                guard data != nil else { return }
+                detailData = try! JSONDecoder().decode(Data.self, from: data!)
+            }
+            DispatchQueue.main.async {
+                guard let newData = detailData else { return }
+                calendarList.append(newData)
+            }
+        }.resume()
+//        if calendarList.isEmpty {
+//            let urlString = "https://api.daclassplanner.com/courses/" + String(data.id!)
+//            guard let url = URL(string: urlString) else { return }
+//
+//            URLSession.shared.dataTask(with: url) { (data, response, error) in
+//                if let error = error {
+//                    print(error)
+//                } else {
+//                    guard response != nil else { return }
+//                    guard data != nil else { return }
+//                    detailData = try! JSONDecoder().decode(Data.self, from: data!)
+//                }
+//                DispatchQueue.main.async {
+//                    guard let newData = detailData else { return }
+//                    calendarList.append(newData)
+//                }
+//            }.resume()
+//        } else {
+//            for calendarCourse in calendarList {
+//                if data.id == calendarCourse.id {
+//                    // if the element is in the list, it needs to be deleted
+//                    let index = containData(at: data.id, from: calendarList)
+//                    calendarList.remove(at: index)
+//                    return
+//                }
+//            }
+//
+//            let urlString = "https://api.daclassplanner.com/courses/" + String(data.id!)
+//            guard let url = URL(string: urlString) else { return }
+//
+//            URLSession.shared.dataTask(with: url) { (data, response, error) in
+//                if let error = error {
+//                    print(error)
+//                } else {
+//                    guard response != nil else { return }
+//                    guard data != nil else { return }
+//                    detailData = try! JSONDecoder().decode(Data.self, from: data!)
+//                }
+//                DispatchQueue.main.async {
+//                    guard let newData = detailData else { return }
+//                    calendarList.append(newData)
+//                }
+//                }.resume()
+//        }
     }
     
     open func updateDataList(at target: BriefData, with datas: inout [BriefData]) {

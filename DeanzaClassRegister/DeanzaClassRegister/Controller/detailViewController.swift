@@ -614,7 +614,8 @@ class detailViewController: UIViewController {
     @objc func handlePlan() {
         let controller = TableViewController()
         controller.updateDataList(at: briefData!, with: &planList)
-
+        controller.updataCalendarList(at: briefData!)
+        
         planButton.isSelected  = !planButton.isSelected
 
         let tintColor: UIColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
