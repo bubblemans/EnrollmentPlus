@@ -25,7 +25,7 @@ class TabBarController: UITabBarController {
         let calendarVC = CalendarVC()
         let caledarImage = UIImage(named: "calendar")
         calendarVC.tabBarItem = UITabBarItem(title: "Calendar", image: caledarImage, tag: 1)
-        calendarVC.baseController = courseListVC
+//        calendarVC.baseController = courseListVC
         let navCalendarVC = UINavigationController(rootViewController: calendarVC)
         
         let controllers = [navCourseVC, navCalendarVC]

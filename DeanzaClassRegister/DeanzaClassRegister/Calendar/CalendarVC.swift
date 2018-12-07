@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CalendarVC: MenuBaseViewController {
+class CalendarVC: UIViewController {
     
     let width = 414.0
     var numOfDays = 0
@@ -46,6 +46,7 @@ class CalendarVC: MenuBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         createObservers()
         setupScrollView()
         setupDayView()
