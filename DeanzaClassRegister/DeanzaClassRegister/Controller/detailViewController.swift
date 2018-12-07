@@ -634,6 +634,7 @@ class detailViewController: UIViewController {
     @objc func handleFavorite() {
         let controller = TableViewController()
         controller.updateDataList(at: briefData!, with: &favoriteList)
+        postNotiCalendar()
 
         favoriteButton.isSelected  = !favoriteButton.isSelected
 
@@ -648,6 +649,11 @@ class detailViewController: UIViewController {
 
         let title = favoriteButton.isSelected ? "Liked" : "Like"
         favoriteButton.setTitle(title, for: UIControl.State())
+    }
+    
+    private func postNotiCalendar() {
+        let detailVCUpdate = Notification.Name("detailVCUpdate")
+        NotificationCenter.default.post(name: detailVCUpdate, object: nil)
     }
 
     override func didReceiveMemoryWarning() {

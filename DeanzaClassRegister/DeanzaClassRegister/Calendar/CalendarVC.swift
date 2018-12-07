@@ -63,14 +63,20 @@ class CalendarVC: MenuBaseViewController {
     }
     
     @objc private func setupCalendar() {
-        setupScrollView()
-        setupDayView()
-        setupCalendarView()
+        for view in scrollView.subviews {
+            for bt in classesButton {
+                if view == bt {
+                    view.frame = .zero
+                    view.removeFromSuperview()
+                }
+            }
+        }
         for i in calendarList {
             insertClass(data: i)
             numOfClass = numOfClass + 1
             renewFrame()
         }
+        print(calendarList)
     }
     
     private func setupScrollView() {
@@ -110,7 +116,6 @@ class CalendarVC: MenuBaseViewController {
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
             classesButton.append(button)
-            scrollView.addSubview(button)
         }
         if x[1] != 0 {
             let button = UIButton()
@@ -121,7 +126,6 @@ class CalendarVC: MenuBaseViewController {
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
             classesButton.append(button)
-            scrollView.addSubview(button)
         }
         if x[2] != 0 {
             let button = UIButton()
@@ -132,7 +136,6 @@ class CalendarVC: MenuBaseViewController {
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
             classesButton.append(button)
-            scrollView.addSubview(button)
         }
         if x[3] != 0 {
             let button = UIButton()
@@ -143,7 +146,6 @@ class CalendarVC: MenuBaseViewController {
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
             classesButton.append(button)
-            scrollView.addSubview(button)
         }
         if x[4] != 0 {
             let button = UIButton()
@@ -154,7 +156,10 @@ class CalendarVC: MenuBaseViewController {
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
             classesButton.append(button)
-            scrollView.addSubview(button)
+        }
+        
+        for bt in classesButton {
+            scrollView.addSubview(bt)
         }
     }
     

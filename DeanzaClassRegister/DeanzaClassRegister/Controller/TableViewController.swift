@@ -334,8 +334,6 @@ class TableViewController: UITableViewController {
         updateDataList(at: data, with: &planList)
         updataCalendarList(at: data)
         postSubscribe(data: data, type: "calendar")
-        let tableVCUpdate = Notification.Name("tableVCUpdate")
-        NotificationCenter.default.post(name: tableVCUpdate, object: nil)
     }
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -395,7 +393,6 @@ class TableViewController: UITableViewController {
 //        print(urlRequest.allHTTPHeaderFields)
         
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            print("here")
             if let error = error {
                 print(error)
                 return
@@ -423,6 +420,7 @@ class TableViewController: UITableViewController {
                     // if the element is in the list, it needs to be deleted
                     let index = containData(at: data.id, from: calendarList)
                     calendarList.remove(at: index)
+                    postNotiCalendar()
                     return
                 }
             }
@@ -441,52 +439,14 @@ class TableViewController: UITableViewController {
             DispatchQueue.main.async {
                 guard let newData = detailData else { return }
                 calendarList.append(newData)
+                self.postNotiCalendar()
             }
         }.resume()
-//        if calendarList.isEmpty {
-//            let urlString = "https://api.daclassplanner.com/courses/" + String(data.id!)
-//            guard let url = URL(string: urlString) else { return }
-//
-//            URLSession.shared.dataTask(with: url) { (data, response, error) in
-//                if let error = error {
-//                    print(error)
-//                } else {
-//                    guard response != nil else { return }
-//                    guard data != nil else { return }
-//                    detailData = try! JSONDecoder().decode(Data.self, from: data!)
-//                }
-//                DispatchQueue.main.async {
-//                    guard let newData = detailData else { return }
-//                    calendarList.append(newData)
-//                }
-//            }.resume()
-//        } else {
-//            for calendarCourse in calendarList {
-//                if data.id == calendarCourse.id {
-//                    // if the element is in the list, it needs to be deleted
-//                    let index = containData(at: data.id, from: calendarList)
-//                    calendarList.remove(at: index)
-//                    return
-//                }
-//            }
-//
-//            let urlString = "https://api.daclassplanner.com/courses/" + String(data.id!)
-//            guard let url = URL(string: urlString) else { return }
-//
-//            URLSession.shared.dataTask(with: url) { (data, response, error) in
-//                if let error = error {
-//                    print(error)
-//                } else {
-//                    guard response != nil else { return }
-//                    guard data != nil else { return }
-//                    detailData = try! JSONDecoder().decode(Data.self, from: data!)
-//                }
-//                DispatchQueue.main.async {
-//                    guard let newData = detailData else { return }
-//                    calendarList.append(newData)
-//                }
-//                }.resume()
-//        }
+    }
+    
+    private func postNotiCalendar() {
+        let tableVCUpdate = Notification.Name("tableVCUpdate")
+        NotificationCenter.default.post(name: tableVCUpdate, object: nil)
     }
     
     open func updateDataList(at target: BriefData, with datas: inout [BriefData]) {
