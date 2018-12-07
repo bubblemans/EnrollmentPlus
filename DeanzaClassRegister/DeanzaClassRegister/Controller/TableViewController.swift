@@ -128,6 +128,7 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupNavigationbar()
         print(token)
 
@@ -149,7 +150,7 @@ class TableViewController: UITableViewController {
         searchController.searchBar.autocapitalizationType = .none
         searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        definesPresentationContext = false
+        definesPresentationContext = true
         
         // navigationController
         navigationItem.title = "Classes"
@@ -170,6 +171,7 @@ class TableViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        
     }
     
     @objc func printFavoriteList() {
@@ -317,9 +319,7 @@ class TableViewController: UITableViewController {
     
     private func planAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "plan") { (action, view, completion) in
-            self.updateDataList(at: self.currentCourses.data[indexPath.section][indexPath.row], with: &planList)
-            self.updataCalendarList(at: self.currentCourses.data[indexPath.section][indexPath.row])
-            self.postSubscribe(data: self.currentCourses.data[indexPath.section][indexPath.row], type: "calendar")
+            self.handleCalendar(data: self.currentCourses.data[indexPath.section][indexPath.row])
             completion(true)
         }
         
@@ -328,6 +328,14 @@ class TableViewController: UITableViewController {
         action.backgroundColor = containData(at: data.id, from: planList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         
         return action
+    }
+    
+    private func handleCalendar(data: BriefData) {
+        updateDataList(at: data, with: &planList)
+        updataCalendarList(at: data)
+        postSubscribe(data: data, type: "calendar")
+        let tableVCUpdate = Notification.Name("tableVCUpdate")
+        NotificationCenter.default.post(name: tableVCUpdate, object: nil)
     }
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

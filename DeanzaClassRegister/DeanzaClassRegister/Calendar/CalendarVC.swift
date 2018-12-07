@@ -19,6 +19,9 @@ class CalendarVC: MenuBaseViewController {
     // let wid = width / 6
     var height = 0.0
     
+    let tableVCUpdate = Notification.Name("tableVCUpdate")
+    let detailVCUpdate = Notification.Name("detailYCUpdate")
+    
     let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -43,6 +46,23 @@ class CalendarVC: MenuBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createObservers()
+        setupScrollView()
+        setupDayView()
+        setupCalendarView()
+        for i in calendarList {
+            insertClass(data: i)
+            numOfClass = numOfClass + 1
+            renewFrame()
+        }
+    }
+    
+    private func createObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(setupCalendar), name: tableVCUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupCalendar), name: detailVCUpdate, object: nil)
+    }
+    
+    @objc private func setupCalendar() {
         setupScrollView()
         setupDayView()
         setupCalendarView()
