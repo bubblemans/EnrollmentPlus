@@ -455,6 +455,7 @@ class detailViewController: UIViewController {
             trailingPrerequisitesNoteLabel.text = "nil"
         }
         trailingPrerequisitesNoteLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
+        trailingPrerequisitesNoteLabel.numberOfLines = 3
         trailingPrerequisitesNoteLabel.frame = CGRect(x: 35, y: 385, width: 350, height: 120)
         detailView.addSubview(trailingPrerequisitesNoteLabel)
         
@@ -524,7 +525,7 @@ class detailViewController: UIViewController {
         optionsView.backgroundColor = .white
 
         scrollView.addSubview(optionsView)
-        optionsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 1410).isActive = true
+        optionsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 1420).isActive = true
         optionsView.heightAnchor.constraint(equalToConstant: 75).isActive = true
         optionsView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         optionsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
@@ -613,7 +614,8 @@ class detailViewController: UIViewController {
     @objc func handlePlan() {
         let controller = TableViewController()
         controller.updateDataList(at: briefData!, with: &planList)
-
+        controller.updataCalendarList(at: briefData!)
+        
         planButton.isSelected  = !planButton.isSelected
 
         let tintColor: UIColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
@@ -632,6 +634,7 @@ class detailViewController: UIViewController {
     @objc func handleFavorite() {
         let controller = TableViewController()
         controller.updateDataList(at: briefData!, with: &favoriteList)
+        postNotiCalendar()
 
         favoriteButton.isSelected  = !favoriteButton.isSelected
 
@@ -646,6 +649,11 @@ class detailViewController: UIViewController {
 
         let title = favoriteButton.isSelected ? "Liked" : "Like"
         favoriteButton.setTitle(title, for: UIControl.State())
+    }
+    
+    private func postNotiCalendar() {
+        let detailVCUpdate = Notification.Name("detailVCUpdate")
+        NotificationCenter.default.post(name: detailVCUpdate, object: nil)
     }
 
     override func didReceiveMemoryWarning() {

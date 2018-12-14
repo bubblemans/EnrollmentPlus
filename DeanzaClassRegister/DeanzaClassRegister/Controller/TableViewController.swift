@@ -12,6 +12,7 @@ import SVProgressHUD
 var favoriteList: [BriefData] = []
 var planList: [BriefData] = []
 var subscribeList: [BriefData] = []
+var calendarList: [Data] = []
 var isFirstTime = true
 
 class TableViewController: UITableViewController {
@@ -48,7 +49,6 @@ class TableViewController: UITableViewController {
                     var course = self.sortCourses(courses: try JSONDecoder().decode(BriefCourses.self, from: data))
                     course = self.sortDepartment(courses: course)
                     
-//                    print(course)
                     
                     var index = 0
                     var temp: [BriefData] = []
@@ -75,14 +75,101 @@ class TableViewController: UITableViewController {
                     // TODO: alert
                     print("Json Error", jsonError)
                 }
+                self.downloadSubscribeInfo()
+                self.downloadLikeInfo()
+                self.downloadCalendarInfo()
                 
                 SVProgressHUD.dismiss()
                 DispatchQueue.main.async {
                     self.blackView.alpha = 0
                 }
                 
-                }.resume()
+            }.resume()
         }
+    }
+    
+    private func downloadSubscribeInfo() {
+        let jsonUrlString = "https://api.daclassplanner.com/user/subscriptions?type=subscribe"
+        guard let url = URL(string: jsonUrlString) else { return }
+            
+        var urlRequest = URLRequest(url: url)
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.httpMethod = "GET"
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                if error != nil {
+                    print(error)
+                }
+//                if response != nil {
+//                    print(response)
+//                }
+            if let data = data {
+                let crns = try! JSONDecoder().decode([String].self, from: data)
+                subscribeList = self.searchandUpdateList(crns: crns)
+            }
+        }.resume()
+    }
+    
+    private func downloadCalendarInfo() {
+        let jsonUrlString = "https://api.daclassplanner.com/user/subscriptions?type=calendar"
+        guard let url = URL(string: jsonUrlString) else { return }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.httpMethod = "GET"
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if error != nil {
+                print(error)
+            }
+//            if response != nil {
+//                print(response)
+//            }
+            if let data = data {
+                let crns = try! JSONDecoder().decode([String].self, from: data)
+                planList = self.searchandUpdateList(crns: crns)
+                for course in planList {
+                    self.updataCalendarList(at: course)
+                }
+                print(planList)
+            }
+        }.resume()
+    }
+    
+    private func downloadLikeInfo() {
+        let jsonUrlString = "https://api.daclassplanner.com/user/subscriptions?type=like"
+        guard let url = URL(string: jsonUrlString) else { return }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.httpMethod = "GET"
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if error != nil {
+                print(error)
+            }
+//            if response != nil {
+//                print(response)
+//            }
+            if let data = data {
+                let crns = try! JSONDecoder().decode([String].self, from: data)
+                favoriteList = self.searchandUpdateList(crns: crns)
+            }
+        }.resume()
+    }
+    
+    private func searchandUpdateList(crns: [String])->[BriefData] {
+        var list: [BriefData] = []
+        for crn in crns {
+            for courses in allCourses.data {
+                for course in courses {
+                    if crn == course.crn! {
+                        list.append(course)
+                    }
+                }
+            }
+        }
+        return list
     }
     
     private func sortCourses(courses: BriefCourses) -> BriefCourses {
@@ -127,8 +214,9 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupNavigationbar()
+        print(token)
 
         if isFirstTime {
             downloadJson()
@@ -148,7 +236,7 @@ class TableViewController: UITableViewController {
         searchController.searchBar.autocapitalizationType = .none
         searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        definesPresentationContext = false
+        definesPresentationContext = true
         
         // navigationController
         navigationItem.title = "Classes"
@@ -169,6 +257,7 @@ class TableViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        
     }
     
     @objc func printFavoriteList() {
@@ -303,6 +392,7 @@ class TableViewController: UITableViewController {
     private func favoriteAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Favorite") { (action, view, completion) in
             self.updateDataList(at: self.currentCourses.data[indexPath.section][indexPath.row], with: &favoriteList)
+            self.postSubscribe(data: self.currentCourses.data[indexPath.section][indexPath.row], type: "like")
             completion(true)
         }
         
@@ -315,7 +405,7 @@ class TableViewController: UITableViewController {
     
     private func planAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "plan") { (action, view, completion) in
-            self.updateDataList(at: self.currentCourses.data[indexPath.section][indexPath.row], with: &planList)
+            self.handleCalendar(data: self.currentCourses.data[indexPath.section][indexPath.row])
             completion(true)
         }
         
@@ -324,6 +414,12 @@ class TableViewController: UITableViewController {
         action.backgroundColor = containData(at: data.id, from: planList) != -1 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         
         return action
+    }
+    
+    private func handleCalendar(data: BriefData) {
+        updateDataList(at: data, with: &planList)
+        updataCalendarList(at: data)
+        postSubscribe(data: data, type: "calendar")
     }
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -337,7 +433,7 @@ class TableViewController: UITableViewController {
     private func subscribeAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal , title: "subscribe") { (action, view, completion) in
             self.updateDataList(at: self.currentCourses.data[indexPath.section][indexPath.row], with: &subscribeList)
-            
+            self.postSubscribe(data: self.currentCourses.data[indexPath.section][indexPath.row], type: "subscribe")
             completion(true)
         }
         
@@ -357,6 +453,86 @@ class TableViewController: UITableViewController {
             }
         }
         return index
+    }
+    
+    open func containData(at target: Int?, from datas: [Data]) -> Int {
+        var index = -1
+        for indice in datas.indices {
+            if datas[indice].id == target! {
+                index = Int(indice)
+                return index
+            }
+        }
+        return index
+    }
+    
+    private func postSubscribe(data: BriefData, type: String) {
+        var subscribeInfo = SubscribeJson(crn: data.crn!, type: type)
+        let subscribeJson = try! JSONEncoder().encode(subscribeInfo)
+        
+        let url = URL(string:"https://api.daclassplanner.com/subscribe")
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.httpBody = subscribeJson
+//        print(urlRequest.allHTTPHeaderFields)
+        
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if let error = error {
+                print(error)
+                return
+            } else {
+                print("no error")
+            }
+            if let response = response {
+//                print(response)
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8))
+            } else {
+                print("no data")
+            }
+        }.resume()
+        
+        
+    }
+    
+    open func updataCalendarList(at data: BriefData) {
+        var detailData: Data?
+        if !calendarList.isEmpty {
+            for calendarCourse in calendarList {
+                if data.id == calendarCourse.id {
+                    // if the element is in the list, it needs to be deleted
+                    let index = containData(at: data.id, from: calendarList)
+                    calendarList.remove(at: index)
+                    postNotiCalendar()
+                    return
+                }
+            }
+        }
+        let urlString = "https://api.daclassplanner.com/courses/" + String(data.id!)
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                print(error)
+            } else {
+                guard response != nil else { return }
+                guard data != nil else { return }
+                detailData = try! JSONDecoder().decode(Data.self, from: data!)
+            }
+            DispatchQueue.main.async {
+                guard let newData = detailData else { return }
+                calendarList.append(newData)
+                self.postNotiCalendar()
+            }
+        }.resume()
+    }
+    
+    private func postNotiCalendar() {
+        let tableVCUpdate = Notification.Name("tableVCUpdate")
+        NotificationCenter.default.post(name: tableVCUpdate, object: nil)
     }
     
     open func updateDataList(at target: BriefData, with datas: inout [BriefData]) {

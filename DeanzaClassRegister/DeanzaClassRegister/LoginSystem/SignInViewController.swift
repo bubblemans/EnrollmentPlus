@@ -8,6 +8,7 @@
 
 import UIKit
 import SimpleCheckbox
+var token = Token(auth_token: "")
 
 class SignInViewController: UIViewController, UINavigationControllerDelegate {
     var userLogoImageView: UIImageView!
@@ -277,7 +278,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             urlRequest.httpBody = userJson
     
-            print(urlRequest.allHTTPHeaderFields)
+//            print(urlRequest.allHTTPHeaderFields)
     
             URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 if let error = error {
@@ -302,14 +303,13 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
                     let data = data,
                     let dataString = String(data: data, encoding: .utf8) {
                     print ("got data: \(dataString)")
+                    DispatchQueue.main.async {
+                        token = try! JSONDecoder().decode(Token.self, from: data)
+                        let tabVC = TabBarController()
+                        self.present(tabVC, animated: true, completion: nil)
+                    }
                 }
-    
             }.resume()
-    
-    
-    
-        let tabVC = TabBarController()
-        present(tabVC, animated: true, completion: nil)
     }
 
 }
