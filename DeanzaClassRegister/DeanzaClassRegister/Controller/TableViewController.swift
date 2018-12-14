@@ -79,11 +79,6 @@ class TableViewController: UITableViewController {
                 self.downloadLikeInfo()
                 self.downloadCalendarInfo()
                 
-                SVProgressHUD.dismiss()
-                DispatchQueue.main.async {
-                    self.blackView.alpha = 0
-                }
-                
             }.resume()
         }
     }
@@ -131,7 +126,10 @@ class TableViewController: UITableViewController {
                 for course in planList {
                     self.updataCalendarList(at: course)
                 }
-                print(planList)
+            }
+            SVProgressHUD.dismiss()
+            DispatchQueue.main.async {
+                self.blackView.alpha = 0
             }
         }.resume()
     }
@@ -481,12 +479,12 @@ class TableViewController: UITableViewController {
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 print(error)
-                return
+                print("errorrrrrrr")
             } else {
                 print("no error")
             }
             if let response = response {
-//                print(response)
+                print(response)
             }
             if let data = data {
                 print(String(data: data, encoding: .utf8))

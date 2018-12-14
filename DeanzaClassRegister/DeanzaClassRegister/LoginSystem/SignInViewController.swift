@@ -286,9 +286,9 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
                     return
                 }
     
-                if let response = response {
-                    print(response)
-                }
+//                if let response = response {
+//                    print(response)
+//                }
     
     //            guard let response = response as? HTTPURLResponse,
     //                (200...299).contains(response.statusCode) else {
@@ -302,7 +302,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
                     mimeType == "application/json",
                     let data = data,
                     let dataString = String(data: data, encoding: .utf8) {
-                    print ("got data: \(dataString)")
+//                    print ("got data: \(dataString)")
                     DispatchQueue.main.async {
                         token = try! JSONDecoder().decode(Token.self, from: data)
                         let tabVC = TabBarController()

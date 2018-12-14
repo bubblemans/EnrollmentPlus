@@ -62,7 +62,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
     
     lazy var profileView: UIImageView = {
         let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.translatesAutoresizingMaskIntoConstraints = false
         view.image = userImage
         return view
     }()
@@ -116,7 +116,6 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             profileView.layer.cornerRadius = 75
             profileView.contentMode = .scaleToFill
             profileView.clipsToBounds = true
-            profileView.translatesAutoresizingMaskIntoConstraints = false
             profileView.tintColor = .black
             
             // imageButton
