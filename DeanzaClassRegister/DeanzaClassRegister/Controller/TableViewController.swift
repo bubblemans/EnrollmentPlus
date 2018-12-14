@@ -49,7 +49,6 @@ class TableViewController: UITableViewController {
                     var course = self.sortCourses(courses: try JSONDecoder().decode(BriefCourses.self, from: data))
                     course = self.sortDepartment(courses: course)
                     
-//                    print(course)
                     
                     var index = 0
                     var temp: [BriefData] = []
@@ -76,14 +75,101 @@ class TableViewController: UITableViewController {
                     // TODO: alert
                     print("Json Error", jsonError)
                 }
+                self.downloadSubscribeInfo()
+                self.downloadLikeInfo()
+                self.downloadCalendarInfo()
                 
                 SVProgressHUD.dismiss()
                 DispatchQueue.main.async {
                     self.blackView.alpha = 0
                 }
                 
-                }.resume()
+            }.resume()
         }
+    }
+    
+    private func downloadSubscribeInfo() {
+        let jsonUrlString = "https://api.daclassplanner.com/user/subscriptions?type=subscribe"
+        guard let url = URL(string: jsonUrlString) else { return }
+            
+        var urlRequest = URLRequest(url: url)
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.httpMethod = "GET"
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                if error != nil {
+                    print(error)
+                }
+//                if response != nil {
+//                    print(response)
+//                }
+            if let data = data {
+                let crns = try! JSONDecoder().decode([String].self, from: data)
+                subscribeList = self.searchandUpdateList(crns: crns)
+            }
+        }.resume()
+    }
+    
+    private func downloadCalendarInfo() {
+        let jsonUrlString = "https://api.daclassplanner.com/user/subscriptions?type=calendar"
+        guard let url = URL(string: jsonUrlString) else { return }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.httpMethod = "GET"
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if error != nil {
+                print(error)
+            }
+//            if response != nil {
+//                print(response)
+//            }
+            if let data = data {
+                let crns = try! JSONDecoder().decode([String].self, from: data)
+                planList = self.searchandUpdateList(crns: crns)
+                for course in planList {
+                    self.updataCalendarList(at: course)
+                }
+                print(planList)
+            }
+        }.resume()
+    }
+    
+    private func downloadLikeInfo() {
+        let jsonUrlString = "https://api.daclassplanner.com/user/subscriptions?type=like"
+        guard let url = URL(string: jsonUrlString) else { return }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.httpMethod = "GET"
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if error != nil {
+                print(error)
+            }
+//            if response != nil {
+//                print(response)
+//            }
+            if let data = data {
+                let crns = try! JSONDecoder().decode([String].self, from: data)
+                favoriteList = self.searchandUpdateList(crns: crns)
+            }
+        }.resume()
+    }
+    
+    private func searchandUpdateList(crns: [String])->[BriefData] {
+        var list: [BriefData] = []
+        for crn in crns {
+            for courses in allCourses.data {
+                for course in courses {
+                    if crn == course.crn! {
+                        list.append(course)
+                    }
+                }
+            }
+        }
+        return list
     }
     
     private func sortCourses(courses: BriefCourses) -> BriefCourses {
