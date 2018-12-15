@@ -261,15 +261,11 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let title = labelString[indexPath.row]
-        print(title, indexPath)
         
         
         switch labelString[indexPath.row] {
         case "Home":
-            let destination = TableViewController()
-            destination.selectedIndexPath = indexPath
-            isFirstTime = false
-            handlePushAnimate(title: title, destination: destination)
+            handlePopAnimate()
         case "MyList":
             let destination = MyListViewController()
             destination.baseController = baseController
@@ -310,6 +306,26 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             let destination = TableViewController()
             isFirstTime = false
             destination.selectedIndexPath = indexPath
+        }
+    }
+    
+    func handlePopAnimate() {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+            self.blackView.alpha = 0
+            if let window = UIApplication.shared.keyWindow {
+                self.menuView.frame = CGRect(x: -250, y: 0, width: 250, height: window.frame.height)
+            }
+            
+        }) { (completion: Bool) in
+            self.baseController?.navigationItem.title = "Classes"
+            self.baseController?.navigationItem.largeTitleDisplayMode = .always
+            self.baseController?.navigationController?.popToRootViewController(animated: true)
+            self.baseController?.navigationController?.navigationBar.barTintColor = .white
+            self.baseController?.navigationController?.navigationBar.tintColor = .black
+            self.baseController?.definesPresentationContext = false
+            self.baseController?.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+            self.baseController?.navigationController?.navigationBar.prefersLargeTitles = true
+            self.baseController?.navigationItem.hidesSearchBarWhenScrolling = false
         }
     }
     
