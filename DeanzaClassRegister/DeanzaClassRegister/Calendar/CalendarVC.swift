@@ -98,8 +98,6 @@ class CalendarVC: UIViewController {
     private func setupDayView() {
         view.addSubview(dayView)
         var topDistance: CGFloat = 0
-//        dayView.topAnchor.constraint(equalTo: view.topAnchor, constant: 88).isActive = true
-//        dayView.topAnchor.constraint(equalTo: self.navigationController?.navigationBar.bottomAnchor, constant: 0).isActive = true
         if self.navigationController != nil && !self.navigationController!.navigationBar.isTranslucent{
             topDistance = 0
         } else {

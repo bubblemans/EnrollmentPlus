@@ -180,7 +180,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
 
         view.addSubview(whiteBoxKey)
         whiteBoxKey.backgroundColor = .white
-        whiteBoxKey.topAnchor.constraint(equalTo: whiteBoxName.bottomAnchor, constant: 72).isActive = true
+        whiteBoxKey.topAnchor.constraint(equalTo: whiteBoxName.bottomAnchor, constant: 50).isActive = true
         whiteBoxKey.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         whiteBoxKey.widthAnchor.constraint(equalToConstant: 274).isActive = true
         whiteBoxKey.heightAnchor.constraint(equalToConstant: 40).isActive = true
@@ -230,7 +230,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
 //        passwordTextfield.frame = CGRect(x: 114, y: 420, width: 224, height: 40)
         self.view.addSubview(passwordTextfield)
         passwordTextfield.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextfield.topAnchor.constraint(equalTo: whiteBoxName.bottomAnchor, constant: 72).isActive = true
+        passwordTextfield.topAnchor.constraint(equalTo: whiteBoxName.bottomAnchor, constant: 50).isActive = true
         passwordTextfield.centerXAnchor.constraint(equalTo: rectangleView.centerXAnchor, constant: 20).isActive = true
         passwordTextfield.widthAnchor.constraint(equalToConstant: 224).isActive = true
         passwordTextfield.heightAnchor.constraint(equalToConstant: 40).isActive = true
