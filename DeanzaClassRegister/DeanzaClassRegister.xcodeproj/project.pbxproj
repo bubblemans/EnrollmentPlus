@@ -142,7 +142,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E1012B4221A2591F009A59FF /* Breif */ = {
+		E1012B4221A2591F009A59FF /* Brief */ = {
 			isa = PBXGroup;
 			children = (
 				E1012B4421A2595C009A59FF /* BriefCourses2D.swift */,
@@ -150,7 +150,7 @@
 				E1012B3C21A257BC009A59FF /* BriefData.swift */,
 				E1012B3E21A25838009A59FF /* Cached_lecture.swift */,
 			);
-			path = Breif;
+			path = Brief;
 			sourceTree = "<group>";
 		};
 		E1012B4321A25930009A59FF /* Detail */ = {
@@ -167,7 +167,7 @@
 		E13665F1213250E40009EF0D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E1012B4221A2591F009A59FF /* Breif */,
+				E1012B4221A2591F009A59FF /* Brief */,
 				E1012B4321A25930009A59FF /* Detail */,
 				E1012B3821A11693009A59FF /* Info.swift */,
 				E1012B3A21A116C0009A59FF /* User.swift */,

@@ -12,6 +12,7 @@ class FavoriteList: UIView, UITableViewDelegate, UITableViewDataSource {
     
     let cellId = "cellId"
     var myListController: MyListViewController?
+    var width: CGFloat = 0
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableViewCell
@@ -50,7 +51,7 @@ class FavoriteList: UIView, UITableViewDelegate, UITableViewDataSource {
         let action = UIContextualAction(style: .destructive, title: "favorite") { (action, view, completion) in
             favoriteList.remove(at: index)
             self.tableView.reloadData()
-            self.tableView.frame = CGRect(x: 0, y: 44, width: 375, height: CGFloat(favoriteList.count * 44))
+            self.tableView.frame = CGRect(x: 0, y: 44, width: self.width, height: CGFloat(favoriteList.count * 44))
             
             if favoriteList.count == 0 {
                 self.dismissTableView()
@@ -71,6 +72,12 @@ class FavoriteList: UIView, UITableViewDelegate, UITableViewDataSource {
             self.tableView.alpha = 0
             self.headerLabel.alpha = 0
         }
+    }
+    
+    public func setUpTableView() {
+        let height = CGFloat(subscribeList.count * 44)
+        tableView.frame = CGRect(x: 0, y: 44, width: width, height: height)
+        headerLabel.frame = CGRect(x: 0, y: 0, width: width, height: 44)
     }
     
     let tableView: UITableView = {
@@ -94,7 +101,7 @@ class FavoriteList: UIView, UITableViewDelegate, UITableViewDataSource {
         let height = CGFloat(favoriteList.count * 44)
         
         tableView.isScrollEnabled = false
-        tableView.frame = CGRect(x: 0, y: 44, width: 375, height: height)
+        tableView.frame = CGRect(x: 0, y: 44, width: width, height: height)
         addSubview(tableView)
         
         tableView.dataSource = self
@@ -102,7 +109,7 @@ class FavoriteList: UIView, UITableViewDelegate, UITableViewDataSource {
         tableView.register(TableViewCell.self, forCellReuseIdentifier: cellId)
         
         if favoriteList.count > 0 {
-            headerLabel.frame = CGRect(x: 0, y: 0, width: 375, height: 44)
+            headerLabel.frame = CGRect(x: 0, y: 0, width: width, height: 44)
             addSubview(headerLabel)
         }
     }

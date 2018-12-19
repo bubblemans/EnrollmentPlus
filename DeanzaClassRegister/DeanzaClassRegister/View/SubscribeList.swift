@@ -12,6 +12,7 @@ class SubscribeList: UIView, UITableViewDataSource, UITableViewDelegate {
     
     let cellId = "cellId"
     var myListController: MyListViewController?
+    var width: CGFloat = 0
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableViewCell
@@ -45,7 +46,7 @@ class SubscribeList: UIView, UITableViewDataSource, UITableViewDelegate {
         let action = UIContextualAction(style: .destructive, title: "subscribe") { (action, view, completion) in
             subscribeList.remove(at: index)
             self.tableView.reloadData()
-            self.tableView.frame = CGRect(x: 0, y: 44, width: 375, height: CGFloat(subscribeList.count * 44))
+            self.tableView.frame = CGRect(x: 0, y: 44, width: self.width, height: CGFloat(subscribeList.count * 44))
             
             if subscribeList.count == 0 {
                 self.dismissTableView()
@@ -90,11 +91,9 @@ class SubscribeList: UIView, UITableViewDataSource, UITableViewDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         let height = CGFloat(subscribeList.count * 44)
         
-        
-        tableView.frame = CGRect(x: 0, y: 44, width: 375, height: height)
+        tableView.frame = CGRect(x: 0, y: 44, width: width, height: height)
         tableView.isScrollEnabled = false
         addSubview(tableView)
         
@@ -103,9 +102,15 @@ class SubscribeList: UIView, UITableViewDataSource, UITableViewDelegate {
         tableView.register(TableViewCell.self, forCellReuseIdentifier: cellId)
         
         if subscribeList.count > 0 {
-            headerLabel.frame = CGRect(x: 0, y: 0, width: 375, height: 44)
+            headerLabel.frame = CGRect(x: 0, y: 0, width: width, height: 44)
             addSubview(headerLabel)
         }
+    }
+    
+    public func setUpTableView() {
+        let height = CGFloat(subscribeList.count * 44)
+        tableView.frame = CGRect(x: 0, y: 44, width: width, height: height)
+        headerLabel.frame = CGRect(x: 0, y: 0, width: width, height: 44)
     }
     
     required init?(coder aDecoder: NSCoder) {

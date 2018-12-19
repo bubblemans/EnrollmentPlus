@@ -46,12 +46,16 @@ class MyListViewController: MenuBaseViewController {
     private func setupSubView() {
         scrollView.addSubview(subscribeListView)
         subscribeListView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: subscribeHeight)
+        subscribeListView.width = view.frame.width
+        subscribeListView.setUpTableView()
         subscribeListView.myListController = self
     }
     
     private func setupFavView() {
         scrollView.addSubview(favoriteListView)
         favoriteListView.frame = CGRect(x: 0, y: subscribeHeight, width: view.frame.width, height: favoriteHeight)
+        favoriteListView.width = view.frame.width
+        favoriteListView.setUpTableView()
         favoriteListView.myListController = self
     }
     
