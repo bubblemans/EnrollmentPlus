@@ -97,7 +97,16 @@ class CalendarVC: UIViewController {
     
     private func setupDayView() {
         view.addSubview(dayView)
-        dayView.topAnchor.constraint(equalTo: view.topAnchor, constant: 88).isActive = true
+        var topDistance: CGFloat = 0
+//        dayView.topAnchor.constraint(equalTo: view.topAnchor, constant: 88).isActive = true
+//        dayView.topAnchor.constraint(equalTo: self.navigationController?.navigationBar.bottomAnchor, constant: 0).isActive = true
+        if self.navigationController != nil && !self.navigationController!.navigationBar.isTranslucent{
+            topDistance = 0
+        } else {
+            topDistance = topDistance + (self.navigationController?.navigationBar.frame.height)! ?? 0
+            topDistance = topDistance + UIApplication.shared.statusBarFrame.height
+        }
+        dayView.topAnchor.constraint(equalTo: view.topAnchor, constant: topDistance).isActive = true
         dayView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         dayView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         dayView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
