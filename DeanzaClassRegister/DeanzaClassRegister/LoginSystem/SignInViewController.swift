@@ -11,8 +11,8 @@ import SimpleCheckbox
 var token = Token(auth_token: "")
 
 class SignInViewController: UIViewController, UINavigationControllerDelegate {
-    var userLogoImageView: UIImageView!
-    var keyLogoImageView: UIImageView!
+    var userLogoImageView = UIImageView()
+    var keyLogoImageView = UIImageView()
     var usernameTextfield = UITextField()
     var passwordTextfield = UITextField()
     
@@ -63,7 +63,11 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         return bt
     }()
     
-    let checkBox = Checkbox(frame: CGRect(x: 70, y: 500, width: 20, height: 20))
+    let checkBox: Checkbox = {
+        let view = Checkbox()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     let signUpLabel: UILabel = {
         let label = UILabel()
@@ -76,19 +80,20 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround() 
         
         setupBackgroundImage()
         setupRectangleView()
         setupLayer()
-        setupLogoView()
-        setupKeyLogoView()
         setupUserTF()
         setupPF()
+        setupLogoView()
+        setupKeyLogoView()
+        setupCheckBox()
         setupSignInBT()
+        setupSignLabel()
         setupSignUpBT()
         setupForgotPSButton()
-        setupCheckBox()
-        setupSignLabel()
     }
     
     private func setupBackgroundImage() {
@@ -104,7 +109,11 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
     
     private func setupRectangleView() {
         view.addSubview(rectangleView)
-        rectangleView.frame = CGRect(x: 34, y: 246, width: 346, height: 517)
+        rectangleView.translatesAutoresizingMaskIntoConstraints = false
+        rectangleView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120).isActive = true
+        rectangleView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+        rectangleView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+        rectangleView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
         rectangleView.layer.cornerRadius = 21
         rectangleView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         rectangleView.layer.shadowOpacity = 0.5
@@ -124,58 +133,107 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         forgotPasswordButton.addTarget(self, action: #selector(handleForgetPassword), for: .touchUpInside)
     }
     
+//    let sublayer = CALayer()
+    let sublayer: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let whiteBoxName: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let whiteBoxKey: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private func setupLayer() {
-        let sublayer = CALayer()
+        
+        view.addSubview(sublayer)
         sublayer.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.9098039216, blue: 0.9098039216, alpha: 1)
+        sublayer.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
+        sublayer.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        sublayer.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        sublayer.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        sublayer.layer.cornerRadius = 60
+
         
-        sublayer.frame = CGRect(x: 150, y: 180, width: 120, height: 120)
-        sublayer.cornerRadius = sublayer.frame.width / 2
-        
-        self.view.layer.addSublayer(sublayer)
-        
-        let imageLayer = CALayer()
+        let imageLayer = UIImageView()
         imageLayer.frame = CGRect(x: 5 , y: 5, width: 110, height: 110)
-        imageLayer.cornerRadius = imageLayer.bounds.width / 2
-        imageLayer.contents = UIImage(named:"logo.png")?.cgImage
-        imageLayer.masksToBounds = true
-        sublayer.addSublayer(imageLayer)
+        imageLayer.layer.cornerRadius = 55
+        imageLayer.image = UIImage(named:"logo.png")
+//        imageLayer.clipsToBounds = true
+        sublayer.addSubview(imageLayer)
         
-        let whiteBoxName = CALayer()
-        whiteBoxName.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        whiteBoxName.frame = CGRect(x: 70, y: 348, width: 274, height: 40)
-        self.view.layer.addSublayer(whiteBoxName)
-        
-        let whiteBoxKey = CALayer()
-        whiteBoxKey.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        whiteBoxKey.frame = CGRect(x: 70, y: 420, width: 274, height: 40)
-        self.view.layer.addSublayer(whiteBoxKey)
+        view.addSubview(whiteBoxName)
+        whiteBoxName.backgroundColor = .white
+        whiteBoxName.topAnchor.constraint(equalTo: sublayer.bottomAnchor, constant: 40).isActive = true
+        whiteBoxName.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        whiteBoxName.widthAnchor.constraint(equalToConstant: 274).isActive = true
+        whiteBoxName.heightAnchor.constraint(equalToConstant: 40).isActive = true
+//        whiteBoxName.frame = CGRect(x: 70, y: 348, width: 274, height: 40)
+
+        view.addSubview(whiteBoxKey)
+        whiteBoxKey.backgroundColor = .white
+        whiteBoxKey.topAnchor.constraint(equalTo: whiteBoxName.bottomAnchor, constant: 72).isActive = true
+        whiteBoxKey.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        whiteBoxKey.widthAnchor.constraint(equalToConstant: 274).isActive = true
+        whiteBoxKey.heightAnchor.constraint(equalToConstant: 40).isActive = true
+//        whiteBoxKey.frame = CGRect(x: 70, y: 420, width: 274, height: 40)
     }
     
     private func setupLogoView() {
-        userLogoImageView = UIImageView(frame: CGRect(x: 80, y: 357, width: 23, height: 23))
-        userLogoImageView.image = UIImage(named:"userlogo.png")
+//        userLogoImageView = UIImageView(frame: CGRect(x: 80, y: 357, width: 23, height: 23))
         self.view.addSubview(userLogoImageView)
+        userLogoImageView.translatesAutoresizingMaskIntoConstraints = false
+        userLogoImageView.topAnchor.constraint(equalTo: usernameTextfield.topAnchor, constant: 8).isActive = true
+        userLogoImageView.trailingAnchor.constraint(equalTo: usernameTextfield.leadingAnchor, constant: -15).isActive = true
+        userLogoImageView.widthAnchor.constraint(equalToConstant: 23).isActive = true
+        userLogoImageView.heightAnchor.constraint(equalToConstant: 23).isActive = true
+        userLogoImageView.image = UIImage(named:"userlogo.png")
     }
 
     private func setupKeyLogoView() {
-        keyLogoImageView = UIImageView(frame: CGRect(x: 80, y: 428, width: 23, height: 23))
+//        keyLogoImageView = UIImageView(frame: CGRect(x: 80, y: 428, width: 23, height: 23))
+        self.view.addSubview(keyLogoImageView)
+        keyLogoImageView.translatesAutoresizingMaskIntoConstraints = false
+        keyLogoImageView.topAnchor.constraint(equalTo: passwordTextfield.topAnchor, constant: 8).isActive = true
+        keyLogoImageView.trailingAnchor.constraint(equalTo: passwordTextfield.leadingAnchor, constant: -15).isActive = true
+        keyLogoImageView.widthAnchor.constraint(equalToConstant: 23).isActive = true
+        keyLogoImageView.heightAnchor.constraint(equalToConstant: 23).isActive = true
         keyLogoImageView.image = UIImage(named:"keylogo.png")
         self.view.addSubview(keyLogoImageView)
     }
     
     private func setupUserTF() {
-        usernameTextfield.frame = CGRect(x: 114, y: 350, width: 224, height: 40)
+//        usernameTextfield.frame = CGRect(x: 114, y: 350, width: 224, height: 40)
+        self.view.addSubview(usernameTextfield)
+        usernameTextfield.translatesAutoresizingMaskIntoConstraints = false
+        usernameTextfield.topAnchor.constraint(equalTo: sublayer.bottomAnchor, constant: 40).isActive = true
+        usernameTextfield.centerXAnchor.constraint(equalTo: rectangleView.centerXAnchor, constant: 20).isActive = true
+        usernameTextfield.widthAnchor.constraint(equalToConstant: 224).isActive = true
+        usernameTextfield.heightAnchor.constraint(equalToConstant: 40).isActive = true
         usernameTextfield.placeholder = "Username"
         usernameTextfield.layer.cornerRadius = 20
         usernameTextfield.autocorrectionType = .no
         usernameTextfield.autocapitalizationType = .none
         usernameTextfield.clearButtonMode = .whileEditing
         usernameTextfield.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-        self.view.addSubview(usernameTextfield)
     }
     
     private func setupPF() {
-        passwordTextfield.frame = CGRect(x: 114, y: 420, width: 224, height: 40)
+//        passwordTextfield.frame = CGRect(x: 114, y: 420, width: 224, height: 40)
+        self.view.addSubview(passwordTextfield)
+        passwordTextfield.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextfield.topAnchor.constraint(equalTo: whiteBoxName.bottomAnchor, constant: 72).isActive = true
+        passwordTextfield.centerXAnchor.constraint(equalTo: rectangleView.centerXAnchor, constant: 20).isActive = true
+        passwordTextfield.widthAnchor.constraint(equalToConstant: 224).isActive = true
+        passwordTextfield.heightAnchor.constraint(equalToConstant: 40).isActive = true
         passwordTextfield.placeholder = "Password"
         passwordTextfield.layer.cornerRadius = 20
         passwordTextfield.autocapitalizationType = .none
@@ -183,7 +241,6 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         passwordTextfield.clearButtonMode = .whileEditing
         passwordTextfield.isSecureTextEntry = true
         passwordTextfield.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-        self.view.addSubview(passwordTextfield)
     }
     
     private func setupSignInBT() {
@@ -196,7 +253,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         signInButton.addTarget(self, action: #selector(handleSignIn), for: .touchUpInside)
         
         signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        signInButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 600).isActive = true
+        signInButton.topAnchor.constraint(equalTo: rememberMeButton.topAnchor, constant: 60).isActive = true
         signInButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         signInButton.widthAnchor.constraint(equalToConstant: 274).isActive = true
     }
@@ -210,7 +267,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         signUpButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
     
         signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        signUpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 670).isActive = true
+        signUpButton.topAnchor.constraint(equalTo: signUpLabel.bottomAnchor, constant: 5).isActive = true
         signUpButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         signUpButton.widthAnchor.constraint(equalToConstant: 274).isActive = true
     }
@@ -223,6 +280,10 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         checkBox.checkmarkColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         checkBox.addTarget(self, action: #selector(handleRememberMe), for: .touchUpInside)
         view.addSubview(checkBox)
+        checkBox.topAnchor.constraint(equalTo: passwordTextfield.bottomAnchor, constant: 40).isActive = true
+        checkBox.leadingAnchor.constraint(equalTo: userLogoImageView.leadingAnchor, constant: 0).isActive = true
+        checkBox.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        checkBox.widthAnchor.constraint(equalToConstant: 20).isActive = true
         
         view.addSubview(rememberMeButton)
         rememberMeButton.topAnchor.constraint(equalTo: passwordTextfield.bottomAnchor, constant: 35).isActive = true
@@ -314,6 +375,17 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
 
 }
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
 
 
 
