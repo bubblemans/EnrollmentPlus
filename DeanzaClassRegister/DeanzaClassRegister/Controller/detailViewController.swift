@@ -615,6 +615,7 @@ class detailViewController: UIViewController {
         let controller = TableViewController()
         controller.updateDataList(at: briefData!, with: &planList)
         controller.updataCalendarList(at: briefData!)
+        postNotiCalendar()
         
         planButton.isSelected  = !planButton.isSelected
 
@@ -634,7 +635,7 @@ class detailViewController: UIViewController {
     @objc func handleFavorite() {
         let controller = TableViewController()
         controller.updateDataList(at: briefData!, with: &favoriteList)
-        postNotiCalendar()
+//        postNotiCalendar()
 
         favoriteButton.isSelected  = !favoriteButton.isSelected
 
