@@ -18,7 +18,7 @@ class CalendarTimeView: UIView {
         setupLabel()
     }
     
-    private func setupLabel() {
+    public func setupLabel() {
         let sevenLabel = makeLabel(y: 0, content: "07:00")
         self.addSubview(sevenLabel)
         

@@ -9,17 +9,17 @@
 import UIKit
 
 class CalendarDayView: UIView {
-    let wid = CGFloat(414.0 / 6)
+    var wid = CGFloat(414.0 / 6)
     let hei = CGFloat(50)
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
         self.layer.borderWidth = 1
         self.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        setupDayLabel()
+//        setupDayLabel()
     }
     
-    private func setupDayLabel() {
+    public func setupDayLabel() {
         let monLabel = makeLabel(x: wid, content: "MON")
         self.addSubview(monLabel)
         

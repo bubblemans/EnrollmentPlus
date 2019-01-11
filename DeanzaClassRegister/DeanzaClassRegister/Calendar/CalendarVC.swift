@@ -9,8 +9,11 @@
 import UIKit
 
 class CalendarVC: UIViewController {
+    public var width: CGFloat {
+        return self.view.frame.width
+    }
     
-    let width = 414.0
+//    let width = 414.0
     var numOfDays = 0
     var numOfClass = 0
     let colors = [#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1), #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1), #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1), #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1), #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1), #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)]
@@ -46,6 +49,7 @@ class CalendarVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(width)
         
         createObservers()
         setupScrollView()
@@ -92,12 +96,15 @@ class CalendarVC: UIViewController {
     
     private func setupCalendarView() {
         scrollView.addSubview(calendarView)
-        calendarView.frame = CGRect(x: 0, y: dayView.frame.maxY + 50, width: 414, height: 17 * 70)
+        calendarView.frame = CGRect(x: 0, y: dayView.frame.maxY + 50, width: width, height: 17 * 70)
+        calendarView.width = width / 6
     }
     
     private func setupDayView() {
         view.addSubview(dayView)
         var topDistance: CGFloat = 0
+        dayView.wid = width / 6
+        dayView.setupDayLabel()
         if self.navigationController != nil && !self.navigationController!.navigationBar.isTranslucent{
             topDistance = 0
         } else {
@@ -114,7 +121,7 @@ class CalendarVC: UIViewController {
         insertByDay(days: data.lectures[0].days!)
         insertByTime(time: data.lectures[0].times!)
         
-        let wid = width / 6 - 2
+        let wid = Double(width / 6 - 2)
         
         if x[0] != 0 {
             let button = UIButton()
@@ -173,7 +180,7 @@ class CalendarVC: UIViewController {
     }
     
     private func insertByDay(days: String) {
-        let wid = width / 6
+        let wid = Double(width / 6)
 
         if days[0] == "M" {
             x[0] = wid + 1
