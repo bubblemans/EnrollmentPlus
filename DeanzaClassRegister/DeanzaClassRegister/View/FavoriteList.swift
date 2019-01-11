@@ -75,7 +75,7 @@ class FavoriteList: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     public func setUpTableView() {
-        let height = CGFloat(subscribeList.count * 44)
+        let height = CGFloat(favoriteList.count * 44)
         tableView.frame = CGRect(x: 0, y: 44, width: width, height: height)
         headerLabel.frame = CGRect(x: 0, y: 0, width: width, height: 44)
     }

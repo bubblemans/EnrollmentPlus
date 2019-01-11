@@ -109,6 +109,7 @@ class SubscribeList: UIView, UITableViewDataSource, UITableViewDelegate {
     
     public func setUpTableView() {
         let height = CGFloat(subscribeList.count * 44)
+        print(height)
         tableView.frame = CGRect(x: 0, y: 44, width: width, height: height)
         headerLabel.frame = CGRect(x: 0, y: 0, width: width, height: 44)
     }
