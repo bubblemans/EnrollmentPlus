@@ -8,6 +8,8 @@
 
 import UIKit
 import SimpleCheckbox
+import SVProgressHUD
+
 var token = Token(auth_token: "")
 
 class SignInViewController: UIViewController, UINavigationControllerDelegate {
@@ -327,6 +329,9 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     @objc func handleSignIn(){
+        SVProgressHUD.show(withStatus: "Loading...")
+        SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+        
         let user = User(email: usernameTextfield.text!, password: passwordTextfield.text!)
             let info = Information(user: user)
             let userJson = try! JSONEncoder().encode(info)
@@ -342,6 +347,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
 //            print(urlRequest.allHTTPHeaderFields)
     
             URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                
                 if let error = error {
                     print ("error: \(error)")
                     return
@@ -366,6 +372,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
 //                    print ("got data: \(dataString)")
                     DispatchQueue.main.async {
                         token = try! JSONDecoder().decode(Token.self, from: data)
+                        SVProgressHUD.dismiss()
                         let tabVC = TabBarController()
                         self.present(tabVC, animated: true, completion: nil)
                     }
