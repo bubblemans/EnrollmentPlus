@@ -79,6 +79,37 @@ class MyListViewController: MenuBaseViewController {
             self.scrollView.contentSize.height = newSubHeight + newFavHeight + 100
         }
     }
+    
+    open func postSubscribe(data: BriefData, type: String) {
+        var subscribeInfo = SubscribeJson(crn: data.crn!, type: type)
+        let subscribeJson = try! JSONEncoder().encode(subscribeInfo)
+        
+        let url = URL(string:"https://api.daclassplanner.com/subscribe")
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.httpBody = subscribeJson
+        //        print(urlRequest.allHTTPHeaderFields)
+        
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if let error = error {
+                print(error)
+                print("errorrrrrrr")
+            } else {
+                print("no error")
+            }
+            if let response = response {
+                print(response)
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8))
+            } else {
+                print("no data")
+            }
+        }.resume()
+        
+    }
 }
 
 

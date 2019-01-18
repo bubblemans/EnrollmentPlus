@@ -300,6 +300,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
                         self.menuView.frame = CGRect(x: -250, y: 0, width: 250, height: window.frame.height)
                     }
                 })
+                token = Token(auth_token: "")
                 self.baseController?.navigationController?.popToRootViewController(animated: false)
             })
         default:

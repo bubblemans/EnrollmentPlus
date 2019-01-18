@@ -57,6 +57,8 @@ class FavoriteList: UIView, UITableViewDelegate, UITableViewDataSource {
                 self.dismissTableView()
             }
             
+            self.myListController?.postSubscribe(data: data, type: "like")
+            
             self.myListController?.animateScrollView()
             completion(true)
         }

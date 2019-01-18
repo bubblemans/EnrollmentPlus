@@ -48,6 +48,8 @@ class SubscribeList: UIView, UITableViewDataSource, UITableViewDelegate {
             self.tableView.reloadData()
             self.tableView.frame = CGRect(x: 0, y: 44, width: self.width, height: CGFloat(subscribeList.count * 44))
             
+            self.myListController?.postSubscribe(data: data, type: "subscribe")
+            
             if subscribeList.count == 0 {
                 self.dismissTableView()
             }

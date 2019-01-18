@@ -357,11 +357,15 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
 //                    print(response)
 //                }
     
-    //            guard let response = response as? HTTPURLResponse,
-    //                (200...299).contains(response.statusCode) else {
-    //                    print ("server error")
-    //                    return
-    //            }
+                if let response = response as? HTTPURLResponse,
+                    (200...299).contains(response.statusCode) {
+                } else {
+                    print ("server error")
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                    }
+                    return
+                }
     //
     //            print(response)
     
