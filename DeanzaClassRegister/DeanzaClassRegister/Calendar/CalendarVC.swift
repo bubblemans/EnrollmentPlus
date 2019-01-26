@@ -131,6 +131,11 @@ class CalendarVC: UIViewController {
             button.setTitle(data.course!, for: .normal)
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
+            for index in 0...calendarList.count - 1{
+                if calendarList[index].course! == data.course {
+                    button.tag = index
+                }
+            }
             classesButton.append(button)
         }
         if x[1] != 0 {
@@ -141,6 +146,11 @@ class CalendarVC: UIViewController {
             button.setTitle(data.course!, for: .normal)
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
+            for index in 0...calendarList.count - 1{
+                if calendarList[index].course! == data.course {
+                    button.tag = index
+                }
+            }
             classesButton.append(button)
         }
         if x[2] != 0 {
@@ -151,6 +161,11 @@ class CalendarVC: UIViewController {
             button.setTitle(data.course!, for: .normal)
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
+            for index in 0...calendarList.count - 1{
+                if calendarList[index].course! == data.course {
+                    button.tag = index
+                }
+            }
             classesButton.append(button)
         }
         if x[3] != 0 {
@@ -161,6 +176,11 @@ class CalendarVC: UIViewController {
             button.setTitle(data.course!, for: .normal)
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
+            for index in 0...calendarList.count - 1{
+                if calendarList[index].course! == data.course {
+                    button.tag = index
+                }
+            }
             classesButton.append(button)
         }
         if x[4] != 0 {
@@ -171,12 +191,41 @@ class CalendarVC: UIViewController {
             button.setTitle(data.course!, for: .normal)
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
+            for index in 0...calendarList.count - 1{
+                if calendarList[index].course! == data.course {
+                    button.tag = index
+                }
+            }
             classesButton.append(button)
         }
         
         for bt in classesButton {
+            bt.addTarget(self, action: #selector(goToDetailVC), for: .touchUpInside)
             scrollView.addSubview(bt)
         }
+    }
+    
+    @objc func goToDetailVC(sender: UIButton) {
+        let destination = detailViewController()
+        for index in 0...calendarList.count {
+            if sender.tag == index {
+                destination.detailData = calendarList[index]
+                destination.id = calendarList[index].id
+                
+                for row in currentCourses.data {
+                    for column in row {
+                        if column.id == calendarList[index].id {
+                            destination.briefData = column
+                        }
+                    }
+                }
+                
+                print(calendarList[index].lectures[0].title!)
+//                present(destination, animated: true, completion: nil)
+                self.navigationController?.pushViewController(destination, animated: true)
+            }
+        }
+        
     }
     
     private func insertByDay(days: String) {

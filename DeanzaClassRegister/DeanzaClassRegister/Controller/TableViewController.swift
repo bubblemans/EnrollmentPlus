@@ -13,14 +13,13 @@ var favoriteList: [BriefData] = []
 var planList: [BriefData] = []
 var subscribeList: [BriefData] = []
 var calendarList: [Data] = []
+var currentCourses = BriefCourses2D(total: 0, data: [], departmentList: [], isExpanded: [])
+var allCourses = BriefCourses2D(total: 0, data: [], departmentList: [], isExpanded: [])
 var isFirstTime = true
 
 class TableViewController: UITableViewController {
     
     private let cellId = "cellId"
-    
-    var currentCourses = BriefCourses2D(total: 0, data: [], departmentList: [], isExpanded: [])
-    var allCourses = BriefCourses2D(total: 0, data: [], departmentList: [], isExpanded: [])
     
     var selectedIndexPath: IndexPath?
     
@@ -56,16 +55,16 @@ class TableViewController: UITableViewController {
                     while index < course.total! - 1{
                         temp.append(course.data[index])
                         if course.data[index].department != course.data[index + 1].department {
-                            self.currentCourses.departmentList.append(course.data[index].department!)
-                            self.currentCourses.isExpanded.append(false)
-                            self.currentCourses.data.append(temp)
+                            currentCourses.departmentList.append(course.data[index].department!)
+                            currentCourses.isExpanded.append(false)
+                            currentCourses.data.append(temp)
                             temp = []
                         }
                         index = index + 1
                     }
                     
-                    self.currentCourses.total = course.total
-                    self.allCourses = self.currentCourses
+                    currentCourses.total = course.total
+                    allCourses = currentCourses
                     
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
@@ -389,8 +388,8 @@ class TableViewController: UITableViewController {
     
     private func favoriteAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Favorite") { (action, view, completion) in
-            self.updateDataList(at: self.currentCourses.data[indexPath.section][indexPath.row], with: &favoriteList)
-            self.postSubscribe(data: self.currentCourses.data[indexPath.section][indexPath.row], type: "like")
+            self.updateDataList(at: currentCourses.data[indexPath.section][indexPath.row], with: &favoriteList)
+            self.postSubscribe(data: currentCourses.data[indexPath.section][indexPath.row], type: "like")
             completion(true)
         }
         
@@ -403,7 +402,7 @@ class TableViewController: UITableViewController {
     
     private func planAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "plan") { (action, view, completion) in
-            self.handleCalendar(data: self.currentCourses.data[indexPath.section][indexPath.row])
+            self.handleCalendar(data: currentCourses.data[indexPath.section][indexPath.row])
             completion(true)
         }
         
@@ -430,8 +429,8 @@ class TableViewController: UITableViewController {
     
     private func subscribeAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal , title: "subscribe") { (action, view, completion) in
-            self.updateDataList(at: self.currentCourses.data[indexPath.section][indexPath.row], with: &subscribeList)
-            self.postSubscribe(data: self.currentCourses.data[indexPath.section][indexPath.row], type: "subscribe")
+            self.updateDataList(at: currentCourses.data[indexPath.section][indexPath.row], with: &subscribeList)
+            self.postSubscribe(data: currentCourses.data[indexPath.section][indexPath.row], type: "subscribe")
             completion(true)
         }
         
