@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 var userImage = UIImage(named: "user")?.withRenderingMode(.alwaysTemplate)
 
@@ -275,11 +276,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             let destination = NotificationViewController()
             destination.baseController = baseController
             destination.selectedIndexPath = indexPath
-//            if baseController == nil {
-//                print("nil")
-//            } else {
-//                print("not nil")
-//            }
+            downloadNoti()
             handlePushAnimate(title: title, destination: destination)
         case "Settings":
             let destination = SettingViewController()
@@ -307,6 +304,49 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             let destination = TableViewController()
             isFirstTime = false
             destination.selectedIndexPath = indexPath
+        }
+    }
+    
+    func downloadNoti() {
+        UIView.animate(withDuration: 0.5) {
+            self.blackView.alpha = 1
+            if let window = UIApplication.shared.keyWindow {
+                SVProgressHUD.show(withStatus: "Loading...")
+                SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+                
+                // http get request
+                let urlString = "https://api.daclassplanner.com/user/notifications"
+                guard let url = URL(string: urlString) else { return }
+                var urlRequest = URLRequest(url: url)
+                urlRequest.httpMethod = "GET"
+                urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+                
+                URLSession.shared.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+                    if error != nil {
+                        print(error)
+                        return
+                    }
+                    
+                    if let response = response {
+                        print(response)
+                    } else {
+                        print("no response")
+                    }
+                    
+                    if let data = data {
+                        print(String(data: data, encoding: .utf8))
+                    } else {
+                        print("no data")
+                    }
+                    
+                    SVProgressHUD.dismiss()
+                    DispatchQueue.main.async {
+                        self.blackView.alpha = 0
+                    }
+                    
+                }).resume()
+            }
         }
     }
     

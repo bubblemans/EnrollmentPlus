@@ -91,12 +91,15 @@ class TableViewController: UITableViewController {
         urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
         urlRequest.httpMethod = "GET"
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-                if error != nil {
+            if error != nil {
                     print(error)
                 }
-//                if response != nil {
-//                    print(response)
-//                }
+            if let response = response as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) {
+            } else {
+                print ("server error")
+                return
+            }
             if let data = data {
                 let crns = try! JSONDecoder().decode([String].self, from: data)
                 subscribeList = self.searchandUpdateList(crns: crns)
@@ -116,9 +119,12 @@ class TableViewController: UITableViewController {
             if error != nil {
                 print(error)
             }
-//            if response != nil {
-//                print(response)
-//            }
+            if let response = response as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) {
+            } else {
+                print ("server error")
+                return
+            }
             if let data = data {
                 let crns = try! JSONDecoder().decode([String].self, from: data)
                 planList = self.searchandUpdateList(crns: crns)
@@ -145,9 +151,12 @@ class TableViewController: UITableViewController {
             if error != nil {
                 print(error)
             }
-//            if response != nil {
-//                print(response)
-//            }
+            if let response = response as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) {
+            } else {
+                print ("server error")
+                return
+            }
             if let data = data {
                 let crns = try! JSONDecoder().decode([String].self, from: data)
                 favoriteList = self.searchandUpdateList(crns: crns)
@@ -482,8 +491,11 @@ class TableViewController: UITableViewController {
             } else {
                 print("no error")
             }
-            if let response = response {
-                print(response)
+            if let response = response as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) {
+            } else {
+                print ("server error")
+                return
             }
             if let data = data {
                 print(String(data: data, encoding: .utf8))
