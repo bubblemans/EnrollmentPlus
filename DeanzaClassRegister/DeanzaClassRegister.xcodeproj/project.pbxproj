@@ -178,27 +178,20 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		E13665F2213251110009EF0D /* Controller */ = {
+		E13665F2213251110009EF0D /* Menu */ = {
 			isa = PBXGroup;
 			children = (
 				E13C5F7E21481F9B0046F80C /* MenuLauncher.swift */,
-				E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */,
-				E13665E9212EE3610009EF0D /* detailViewController.swift */,
-				E13C5F90214B93450046F80C /* MenuViewControllers */,
+				E13C5F90214B93450046F80C /* MenuVC */,
+				E1D65EFA220506D7005CFEC6 /* MenuView */,
 			);
-			path = Controller;
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		E13665F52136C5060009EF0D /* View */ = {
 			isa = PBXGroup;
 			children = (
 				E13665F62136C5EA0009EF0D /* TableViewCell.swift */,
-				E1C727F8217003110074ECA0 /* SettingCell.swift */,
-				E1F739212162E8AF0024EA8E /* SubscribeList.swift */,
-				E1F739232162EA5C0024EA8E /* FavoriteList.swift */,
-				E1153658215F1BD800244F81 /* NotificationCell.swift */,
-				E13C5F95215165350046F80C /* MenuButton.swift */,
-				E13C5F80214B86AA0046F80C /* MenuCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -206,18 +199,17 @@
 		E138C48B217A56F500766FE4 /* SettingVC */ = {
 			isa = PBXGroup;
 			children = (
-				E13C5F8A214B93250046F80C /* SettingViewController.swift */,
-				E1F7391F2162E84B0024EA8E /* MyListViewController.swift */,
 				E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */,
 				E138C48F217A905C00766FE4 /* ChangePasswordVC.swift */,
-				E138C48C217A571200766FE4 /* View */,
+				E138C48C217A571200766FE4 /* SettingView */,
 			);
 			path = SettingVC;
 			sourceTree = "<group>";
 		};
-		E138C48C217A571200766FE4 /* View */ = {
+		E138C48C217A571200766FE4 /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
+				E1C727F8217003110074ECA0 /* SettingCell.swift */,
 				E1ECAF9B217262F0006C9714 /* EditProfileCell.swift */,
 				E138C495217A943900766FE4 /* PasswordTableViewCell.swift */,
 				E138C493217A935200766FE4 /* OldPasswordTB.swift */,
@@ -226,18 +218,22 @@
 				E1C727FA217065380074ECA0 /* PreferenceView.swift */,
 				E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */,
 			);
-			path = View;
+			path = SettingView;
 			sourceTree = "<group>";
 		};
-		E13C5F90214B93450046F80C /* MenuViewControllers */ = {
+		E13C5F90214B93450046F80C /* MenuVC */ = {
 			isa = PBXGroup;
 			children = (
-				E13C5F88214B93190046F80C /* NotificationViewController.swift */,
-				E13C5F8C214B93300046F80C /* HelpViewController.swift */,
 				E13C5F97215170330046F80C /* MenuBaseViewController.swift */,
+				E1F7391F2162E84B0024EA8E /* MyListViewController.swift */,
+				E13C5F88214B93190046F80C /* NotificationViewController.swift */,
+				E13C5F8A214B93250046F80C /* SettingViewController.swift */,
+				E13C5F8C214B93300046F80C /* HelpViewController.swift */,
+				E1D65EFB22050775005CFEC6 /* MyListView */,
+				E1D65EFC220507CB005CFEC6 /* NotificationView */,
 				E138C48B217A56F500766FE4 /* SettingVC */,
 			);
-			path = MenuViewControllers;
+			path = MenuVC;
 			sourceTree = "<group>";
 		};
 		E13EE0B320E3100800BBD60D = {
@@ -261,14 +257,14 @@
 		E13EE0BE20E3100800BBD60D /* DeanzaClassRegister */ = {
 			isa = PBXGroup;
 			children = (
+				E13665F1213250E40009EF0D /* Model */,
 				E13EE0BF20E3100800BBD60D /* AppDelegate.swift */,
 				E13EE0C120E3100800BBD60D /* ViewController.swift */,
-				E17A5BC121855ECB00C1F807 /* TabBarController.swift */,
-				E149233221A5EB610090514F /* Calendar */,
 				E1C319E52183E45600CC6DDF /* LoginSystem */,
-				E13665F52136C5060009EF0D /* View */,
-				E13665F1213250E40009EF0D /* Model */,
-				E13665F2213251110009EF0D /* Controller */,
+				E1D65EF82205062E005CFEC6 /* TabBarVC */,
+				E1D65EF922050663005CFEC6 /* ListOfClass */,
+				E149233221A5EB610090514F /* Calendar */,
+				E13665F2213251110009EF0D /* Menu */,
 				E13EE0C320E3100800BBD60D /* Main.storyboard */,
 				E13EE0C920E3100C00BBD60D /* Assets.xcassets */,
 				E13EE0CB20E3100C00BBD60D /* LaunchScreen.storyboard */,
@@ -302,10 +298,54 @@
 			isa = PBXGroup;
 			children = (
 				9C320BB1216C0686007DD292 /* SignInViewController.swift */,
-				9C6955EC217A643700E496FB /* forgetPasswordViewController.swift */,
 				9C9423302175513A0079C986 /* SignUpVC.swift */,
+				9C6955EC217A643700E496FB /* forgetPasswordViewController.swift */,
 			);
 			path = LoginSystem;
+			sourceTree = "<group>";
+		};
+		E1D65EF82205062E005CFEC6 /* TabBarVC */ = {
+			isa = PBXGroup;
+			children = (
+				E17A5BC121855ECB00C1F807 /* TabBarController.swift */,
+			);
+			path = TabBarVC;
+			sourceTree = "<group>";
+		};
+		E1D65EF922050663005CFEC6 /* ListOfClass */ = {
+			isa = PBXGroup;
+			children = (
+				E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */,
+				E13665E9212EE3610009EF0D /* detailViewController.swift */,
+				E13665F52136C5060009EF0D /* View */,
+			);
+			path = ListOfClass;
+			sourceTree = "<group>";
+		};
+		E1D65EFA220506D7005CFEC6 /* MenuView */ = {
+			isa = PBXGroup;
+			children = (
+				E13C5F80214B86AA0046F80C /* MenuCollectionViewCell.swift */,
+				E13C5F95215165350046F80C /* MenuButton.swift */,
+			);
+			path = MenuView;
+			sourceTree = "<group>";
+		};
+		E1D65EFB22050775005CFEC6 /* MyListView */ = {
+			isa = PBXGroup;
+			children = (
+				E1F739212162E8AF0024EA8E /* SubscribeList.swift */,
+				E1F739232162EA5C0024EA8E /* FavoriteList.swift */,
+			);
+			path = MyListView;
+			sourceTree = "<group>";
+		};
+		E1D65EFC220507CB005CFEC6 /* NotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				E1153658215F1BD800244F81 /* NotificationCell.swift */,
+			);
+			path = NotificationView;
 			sourceTree = "<group>";
 		};
 		ED66A9EBB45D7A871A7C6B54 /* Pods */ = {
