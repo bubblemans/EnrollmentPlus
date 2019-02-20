@@ -276,8 +276,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             let destination = NotificationViewController()
             destination.baseController = baseController
             destination.selectedIndexPath = indexPath
-            downloadNoti()
-            handlePushAnimate(title: title, destination: destination)
+            downloadNoti(title: title, destination: destination)
         case "Settings":
             let destination = SettingViewController()
             destination.baseController = baseController
@@ -307,7 +306,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
-    func downloadNoti() {
+    func downloadNoti(title: String, destination: UIViewController) {
         UIView.animate(withDuration: 0.5) {
             self.blackView.alpha = 1
             if let window = UIApplication.shared.keyWindow {
@@ -336,6 +335,15 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
                     
                     if let data = data {
                         print(String(data: data, encoding: .utf8))
+                        do {
+                            let decoder = JSONDecoder()
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm::ss.SSS'Z'"
+                            decoder.dateDecodingStrategy = .formatted(dateFormatter)
+                            notiDatas = try decoder.decode([Notifications].self, from: data)
+                        } catch let jsonError {
+                            print(jsonError)
+                        }
                     } else {
                         print("no data")
                     }
@@ -343,6 +351,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
                     SVProgressHUD.dismiss()
                     DispatchQueue.main.async {
                         self.blackView.alpha = 0
+                        self.handlePushAnimate(title: title, destination: destination)
                     }
                     
                 }).resume()

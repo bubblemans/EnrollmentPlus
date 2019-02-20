@@ -98,6 +98,7 @@ class TableViewController: UITableViewController {
                 (200...299).contains(response.statusCode) {
             } else {
                 print ("server error")
+                print (response)
                 return
             }
             if let data = data {
@@ -123,6 +124,7 @@ class TableViewController: UITableViewController {
                 (200...299).contains(response.statusCode) {
             } else {
                 print ("server error")
+                print (response)
                 return
             }
             if let data = data {
@@ -131,6 +133,7 @@ class TableViewController: UITableViewController {
                 for course in planList {
                     self.updataCalendarList(at: course)
                 }
+                print(String(data: data, encoding: .utf8))
             }
             SVProgressHUD.dismiss()
             DispatchQueue.main.async {
@@ -155,6 +158,7 @@ class TableViewController: UITableViewController {
                 (200...299).contains(response.statusCode) {
             } else {
                 print ("server error")
+                print (response)
                 return
             }
             if let data = data {
@@ -474,6 +478,7 @@ class TableViewController: UITableViewController {
     
     private func postSubscribe(data: BriefData, type: String) {
         var subscribeInfo = SubscribeJson(crn: data.crn!, type: type)
+        print (subscribeInfo.crn, type)
         let subscribeJson = try! JSONEncoder().encode(subscribeInfo)
         
         let url = URL(string:"https://api.daclassplanner.com/subscribe")
@@ -490,15 +495,18 @@ class TableViewController: UITableViewController {
                 print("errorrrrrrr")
             } else {
                 print("no error")
+                print(error)
             }
             if let response = response as? HTTPURLResponse,
                 (200...299).contains(response.statusCode) {
             } else {
-                print ("server error")
-                return
+                print("server error")
+                print(response)
             }
             if let data = data {
                 print(String(data: data, encoding: .utf8))
+//                let jsonData = try! JSONDecoder().decode(<#T##type: Decodable.Protocol##Decodable.Protocol#>, from: <#T##Data#>)
+                
             } else {
                 print("no data")
             }

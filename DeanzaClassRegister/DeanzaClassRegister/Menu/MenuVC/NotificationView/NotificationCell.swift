@@ -51,22 +51,32 @@ class NotificationCell: UICollectionViewCell {
         setupDetailLabel()
     }
     
+    public func setupView() {
+        setupImageView()
+        setupNameLabel()
+        setupTimeLabel()
+        setupDetailLabel()
+    }
+    
     private func setupDetailLabel() {
         addSubview(detailLabel)
         detailLabel.frame = CGRect(x: 105, y: 50, width: 265, height: 30)
-        detailLabel.text = "This is detail here......"
+//        detailLabel.text = "This is detail here......"
+        detailLabel.text = detail
     }
     
     private func setupTimeLabel() {
         addSubview(timeLabel)
         timeLabel.frame = CGRect(x: 245, y: 10, width: 135, height: 30)
         timeLabel.text = "11/24/95 11:24 PM"
+        timeLabel.text = time
     }
     
     private func setupNameLabel() {
         addSubview(nameLabel)
         nameLabel.frame = CGRect(x: 105, y: 10, width: 130, height: 30)
-        nameLabel.text = "This is title here..."
+//        nameLabel.text = "This is title here..."
+        nameLabel.text = title
         
     }
     

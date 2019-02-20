@@ -356,7 +356,12 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
 //                if let response = response {
 //                    print(response)
 //                }
-    
+                if let response = response as? HTTPURLResponse {
+                    if response.statusCode == 401 || response.statusCode == 422 {
+                        print ("wrong username or password")
+                    }
+                }
+                
                 if let response = response as? HTTPURLResponse,
                     (200...299).contains(response.statusCode) {
                 } else {
@@ -366,7 +371,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
                     }
                     return
                 }
-    //
+                
     //            print(response)
     
                 if let mimeType = response!.mimeType,

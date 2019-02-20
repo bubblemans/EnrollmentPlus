@@ -8,6 +8,8 @@
 
 import UIKit
 
+var notiDatas: [Notifications] = []
+
 class NotificationViewController: MenuBaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let collectionView: UICollectionView = {
@@ -22,11 +24,25 @@ class NotificationViewController: MenuBaseViewController, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! NotificationCell
+        if let time = notiDatas[indexPath.row].data?.created_at {
+            cell.time = time
+        } else {
+//            print(notiDatas[indexPath.row])
+        }
+        
+        
+        if let detail = notiDatas[indexPath.row].message {
+            cell.detail = detail
+        }
+        if let title = notiDatas[indexPath.row].data?.course_id {
+            cell.title = String(title)
+        }
+        cell.setupView()
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return notiDatas.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -47,6 +63,10 @@ class NotificationViewController: MenuBaseViewController, UICollectionViewDelega
         
         setupCollectionView()
         navigationItem.title = "Notification"
+        
+        for element in notiDatas {
+            print(element.data?.created_at)
+        }
     }
     
     private func setupCollectionView() {

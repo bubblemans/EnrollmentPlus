@@ -49,7 +49,7 @@ class CalendarVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(width)
+        print(planList)
         
         createObservers()
         setupScrollView()
