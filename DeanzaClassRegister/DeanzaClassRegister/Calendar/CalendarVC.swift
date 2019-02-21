@@ -261,7 +261,7 @@ class CalendarVC: UIViewController {
         let startAmOrPm = time[6..<8]
         let endAmOrPm = time[15..<17]
         
-        if startAmOrPm == "AM" {
+        if startAmOrPm == "AM" || Double(startHour) == 12 {
             guard let startHour = Double(startHour) else { return }
             guard let startMinute = Double(startMinute) else { return }
             y = 49 + (startHour - 7) * 70 + Double(startMinute) / Double(60.0) * Double(70)
