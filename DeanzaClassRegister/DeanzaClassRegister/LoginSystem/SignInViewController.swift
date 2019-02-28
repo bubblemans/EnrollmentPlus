@@ -365,11 +365,12 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
                 if let response = response as? HTTPURLResponse,
                     (200...299).contains(response.statusCode) {
                 } else {
-                    print ("server error")
+                    print ("server error when sign in")
                     DispatchQueue.main.async {
                         SVProgressHUD.dismiss()
                     }
-                    return
+                    print(response)
+//                    return
                 }
                 
     //            print(response)
@@ -379,7 +380,9 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
                     let data = data,
                     let dataString = String(data: data, encoding: .utf8) {
 //                    print ("got data: \(dataString)")
+                    print(String(data: data, encoding: .utf8))
                     DispatchQueue.main.async {
+                        // needs to handle if it is invalid email or password
                         token = try! JSONDecoder().decode(Token.self, from: data)
                         SVProgressHUD.dismiss()
                         let tabVC = TabBarController()

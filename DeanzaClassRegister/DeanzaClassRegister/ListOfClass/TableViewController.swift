@@ -102,8 +102,10 @@ class TableViewController: UITableViewController {
                 return
             }
             if let data = data {
-                let crns = try! JSONDecoder().decode([String].self, from: data)
-                subscribeList = self.searchandUpdateList(crns: crns)
+                DispatchQueue.main.async {
+                    let crns = try! JSONDecoder().decode([String].self, from: data)
+                    subscribeList = self.searchandUpdateList(crns: crns)
+                }
             }
         }.resume()
     }
@@ -123,17 +125,19 @@ class TableViewController: UITableViewController {
             if let response = response as? HTTPURLResponse,
                 (200...299).contains(response.statusCode) {
             } else {
-                print ("server error")
+                print ("server error when downloading calendar")
                 print (response)
                 return
             }
             if let data = data {
-                let crns = try! JSONDecoder().decode([String].self, from: data)
-                planList = self.searchandUpdateList(crns: crns)
-                for course in planList {
-                    self.updataCalendarList(at: course)
+                DispatchQueue.main.async {
+                    let crns = try! JSONDecoder().decode([String].self, from: data)
+                    planList = self.searchandUpdateList(crns: crns)
+                    for course in planList {
+                        self.updataCalendarList(at: course)
+                    }
+                    print(String(data: data, encoding: .utf8))
                 }
-                print(String(data: data, encoding: .utf8))
             }
             SVProgressHUD.dismiss()
             DispatchQueue.main.async {
@@ -157,13 +161,15 @@ class TableViewController: UITableViewController {
             if let response = response as? HTTPURLResponse,
                 (200...299).contains(response.statusCode) {
             } else {
-                print ("server error")
+                print ("server error when download like")
                 print (response)
                 return
             }
             if let data = data {
-                let crns = try! JSONDecoder().decode([String].self, from: data)
-                favoriteList = self.searchandUpdateList(crns: crns)
+                DispatchQueue.main.async {
+                    let crns = try! JSONDecoder().decode([String].self, from: data)
+                    favoriteList = self.searchandUpdateList(crns: crns)
+                }
             }
         }.resume()
     }

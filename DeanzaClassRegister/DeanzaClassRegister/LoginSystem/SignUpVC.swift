@@ -219,50 +219,51 @@ class SignUpVC: UIViewController {
     
     @objc private func handleSignUp() {
         
-//        let user = User(email: usernameTextfield.text!, password: passwordTextfield.text!)
-//        let info = Information(user: user)
-//        let userJson = try! JSONEncoder().encode(info)
-//
-//        // post
-//        let postUrlString = "https://api.daclassplanner.com/signup"
-//        guard let url = URL(string: postUrlString) else { return }
-//        var urlRequest = URLRequest(url: url)
-//        urlRequest.httpMethod = "POST"
-//        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        urlRequest.httpBody = userJson
-//
-//        print(urlRequest.allHTTPHeaderFields)
-//
-//        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-//            if let error = error {
-//                print ("error: \(error)")
-//                return
-//            }
-//
-//            if let response = response {
-//                print(response)
-//            }
-//
-////            guard let response = response as? HTTPURLResponse,
-////                (200...299).contains(response.statusCode) else {
-////                    print ("server error")
-////                    return
-////            }
-////
-////            print(response)
-//
-//            if let mimeType = response!.mimeType,
-//                mimeType == "application/json",
-//                let data = data,
-//                let dataString = String(data: data, encoding: .utf8) {
-//                print ("got data: \(dataString)")
-//            }
-//
-//        }.resume()
-        
+        let user = User(email: usernameTextfield.text!, password: passwordTextfield.text!)
+        let info = Information(user: user)
+        let userJson = try! JSONEncoder().encode(info)
 
-        let tabVC = TabBarController()
-        present(tabVC, animated: true, completion: nil)
+        // post
+        let postUrlString = "https://api.daclassplanner.com/signup"
+        guard let url = URL(string: postUrlString) else { return }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = userJson
+
+        print(urlRequest.allHTTPHeaderFields)
+
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if let error = error {
+                print ("error: \(error)")
+                return
+            }
+
+            if let response = response {
+                print(response)
+            }
+
+            if let response = response as? HTTPURLResponse,
+            (200...299).contains(response.statusCode) {
+            } else {
+                print("server error")
+                print(response)
+            }
+            
+            if let mimeType = response!.mimeType,
+                mimeType == "application/json",
+                let data = data,
+                let dataString = String(data: data, encoding: .utf8) {
+                print ("got data: \(dataString)")
+                
+                // if valid
+                DispatchQueue.main.async {
+                    let tabVC = TabBarController()
+                    self.present(tabVC, animated: true, completion: nil)
+                }
+            }
+
+        }.resume()
     }
     
     @objc private func handleBack() {
