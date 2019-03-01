@@ -79,6 +79,12 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         label.textAlignment = .center
         return label
     }()
+    
+    let blackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -330,15 +336,20 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     @objc func handleSignIn(){
-        SVProgressHUD.show(withStatus: "Loading...")
-        SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
-        
-//        let user = User(email: usernameTextfield.text!, password: passwordTextfield.text!)
-        let secret = "f89647779@gmail.com"
-        let user = User(email: secret, password: secret)
+        if let window = UIApplication.shared.keyWindow {
+            SVProgressHUD.show(withStatus: "Loading...")
+            SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+            
+            window.addSubview(blackView)
+            self.blackView.alpha = 0.5
+            blackView.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
+            
+            let user = User(email: usernameTextfield.text!, password: passwordTextfield.text!)
+//            let secret = "f89647779@gmail.com"
+//            let user = User(email: secret, password: secret)
             let info = Information(user: user)
             let userJson = try! JSONEncoder().encode(info)
-    
+            
             // post
             let postUrlString = "https://api.daclassplanner.com/signin"
             guard let url = URL(string: postUrlString) else { return }
@@ -346,22 +357,32 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
             urlRequest.httpMethod = "POST"
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             urlRequest.httpBody = userJson
-    
-//            print(urlRequest.allHTTPHeaderFields)
-    
+            
             URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-                
-                if let error = error {
-                    print ("error: \(error)")
+                if error != nil {
                     return
                 }
-    
-//                if let response = response {
-//                    print(response)
+                
+//                if let response = response as? HTTPURLResponse{
+//                    print(response.statusCode as Any)
 //                }
+                
                 if let response = response as? HTTPURLResponse {
-                    if response.statusCode == 401 || response.statusCode == 422 {
-                        print ("wrong username or password")
+                    if response.statusCode == 401 || response.statusCode == 404 || response.statusCode == 422 {
+                        guard let data = data else { return }
+                        
+                        var message = WrongMessage()
+                        message = try! JSONDecoder().decode(WrongMessage.self, from: data)
+                        
+                        let alert = UIAlertController(title: "Please try again!", message: message.error, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                        
+                        DispatchQueue.main.async {
+                            SVProgressHUD.dismiss()
+                            self.blackView.alpha = 0
+                        }
+                        return
                     }
                 }
                 
@@ -371,24 +392,25 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
                     print ("server error when sign in")
                     DispatchQueue.main.async {
                         SVProgressHUD.dismiss()
+                        self.blackView.alpha = 0
                     }
                 }
                 
-    
+                
                 if let mimeType = response!.mimeType,
                     mimeType == "application/json",
                     let data = data {
                     DispatchQueue.main.async {
-                        // needs to handle if it is invalid email or password
                         token = try! JSONDecoder().decode(Token.self, from: data)
                         SVProgressHUD.dismiss()
+                        self.blackView.alpha = 0
                         let tabVC = TabBarController()
                         self.present(tabVC, animated: true, completion: nil)
                     }
                 }
             }.resume()
+        }
     }
-
 }
 
 extension UIViewController {
