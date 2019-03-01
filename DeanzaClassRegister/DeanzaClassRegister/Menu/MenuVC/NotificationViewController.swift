@@ -24,11 +24,9 @@ class NotificationViewController: MenuBaseViewController, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! NotificationCell
-        if let time = notiDatas[indexPath.row].data?.created_at {
+        if let time = notiDatas[indexPath.row].created_at {
             cell.time = time
-            print(time)
         } else {
-//            print(notiDatas[indexPath.row])
             print("did not get the time")
         }
         

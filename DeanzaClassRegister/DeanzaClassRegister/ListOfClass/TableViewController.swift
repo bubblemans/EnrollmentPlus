@@ -129,6 +129,7 @@ class TableViewController: UITableViewController {
                 print (response)
                 return
             }
+            
             if let data = data {
                 DispatchQueue.main.async {
                     let crns = try! JSONDecoder().decode([String].self, from: data)
@@ -136,7 +137,6 @@ class TableViewController: UITableViewController {
                     for course in planList {
                         self.updataCalendarList(at: course)
                     }
-                    print(String(data: data, encoding: .utf8))
                 }
             }
             SVProgressHUD.dismiss()
@@ -232,7 +232,6 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         
         setupNavigationbar()
-        print(token)
 
         if isFirstTime {
             downloadJson()
@@ -274,12 +273,6 @@ class TableViewController: UITableViewController {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
-    }
-    
-    @objc func printFavoriteList() {
-        for i in favoriteList {
-            print(i.course!, i.cached_lecture.instructor!)
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -341,7 +334,6 @@ class TableViewController: UITableViewController {
         }
         
         button.tag = section
-
         return button
     }
     
@@ -484,7 +476,6 @@ class TableViewController: UITableViewController {
     
     private func postSubscribe(data: BriefData, type: String) {
         var subscribeInfo = SubscribeJson(crn: data.crn!, type: type)
-        print (subscribeInfo.crn, type)
         let subscribeJson = try! JSONEncoder().encode(subscribeInfo)
         
         let url = URL(string:"https://api.daclassplanner.com/subscribe")
@@ -493,7 +484,6 @@ class TableViewController: UITableViewController {
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
         urlRequest.httpBody = subscribeJson
-//        print(urlRequest.allHTTPHeaderFields)
         
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
@@ -510,8 +500,7 @@ class TableViewController: UITableViewController {
                 print(response)
             }
             if let data = data {
-                print(String(data: data, encoding: .utf8))
-//                let jsonData = try! JSONDecoder().decode(<#T##type: Decodable.Protocol##Decodable.Protocol#>, from: <#T##Data#>)
+
                 
             } else {
                 print("no data")
@@ -543,6 +532,10 @@ class TableViewController: UITableViewController {
             } else {
                 guard response != nil else { return }
                 guard data != nil else { return }
+                if let data = data {
+//                    print(String(data: data, encoding: .utf8))
+                }
+            
                 detailData = try! JSONDecoder().decode(Data.self, from: data!)
             }
             DispatchQueue.main.async {

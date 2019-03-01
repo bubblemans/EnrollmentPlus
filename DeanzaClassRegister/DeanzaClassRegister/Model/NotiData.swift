@@ -8,14 +8,12 @@
 
 import Foundation
 
-class NotiData: Codable {
+class NotiData: Decodable {
     var course_id: Int?
-    var created_at: String?
-    var updated_at: String?
     
-    init(course_id: Int, created_at: String, updated_at: String) {
-        self.course_id = course_id
-        self.created_at = created_at
-        self.updated_at = updated_at
-    }
+//    init(course_id: Int, created_at: String, updated_at: String) {
+//        self.course_id = course_id
+//        self.created_at = created_at
+//        self.updated_at = updated_at
+//    }
 }

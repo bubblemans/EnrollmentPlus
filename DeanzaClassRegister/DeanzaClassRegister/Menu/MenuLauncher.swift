@@ -335,23 +335,30 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
                         print("no response")
                     }
                     
+                    let json = try! JSONSerialization.jsonObject(with: data!, options: [])
+                    let prettyData = try! JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                    print(String(data: prettyData, encoding: .utf8)?.replacingOccurrences(of: "\n", with: "\n"))
+                    
                     if let data = data {
-                        print(String(data: data, encoding: .utf8))
-                        do {
-                            let decoder = JSONDecoder()
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm::ss.SSS'Z'"
-                            decoder.dateDecodingStrategy = .formatted(dateFormatter)
-                            notiDatas = try decoder.decode([Notifications].self, from: data)
-                        } catch let jsonError {
-                            print(jsonError)
+                        DispatchQueue.main.async {
+                            do {
+//                                let decoder = JSONDecoder()
+//                                let dateFormatter = DateFormatter()
+//                                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z''\'                 "
+//                                decoder.dateDecodingStrategy = .formatted(dateFormatter)
+                                
+                                notiDatas = try! JSONDecoder().decode([Notifications].self, from: data)
+                                
+                            } catch let jsonError {
+                                print(jsonError)
+                            }
                         }
                     } else {
                         print("no data")
                     }
                     
-                    SVProgressHUD.dismiss()
                     DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
                         self.blackView.alpha = 0
                         self.handlePushAnimate(title: title, destination: destination)
                     }

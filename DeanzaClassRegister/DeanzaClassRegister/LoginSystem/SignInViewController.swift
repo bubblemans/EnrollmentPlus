@@ -82,6 +82,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.handleSignIn()
         self.hideKeyboardWhenTappedAround() 
         
         setupBackgroundImage()
@@ -332,7 +333,9 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         SVProgressHUD.show(withStatus: "Loading...")
         SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
         
-        let user = User(email: usernameTextfield.text!, password: passwordTextfield.text!)
+//        let user = User(email: usernameTextfield.text!, password: passwordTextfield.text!)
+        let secret = "f89647779@gmail.com"
+        let user = User(email: secret, password: secret)
             let info = Information(user: user)
             let userJson = try! JSONEncoder().encode(info)
     
@@ -373,14 +376,13 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
 //                    return
                 }
                 
-    //            print(response)
     
                 if let mimeType = response!.mimeType,
                     mimeType == "application/json",
                     let data = data,
                     let dataString = String(data: data, encoding: .utf8) {
 //                    print ("got data: \(dataString)")
-                    print(String(data: data, encoding: .utf8))
+//                    print(String(data: data, encoding: .utf8))
                     DispatchQueue.main.async {
                         // needs to handle if it is invalid email or password
                         token = try! JSONDecoder().decode(Token.self, from: data)

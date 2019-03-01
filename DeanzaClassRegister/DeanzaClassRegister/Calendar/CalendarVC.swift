@@ -49,7 +49,6 @@ class CalendarVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(planList)
         
         createObservers()
         setupScrollView()
@@ -83,7 +82,6 @@ class CalendarVC: UIViewController {
             renewFrame()
         }
         numOfClass = 0
-        print(calendarList)
     }
     
     private func setupScrollView() {
@@ -220,7 +218,7 @@ class CalendarVC: UIViewController {
                     }
                 }
                 
-                print(calendarList[index].lectures[0].title!)
+//                print(calendarList[index].lectures[0].title!)
 //                present(destination, animated: true, completion: nil)
                 self.navigationController?.pushViewController(destination, animated: true)
             }

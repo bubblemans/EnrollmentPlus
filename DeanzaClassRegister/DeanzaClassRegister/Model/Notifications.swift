@@ -8,20 +8,22 @@
 
 import Foundation
 
-class Notifications: Codable {
+class Notifications: Decodable {
     var id: Int?
     var user_id: Int?
     var read: String?
     var read_at: String?
     var message: String?
     var data: NotiData?
+    var created_at: String?
+    var updated_at: String?
     
-    init(id: Int, user_id: Int, read: String, read_at: String, message: String, data: NotiData) {
-        self.id = id
-        self.user_id = user_id
-        self.read = read
-        self.read_at = read_at
-        self.message = message
-        self.data = data
-    }
+//    init(id: Int, user_id: Int, read: String, read_at: String, message: String, data: NotiData) {
+//        self.id = id
+//        self.user_id = user_id
+//        self.read = read
+//        self.read_at = read_at
+//        self.message = message
+//        self.data = data
+//    }
 }
