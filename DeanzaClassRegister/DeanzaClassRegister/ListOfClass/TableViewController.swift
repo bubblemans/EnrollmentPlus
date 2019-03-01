@@ -92,13 +92,13 @@ class TableViewController: UITableViewController {
         urlRequest.httpMethod = "GET"
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
-                    print(error)
-                }
+                print(error as Any)
+            }
             if let response = response as? HTTPURLResponse,
                 (200...299).contains(response.statusCode) {
             } else {
                 print ("server error")
-                print (response)
+                print (response as Any)
                 return
             }
             if let data = data {
@@ -120,13 +120,13 @@ class TableViewController: UITableViewController {
         urlRequest.httpMethod = "GET"
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
-                print(error)
+                print(error as Any)
             }
             if let response = response as? HTTPURLResponse,
                 (200...299).contains(response.statusCode) {
             } else {
                 print ("server error when downloading calendar")
-                print (response)
+                print (response as Any)
                 return
             }
             
@@ -156,13 +156,13 @@ class TableViewController: UITableViewController {
         urlRequest.httpMethod = "GET"
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
-                print(error)
+                print(error as Any)
             }
             if let response = response as? HTTPURLResponse,
                 (200...299).contains(response.statusCode) {
             } else {
                 print ("server error when download like")
-                print (response)
+                print (response as Any)
                 return
             }
             if let data = data {
@@ -475,7 +475,7 @@ class TableViewController: UITableViewController {
     }
     
     private func postSubscribe(data: BriefData, type: String) {
-        var subscribeInfo = SubscribeJson(crn: data.crn!, type: type)
+        let subscribeInfo = SubscribeJson(crn: data.crn!, type: type)
         let subscribeJson = try! JSONEncoder().encode(subscribeInfo)
         
         let url = URL(string:"https://api.daclassplanner.com/subscribe")
@@ -491,20 +491,20 @@ class TableViewController: UITableViewController {
                 print("errorrrrrrr")
             } else {
                 print("no error")
-                print(error)
+                print(error as Any)
             }
             if let response = response as? HTTPURLResponse,
                 (200...299).contains(response.statusCode) {
             } else {
                 print("server error")
-                print(response)
+                print(response as Any)
             }
-            if let data = data {
-
-                
-            } else {
-                print("no data")
-            }
+//            if let data = data {
+//
+//
+//            } else {
+//                print("no data")
+//            }
         }.resume()
         
         
@@ -532,9 +532,9 @@ class TableViewController: UITableViewController {
             } else {
                 guard response != nil else { return }
                 guard data != nil else { return }
-                if let data = data {
+//                if let data = data {
 //                    print(String(data: data, encoding: .utf8))
-                }
+//                }
             
                 detailData = try! JSONDecoder().decode(Data.self, from: data!)
             }

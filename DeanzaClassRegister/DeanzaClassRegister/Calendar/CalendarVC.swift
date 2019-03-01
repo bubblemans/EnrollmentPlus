@@ -106,7 +106,8 @@ class CalendarVC: UIViewController {
         if self.navigationController != nil && !self.navigationController!.navigationBar.isTranslucent{
             topDistance = 0
         } else {
-            topDistance = topDistance + (self.navigationController?.navigationBar.frame.height)! ?? 0
+            guard let height = self.navigationController?.navigationBar.frame.height else { return }
+            topDistance = topDistance + height
             topDistance = topDistance + UIApplication.shared.statusBarFrame.height
         }
         dayView.topAnchor.constraint(equalTo: view.topAnchor, constant: topDistance).isActive = true

@@ -216,7 +216,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
 
         
         if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] {
-            userImage = image as! UIImage
+            userImage = image as? UIImage
             profileView.image = userImage
             picker.dismiss(animated: true, completion: nil)
         } else {
@@ -311,60 +311,50 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
     func downloadNoti(title: String, destination: UIViewController) {
         UIView.animate(withDuration: 0.5) {
             self.blackView.alpha = 1
-            if let window = UIApplication.shared.keyWindow {
-                SVProgressHUD.show(withStatus: "Loading...")
-                SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+            SVProgressHUD.show(withStatus: "Loading...")
+            SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+            
+            // http get request
+            let urlString = "https://api.daclassplanner.com/user/notifications"
+            guard let url = URL(string: urlString) else { return }
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "GET"
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+            
+            URLSession.shared.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+                if let error = error {
+                    print(error)
+                    return
+                }
                 
-                // http get request
-                let urlString = "https://api.daclassplanner.com/user/notifications"
-                guard let url = URL(string: urlString) else { return }
-                var urlRequest = URLRequest(url: url)
-                urlRequest.httpMethod = "GET"
-                urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+                if let response = response {
+                    print(response)
+                } else {
+                    print("no response")
+                }
                 
-                URLSession.shared.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
-                    if error != nil {
-                        print(error)
-                        return
-                    }
-                    
-                    if let response = response {
-                        print(response)
-                    } else {
-                        print("no response")
-                    }
-                    
-                    let json = try! JSONSerialization.jsonObject(with: data!, options: [])
-                    let prettyData = try! JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-                    print(String(data: prettyData, encoding: .utf8)?.replacingOccurrences(of: "\n", with: "\n"))
-                    
-                    if let data = data {
-                        DispatchQueue.main.async {
-                            do {
+
+                if let data = data {
+                    DispatchQueue.main.async {
 //                                let decoder = JSONDecoder()
 //                                let dateFormatter = DateFormatter()
 //                                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z''\'                 "
 //                                decoder.dateDecodingStrategy = .formatted(dateFormatter)
-                                
-                                notiDatas = try! JSONDecoder().decode([Notifications].self, from: data)
-                                
-                            } catch let jsonError {
-                                print(jsonError)
-                            }
-                        }
-                    } else {
-                        print("no data")
+                        
+                        notiDatas = try! JSONDecoder().decode([Notifications].self, from: data)
                     }
-                    
-                    DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
-                        self.blackView.alpha = 0
-                        self.handlePushAnimate(title: title, destination: destination)
-                    }
-                    
-                }).resume()
-            }
+                } else {
+                    print("no data")
+                }
+                
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                    self.blackView.alpha = 0
+                    self.handlePushAnimate(title: title, destination: destination)
+                }
+                
+            }).resume()
         }
     }
     

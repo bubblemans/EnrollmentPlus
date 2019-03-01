@@ -28,7 +28,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
   
     let forgotPasswordButton : UIButton = {
         let bt = UIButton()
-        let atr = [NSAttributedString.Key.font: UIFont(name: "Helvetica", size: 14), NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), NSAttributedString.Key.underlineStyle: 1] as [NSAttributedString.Key : Any]
+        let atr = [NSAttributedString.Key.font: UIFont(name: "Helvetica", size: 14) as Any, NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), NSAttributedString.Key.underlineStyle: 1] as [NSAttributedString.Key : Any]
         let btTitleStr = NSMutableAttributedString(string: "Forgot Password?", attributes: atr)
         
         bt.setAttributedTitle(btTitleStr, for: .normal)
@@ -372,17 +372,12 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
                     DispatchQueue.main.async {
                         SVProgressHUD.dismiss()
                     }
-                    print(response)
-//                    return
                 }
                 
     
                 if let mimeType = response!.mimeType,
                     mimeType == "application/json",
-                    let data = data,
-                    let dataString = String(data: data, encoding: .utf8) {
-//                    print ("got data: \(dataString)")
-//                    print(String(data: data, encoding: .utf8))
+                    let data = data {
                     DispatchQueue.main.async {
                         // needs to handle if it is invalid email or password
                         token = try! JSONDecoder().decode(Token.self, from: data)

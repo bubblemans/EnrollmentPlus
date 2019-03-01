@@ -231,8 +231,6 @@ class SignUpVC: UIViewController {
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.httpBody = userJson
 
-        print(urlRequest.allHTTPHeaderFields)
-
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 print ("error: \(error)")
@@ -247,7 +245,7 @@ class SignUpVC: UIViewController {
             (200...299).contains(response.statusCode) {
             } else {
                 print("server error")
-                print(response)
+                print(response as Any)
             }
             
             if let mimeType = response!.mimeType,
