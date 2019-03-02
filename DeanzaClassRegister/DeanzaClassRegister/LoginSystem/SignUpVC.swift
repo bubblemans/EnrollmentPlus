@@ -9,7 +9,7 @@
 import UIKit
 import SVProgressHUD
 
-class SignUpVC: UIViewController {
+class SignUpVC: UIViewController, UITextFieldDelegate {
     
     var isNextable = false
     
@@ -139,6 +139,7 @@ class SignUpVC: UIViewController {
     
     private func setupPassTextfield() {
         self.view.addSubview(passwordTextfield)
+        passwordTextfield.delegate = self
         passwordTextfield.translatesAutoresizingMaskIntoConstraints = false
         passwordTextfield.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         passwordTextfield.topAnchor.constraint(equalTo: usernameTextfield.bottomAnchor, constant: 15).isActive = true
@@ -149,11 +150,18 @@ class SignUpVC: UIViewController {
     
     private func setupPhoneTextfield() {
         view.addSubview(phoneTextField)
+        phoneTextField.delegate = self
         phoneTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         phoneTextField.topAnchor.constraint(equalTo: passwordTextfield.bottomAnchor, constant: 15).isActive = true
         phoneTextField.widthAnchor.constraint(equalToConstant: 250).isActive = true
         phoneTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         phoneTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        handleSignUp()
+        return true
     }
     
     private func setupSignupBt(){
@@ -266,7 +274,7 @@ class SignUpVC: UIViewController {
                 
                 if let mimeType = response!.mimeType,
                     mimeType == "application/json",
-                    let data = data {
+                    data != nil {
                     
                     // if valid
                     DispatchQueue.main.async {
