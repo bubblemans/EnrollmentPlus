@@ -12,7 +12,7 @@ import SVProgressHUD
 
 var token = Token(auth_token: "")
 
-class SignInViewController: UIViewController, UINavigationControllerDelegate {
+class SignInViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate {
     var userLogoImageView = UIImageView()
     var keyLogoImageView = UIImageView()
     var usernameTextfield = UITextField()
@@ -238,6 +238,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
     private func setupPF() {
 //        passwordTextfield.frame = CGRect(x: 114, y: 420, width: 224, height: 40)
         self.view.addSubview(passwordTextfield)
+        passwordTextfield.delegate = self
         passwordTextfield.translatesAutoresizingMaskIntoConstraints = false
         passwordTextfield.topAnchor.constraint(equalTo: whiteBoxName.bottomAnchor, constant: 50).isActive = true
         passwordTextfield.centerXAnchor.constraint(equalTo: rectangleView.centerXAnchor, constant: 20).isActive = true
@@ -309,6 +310,12 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
         signUpLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        handleSignIn()
+        return true
+    }
+    
     @objc private func textDidChange() {
         if usernameTextfield.text!.count != 0 && passwordTextfield.text!.count != 0 {
             isSignUpable = true
@@ -364,7 +371,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
                 }
                 
                 if let response = response as? HTTPURLResponse,
-                    (200...299).contains(response.statusCode) {
+                    (200...299).contains(response.statusCode) != true{
                         guard let data = data else { return }
                         
                         var message = WrongMessage()
@@ -409,8 +416,6 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
-
-
 
 
 
