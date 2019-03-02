@@ -367,8 +367,8 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
 //                    print(response.statusCode as Any)
 //                }
                 
-                if let response = response as? HTTPURLResponse {
-                    if response.statusCode == 401 || response.statusCode == 404 || response.statusCode == 422 {
+                if let response = response as? HTTPURLResponse,
+                    (200...299).contains(response.statusCode) {
                         guard let data = data else { return }
                         
                         var message = WrongMessage()
@@ -379,21 +379,11 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
                         self.present(alert, animated: true)
                         
                         DispatchQueue.main.async {
+                            print ("server error when sign in")
                             SVProgressHUD.dismiss()
                             self.blackView.alpha = 0
                         }
                         return
-                    }
-                }
-                
-                if let response = response as? HTTPURLResponse,
-                    (200...299).contains(response.statusCode) {
-                } else {
-                    print ("server error when sign in")
-                    DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
-                        self.blackView.alpha = 0
-                    }
                 }
                 
                 
