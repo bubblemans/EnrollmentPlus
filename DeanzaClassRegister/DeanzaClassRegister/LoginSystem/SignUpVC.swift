@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class SignUpVC: UIViewController {
     
@@ -230,38 +231,52 @@ class SignUpVC: UIViewController {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.httpBody = userJson
-
-        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            if let error = error {
-                print ("error: \(error)")
-                return
-            }
-
-            if let response = response {
-                print(response)
-            }
-
-            if let response = response as? HTTPURLResponse,
-            (200...299).contains(response.statusCode) {
-            } else {
-                print("server error")
-                print(response as Any)
-            }
+        
+        if let window = UIApplication.shared.keyWindow {
+            blackView.alpha = 0.5
+            blackView.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
             
-            if let mimeType = response!.mimeType,
-                mimeType == "application/json",
-                let data = data,
-                let dataString = String(data: data, encoding: .utf8) {
-                print ("got data: \(dataString)")
-                
-                // if valid
-                DispatchQueue.main.async {
-                    let tabVC = TabBarController()
-                    self.present(tabVC, animated: true, completion: nil)
-                }
-            }
+            SVProgressHUD.show(withStatus: "Loading...")
+            SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
 
-        }.resume()
+            URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                if error != nil {
+                    return
+                }
+                
+                if let response = response as? HTTPURLResponse,
+                    (200...299).contains(response.statusCode) {
+                } else {
+                    guard let data = data else { return }
+                    
+                    var message = WrongMessage()
+                    message = try! JSONDecoder().decode(WrongMessage.self, from: data)
+                    
+                    let alert = UIAlertController(title: "Please try again!", message: message.error, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                    
+                    DispatchQueue.main.async {
+                        print ("server error when sign up")
+                        SVProgressHUD.dismiss()
+                        self.blackView.alpha = 0
+                    }
+                    return
+                }
+                
+                if let mimeType = response!.mimeType,
+                    mimeType == "application/json",
+                    let data = data {
+                    
+                    // if valid
+                    DispatchQueue.main.async {
+                        let tabVC = TabBarController()
+                        self.present(tabVC, animated: true, completion: nil)
+                    }
+                }
+                
+                }.resume()
+        }
     }
     
     @objc private func handleBack() {

@@ -363,10 +363,6 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
                     return
                 }
                 
-//                if let response = response as? HTTPURLResponse{
-//                    print(response.statusCode as Any)
-//                }
-                
                 if let response = response as? HTTPURLResponse,
                     (200...299).contains(response.statusCode) {
                         guard let data = data else { return }
@@ -385,7 +381,6 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate {
                         }
                         return
                 }
-                
                 
                 if let mimeType = response!.mimeType,
                     mimeType == "application/json",
