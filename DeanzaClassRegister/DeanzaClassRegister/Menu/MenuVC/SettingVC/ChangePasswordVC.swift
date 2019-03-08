@@ -8,6 +8,10 @@
 
 import UIKit
 
+var oldPassword: String?
+var newPassword: String?
+var confirmPassword: String?
+
 class ChangePasswordVC: UIViewController {
     let cellId = "cellId"
     
@@ -55,11 +59,23 @@ class ChangePasswordVC: UIViewController {
     }()
     
     @objc private func handleSave() {
+        let url = URL(fileURLWithPath: "https://api.daclassplanner.com/users")
+        let urlRequest = URLRequest(url: url)
         
+        
+        
+//        cleanPassword()
     }
     
     @objc private func handleCancel() {
+        cleanPassword()
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func cleanPassword() {
+        oldPassword = ""
+        newPassword = ""
+        confirmPassword = ""
     }
     
     override func viewDidLoad() {

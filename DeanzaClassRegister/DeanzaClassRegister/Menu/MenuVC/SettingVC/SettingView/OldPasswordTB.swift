@@ -12,6 +12,7 @@ class OldPasswordTableView: UITableView, UITableViewDataSource, UITableViewDeleg
     let cellId = "cellId"
     let titleText = ["Old"]
     let placeHolder = ["Old Password"]
+    var oldPassword: String?
     
     let textField: UITextField = {
         let view = UITextField()
@@ -24,10 +25,11 @@ class OldPasswordTableView: UITableView, UITableViewDataSource, UITableViewDeleg
         
         delegate = self
         dataSource = self
-        register(PasswordTableViewCell.self, forCellReuseIdentifier: cellId)
+        register(OldPasswordTableViewCell.self, forCellReuseIdentifier: cellId)
         isScrollEnabled = false
-        
     }
+    
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -42,10 +44,9 @@ class OldPasswordTableView: UITableView, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PasswordTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! OldPasswordTableViewCell
         cell.titleText = titleText[indexPath.row]
         cell.placeHolder = placeHolder[indexPath.row]
         return cell
     }
-    
 }

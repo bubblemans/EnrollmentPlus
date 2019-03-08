@@ -26,7 +26,7 @@
 		E138C490217A905C00766FE4 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138C48F217A905C00766FE4 /* ChangePasswordVC.swift */; };
 		E138C492217A90FA00766FE4 /* NewPasswordTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138C491217A90FA00766FE4 /* NewPasswordTableView.swift */; };
 		E138C494217A935200766FE4 /* OldPasswordTB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138C493217A935200766FE4 /* OldPasswordTB.swift */; };
-		E138C496217A943900766FE4 /* PasswordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138C495217A943900766FE4 /* PasswordTableViewCell.swift */; };
+		E138C496217A943900766FE4 /* OldPasswordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E138C495217A943900766FE4 /* OldPasswordTableViewCell.swift */; };
 		E13C5F7F21481F9B0046F80C /* MenuLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13C5F7E21481F9B0046F80C /* MenuLauncher.swift */; };
 		E13C5F81214B86AA0046F80C /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13C5F80214B86AA0046F80C /* MenuCollectionViewCell.swift */; };
 		E13C5F89214B93190046F80C /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13C5F88214B93190046F80C /* NotificationViewController.swift */; };
@@ -48,6 +48,7 @@
 		E17EC3F6211EE5D100AA1D46 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */; };
 		E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */; };
 		E1AF85462229F82500DEFECA /* WrongMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF85452229F82500DEFECA /* WrongMessage.swift */; };
+		E1AF854822332F4D00DEFECA /* NewPassworTBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF854722332F4D00DEFECA /* NewPassworTBCell.swift */; };
 		E1C727F9217003110074ECA0 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727F8217003110074ECA0 /* SettingCell.swift */; };
 		E1C727FB217065380074ECA0 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FA217065380074ECA0 /* PreferenceView.swift */; };
 		E1C727FD21714B9E0074ECA0 /* NotifactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */; };
@@ -87,7 +88,7 @@
 		E138C48F217A905C00766FE4 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		E138C491217A90FA00766FE4 /* NewPasswordTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordTableView.swift; sourceTree = "<group>"; };
 		E138C493217A935200766FE4 /* OldPasswordTB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldPasswordTB.swift; sourceTree = "<group>"; };
-		E138C495217A943900766FE4 /* PasswordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTableViewCell.swift; sourceTree = "<group>"; };
+		E138C495217A943900766FE4 /* OldPasswordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldPasswordTableViewCell.swift; sourceTree = "<group>"; };
 		E13C5F7E21481F9B0046F80C /* MenuLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLauncher.swift; sourceTree = "<group>"; };
 		E13C5F80214B86AA0046F80C /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		E13C5F88214B93190046F80C /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +112,7 @@
 		E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses2D.swift; sourceTree = "<group>"; };
 		E1AF85452229F82500DEFECA /* WrongMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongMessage.swift; sourceTree = "<group>"; };
+		E1AF854722332F4D00DEFECA /* NewPassworTBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPassworTBCell.swift; sourceTree = "<group>"; };
 		E1C727F8217003110074ECA0 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		E1C727FA217065380074ECA0 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifactionView.swift; sourceTree = "<group>"; };
@@ -220,9 +222,10 @@
 			children = (
 				E1C727F8217003110074ECA0 /* SettingCell.swift */,
 				E1ECAF9B217262F0006C9714 /* EditProfileCell.swift */,
-				E138C495217A943900766FE4 /* PasswordTableViewCell.swift */,
 				E138C493217A935200766FE4 /* OldPasswordTB.swift */,
+				E138C495217A943900766FE4 /* OldPasswordTableViewCell.swift */,
 				E138C491217A90FA00766FE4 /* NewPasswordTableView.swift */,
+				E1AF854722332F4D00DEFECA /* NewPassworTBCell.swift */,
 				E1ECAF9D217444FF006C9714 /* PhotoOptionTableView.swift */,
 				E1C727FA217065380074ECA0 /* PreferenceView.swift */,
 				E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */,
@@ -506,7 +509,7 @@
 				E1F05C0221C439F800DC0D96 /* Crns.swift in Sources */,
 				E1D65F00220509B7005CFEC6 /* NotiData.swift in Sources */,
 				E1C727FD21714B9E0074ECA0 /* NotifactionView.swift in Sources */,
-				E138C496217A943900766FE4 /* PasswordTableViewCell.swift in Sources */,
+				E138C496217A943900766FE4 /* OldPasswordTableViewCell.swift in Sources */,
 				E13665EC213250800009EF0D /* Courses.swift in Sources */,
 				E13665F72136C5EA0009EF0D /* TableViewCell.swift in Sources */,
 				E13EE0C020E3100800BBD60D /* AppDelegate.swift in Sources */,
@@ -526,6 +529,7 @@
 				E13C5F8D214B93300046F80C /* HelpViewController.swift in Sources */,
 				E1E15F9521B1FADD008B5D6C /* Token.swift in Sources */,
 				E1ECAF9C217262F0006C9714 /* EditProfileCell.swift in Sources */,
+				E1AF854822332F4D00DEFECA /* NewPassworTBCell.swift in Sources */,
 				E138C492217A90FA00766FE4 /* NewPasswordTableView.swift in Sources */,
 				E13665EE2132508E0009EF0D /* Data.swift in Sources */,
 				E17EC3F6211EE5D100AA1D46 /* TableViewController.swift in Sources */,

@@ -29,7 +29,7 @@ class TableViewController: UITableViewController {
         return view
     }()
     
-    private func downloadJson() {
+    private func downloadCourses() {
         let jsonUrlString = "https://api.daclassplanner.com/courses?sortBy=course"
         guard let url = URL(string: jsonUrlString) else { return }
         
@@ -42,7 +42,36 @@ class TableViewController: UITableViewController {
             SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
             
             URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if error != nil {
+                    if error?._code == NSURLErrorTimedOut {
+                        let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    }
+                    return
+                }
+                
                 guard let data = data else { return }
+                
+                if let response = response as? HTTPURLResponse,
+                    (200...299).contains(response.statusCode) != true{
+                    
+                    var message = WrongMessage()
+                    message = try! JSONDecoder().decode(WrongMessage.self, from: data)
+                    
+                    let alert = UIAlertController(title: "Oops... failure of downloading the data!", message: message.error, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                    self.downloadCourses()
+                    self.present(alert, animated: true)
+                    
+                    
+                    DispatchQueue.main.async {
+                        print ("server error when sign in")
+                        SVProgressHUD.dismiss()
+                        self.blackView.alpha = 0
+                    }
+                    return
+                }
                 
                 do {
                     var course = self.sortCourses(courses: try JSONDecoder().decode(BriefCourses.self, from: data))
@@ -71,7 +100,10 @@ class TableViewController: UITableViewController {
                     }
                     
                 } catch let jsonError {
-                    // TODO: alert
+                    let alert = UIAlertController(title: "Oops...Sorry, did not connect to the database.", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                    
                     print("Json Error", jsonError)
                 }
                 self.downloadSubscribeInfo()
@@ -92,15 +124,37 @@ class TableViewController: UITableViewController {
         urlRequest.httpMethod = "GET"
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
-                print(error as Any)
-            }
-            if let response = response as? HTTPURLResponse,
-                (200...299).contains(response.statusCode) {
-            } else {
-                print ("server error")
-                print (response as Any)
+                if error?._code == NSURLErrorTimedOut {
+                    let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
                 return
             }
+            
+            if let response = response as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) != true{
+                
+                guard let data = data else { return }
+                var message = WrongMessage()
+                message = try! JSONDecoder().decode(WrongMessage.self, from: data)
+                
+                let alert = UIAlertController(title: "Oops... failure of downloading the data!", message: message.error, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                self.downloadSubscribeInfo()
+                self.present(alert, animated: true)
+                
+                print("heowbfo")
+                print(response.statusCode)
+                
+                DispatchQueue.main.async {
+                    print ("server error when sign in")
+                    SVProgressHUD.dismiss()
+                    self.blackView.alpha = 0
+                }
+                return
+            }
+            
             if let data = data {
                 DispatchQueue.main.async {
                     let crns = try! JSONDecoder().decode([String].self, from: data)
@@ -120,15 +174,34 @@ class TableViewController: UITableViewController {
         urlRequest.httpMethod = "GET"
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
-                print(error as Any)
-            }
-            if let response = response as? HTTPURLResponse,
-                (200...299).contains(response.statusCode) {
-            } else {
-                print ("server error when downloading calendar")
-                print (response as Any)
+                if error?._code == NSURLErrorTimedOut {
+                    let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
                 return
             }
+            
+            if let response = response as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) != true{
+                
+                guard let data = data else { return }
+                var message = WrongMessage()
+                message = try! JSONDecoder().decode(WrongMessage.self, from: data)
+                
+                let alert = UIAlertController(title: "Oops... failure of downloading the data!", message: message.error, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                self.downloadCalendarInfo()
+                self.present(alert, animated: true)
+                
+                DispatchQueue.main.async {
+                    print ("server error when sign in")
+                    SVProgressHUD.dismiss()
+                    self.blackView.alpha = 0
+                }
+                return
+            }
+            
             
             if let data = data {
                 DispatchQueue.main.async {
@@ -156,15 +229,35 @@ class TableViewController: UITableViewController {
         urlRequest.httpMethod = "GET"
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
-                print(error as Any)
-            }
-            if let response = response as? HTTPURLResponse,
-                (200...299).contains(response.statusCode) {
-            } else {
-                print ("server error when download like")
-                print (response as Any)
+                if error?._code == NSURLErrorTimedOut {
+                    let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
                 return
             }
+            
+            if let response = response as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) != true{
+                
+                guard let data = data else { return }
+                var message = WrongMessage()
+                message = try! JSONDecoder().decode(WrongMessage.self, from: data)
+                
+                let alert = UIAlertController(title: "Oops... failure of downloading the data!", message: message.error, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                self.downloadLikeInfo()
+                self.present(alert, animated: true)
+                
+                DispatchQueue.main.async {
+                    print ("server error when sign in")
+                    SVProgressHUD.dismiss()
+                    self.blackView.alpha = 0
+                }
+                return
+            }
+
+            
             if let data = data {
                 DispatchQueue.main.async {
                     let crns = try! JSONDecoder().decode([String].self, from: data)
@@ -224,7 +317,7 @@ class TableViewController: UITableViewController {
         currentCourses.departmentList.removeAll()
         currentCourses.isExpanded.removeAll()
         
-        downloadJson()
+        downloadCourses()
         self.tableView.reloadData()
     }
     
@@ -234,7 +327,7 @@ class TableViewController: UITableViewController {
         setupNavigationbar()
 
         if isFirstTime {
-            downloadJson()
+            downloadCourses()
         } else {
             // TODO: have to save the data somewhere(maybe coredata)
             self.tableView.reloadData()
@@ -486,25 +579,28 @@ class TableViewController: UITableViewController {
         urlRequest.httpBody = subscribeJson
         
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            if let error = error {
-                print(error)
-                print("errorrrrrrr")
-            } else {
-                print("no error")
-                print(error as Any)
+            if error != nil {
+                return
             }
+            
             if let response = response as? HTTPURLResponse,
-                (200...299).contains(response.statusCode) {
-            } else {
-                print("server error")
-                print(response as Any)
+                (200...299).contains(response.statusCode) != true{
+                
+                guard let data = data else { return }
+                var message = WrongMessage()
+                message = try! JSONDecoder().decode(WrongMessage.self, from: data)
+                
+                let alert = UIAlertController(title: "Oops... failure of adding to the list!", message: message.error, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                self.present(alert, animated: true)
+                
+                DispatchQueue.main.async {
+                    print ("server error when sign in")
+                    SVProgressHUD.dismiss()
+                    self.blackView.alpha = 0
+                }
+                return
             }
-//            if let data = data {
-//
-//
-//            } else {
-//                print("no data")
-//            }
         }.resume()
         
         
@@ -527,17 +623,33 @@ class TableViewController: UITableViewController {
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                print(error)
-            } else {
-                guard response != nil else { return }
-                guard data != nil else { return }
-//                if let data = data {
-//                    print(String(data: data, encoding: .utf8))
-//                }
-            
-                detailData = try! JSONDecoder().decode(Data.self, from: data!)
+            if error != nil {
+                return
             }
+            
+            if let response = response as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) != true{
+                
+                guard let data = data else { return }
+                var message = WrongMessage()
+                message = try! JSONDecoder().decode(WrongMessage.self, from: data)
+                
+                let alert = UIAlertController(title: "Oops failure of downloading the data!", message: message.error, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                    self.blackView.alpha = 0
+                }
+                return
+            }
+            
+            
+            guard let data = data else { return }
+            
+            detailData = try! JSONDecoder().decode(Data.self, from: data)
+            
             DispatchQueue.main.async {
                 guard let newData = detailData else { return }
                 calendarList.append(newData)

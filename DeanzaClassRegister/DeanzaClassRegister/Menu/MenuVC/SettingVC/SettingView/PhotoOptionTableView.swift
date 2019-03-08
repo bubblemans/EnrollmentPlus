@@ -98,7 +98,7 @@ class PhotoOptionTableView: UITableView, UITableViewDataSource, UITableViewDeleg
         
         
         if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] {
-            userImage = image as! UIImage
+            userImage = image as? UIImage
             if let photoView = photoView {
                 photoView.image = userImage
                 menuLanucher.profileView.image = userImage

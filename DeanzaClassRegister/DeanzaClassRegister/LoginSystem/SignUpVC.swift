@@ -249,6 +249,11 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
 
             URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 if error != nil {
+                    if error?._code == NSURLErrorTimedOut {
+                        let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    }
                     return
                 }
                 

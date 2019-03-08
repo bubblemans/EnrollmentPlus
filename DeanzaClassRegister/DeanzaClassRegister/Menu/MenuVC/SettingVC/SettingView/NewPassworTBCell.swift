@@ -8,10 +8,11 @@
 
 import UIKit
 
-class PasswordTableViewCell: UITableViewCell {
+class NewPasswordTBCell: UITableViewCell {
     let cellId = "cellId"
     var titleText: String?
     var placeHolder: String?
+    var index: Int?
     
     let textField: UITextField = {
         let view = UITextField()
@@ -28,6 +29,18 @@ class PasswordTableViewCell: UITableViewCell {
     override func setNeedsLayout() {
         titleLabel.text = titleText
         textField.placeholder = placeHolder
+        textField.autocorrectionType = .no
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if self.index == 0 {
+            newPassword = textField.text
+            print(newPassword as Any)
+        } else if self.index == 1 {
+            confirmPassword = textField.text
+            print(confirmPassword as Any)
+        }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

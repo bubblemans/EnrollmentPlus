@@ -18,7 +18,7 @@ class NewPasswordTableView: UITableView, UITableViewDelegate, UITableViewDataSou
         
         dataSource = self
         delegate = self
-        register(PasswordTableViewCell.self, forCellReuseIdentifier: cellId)
+        register(NewPasswordTBCell.self, forCellReuseIdentifier: cellId)
         isScrollEnabled = false
     }
     
@@ -31,9 +31,10 @@ class NewPasswordTableView: UITableView, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PasswordTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! NewPasswordTBCell
         cell.titleText = titleText[indexPath.row]
         cell.placeHolder = placeHolder[indexPath.row]
+        cell.index = indexPath.row
         return cell
     }
     
