@@ -88,7 +88,6 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.handleSignIn()
         self.hideKeyboardWhenTappedAround() 
         
         setupBackgroundImage()
@@ -342,7 +341,10 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
         self.present(destination, animated: true, completion: nil)
     }
     
-    @objc func handleSignIn(){
+    @objc func handleSignIn() {
+        email = usernameTextfield.text
+        oldPassword = passwordTextfield.text
+        
         if let window = UIApplication.shared.keyWindow {
             SVProgressHUD.show(withStatus: "Loading...")
             SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
@@ -351,9 +353,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
             self.blackView.alpha = 0.5
             blackView.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
             
-            let user = User(email: usernameTextfield.text!, password: passwordTextfield.text!)
-//            let secret = "f89647779@gmail.com"
-//            let user = User(email: secret, password: secret)
+            let user = User(email: usernameTextfield.text!, password: passwordTextfield.text!, name: "")
             let info = Information(user: user)
             let userJson = try! JSONEncoder().encode(info)
             

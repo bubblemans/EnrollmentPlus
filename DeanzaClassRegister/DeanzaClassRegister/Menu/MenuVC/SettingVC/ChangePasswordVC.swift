@@ -8,6 +8,7 @@
 
 import UIKit
 
+var email: String?
 var oldPassword: String?
 var newPassword: String?
 var confirmPassword: String?
@@ -59,12 +60,54 @@ class ChangePasswordVC: UIViewController {
     }()
     
     @objc private func handleSave() {
-        let url = URL(fileURLWithPath: "https://api.daclassplanner.com/users")
-        let urlRequest = URLRequest(url: url)
-        
-        
-        
-//        cleanPassword()
+        print("save")
+        if confirmPassword! == newPassword! {
+            let user = User(email: email!, password: newPassword!, name: "")
+            let info = Information(user: user)
+            let userJson = try! JSONEncoder().encode(info)
+
+            guard let url = URL(string: "https://api.daclassplanner.com/users") else { return }
+            var urlRequest = URLRequest(url: url)
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            urlRequest.httpMethod = "POST"
+            urlRequest.httpBody = userJson
+
+            URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+
+                if let error = error {
+                    print(error)
+                    return
+                } else {
+                    print("no error")
+                }
+                
+                if let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) != true {
+                    print(response)
+//                    return
+                }
+
+                if let data = data {
+                    print(data)
+                    var message = WrongMessage()
+                    message = try! JSONDecoder().decode(WrongMessage.self, from: data)
+//                    print(String(data: message.error!, encoding: .uft8))
+                    print(message.error)
+                    print(message.message)
+                    if let message = message.message {
+                        print(message)
+                    } else {
+                        print("no meesage")
+                    }
+                } else {
+                    print("no data")
+                }
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }.resume()
+        } else {
+            print("new password is not confirmed password")
+        }
     }
     
     @objc private func handleCancel() {
