@@ -11,4 +11,5 @@ import Foundation
 class WrongMessage: Codable {
     var error: String?
     var message: String?
+    var errors: String?
 }

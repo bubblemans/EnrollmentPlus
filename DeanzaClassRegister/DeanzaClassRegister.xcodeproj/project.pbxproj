@@ -49,6 +49,9 @@
 		E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */; };
 		E1AF85462229F82500DEFECA /* WrongMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF85452229F82500DEFECA /* WrongMessage.swift */; };
 		E1AF854822332F4D00DEFECA /* NewPassworTBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF854722332F4D00DEFECA /* NewPassworTBCell.swift */; };
+		E1C4FA3A2254194C00A7C1E3 /* WrongUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C4FA392254194C00A7C1E3 /* WrongUser.swift */; };
+		E1C4FA3C2254210F00A7C1E3 /* ChangeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C4FA3B2254210F00A7C1E3 /* ChangeUser.swift */; };
+		E1C4FA3E2254216E00A7C1E3 /* ChangeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C4FA3D2254216E00A7C1E3 /* ChangeInfo.swift */; };
 		E1C727F9217003110074ECA0 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727F8217003110074ECA0 /* SettingCell.swift */; };
 		E1C727FB217065380074ECA0 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FA217065380074ECA0 /* PreferenceView.swift */; };
 		E1C727FD21714B9E0074ECA0 /* NotifactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */; };
@@ -113,6 +116,9 @@
 		E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses2D.swift; sourceTree = "<group>"; };
 		E1AF85452229F82500DEFECA /* WrongMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongMessage.swift; sourceTree = "<group>"; };
 		E1AF854722332F4D00DEFECA /* NewPassworTBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPassworTBCell.swift; sourceTree = "<group>"; };
+		E1C4FA392254194C00A7C1E3 /* WrongUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongUser.swift; sourceTree = "<group>"; };
+		E1C4FA3B2254210F00A7C1E3 /* ChangeUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUser.swift; sourceTree = "<group>"; };
+		E1C4FA3D2254216E00A7C1E3 /* ChangeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeInfo.swift; sourceTree = "<group>"; };
 		E1C727F8217003110074ECA0 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		E1C727FA217065380074ECA0 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifactionView.swift; sourceTree = "<group>"; };
@@ -185,6 +191,9 @@
 				E1D65EFD220508BE005CFEC6 /* Notifications.swift */,
 				E1D65EFF220509B7005CFEC6 /* NotiData.swift */,
 				E1AF85452229F82500DEFECA /* WrongMessage.swift */,
+				E1C4FA3D2254216E00A7C1E3 /* ChangeInfo.swift */,
+				E1C4FA3B2254210F00A7C1E3 /* ChangeUser.swift */,
+				E1C4FA392254194C00A7C1E3 /* WrongUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -490,6 +499,7 @@
 				E1E15F9321B1F7CB008B5D6C /* SubscribeJson.swift in Sources */,
 				E149233121A5EB300090514F /* CalendarTimeView.swift in Sources */,
 				9C9423312175513A0079C986 /* SignUpVC.swift in Sources */,
+				E1C4FA3A2254194C00A7C1E3 /* WrongUser.swift in Sources */,
 				9C6955ED217A643700E496FB /* forgetPasswordViewController.swift in Sources */,
 				E149233721A617270090514F /* CalendarView.swift in Sources */,
 				9C320BB2216C0686007DD292 /* SignInViewController.swift in Sources */,
@@ -501,6 +511,7 @@
 				E1012B3F21A25838009A59FF /* Cached_lecture.swift in Sources */,
 				E1012B4521A2595C009A59FF /* BriefCourses2D.swift in Sources */,
 				E1D65EFE220508BE005CFEC6 /* Notifications.swift in Sources */,
+				E1C4FA3C2254210F00A7C1E3 /* ChangeUser.swift in Sources */,
 				E13C5F8B214B93250046F80C /* SettingViewController.swift in Sources */,
 				E13665F0213250970009EF0D /* Lecture.swift in Sources */,
 				E1AF85462229F82500DEFECA /* WrongMessage.swift in Sources */,
@@ -527,6 +538,7 @@
 				E149232F21A5E86D0090514F /* CalendarVC.swift in Sources */,
 				E1F739202162E84B0024EA8E /* MyListViewController.swift in Sources */,
 				E13C5F8D214B93300046F80C /* HelpViewController.swift in Sources */,
+				E1C4FA3E2254216E00A7C1E3 /* ChangeInfo.swift in Sources */,
 				E1E15F9521B1FADD008B5D6C /* Token.swift in Sources */,
 				E1ECAF9C217262F0006C9714 /* EditProfileCell.swift in Sources */,
 				E1AF854822332F4D00DEFECA /* NewPassworTBCell.swift in Sources */,

@@ -353,7 +353,10 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
             self.blackView.alpha = 0.5
             blackView.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
             
-            let user = User(email: usernameTextfield.text!, password: passwordTextfield.text!, name: "")
+            let user = User()
+            user.email = usernameTextfield.text
+            user.password = passwordTextfield.text
+            
             let info = Information(user: user)
             let userJson = try! JSONEncoder().encode(info)
             
@@ -368,30 +371,35 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
             URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 if error != nil {
                     if error?._code == NSURLErrorTimedOut {
-                        let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
-                        self.present(alert, animated: true)
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                            self.present(alert, animated: true)
+                            print ("server error when sign in")
+                            SVProgressHUD.dismiss()
+                            self.blackView.alpha = 0
+                        }
                     }
                     return
                 }
                 
                 if let response = response as? HTTPURLResponse,
                     (200...299).contains(response.statusCode) != true{
-                        guard let data = data else { return }
+                    guard let data = data else { return }
                         
-                        var message = WrongMessage()
-                        message = try! JSONDecoder().decode(WrongMessage.self, from: data)
-                        
+                    var message = WrongMessage()
+                    message = try! JSONDecoder().decode(WrongMessage.self, from: data)
+                    
+                    DispatchQueue.main.async {
                         let alert = UIAlertController(title: "Please try again!", message: message.error, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
                         self.present(alert, animated: true)
                         
-                        DispatchQueue.main.async {
-                            print ("server error when sign in")
-                            SVProgressHUD.dismiss()
-                            self.blackView.alpha = 0
-                        }
-                        return
+                        print ("server error when sign in")
+                        SVProgressHUD.dismiss()
+                        self.blackView.alpha = 0
+                    }
+                    return
                 }
                 
                 if let mimeType = response!.mimeType,

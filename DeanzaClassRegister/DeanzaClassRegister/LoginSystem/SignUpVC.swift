@@ -230,7 +230,9 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         email = usernameTextfield.text
         oldPassword = passwordTextfield.text
         
-        let user = User(email: usernameTextfield.text!, password: passwordTextfield.text!, name: "")
+        let user = User()
+        user.email = usernameTextfield.text
+        user.password = passwordTextfield.text
         let info = Information(user: user)
         let userJson = try! JSONEncoder().encode(info)
 

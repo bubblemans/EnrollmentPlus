@@ -62,51 +62,55 @@ class ChangePasswordVC: UIViewController {
     @objc private func handleSave() {
         print("save")
         if confirmPassword! == newPassword! {
-            let user = User(email: email!, password: newPassword!, name: "")
-            let info = Information(user: user)
+            let user = ChangeUser()
+            user.password = newPassword
+            let info = ChangeInfo()
+            info.user = user
             let userJson = try! JSONEncoder().encode(info)
 
             guard let url = URL(string: "https://api.daclassplanner.com/users") else { return }
             var urlRequest = URLRequest(url: url)
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            urlRequest.httpMethod = "POST"
+            urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+            urlRequest.httpMethod = "PATCH"
             urlRequest.httpBody = userJson
 
             URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
 
-                if let error = error {
-                    print(error)
+                if error != nil {
+                    if error?._code == NSURLErrorTimedOut {
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                            self.present(alert, animated: true)
+                        }
+                    }
                     return
-                } else {
-                    print("no error")
                 }
                 
                 if let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) != true {
-                    print(response)
-//                    return
-                }
-
-                if let data = data {
-                    print(data)
-                    var message = WrongMessage()
-                    message = try! JSONDecoder().decode(WrongMessage.self, from: data)
-//                    print(String(data: message.error!, encoding: .uft8))
-                    print(message.error)
-                    print(message.message)
-                    if let message = message.message {
-                        print(message)
+                    if let data = data {
+                        let message = try! JSONDecoder().decode(WrongUser.self, from: data)
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Password", message: message.password?[0], preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
+                            self.present(alert, animated: true)
+                        }
                     } else {
-                        print("no meesage")
+                        print("no data")
                     }
                 } else {
-                    print("no data")
-                }
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Congratulations!", message: "Successfully change password!", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    }
                 }
             }.resume()
         } else {
-            print("new password is not confirmed password")
+            let alert = UIAlertController(title: "WARNING", message: "Confirmed password is not correct!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
+            self.present(alert, animated: true)
         }
     }
     
