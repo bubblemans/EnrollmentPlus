@@ -69,6 +69,8 @@ class NotificationView: UIView, UITableViewDelegate, UITableViewDataSource {
         tableView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         tableView.heightAnchor.constraint(equalToConstant: count * 44).isActive = true
         tableView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        tableView.allowsSelection = false
+        tableView.isScrollEnabled = false
         
         tableView.delegate = self
         tableView.dataSource = self
