@@ -17,7 +17,7 @@ var currentCourses = BriefCourses2D(total: 0, data: [], departmentList: [], isEx
 var allCourses = BriefCourses2D(total: 0, data: [], departmentList: [], isExpanded: [])
 var isFirstTime = true
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
     
     private let cellId = "cellId"
     
@@ -323,7 +323,6 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavigationbar()
 
         if isFirstTime {

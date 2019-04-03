@@ -20,6 +20,10 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
     
     var isSignUpable = false
     
+    let checkboxKey = "checkboxKey"
+    let username = "username"
+    let password = "password"
+    
     let backgroundImage: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -88,7 +92,9 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround() 
+        self.hideKeyboardWhenTappedAround()
+        
+        restoreUsername()
         
         setupBackgroundImage()
         setupRectangleView()
@@ -102,6 +108,19 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
         setupSignLabel()
         setupSignUpBT()
         setupForgotPSButton()
+        
+        activateSignInBt()
+    }
+    
+    private func restoreUsername() {
+        if let ischecked = UserDefaults.standard.value(forKey: checkboxKey) as? Bool {
+            checkBox.isChecked = ischecked
+        }
+        let usernameText = UserDefaults.standard.string(forKey: username) ?? ""
+        usernameTextfield.text = usernameText
+        
+        let passwordText = UserDefaults.standard.string(forKey: password) ?? ""
+        passwordTextfield.text = passwordText
     }
     
     private func setupBackgroundImage() {
@@ -287,7 +306,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
         checkBox.checkedBorderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         checkBox.uncheckedBorderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         checkBox.checkmarkColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        checkBox.addTarget(self, action: #selector(handleRememberMe), for: .touchUpInside)
+        checkBox.addTarget(self, action: #selector(checkboxValueChanged(sender:)), for: .valueChanged)
         view.addSubview(checkBox)
         checkBox.topAnchor.constraint(equalTo: passwordTextfield.bottomAnchor, constant: 40).isActive = true
         checkBox.leadingAnchor.constraint(equalTo: userLogoImageView.leadingAnchor, constant: 0).isActive = true
@@ -316,6 +335,11 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
     }
     
     @objc private func textDidChange() {
+        saveUser()
+        activateSignInBt()
+    }
+    
+    private func activateSignInBt() {
         if usernameTextfield.text!.count != 0 && passwordTextfield.text!.count != 0 {
             isSignUpable = true
             signInButton.isUserInteractionEnabled = true
@@ -327,10 +351,28 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
         }
     }
     
-    @objc private func handleRememberMe() {
-        print("remember me")
-        checkBox.isChecked = !checkBox.isChecked
+    @objc private func checkboxValueChanged(sender: Checkbox) {
+        saveUser()
     }
+    
+    @objc private func handleRememberMe() {
+        checkBox.isChecked = !checkBox.isChecked
+        saveUser()
+    }
+    
+    func saveUser() {
+        if checkBox.isChecked == true {
+            UserDefaults.standard.set(checkBox.isChecked, forKey: checkboxKey)
+            UserDefaults.standard.set(usernameTextfield.text, forKey: username)
+            UserDefaults.standard.set(passwordTextfield.text, forKey: password)
+        } else {
+            UserDefaults.standard.removeObject(forKey: checkboxKey)
+            UserDefaults.standard.removeObject(forKey: username)
+            UserDefaults.standard.removeObject(forKey: password)
+        }
+    }
+    
+    
     
     @objc private func handleForgetPassword() {
         print("forget password")
@@ -344,6 +386,8 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
     @objc func handleSignIn() {
         email = usernameTextfield.text
         oldPassword = passwordTextfield.text
+        
+        saveUser()
         
         if let window = UIApplication.shared.keyWindow {
             SVProgressHUD.show(withStatus: "Loading...")
