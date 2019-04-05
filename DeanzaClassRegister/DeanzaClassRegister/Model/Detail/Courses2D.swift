@@ -10,7 +10,7 @@ import Foundation
 
 struct Courses2D {
     var total: Int?
-    var data: [[Data]]
+    var data: [[DetailData]]
     var departmentList: [String]
     var isExpanded: [Bool]
 }

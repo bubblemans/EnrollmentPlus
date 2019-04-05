@@ -1,5 +1,5 @@
 //
-//  WrongUser.swift
+//  Image.swift
 //  DeanzaClassRegister
 //
 //  Created by Alvin Lin on 2019/4/2.
@@ -8,8 +8,6 @@
 
 import Foundation
 
-class WrongUser: Codable {
-    var email: [String]?
-    var password: [String]?
-    var avatar: [String]?
+class Image: Codable {
+    var avatar: Data?
 }

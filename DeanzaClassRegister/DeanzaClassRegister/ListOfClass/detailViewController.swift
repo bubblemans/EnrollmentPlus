@@ -16,7 +16,7 @@ class detailViewController: UIViewController {
 //    lazy var course = courses[row]
     
     var id: Int?
-    var detailData: Data?
+    var detailData: DetailData?
     var briefData: BriefData?
     
     
@@ -54,7 +54,7 @@ class detailViewController: UIViewController {
                 } else {
                     guard response != nil else { return }
                     guard data != nil else { return }
-                    self.detailData = try! JSONDecoder().decode(Data.self, from: data!)
+                    self.detailData = try! JSONDecoder().decode(DetailData.self, from: data!)
                     print(self.detailData!)
                 }
                 SVProgressHUD.dismiss()

@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import MobileCoreServices
 
 var userImage = UIImage(named: "user")?.withRenderingMode(.alwaysTemplate)
 
@@ -96,6 +97,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
     }()
     
     open func showMenu() {
+        baseController?.dismissSearch()
         
         if let window = UIApplication.shared.keyWindow {
             // blackView
@@ -215,14 +217,82 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
         let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         
-        if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] {
-            userImage = image as? UIImage
-            profileView.image = userImage
+        if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage{
+            postImage(image: image)
             picker.dismiss(animated: true, completion: nil)
+            
         } else {
             // TODO: alert
             print("No image found.")
         }
+    }
+    
+    private func postImage(image: UIImage?) {
+        guard let encodedImage = image?.jpegData(compressionQuality: 0.5) else { return }
+        let boundary = generateBoundaryString()
+        let filename = "user-profile.jpg"
+        
+        guard let url = URL(string: "https://api.daclassplanner.com/users") else { return }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "PATCH"
+        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        urlRequest.addValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.httpBody = try! createBody(with: encodedImage, filename: filename, boundary: boundary)
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if error != nil {
+                if error?._code == NSURLErrorTimedOut {
+                    let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                }
+                print(error)
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) != true{
+                DispatchQueue.main.async {
+                    guard let data = data else { return }
+                    var message = try! JSONDecoder().decode(WrongUser.self, from: data)
+                    let alert = UIAlertController(title: "Please try again!", message: message.avatar?[0], preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+                    alert.show()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    userImage = image as? UIImage
+                    self.profileView.image = userImage
+                }
+            }
+        }.resume()
+    }
+    
+    func generateBoundaryString() -> String {
+        return "Boundary-\(NSUUID().uuidString)"
+    }
+    
+    private func createBody(with data: Data, filename: String, boundary: String) throws -> Data {
+        var body = Data()
+        
+        body.append("--\(boundary)\r\n")
+        body.append("Content-Disposition: form-data; name=\"user[avatar]\"; filename=\"\(filename)\"\r\n")
+        body.append("Content-Type: image/jpeg\r\n\r\n")
+        body.append(data)
+        body.append("\r\n")
+        
+        body.append("--\(boundary)--\r\n")
+        return body
+    }
+    
+    private func mimeType(for path: String) -> String {
+        let url = URL(fileURLWithPath: path)
+        let pathExtension = url.pathExtension
+        
+        if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension as NSString, nil)?.takeRetainedValue() {
+            if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
+                return mimetype as String
+            }
+        }
+        return "application/octet-stream"
     }
     
     @objc func handleDismissMenu() {
@@ -426,4 +496,31 @@ fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [U
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
 	return input.rawValue
+}
+
+extension Data {
+    
+    /// Append string to Data
+    ///
+    /// Rather than littering my code with calls to `data(using: .utf8)` to convert `String` values to `Data`, this wraps it in a nice convenient little extension to Data. This defaults to converting using UTF-8.
+    ///
+    /// - parameter string:       The string to be added to the `Data`.
+    
+    mutating func append(_ string: String, using encoding: String.Encoding = .utf8) {
+        if let data = string.data(using: encoding) {
+            append(data)
+        }
+    }
+}
+
+public extension UIAlertController {
+    func show() {
+        let win = UIWindow(frame: UIScreen.main.bounds)
+        let vc = UIViewController()
+        vc.view.backgroundColor = .clear
+        win.rootViewController = vc
+        win.windowLevel = UIWindow.Level.alert + 1
+        win.makeKeyAndVisible()
+        vc.present(self, animated: true, completion: nil)
+    }
 }

@@ -116,7 +116,7 @@ class CalendarVC: UIViewController {
         dayView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
     }
     
-    private func insertClass(data: Data) {
+    private func insertClass(data: DetailData) {
         insertByDay(days: data.lectures[0].days!)
         insertByTime(time: data.lectures[0].times!)
         

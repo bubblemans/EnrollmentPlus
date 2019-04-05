@@ -10,5 +10,5 @@ import Foundation
 
 struct Courses: Decodable {
     var total: Int?
-    var data: [Data]
+    var data: [DetailData]
 }

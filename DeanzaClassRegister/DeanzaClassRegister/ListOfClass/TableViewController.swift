@@ -12,7 +12,7 @@ import SVProgressHUD
 var favoriteList: [BriefData] = []
 var planList: [BriefData] = []
 var subscribeList: [BriefData] = []
-var calendarList: [Data] = []
+var calendarList: [DetailData] = []
 var currentCourses = BriefCourses2D(total: 0, data: [], departmentList: [], isExpanded: [])
 var allCourses = BriefCourses2D(total: 0, data: [], departmentList: [], isExpanded: [])
 var isFirstTime = true
@@ -332,13 +332,13 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
             self.tableView.reloadData()
         }
     }
-    
+    let searchController = UISearchController(searchResultsController: nil)
     private func setupNavigationbar() {
         
         tableView.register(TableViewCell.self, forCellReuseIdentifier: cellId)
         
         // searchController
-        let searchController = UISearchController(searchResultsController: nil)
+//        let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.searchBar.autocapitalizationType = .none
         searchController.dimsBackgroundDuringPresentation = false
@@ -365,6 +365,10 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
+    }
+    
+    open func dismissSearch() {
+        searchController.searchBar.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -555,7 +559,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         return index
     }
     
-    open func containData(at target: Int?, from datas: [Data]) -> Int {
+    open func containData(at target: Int?, from datas: [DetailData]) -> Int {
         var index = -1
         for indice in datas.indices {
             if datas[indice].id == target! {
@@ -606,7 +610,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
     }
     
     open func updataCalendarList(at data: BriefData) {
-        var detailData: Data?
+        var detailData: DetailData?
         if !calendarList.isEmpty {
             for calendarCourse in calendarList {
                 if data.id == calendarCourse.id {
@@ -647,7 +651,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
             
             guard let data = data else { return }
             
-            detailData = try! JSONDecoder().decode(Data.self, from: data)
+            detailData = try! JSONDecoder().decode(DetailData.self, from: data)
             
             DispatchQueue.main.async {
                 guard let newData = detailData else { return }
