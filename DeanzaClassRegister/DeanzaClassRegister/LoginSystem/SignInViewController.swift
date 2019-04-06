@@ -375,7 +375,8 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
     
     
     @objc private func handleForgetPassword() {
-        print("forget password")
+        let vc = ForgetPasswordViewController()
+        self.present(vc, animated: true, completion: nil)
     }
     
     @objc private func handleSignUp() {

@@ -9,9 +9,8 @@
 /* Begin PBXBuildFile section */
 		19F12CA4588F8DA3C365B554 /* Pods_DeanzaClassRegister.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D8EB13270FB3FCA86AA013 /* Pods_DeanzaClassRegister.framework */; };
 		9C320BB2216C0686007DD292 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C320BB1216C0686007DD292 /* SignInViewController.swift */; };
-		9C6955ED217A643700E496FB /* forgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6955EC217A643700E496FB /* forgetPasswordViewController.swift */; };
 		9C9423312175513A0079C986 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9423302175513A0079C986 /* SignUpVC.swift */; };
-		E1012B3921A11693009A59FF /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1012B3821A11693009A59FF /* Info.swift */; };
+		E1012B3921A11693009A59FF /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1012B3821A11693009A59FF /* Information.swift */; };
 		E1012B3B21A116C0009A59FF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1012B3A21A116C0009A59FF /* User.swift */; };
 		E1012B3D21A257BC009A59FF /* BriefData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1012B3C21A257BC009A59FF /* BriefData.swift */; };
 		E1012B3F21A25838009A59FF /* Cached_lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1012B3E21A25838009A59FF /* Cached_lecture.swift */; };
@@ -49,6 +48,7 @@
 		E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */; };
 		E1A6E47A22582A77004FDFF0 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A6E47922582A77004FDFF0 /* UserInfo.swift */; };
 		E1A6E47C22582C6D004FDFF0 /* UserDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A6E47B22582C6D004FDFF0 /* UserDict.swift */; };
+		E1A6E47E2258351D004FDFF0 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A6E47D2258351D004FDFF0 /* ForgetPasswordViewController.swift */; };
 		E1AF85462229F82500DEFECA /* WrongMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF85452229F82500DEFECA /* WrongMessage.swift */; };
 		E1AF854822332F4D00DEFECA /* NewPassworTBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF854722332F4D00DEFECA /* NewPassworTBCell.swift */; };
 		E1C1D6F122547D4600DCA52A /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C1D6F022547D4600DCA52A /* ImageInfo.swift */; };
@@ -79,9 +79,8 @@
 		71F65DD780C002CC4C57B85C /* Pods-DeanzaClassRegister.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeanzaClassRegister.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DeanzaClassRegister/Pods-DeanzaClassRegister.debug.xcconfig"; sourceTree = "<group>"; };
 		92D8EB13270FB3FCA86AA013 /* Pods_DeanzaClassRegister.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DeanzaClassRegister.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C320BB1216C0686007DD292 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		9C6955EC217A643700E496FB /* forgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgetPasswordViewController.swift; sourceTree = "<group>"; };
 		9C9423302175513A0079C986 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
-		E1012B3821A11693009A59FF /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		E1012B3821A11693009A59FF /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		E1012B3A21A116C0009A59FF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E1012B3C21A257BC009A59FF /* BriefData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefData.swift; sourceTree = "<group>"; };
 		E1012B3E21A25838009A59FF /* Cached_lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cached_lecture.swift; sourceTree = "<group>"; };
@@ -121,6 +120,7 @@
 		E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses2D.swift; sourceTree = "<group>"; };
 		E1A6E47922582A77004FDFF0 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		E1A6E47B22582C6D004FDFF0 /* UserDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDict.swift; sourceTree = "<group>"; };
+		E1A6E47D2258351D004FDFF0 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ForgetPasswordViewController.swift; path = ../ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		E1AF85452229F82500DEFECA /* WrongMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongMessage.swift; sourceTree = "<group>"; };
 		E1AF854722332F4D00DEFECA /* NewPassworTBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPassworTBCell.swift; sourceTree = "<group>"; };
 		E1C1D6F022547D4600DCA52A /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 			children = (
 				E1012B4221A2591F009A59FF /* Brief */,
 				E1012B4321A25930009A59FF /* Detail */,
-				E1012B3821A11693009A59FF /* Info.swift */,
+				E1012B3821A11693009A59FF /* Information.swift */,
 				E1012B3A21A116C0009A59FF /* User.swift */,
 				E1E15F9221B1F7CB008B5D6C /* SubscribeJson.swift */,
 				E1E15F9421B1FADD008B5D6C /* Token.swift */,
@@ -335,7 +335,7 @@
 			children = (
 				9C320BB1216C0686007DD292 /* SignInViewController.swift */,
 				9C9423302175513A0079C986 /* SignUpVC.swift */,
-				9C6955EC217A643700E496FB /* forgetPasswordViewController.swift */,
+				E1A6E47D2258351D004FDFF0 /* ForgetPasswordViewController.swift */,
 			);
 			path = LoginSystem;
 			sourceTree = "<group>";
@@ -515,7 +515,6 @@
 				E149233121A5EB300090514F /* CalendarTimeView.swift in Sources */,
 				9C9423312175513A0079C986 /* SignUpVC.swift in Sources */,
 				E1C4FA3A2254194C00A7C1E3 /* WrongUser.swift in Sources */,
-				9C6955ED217A643700E496FB /* forgetPasswordViewController.swift in Sources */,
 				E149233721A617270090514F /* CalendarView.swift in Sources */,
 				9C320BB2216C0686007DD292 /* SignInViewController.swift in Sources */,
 				E13EE0C820E3100800BBD60D /* DeanzaClassRegister.xcdatamodeld in Sources */,
@@ -545,7 +544,7 @@
 				E138C490217A905C00766FE4 /* ChangePasswordVC.swift in Sources */,
 				E1C1D6F32254804C00DCA52A /* ImageMessage.swift in Sources */,
 				E13C5F96215165350046F80C /* MenuButton.swift in Sources */,
-				E1012B3921A11693009A59FF /* Info.swift in Sources */,
+				E1012B3921A11693009A59FF /* Information.swift in Sources */,
 				E1153659215F1BD800244F81 /* NotificationCell.swift in Sources */,
 				E1012B3B21A116C0009A59FF /* User.swift in Sources */,
 				E1C727F9217003110074ECA0 /* SettingCell.swift in Sources */,
@@ -568,6 +567,7 @@
 				E13C5F98215170330046F80C /* MenuBaseViewController.swift in Sources */,
 				E1012B3D21A257BC009A59FF /* BriefData.swift in Sources */,
 				E13C5F81214B86AA0046F80C /* MenuCollectionViewCell.swift in Sources */,
+				E1A6E47E2258351D004FDFF0 /* ForgetPasswordViewController.swift in Sources */,
 				E149233521A5EDAC0090514F /* CalendarDayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
