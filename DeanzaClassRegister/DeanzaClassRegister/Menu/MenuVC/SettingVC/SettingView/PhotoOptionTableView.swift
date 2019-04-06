@@ -102,6 +102,7 @@ class PhotoOptionTableView: UITableView, UITableViewDataSource, UITableViewDeleg
             if let photoView = photoView {
                 photoView.image = userImage
                 menuLanucher.profileView.image = userImage
+                menuLanucher.postImage(image: photoView.image)
             } else {
                 menuLanucher.profileView.image = userImage
             }

@@ -227,7 +227,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
-    private func postImage(image: UIImage?) {
+    open func postImage(image: UIImage?) {
         guard let encodedImage = image?.jpegData(compressionQuality: 0.5) else { return }
         let boundary = generateBoundaryString()
         let filename = "user-profile.jpg"
