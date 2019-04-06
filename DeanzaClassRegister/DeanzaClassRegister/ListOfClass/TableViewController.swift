@@ -109,9 +109,61 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                 self.downloadSubscribeInfo()
                 self.downloadLikeInfo()
                 self.downloadCalendarInfo()
+                self.getImageUrl()
                 
             }.resume()
         }
+    }
+    
+    private func downloadPicture(urlString: String) {
+        guard let url = URL(string: "https://api.daclassplanner.com"+urlString) else { return }
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.httpMethod = "GET"
+        urlRequest.addValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            guard let data = data else { return }
+            DispatchQueue.main.async {
+                userImage = UIImage(data: data)
+                menuLanucher.profileView.image = userImage
+            }
+        }.resume()
+    }
+    
+    private func getImageUrl() {
+        guard let url = URL(string: "https://api.daclassplanner.com/user/information") else { return }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.addValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if error != nil {
+                if error?._code == NSURLErrorTimedOut {
+                    let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                }
+                print(error)
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) != true{
+                DispatchQueue.main.async {
+                    print(response)
+                    guard let data = data else { return }
+                    print(data)
+                }
+            } else {
+                
+                DispatchQueue.main.async {
+                    guard let data = data else { return }
+                    var info = try! JSONDecoder().decode(UserDict.self, from: data)
+                    if let urlString = info.user.avatar_url {
+                        self.downloadPicture(urlString: urlString)
+                    }
+                }
+            }
+        }.resume()
     }
     
     private func downloadSubscribeInfo() {
@@ -144,7 +196,6 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                 self.downloadSubscribeInfo()
                 self.present(alert, animated: true)
                 
-                print("heowbfo")
                 print(response.statusCode)
                 
                 DispatchQueue.main.async {

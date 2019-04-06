@@ -244,7 +244,6 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
                     let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
                 }
-                print(error)
                 return
             }
             
@@ -252,48 +251,49 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
                 (200...299).contains(response.statusCode) != true{
                 DispatchQueue.main.async {
                     guard let data = data else { return }
-                    var message = try! JSONDecoder().decode(WrongUser.self, from: data)
+                    let message = try! JSONDecoder().decode(WrongUser.self, from: data)
                     let alert = UIAlertController(title: "Please try again!", message: message.avatar?[0], preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
                     alert.show()
                 }
             } else {
                 DispatchQueue.main.async {
-                    userImage = image as? UIImage
+                    userImage = image
                     self.profileView.image = userImage
                 }
             }
         }.resume()
     }
     
-    func generateBoundaryString() -> String {
+    open func generateBoundaryString() -> String {
         return "Boundary-\(NSUUID().uuidString)"
     }
     
-    private func createBody(with data: Data, filename: String, boundary: String) throws -> Data {
+    open func createBody(with data: Data?, filename: String?, boundary: String) throws -> Data {
         var body = Data()
         
         body.append("--\(boundary)\r\n")
-        body.append("Content-Disposition: form-data; name=\"user[avatar]\"; filename=\"\(filename)\"\r\n")
-        body.append("Content-Type: image/jpeg\r\n\r\n")
-        body.append(data)
-        body.append("\r\n")
-        
+        if filename != nil { 
+            body.append("Content-Disposition: form-data; name=\"user[avatar]\"; filename=\"\(filename!)\"\r\n")
+            body.append("Content-Type: image/jpeg\r\n\r\n")
+            body.append(data!)
+            body.append("\r\n")
+        }
         body.append("--\(boundary)--\r\n")
         return body
     }
     
-    private func mimeType(for path: String) -> String {
-        let url = URL(fileURLWithPath: path)
-        let pathExtension = url.pathExtension
-        
-        if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension as NSString, nil)?.takeRetainedValue() {
-            if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
-                return mimetype as String
-            }
-        }
-        return "application/octet-stream"
-    }
+//    private func mimeType(for path: String) -> String {
+//        let url = URL(fileURLWithPath: path)
+//        let pathExtension = url.pathExtension
+//        
+//        if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension as NSString, nil)?.takeRetainedValue() {
+//            if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
+//                return mimetype as String
+//            }
+//        }
+//        return "application/octet-stream"
+//    }
     
     @objc func handleDismissMenu() {
         if let window = UIApplication.shared.keyWindow {

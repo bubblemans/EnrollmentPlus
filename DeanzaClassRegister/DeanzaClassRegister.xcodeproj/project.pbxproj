@@ -47,6 +47,8 @@
 		E17A5BC221855ECB00C1F807 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17A5BC121855ECB00C1F807 /* TabBarController.swift */; };
 		E17EC3F6211EE5D100AA1D46 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */; };
 		E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */; };
+		E1A6E47A22582A77004FDFF0 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A6E47922582A77004FDFF0 /* UserInfo.swift */; };
+		E1A6E47C22582C6D004FDFF0 /* UserDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A6E47B22582C6D004FDFF0 /* UserDict.swift */; };
 		E1AF85462229F82500DEFECA /* WrongMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF85452229F82500DEFECA /* WrongMessage.swift */; };
 		E1AF854822332F4D00DEFECA /* NewPassworTBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF854722332F4D00DEFECA /* NewPassworTBCell.swift */; };
 		E1C1D6F122547D4600DCA52A /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C1D6F022547D4600DCA52A /* ImageInfo.swift */; };
@@ -117,6 +119,8 @@
 		E17A5BC121855ECB00C1F807 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses2D.swift; sourceTree = "<group>"; };
+		E1A6E47922582A77004FDFF0 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		E1A6E47B22582C6D004FDFF0 /* UserDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDict.swift; sourceTree = "<group>"; };
 		E1AF85452229F82500DEFECA /* WrongMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongMessage.swift; sourceTree = "<group>"; };
 		E1AF854722332F4D00DEFECA /* NewPassworTBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPassworTBCell.swift; sourceTree = "<group>"; };
 		E1C1D6F022547D4600DCA52A /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
@@ -203,6 +207,8 @@
 				E1C1D6F022547D4600DCA52A /* ImageInfo.swift */,
 				E1C1D6F22254804C00DCA52A /* ImageMessage.swift */,
 				E1C4FA3F22546DB900A7C1E3 /* Image.swift */,
+				E1A6E47922582A77004FDFF0 /* UserInfo.swift */,
+				E1A6E47B22582C6D004FDFF0 /* UserDict.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -530,6 +536,7 @@
 				E1F05C0221C439F800DC0D96 /* Crns.swift in Sources */,
 				E1D65F00220509B7005CFEC6 /* NotiData.swift in Sources */,
 				E1C727FD21714B9E0074ECA0 /* NotifactionView.swift in Sources */,
+				E1A6E47A22582A77004FDFF0 /* UserInfo.swift in Sources */,
 				E138C496217A943900766FE4 /* OldPasswordTableViewCell.swift in Sources */,
 				E13665EC213250800009EF0D /* Courses.swift in Sources */,
 				E13665F72136C5EA0009EF0D /* TableViewCell.swift in Sources */,
@@ -551,6 +558,7 @@
 				E1F739202162E84B0024EA8E /* MyListViewController.swift in Sources */,
 				E13C5F8D214B93300046F80C /* HelpViewController.swift in Sources */,
 				E1C4FA3E2254216E00A7C1E3 /* ChangeInfo.swift in Sources */,
+				E1A6E47C22582C6D004FDFF0 /* UserDict.swift in Sources */,
 				E1E15F9521B1FADD008B5D6C /* Token.swift in Sources */,
 				E1ECAF9C217262F0006C9714 /* EditProfileCell.swift in Sources */,
 				E1AF854822332F4D00DEFECA /* NewPassworTBCell.swift in Sources */,
