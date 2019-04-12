@@ -16,12 +16,16 @@ class TableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style:  style, reuseIdentifier: reuseIdentifier)
         setupCourseInfoLabel()
+        self.layer.borderColor = #colorLiteral(red: 0.5450980392, green: 0.01176470588, blue: 0.1725490196, alpha: 1)
+        self.layer.borderWidth = 0.3
     }
     
     let courseLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = UIColor.white
+        label.backgroundColor = maincolor
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -34,31 +38,36 @@ class TableViewCell: UITableViewCell {
         return label
     }()
     
-    let statusLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    let statusImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
     }()
     
     func setupCourseInfoLabel() {
         
         addSubview(courseLabel)
         addSubview(instructorLabel)
-        addSubview(statusLabel)
+        addSubview(statusImage)
         
         // courseLabel
         addConstraint(NSLayoutConstraint(item: courseLabel, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 10))
         addConstraint(NSLayoutConstraint(item: courseLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 10))
+        courseLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        courseLabel.layer.cornerRadius = 5
+        courseLabel.layer.masksToBounds = true
+        
         
         // instructorLabel
-        addConstraint(NSLayoutConstraint(item: instructorLabel, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 130))
+        addConstraint(NSLayoutConstraint(item: instructorLabel, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 160))
         addConstraint(NSLayoutConstraint(item: instructorLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 10))
+//        instructorLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        // statusLabel
-        addConstraint(NSLayoutConstraint(item: statusLabel, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 260))
-        addConstraint(NSLayoutConstraint(item: statusLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 10))
+        // statusImage
+        addConstraint(NSLayoutConstraint(item: statusImage, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1, constant: -24))
+        addConstraint(NSLayoutConstraint(item: statusImage, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 10))
+        
+        self.layoutIfNeeded()
     }
     
     override func setNeedsLayout() {
@@ -74,8 +83,13 @@ class TableViewCell: UITableViewCell {
                 instructorLabel.text = text
             }
         }
-        if let status = status {
-            statusLabel.text = status
+        guard let status = status else {return}
+        if status == "Open" {
+            statusImage.image = UIImage(named: "open")
+        } else if status == "Waitlist" {
+            statusImage.image = UIImage(named: "waitlist")
+        } else if status == "Full" {
+            statusImage.image = UIImage(named: "full")
         }
     }
     

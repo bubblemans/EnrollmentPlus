@@ -24,11 +24,11 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
     let username = "username"
     let password = "password"
     
-    let backgroundImage: UIImageView = {
-        let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+//    let backgroundImage: UIImageView = {
+//        let view = UIImageView()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
   
     let forgotPasswordButton : UIButton = {
         let bt = UIButton()

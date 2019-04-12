@@ -44,9 +44,11 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if error != nil {
                     if error?._code == NSURLErrorTimedOut {
-                        let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
-                        self.present(alert, animated: true)
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                            self.present(alert, animated: true)
+                        }
                     }
                     return
                 }
@@ -59,13 +61,12 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                     var message = WrongMessage()
                     message = try! JSONDecoder().decode(WrongMessage.self, from: data)
                     
-                    let alert = UIAlertController(title: "Oops... failure of downloading the data!", message: message.error, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
-                    self.downloadCourses()
-                    self.present(alert, animated: true)
-                    
-                    
                     DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Oops... failure of downloading the data!", message: message.error, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                        self.downloadCourses()
+                        self.present(alert, animated: true)
+                    
                         print ("server error when sign in")
                         SVProgressHUD.dismiss()
                         self.blackView.alpha = 0
@@ -100,11 +101,13 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                     }
                     
                 } catch let jsonError {
-                    let alert = UIAlertController(title: "Oops...Sorry, did not connect to the database.", message: "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                    
-                    print("Json Error", jsonError)
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Oops...Sorry, did not connect to the database.", message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                        
+                        print("Json Error", jsonError)
+                    }
                 }
                 self.downloadSubscribeInfo()
                 self.downloadLikeInfo()
@@ -139,8 +142,10 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
                 if error?._code == NSURLErrorTimedOut {
-                    let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                    }
                 }
                 print(error)
                 return
@@ -177,6 +182,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
                 if error?._code == NSURLErrorTimedOut {
+                    
                     let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
                     self.present(alert, animated: true)
@@ -191,14 +197,12 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                 var message = WrongMessage()
                 message = try! JSONDecoder().decode(WrongMessage.self, from: data)
                 
-                let alert = UIAlertController(title: "Oops... failure of downloading the data!", message: message.error, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
-                self.downloadSubscribeInfo()
-                self.present(alert, animated: true)
-                
-                print(response.statusCode)
-                
                 DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Oops... failure of downloading the data!", message: message.error, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                    self.downloadSubscribeInfo()
+                    self.present(alert, animated: true)
+
                     print ("server error when sign in")
                     SVProgressHUD.dismiss()
                     self.blackView.alpha = 0
@@ -226,9 +230,11 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
                 if error?._code == NSURLErrorTimedOut {
-                    let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
-                    self.present(alert, animated: true)
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    }
                 }
                 return
             }
@@ -240,12 +246,11 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                 var message = WrongMessage()
                 message = try! JSONDecoder().decode(WrongMessage.self, from: data)
                 
-                let alert = UIAlertController(title: "Oops... failure of downloading the data!", message: message.error, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
-                self.downloadCalendarInfo()
-                self.present(alert, animated: true)
-                
                 DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Oops... failure of downloading the data!", message: message.error, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                    self.downloadCalendarInfo()
+                    self.present(alert, animated: true)
                     print ("server error when sign in")
                     SVProgressHUD.dismiss()
                     self.blackView.alpha = 0
@@ -281,9 +286,11 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
                 if error?._code == NSURLErrorTimedOut {
-                    let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
-                    self.present(alert, animated: true)
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Poor Connection...", message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    }
                 }
                 return
             }
@@ -295,12 +302,12 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                 var message = WrongMessage()
                 message = try! JSONDecoder().decode(WrongMessage.self, from: data)
                 
-                let alert = UIAlertController(title: "Oops... failure of downloading the data!", message: message.error, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
-                self.downloadLikeInfo()
-                self.present(alert, animated: true)
-                
                 DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Oops... failure of downloading the data!", message: message.error, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                    self.downloadLikeInfo()
+                    self.present(alert, animated: true)
+                    
                     print ("server error when sign in")
                     SVProgressHUD.dismiss()
                     self.blackView.alpha = 0
@@ -372,8 +379,21 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         self.tableView.reloadData()
     }
     
+    private func setupBackgroundImage() {
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "best-poly-backgrounds.png")
+        backgroundImage.contentMode = .scaleAspectFill
+        self.view.addSubview(backgroundImage)
+        backgroundImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        backgroundImage.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        backgroundImage.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        backgroundImage.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.tableView.alpha = 0.5
+//        setupBackgroundImage()
         setupNavigationbar()
 
         if isFirstTime {
@@ -467,20 +487,36 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         let button = UIButton(type: .system)
-        
         if currentCourses.departmentList.count != 0 {
-            button.setTitle(currentCourses.departmentList[section], for: .normal)
-            button.setTitleColor(UIColor.white, for: .normal)
-            button.backgroundColor = #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+//            button.setTitle(currentCourses.departmentList[section], for: .normal)
+//            button.setTitleColor(maincolor, for: .normal)
+//            button.backgroundColor = #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+            button.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.78)
+//            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
             button.addTarget(self, action: #selector(handleExpand), for: .touchUpInside)
+            button.layer.borderWidth = 0.3
+            button.layer.borderColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            
+            let rectangle = UIButton(type: .system)
+            rectangle.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+//            rectangle.backgroundColor = .red
+            rectangle.frame = CGRect(x: view.center.x, y: 6, width: 151, height: 26)
+            rectangle.center.x = view.center.x
+            rectangle.layer.cornerRadius = 6
+            rectangle.setTitle(currentCourses.departmentList[section], for: .normal)
+            rectangle.setTitleColor(maincolor, for: .normal)
+            rectangle.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+            rectangle.tag = section
+            rectangle.addTarget(self, action: #selector(handleExpand), for: .touchUpInside)
+            rectangle.layer.shadowOffset = CGSize(width: 0, height: 1)
+            rectangle.layer.applySketchShadow(blur: 3, spread: 0)
+            button.addSubview(rectangle)
+            
+            button.tag = section
         } else {
             return button
         }
-        
-        button.tag = section
         return button
     }
     
@@ -505,7 +541,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 36
+        return 42
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -515,9 +551,9 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         navigationController?.pushViewController(destination, animated: true)
     }
     
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return setupIndexTitle()
-    }
+//    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+//        return setupIndexTitle()
+//    }
     
     private func setupIndexTitle() -> [String] {
         var indexTitleList: [String] = []
@@ -571,7 +607,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         return action
     }
     
-    private func handleCalendar(data: BriefData) {
+    open func handleCalendar(data: BriefData) {
         updateDataList(at: data, with: &planList)
         updataCalendarList(at: data)
         postSubscribe(data: data, type: "calendar")
@@ -621,7 +657,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         return index
     }
     
-    private func postSubscribe(data: BriefData, type: String) {
+    open func postSubscribe(data: BriefData, type: String) {
         let subscribeInfo = SubscribeJson(crn: data.crn!, type: type)
         let subscribeJson = try! JSONEncoder().encode(subscribeInfo)
         
@@ -644,23 +680,24 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                 var message = WrongMessage()
                 message = try! JSONDecoder().decode(WrongMessage.self, from: data)
                 
-                let alert = UIAlertController(title: "Oops... failure of adding to the list!", message: message.error, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
-                self.present(alert, animated: true)
-                
                 DispatchQueue.main.async {
-                    print ("server error when sign in")
+                    let alert = UIAlertController(title: "Oops... failure of adding to the list!", message: message.error, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                    print ("server error when postSubscribe")
+                    print(message.error)
+                    print(message.errors)
+                    print(message.message)
                     SVProgressHUD.dismiss()
                     self.blackView.alpha = 0
                 }
                 return
             }
         }.resume()
-        
-        
     }
     
     open func updataCalendarList(at data: BriefData) {
+        print("updateCalendarList")
         var detailData: DetailData?
         if !calendarList.isEmpty {
             for calendarCourse in calendarList {
@@ -688,11 +725,11 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                 var message = WrongMessage()
                 message = try! JSONDecoder().decode(WrongMessage.self, from: data)
                 
-                let alert = UIAlertController(title: "Oops failure of downloading the data!", message: message.error, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
-                self.present(alert, animated: true)
-            
                 DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Oops failure of downloading the data!", message: message.error, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+            
                     SVProgressHUD.dismiss()
                     self.blackView.alpha = 0
                 }
@@ -778,5 +815,26 @@ extension TableViewController: UISearchResultsUpdating {
     }
 }
 
-
+extension CALayer {
+    func applySketchShadow(
+        color: UIColor = .black,
+        alpha: Float = 0.5,
+        x: CGFloat = 0,
+        y: CGFloat = 2,
+        blur: CGFloat = 4,
+        spread: CGFloat = 0)
+    {
+        shadowColor = color.cgColor
+        shadowOpacity = alpha
+        shadowOffset = CGSize(width: x, height: y)
+        shadowRadius = blur / 2.0
+        if spread == 0 {
+            shadowPath = nil
+        } else {
+            let dx = -spread
+            let rect = bounds.insetBy(dx: dx, dy: dx)
+            shadowPath = UIBezierPath(rect: rect).cgPath
+        }
+    }
+}
 

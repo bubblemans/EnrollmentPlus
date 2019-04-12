@@ -613,8 +613,12 @@ class detailViewController: UIViewController {
 
     @objc func handlePlan() {
         let controller = TableViewController()
-        controller.updateDataList(at: briefData!, with: &planList)
-        controller.updataCalendarList(at: briefData!)
+//        controller.updateDataList(at: briefData!, with: &planList)
+//        controller.updataCalendarList(at: briefData!)
+//        controller.postSubscribe(data: briefData, type:
+        if let data = briefData {
+            controller.handleCalendar(data: data)
+        }
         postNotiCalendar()
         
         planButton.isSelected  = !planButton.isSelected

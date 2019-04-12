@@ -17,6 +17,7 @@ class TabBarController: UITabBarController {
     }
     
     private func setupTabBar() {
+        tabBar.tintColor = maincolor
         let courseListVC = TableViewController()
         let courseImage = UIImage(named: "courses")
         courseListVC.tabBarItem = UITabBarItem(title: "Course", image: courseImage, tag: 0)
