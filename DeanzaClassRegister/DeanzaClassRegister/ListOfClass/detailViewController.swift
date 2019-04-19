@@ -29,6 +29,7 @@ class detailViewController: UIViewController {
     private func setupNav() {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = detailData?.lectures[0].title!
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
     let blackView: UIView = {
         let view = UIView()
@@ -87,18 +88,18 @@ class detailViewController: UIViewController {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentSize.height = 1500
-        view.backgroundColor = #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        view.backgroundColor = maincolor
         return view
     }()
 
     func setUpInfoView() {
         let infoView = UIView()
         infoView.translatesAutoresizingMaskIntoConstraints = false
-        infoView.backgroundColor = .white
+        infoView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         scrollView.addSubview(infoView)
 
-        infoView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 10).isActive = true
-        infoView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        infoView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 3).isActive = true
+        infoView.heightAnchor.constraint(equalToConstant: 213).isActive = true
         infoView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         infoView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
 
@@ -110,7 +111,7 @@ class detailViewController: UIViewController {
 
         let titleLabel = UILabel()
         titleLabel.text = "Course  Info"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.frame = CGRect(x: 60, y: 10, width: 300, height: 40)
         infoView.addSubview(titleLabel)
 
@@ -175,11 +176,11 @@ class detailViewController: UIViewController {
     func setUpProfileView() {
         let profileView = UIView()
         profileView.translatesAutoresizingMaskIntoConstraints = false
-        profileView.backgroundColor = .white
+        profileView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 
         scrollView.addSubview(profileView)
         profileView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 220).isActive = true
-        profileView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        profileView.heightAnchor.constraint(equalToConstant: 107).isActive = true
         profileView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         profileView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
 
@@ -191,7 +192,7 @@ class detailViewController: UIViewController {
 
         let titleLabel = UILabel()
         titleLabel.text = "Instructor  Info"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.frame = CGRect(x: 60, y: 10, width: 300, height: 40)
         profileView.addSubview(titleLabel)
 
@@ -211,11 +212,11 @@ class detailViewController: UIViewController {
     func setUpClockView() {
         let clockView = UIView()
         clockView.translatesAutoresizingMaskIntoConstraints = false
-        clockView.backgroundColor = .white
+        clockView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 
         scrollView.addSubview(clockView)
         clockView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 330).isActive = true
-        clockView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        clockView.heightAnchor.constraint(equalToConstant: 107).isActive = true
         clockView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         clockView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
 
@@ -227,7 +228,7 @@ class detailViewController: UIViewController {
 
         let titleLabel = UILabel()
         titleLabel.text = "Times"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.frame = CGRect(x: 60, y: 10, width: 300, height: 40)
         clockView.addSubview(titleLabel)
 
@@ -247,11 +248,11 @@ class detailViewController: UIViewController {
     func setUpLocationView() {
         let locationView = UIView()
         locationView.translatesAutoresizingMaskIntoConstraints = false
-        locationView.backgroundColor = .white
+        locationView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 
         scrollView.addSubview(locationView)
         locationView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 440).isActive = true
-        locationView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        locationView.heightAnchor.constraint(equalToConstant: 107).isActive = true
         locationView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         locationView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
 
@@ -263,7 +264,7 @@ class detailViewController: UIViewController {
 
         let titleLabel = UILabel()
         titleLabel.text = "Location"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.frame = CGRect(x: 60, y: 10, width: 300, height: 40)
         locationView.addSubview(titleLabel)
 
@@ -283,11 +284,11 @@ class detailViewController: UIViewController {
     func setUpStatsView() {
         let statsView = UIView()
         statsView.translatesAutoresizingMaskIntoConstraints = false
-        statsView.backgroundColor = .white
+        statsView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 
         scrollView.addSubview(statsView)
         statsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 550).isActive = true
-        statsView.heightAnchor.constraint(equalToConstant: 190).isActive = true
+        statsView.heightAnchor.constraint(equalToConstant: 197).isActive = true
         statsView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         statsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
 
@@ -299,7 +300,7 @@ class detailViewController: UIViewController {
 
         let titleLabel = UILabel()
         titleLabel.text = "Seats  Info"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.frame = CGRect(x: 60, y: 10, width: 300, height: 40)
         statsView.addSubview(titleLabel)
 
@@ -370,13 +371,13 @@ class detailViewController: UIViewController {
     
     private func  setupDetailView() {
         let detailView = UIView()
-        detailView.backgroundColor = .white
+        detailView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         detailView.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.addSubview(detailView)
         detailView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 750).isActive = true
         detailView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        detailView.heightAnchor.constraint(equalToConstant: 660).isActive = true
+        detailView.heightAnchor.constraint(equalToConstant: 667).isActive = true
         detailView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         
         let infoImage = UIImageView()
@@ -387,7 +388,7 @@ class detailViewController: UIViewController {
         
         let titleLabel = UILabel()
         titleLabel.text = "Detail  Info"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.frame = CGRect(x: 60, y: 10, width: 300, height: 40)
         detailView.addSubview(titleLabel)
         
@@ -482,7 +483,7 @@ class detailViewController: UIViewController {
         let bt = UIButton()
 
         bt.layer.cornerRadius = 20
-        bt.layer.borderWidth = 2
+//        bt.layer.borderWidth = 2
 
         let subcribeImage = UIImage(named: "subscribe")?.withRenderingMode(.alwaysTemplate)
         bt.setImage(subcribeImage, for: UIControl.State())
@@ -495,7 +496,7 @@ class detailViewController: UIViewController {
         let bt = UIButton()
 
         bt.layer.cornerRadius = 20
-        bt.layer.borderWidth = 2
+//        bt.layer.borderWidth = 2
 
         let planImage = UIImage(named: "calendar")?.withRenderingMode(.alwaysTemplate)
         bt.setImage(planImage, for: UIControl.State())
@@ -508,7 +509,7 @@ class detailViewController: UIViewController {
         let bt = UIButton()
 
         bt.layer.cornerRadius = 20
-        bt.layer.borderWidth = 2
+//        bt.layer.borderWidth = 2
 
         let favoriteImage = UIImage(named: "star")?.withRenderingMode(.alwaysTemplate)
         bt.setImage(favoriteImage, for: UIControl.State())
@@ -540,15 +541,17 @@ class detailViewController: UIViewController {
 
         let controller = TableViewController()
         subscribeButton.isSelected = controller.containData(at: detailData?.id, from: subscribeList) != -1
-        subscribeButton.tintColor = subscribeButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+//        subscribeButton.tintColor = subscribeButton.isSelected ? .white : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+        subscribeButton.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 
-        var titleColor: UIColor = subscribeButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+//        var titleColor: UIColor = subscribeButton.isSelected ? .white : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+        var titleColor: UIColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         var title = subscribeButton.isSelected ? "Subscribing" : "Subscribe"
         subscribeButton.setTitle(title, for: UIControl.State())
         subscribeButton.setTitleColor(titleColor, for: UIControl.State())
 
-        subscribeButton.layer.borderColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        subscribeButton.backgroundColor = subscribeButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//        subscribeButton.layer.borderColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+        subscribeButton.backgroundColor = subscribeButton.isSelected ? #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1) : #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
 
         // planButton
         optionsView.addSubview(planButton)
@@ -559,15 +562,18 @@ class detailViewController: UIViewController {
         optionsView.addConstraint(NSLayoutConstraint(item: planButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40))
 
         planButton.isSelected = controller.containData(at: detailData?.id, from: planList) != -1
-        planButton.tintColor = planButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        planButton.tintColor = planButton.isSelected ? .white : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+        planButton.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 
-        titleColor = planButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        titleColor = planButton.isSelected ? .white : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
         title = planButton.isSelected ? "Planned" : "Plan"
         planButton.setTitle(title, for: UIControl.State())
-        planButton.setTitleColor(titleColor, for: UIControl.State())
+//        planButton.setTitleColor(titleColor, for: UIControl.State())
+        planButton.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: UIControl.State())
 
-        planButton.layer.borderColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        planButton.backgroundColor = planButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        planButton.layer.borderColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+//        planButton.backgroundColor = planButton.isSelected ? #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        planButton.backgroundColor = planButton.isSelected ? #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1) : #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
 
         // favoriteButton
         optionsView.addSubview(favoriteButton)
@@ -578,15 +584,18 @@ class detailViewController: UIViewController {
         optionsView.addConstraint(NSLayoutConstraint(item: favoriteButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40))
 
         favoriteButton.isSelected = controller.containData(at: detailData?.id, from: favoriteList) != -1
-        favoriteButton.tintColor = favoriteButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+//        favoriteButton.tintColor = favoriteButton.isSelected ? .white : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+        favoriteButton.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 
-        titleColor = favoriteButton.isSelected ? .white : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        titleColor = favoriteButton.isSelected ? .white : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
         title = favoriteButton.isSelected ? "Liked" : "Like"
         favoriteButton.setTitle(title, for: UIControl.State())
         favoriteButton.setTitleColor(titleColor, for: UIControl.State())
+        favoriteButton.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: UIControl.State())
 
-        favoriteButton.layer.borderColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        favoriteButton.backgroundColor = favoriteButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        favoriteButton.layer.borderColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+//        favoriteButton.backgroundColor = favoriteButton.isSelected ? #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        favoriteButton.backgroundColor = favoriteButton.isSelected ? #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1) : #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
 
 
     }
@@ -598,14 +607,18 @@ class detailViewController: UIViewController {
 
         subscribeButton.isSelected  = !subscribeButton.isSelected
 
-        let tintColor: UIColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        subscribeButton.tintColor = tintColor
+//        let tintColor: UIColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+//        subscribeButton.tintColor = tintColor
+        subscribeButton.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
 
-        let textColor: UIColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        let textColor: UIColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
         subscribeButton.setTitleColor(textColor, for: UIControl.State())
+        subscribeButton.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: UIControl.State())
 
-        subscribeButton.layer.borderColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        subscribeButton.backgroundColor = subscribeButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        subscribeButton.layer.borderColor = subscribeButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+//        subscribeButton.backgroundColor = subscribeButton.isSelected ? #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        subscribeButton.backgroundColor = subscribeButton.isSelected ? #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1) : #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
 
         let title = subscribeButton.isSelected ? "Subscribing" : "Subscribe"
         subscribeButton.setTitle(title, for: UIControl.State())
@@ -623,14 +636,17 @@ class detailViewController: UIViewController {
         
         planButton.isSelected  = !planButton.isSelected
 
-        let tintColor: UIColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        planButton.tintColor = tintColor
+//        let tintColor: UIColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+//        planButton.tintColor = tintColor
+        planButton.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 
-        let textColor: UIColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        planButton.setTitleColor(textColor, for: UIControl.State())
+//        let textColor: UIColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+//        planButton.setTitleColor(textColor, for: UIControl.State())
+        planButton.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: UIControl.State())
 
-        planButton.layer.borderColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        planButton.backgroundColor = planButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        planButton.layer.borderColor = planButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+//        planButton.backgroundColor = planButton.isSelected ? #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        planButton.backgroundColor = planButton.isSelected ? #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1) : #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
 
         let title = planButton.isSelected ? "Planned" : "Plan"
         planButton.setTitle(title, for: UIControl.State())
@@ -643,14 +659,17 @@ class detailViewController: UIViewController {
 
         favoriteButton.isSelected  = !favoriteButton.isSelected
 
-        let tintColor: UIColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        favoriteButton.tintColor = tintColor
+//        let tintColor: UIColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+//        favoriteButton.tintColor = tintColor
+        favoriteButton.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 
-        let textColor: UIColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        favoriteButton.setTitleColor(textColor, for: UIControl.State())
+//        let textColor: UIColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+//        favoriteButton.setTitleColor(textColor, for: UIControl.State())
+        favoriteButton.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: UIControl.State())
 
-        favoriteButton.layer.borderColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
-        favoriteButton.backgroundColor = favoriteButton.isSelected ? #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        favoriteButton.layer.borderColor = favoriteButton.isSelected ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1)
+//        favoriteButton.backgroundColor = favoriteButton.isSelected ? #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        favoriteButton.backgroundColor = favoriteButton.isSelected ? #colorLiteral(red: 0.9411764706, green: 0.7607843137, blue: 0.1882352941, alpha: 1) : #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
 
         let title = favoriteButton.isSelected ? "Liked" : "Like"
         favoriteButton.setTitle(title, for: UIControl.State())
