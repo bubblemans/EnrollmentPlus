@@ -121,13 +121,15 @@ class CalendarVC: UIViewController {
         insertByTime(time: data.lectures[0].times!)
         
         let wid = Double(width / 6 - 2)
+        let title = data.course! + "\n" + data.lectures[0].times! + "\n" + data.lectures[0].location!
         
         if x[0] != 0 {
             let button = UIButton()
             button.frame = CGRect(x: x[0], y: y, width: wid, height: height)
             button.layer.cornerRadius = 10
             button.backgroundColor = colors[numOfClass]
-            button.setTitle(data.course!, for: .normal)
+            button.setTitle(title, for: .normal)
+            button.titleLabel?.lineBreakMode = .byWordWrapping
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
             for index in 0...calendarList.count - 1{
@@ -142,7 +144,8 @@ class CalendarVC: UIViewController {
             button.frame = CGRect(x: x[1], y: y, width: wid, height: height)
             button.layer.cornerRadius = 10
             button.backgroundColor = colors[numOfClass]
-            button.setTitle(data.course!, for: .normal)
+            button.setTitle(title, for: .normal)
+            button.titleLabel?.lineBreakMode = .byWordWrapping
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
             for index in 0...calendarList.count - 1{
@@ -157,7 +160,8 @@ class CalendarVC: UIViewController {
             button.frame = CGRect(x: x[2], y: y, width: wid, height: height)
             button.layer.cornerRadius = 10
             button.backgroundColor = colors[numOfClass]
-            button.setTitle(data.course!, for: .normal)
+            button.setTitle(title, for: .normal)
+            button.titleLabel?.lineBreakMode = .byWordWrapping
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
             for index in 0...calendarList.count - 1{
@@ -172,7 +176,8 @@ class CalendarVC: UIViewController {
             button.frame = CGRect(x: x[3], y: y, width: wid, height: height)
             button.layer.cornerRadius = 10
             button.backgroundColor = colors[numOfClass]
-            button.setTitle(data.course!, for: .normal)
+            button.setTitle(title, for: .normal)
+            button.titleLabel?.lineBreakMode = .byWordWrapping
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
             for index in 0...calendarList.count - 1{
@@ -187,7 +192,8 @@ class CalendarVC: UIViewController {
             button.frame = CGRect(x: x[4], y: y, width: wid, height: height)
             button.layer.cornerRadius = 10
             button.backgroundColor = colors[numOfClass]
-            button.setTitle(data.course!, for: .normal)
+            button.setTitle(title, for: .normal)
+            button.titleLabel?.lineBreakMode = .byWordWrapping
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 12)
             for index in 0...calendarList.count - 1{
