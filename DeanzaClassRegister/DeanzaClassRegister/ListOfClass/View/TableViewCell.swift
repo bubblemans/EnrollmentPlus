@@ -16,8 +16,10 @@ class TableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style:  style, reuseIdentifier: reuseIdentifier)
         setupCourseInfoLabel()
+        self.backgroundColor = UIColor(red: 139, green: 3, blue: 44, alpha: 0.5)
         self.layer.borderColor = #colorLiteral(red: 0.5450980392, green: 0.01176470588, blue: 0.1725490196, alpha: 1)
         self.layer.borderWidth = 0.3
+        self.backgroundColor = alphacolor
     }
     
     let courseLabel: UILabel = {

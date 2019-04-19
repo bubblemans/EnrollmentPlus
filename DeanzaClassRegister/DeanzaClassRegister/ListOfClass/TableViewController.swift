@@ -394,6 +394,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
 //        self.tableView.alpha = 0.5
 //        setupBackgroundImage()
+//        self.tableView.backgroundView = UIImageView(image: UIImage(named: "best-poly-backgrounds.png"))
         setupNavigationbar()
 
         if isFirstTime {
@@ -404,17 +405,36 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         }
     }
     let searchController = UISearchController(searchResultsController: nil)
+    
+    private lazy var searchTextField: UITextField? = { [unowned self] in
+        var textField: UITextField?
+        searchController.searchBar.subviews.forEach({ view in
+            view.subviews.forEach({ view in
+                if let view  = view as? UITextField {
+                    textField = view
+                }
+            })
+        })
+        return textField
+        }()
+    
     private func setupNavigationbar() {
         
         tableView.register(TableViewCell.self, forCellReuseIdentifier: cellId)
         
         // searchController
-//        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.tintColor = maincolor
         searchController.searchResultsUpdater = self
         searchController.searchBar.autocapitalizationType = .none
         searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
+        if let bg = self.searchTextField?.subviews.first {
+            bg.backgroundColor = #colorLiteral(red: 0.8859924877, green: 0.8859924877, blue: 0.8859924877, alpha: 1)
+            bg.alpha = 0.2
+            bg.layer.cornerRadius = 10
+            bg.clipsToBounds = true
+        }
         
         // navigationController
         navigationItem.title = "Classes"
@@ -433,6 +453,9 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton)
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.barTintColor = alphacolor
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
@@ -493,6 +516,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
 //            button.setTitleColor(maincolor, for: .normal)
 //            button.backgroundColor = #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
             button.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.78)
+            button.backgroundColor = #colorLiteral(red: 0.9254901961, green: 0.9215686275, blue: 0.9137254902, alpha: 1)
 //            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
             button.addTarget(self, action: #selector(handleExpand), for: .touchUpInside)
             button.layer.borderWidth = 0.3
