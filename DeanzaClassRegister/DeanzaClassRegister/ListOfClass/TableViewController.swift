@@ -595,9 +595,9 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let favorite = favoriteAction(at: indexPath)
+//        let favorite = favoriteAction(at: indexPath)
         let plan = planAction(at: indexPath)
-        let swipeAction = UISwipeActionsConfiguration(actions: [favorite, plan])
+        let swipeAction = UISwipeActionsConfiguration(actions: [plan])
         swipeAction.performsFirstActionWithFullSwipe = false
         
         
