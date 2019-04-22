@@ -25,6 +25,7 @@ class MyListViewController: MenuBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "My List"
+        navigationController?.navigationBar.barTintColor = alphacolor
         view.backgroundColor = #colorLiteral(red: 0.9572939277, green: 0.9572939277, blue: 0.9572939277, alpha: 1)
         
         setupScrollView()

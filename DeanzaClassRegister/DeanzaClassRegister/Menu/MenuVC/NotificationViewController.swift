@@ -63,6 +63,7 @@ class NotificationViewController: MenuBaseViewController, UICollectionViewDelega
         
         setupCollectionView()
         navigationItem.title = "Notification"
+        navigationController?.navigationBar.barTintColor = alphacolor
         
 //        for element in notiDatas {
 //            print(element.data?.created_at)

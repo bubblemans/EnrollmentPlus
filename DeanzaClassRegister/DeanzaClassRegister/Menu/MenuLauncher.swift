@@ -58,13 +58,18 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
     let menuView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = #colorLiteral(red: 0.8705882353, green: 0.8705882353, blue: 0.8705882353, alpha: 1)
+        return view
+    }()
+
+    let backgroundView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named:"best-poly-backgrounds.png")
         return view
     }()
     
     lazy var profileView: UIImageView = {
         let view = UIImageView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
         view.image = userImage
         return view
     }()
@@ -112,6 +117,12 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             UIView.animate(withDuration: 0.5) {
                 self.menuView.frame = CGRect(x: 0, y: 0, width: 250, height: window.frame.height)
             }
+
+            // backgroundView
+            menuView.addSubview(backgroundView)
+            backgroundView.backgroundColor = .red
+            backgroundView.frame = CGRect(x: 0, y: 0, width: 250, height: 250)
+            backgroundView.clipsToBounds = true
             
             // profileView
             menuView.addSubview(profileView)
@@ -333,7 +344,6 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
         
         let title = labelString[indexPath.row]
         
-        
         switch labelString[indexPath.row] {
         case "Home":
             handlePopAnimate()
@@ -439,7 +449,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             self.baseController?.navigationItem.title = "Classes"
             self.baseController?.navigationItem.largeTitleDisplayMode = .always
             self.baseController?.navigationController?.popToRootViewController(animated: true)
-            self.baseController?.navigationController?.navigationBar.barTintColor = .white
+            self.baseController?.navigationController?.navigationBar.barTintColor = alphacolor
             self.baseController?.navigationController?.navigationBar.tintColor = .black
             self.baseController?.definesPresentationContext = false
             self.baseController?.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]

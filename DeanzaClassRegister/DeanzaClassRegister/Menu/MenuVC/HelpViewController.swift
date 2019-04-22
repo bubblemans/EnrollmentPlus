@@ -11,6 +11,7 @@ import UIKit
 class HelpViewController: MenuBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = alphacolor
         navigationItem.title = "Help"
     }
 }
