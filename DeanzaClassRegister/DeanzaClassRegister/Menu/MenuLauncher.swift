@@ -51,7 +51,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
     
     
     private let cellId = "cellId"
-    let labelString = ["Home", "MyList", "Notification", "Settings", "Help", "Log out"]
+    let labelString = ["  Home", "  Subscribe List", "  Notification", "  Settings", "  Help", "  Log out"]
     let imageString = ["home", "shoppingList", "mail", "settings", "information", "logout"]
     var baseController: TableViewController?
     

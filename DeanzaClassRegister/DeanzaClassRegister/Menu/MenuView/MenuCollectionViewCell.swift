@@ -31,11 +31,11 @@ class MenuCollectionViewCell: UICollectionViewCell {
         backgroundColor = #colorLiteral(red: 0.8705882353, green: 0.8705882353, blue: 0.8705882353, alpha: 1)
         
         self.addSubview(label)
-        label.frame = CGRect(x: 50, y: 0, width: self.frame.width - 50, height: self.frame.height)
+        label.frame = CGRect(x: 65, y: 0, width: self.frame.width - 50, height: self.frame.height)
         label.backgroundColor = #colorLiteral(red: 0.8705882353, green: 0.8705882353, blue: 0.8705882353, alpha: 1)
         
         self.addSubview(imageView)
-        imageView.frame = CGRect(x: 5, y: 5, width: 30, height: 30)
+        imageView.frame = CGRect(x: 17, y: 5, width: 30, height: 30)
         imageView.tintColor = #colorLiteral(red: 0.3333333333, green: 0.3333333333, blue: 0.3333333333, alpha: 1)
         imageView.backgroundColor = #colorLiteral(red: 0.8705882353, green: 0.8705882353, blue: 0.8705882353, alpha: 1)
     }
