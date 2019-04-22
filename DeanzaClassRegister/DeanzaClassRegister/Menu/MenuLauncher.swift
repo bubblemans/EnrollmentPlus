@@ -51,7 +51,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
     
     
     private let cellId = "cellId"
-    let labelString = ["  Home", "  Subscribe List", "  Notification", "  Settings", "  Help", "  Log out"]
+    let labelString = ["Home", "Subscribe List", "Notification", "Settings", "Help", "Log out"]
     let imageString = ["home", "shoppingList", "mail", "settings", "information", "logout"]
     var baseController: TableViewController?
     
@@ -341,7 +341,6 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let title = labelString[indexPath.row]
         
         switch labelString[indexPath.row] {
