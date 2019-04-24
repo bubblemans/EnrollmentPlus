@@ -19,7 +19,7 @@ class ChangePasswordVC: UIViewController {
     let navigationView: UIView = {
         let bar = UIView()
         bar.translatesAutoresizingMaskIntoConstraints = false
-        bar.backgroundColor = #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        bar.backgroundColor = alphacolor
         return bar
     }()
     
@@ -42,7 +42,7 @@ class ChangePasswordVC: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Change Password"
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = .black
         label.font = .boldSystemFont(ofSize: 18)
         return label
     }()
@@ -68,7 +68,7 @@ class ChangePasswordVC: UIViewController {
             info.user = user
             let userJson = try! JSONEncoder().encode(info)
 
-            guard let url = URL(string: "https://api.daclassplanner.com/users") else { return }
+            guard let url = URL(string: "https://api.enrollment.plus/users") else { return }
             var urlRequest = URLRequest(url: url)
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
@@ -143,7 +143,7 @@ class ChangePasswordVC: UIViewController {
         
         // cancel button
         cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.setTitleColor(.white, for: .normal)
+        cancelButton.setTitleColor(maincolor, for: .normal)
         navigationView.addSubview(cancelButton)
         cancelButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor).isActive = true
         cancelButton.bottomAnchor.constraint(equalTo: navigationView.bottomAnchor).isActive = true
@@ -152,7 +152,7 @@ class ChangePasswordVC: UIViewController {
         
         // save button
         saveButton.setTitle("Save", for: .normal)
-        saveButton.setTitleColor(.white, for: .normal)
+        saveButton.setTitleColor(maincolor, for: .normal)
         navigationView.addSubview(saveButton)
         saveButton.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor).isActive = true
         saveButton.bottomAnchor.constraint(equalTo: navigationView.bottomAnchor).isActive = true

@@ -237,7 +237,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         let userJson = try! JSONEncoder().encode(info)
 
         // post
-        let postUrlString = "https://api.daclassplanner.com/signup"
+        let postUrlString = "https://api.enrollment.plus/signup"
         guard let url = URL(string: postUrlString) else { return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"

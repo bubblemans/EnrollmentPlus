@@ -243,7 +243,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
         let boundary = generateBoundaryString()
         let filename = "user-profile.jpg"
         
-        guard let url = URL(string: "https://api.daclassplanner.com/users") else { return }
+        guard let url = URL(string: "https://api.enrollment.plus/users") else { return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "PATCH"
         urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
@@ -394,7 +394,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
             
             // http get request
-            let urlString = "https://api.daclassplanner.com/user/notifications"
+            let urlString = "https://api.enrollment.plus/user/notifications"
             guard let url = URL(string: urlString) else { return }
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "GET"

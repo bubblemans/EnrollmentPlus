@@ -122,7 +122,7 @@ class ForgetPasswordViewController: UIViewController, UITextFieldDelegate {
         user.email = emailTF.text
         let info = Information(user: user)
         
-        guard let url = URL(string: "https://api.daclassplanner.com/users/password") else { return }
+        guard let url = URL(string: "https://api.enrollment.plus/users/password") else { return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.httpBody = try! JSONEncoder().encode(info)

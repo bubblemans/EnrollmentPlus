@@ -32,7 +32,7 @@ class EditProfileController: UIViewController, UITableViewDelegate, UITableViewD
     let navigationView: UIView = {
         let bar = UIView()
         bar.translatesAutoresizingMaskIntoConstraints = false
-        bar.backgroundColor = #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        bar.backgroundColor = alphacolor
         return bar
     }()
     
@@ -62,6 +62,7 @@ class EditProfileController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        navigationController?.navigationBar.barTintColor = alphacolor
         setupNavBar()
         setupPhotoView()
         setupTableView()
@@ -94,7 +95,7 @@ class EditProfileController: UIViewController, UITableViewDelegate, UITableViewD
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Edit Profile"
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = .black
         label.font = .boldSystemFont(ofSize: 18)
         return label
     }()
@@ -115,7 +116,7 @@ class EditProfileController: UIViewController, UITableViewDelegate, UITableViewD
         
         // cancel button
         cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.setTitleColor(.white, for: .normal)
+        cancelButton.setTitleColor(maincolor, for: .normal)
         navigationView.addSubview(cancelButton)
         cancelButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor).isActive = true
         cancelButton.bottomAnchor.constraint(equalTo: navigationView.bottomAnchor).isActive = true
@@ -124,7 +125,7 @@ class EditProfileController: UIViewController, UITableViewDelegate, UITableViewD
         
         // save button
         saveButton.setTitle("Save", for: .normal)
-        saveButton.setTitleColor(.white, for: .normal)
+        saveButton.setTitleColor(maincolor, for: .normal)
         navigationView.addSubview(saveButton)
         saveButton.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor).isActive = true
         saveButton.bottomAnchor.constraint(equalTo: navigationView.bottomAnchor).isActive = true

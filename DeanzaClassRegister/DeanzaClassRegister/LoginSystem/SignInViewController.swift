@@ -406,7 +406,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
             let userJson = try! JSONEncoder().encode(info)
             
             // post
-            let postUrlString = "https://api.daclassplanner.com/signin"
+            let postUrlString = "https://api.enrollment.plus/signin"
             guard let url = URL(string: postUrlString) else { return }
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
@@ -431,7 +431,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
                 if let response = response as? HTTPURLResponse,
                     (200...299).contains(response.statusCode) != true{
                     guard let data = data else { return }
-                        
+                    print(response)
                     var message = WrongMessage()
                     message = try! JSONDecoder().decode(WrongMessage.self, from: data)
                     

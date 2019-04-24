@@ -30,7 +30,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
     }()
     
     private func downloadCourses() {
-        let jsonUrlString = "https://api.daclassplanner.com/courses?sortBy=course"
+        let jsonUrlString = "https://api.enrollment.plus/courses?sortBy=course"
         guard let url = URL(string: jsonUrlString) else { return }
         
         if let window = UIApplication.shared.keyWindow {
@@ -119,7 +119,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
     }
     
     private func downloadPicture(urlString: String) {
-        guard let url = URL(string: "https://api.daclassplanner.com"+urlString) else { return }
+        guard let url = URL(string: "https://api.enrollment.plus"+urlString) else { return }
         var urlRequest = URLRequest(url: url)
         
         urlRequest.httpMethod = "GET"
@@ -134,7 +134,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
     }
     
     private func getImageUrl() {
-        guard let url = URL(string: "https://api.daclassplanner.com/user/information") else { return }
+        guard let url = URL(string: "https://api.enrollment.plus/user/information") else { return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -172,7 +172,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
     }
     
     private func downloadSubscribeInfo() {
-        let jsonUrlString = "https://api.daclassplanner.com/user/subscriptions?type=subscribe"
+        let jsonUrlString = "https://api.enrollment.plus/user/subscriptions?type=subscribe"
         guard let url = URL(string: jsonUrlString) else { return }
             
         var urlRequest = URLRequest(url: url)
@@ -192,7 +192,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
             
             if let response = response as? HTTPURLResponse,
                 (200...299).contains(response.statusCode) != true{
-                
+                print(response)
                 guard let data = data else { return }
                 var message = WrongMessage()
                 message = try! JSONDecoder().decode(WrongMessage.self, from: data)
@@ -220,7 +220,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
     }
     
     private func downloadCalendarInfo() {
-        let jsonUrlString = "https://api.daclassplanner.com/user/subscriptions?type=calendar"
+        let jsonUrlString = "https://api.enrollment.plus/user/subscriptions?type=calendar"
         guard let url = URL(string: jsonUrlString) else { return }
         
         var urlRequest = URLRequest(url: url)
@@ -276,7 +276,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
     }
     
     private func downloadLikeInfo() {
-        let jsonUrlString = "https://api.daclassplanner.com/user/subscriptions?type=like"
+        let jsonUrlString = "https://api.enrollment.plus/user/subscriptions?type=like"
         guard let url = URL(string: jsonUrlString) else { return }
         
         var urlRequest = URLRequest(url: url)
@@ -684,7 +684,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         let subscribeInfo = SubscribeJson(crn: data.crn!, type: type)
         let subscribeJson = try! JSONEncoder().encode(subscribeInfo)
         
-        let url = URL(string:"https://api.daclassplanner.com/subscribe")
+        let url = URL(string:"https://api.enrollment.plus/subscribe")
         var urlRequest = URLRequest(url: url!)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -733,7 +733,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                 }
             }
         }
-        let urlString = "https://api.daclassplanner.com/courses/" + String(data.id!)
+        let urlString = "https://api.enrollment.plus/courses/" + String(data.id!)
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in

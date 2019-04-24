@@ -16,7 +16,7 @@ class NotificationViewController: MenuBaseViewController, UICollectionViewDelega
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = #colorLiteral(red: 0.3771604213, green: 0.6235294342, blue: 0.57437459, alpha: 1)
+        view.backgroundColor = maincolor
         return view
     }()
     
@@ -34,9 +34,17 @@ class NotificationViewController: MenuBaseViewController, UICollectionViewDelega
         if let detail = notiDatas[indexPath.row].message {
             cell.detail = detail
         }
-        if let title = notiDatas[indexPath.row].data?.course_id {
-            cell.title = String(title)
-        }
+//        if let id = notiDatas[indexPath.row].data?.course_id {
+//            for i in currentCourses.data {
+//                for j in i {
+//                    print(id, j.id!)
+//                    if id == j.id! {
+//                        cell.title = String(j.course!)
+//                        print(j.course!)
+//                    }
+//                }
+//            }
+//        }
         cell.setupView()
         return cell
     }
@@ -57,13 +65,29 @@ class NotificationViewController: MenuBaseViewController, UICollectionViewDelega
         return 1
     }
     
+    let emptyView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "empty_noti")
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupCollectionView()
+        if notiDatas.count == 0 {
+            view.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+            setupEmptyNotiView()
+        } else {
+            setupCollectionView()
+        }
         navigationItem.title = "Notification"
         navigationController?.navigationBar.barTintColor = alphacolor
+    }
+    
+    private func setupEmptyNotiView() {
+        view.addSubview(emptyView)
+        emptyView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+        emptyView.center = view.center
     }
     
     private func setupCollectionView() {

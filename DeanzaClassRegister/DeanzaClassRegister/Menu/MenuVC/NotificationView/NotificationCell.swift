@@ -10,23 +10,22 @@ import UIKit
 
 class NotificationCell: UICollectionViewCell {
     
-    var title = String()
+//    var title = String()
     var time = String()
     var detail = String()
     
     let imageView: UIImageView = {
         let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
         return view
     }()
     
-    let nameLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        return label
-    }()
+//    let nameLabel: UILabel = {
+//        let label = UILabel()
+//        label.backgroundColor = .white
+//        label.font = UIFont.boldSystemFont(ofSize: 20)
+//        return label
+//    }()
     
     let timeLabel: UILabel = {
         let label = UILabel()
@@ -39,6 +38,7 @@ class NotificationCell: UICollectionViewCell {
     let detailLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
+        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     
@@ -46,51 +46,48 @@ class NotificationCell: UICollectionViewCell {
         super.init(frame: frame)
         self.backgroundColor = .white
         setupImageView()
-        setupNameLabel()
+//        setupNameLabel()
         setupTimeLabel()
         setupDetailLabel()
     }
     
     public func setupView() {
         setupImageView()
-        setupNameLabel()
+//        setupNameLabel()
         setupTimeLabel()
         setupDetailLabel()
     }
     
     private func setupDetailLabel() {
         addSubview(detailLabel)
-        detailLabel.frame = CGRect(x: 105, y: 50, width: 265, height: 30)
-//        detailLabel.text = "This is detail here......"
+        detailLabel.frame = CGRect(x: 105, y: 30, width: 300, height: 60)
         detailLabel.text = detail
+        detailLabel.numberOfLines = 0
     }
     
     private func setupTimeLabel() {
         addSubview(timeLabel)
-        timeLabel.frame = CGRect(x: 245, y: 10, width: 135, height: 30)
-        timeLabel.text = "11/24/95 11:24 PM"
-        timeLabel.text = time
+        timeLabel.frame = CGRect(x: 105, y: 10, width: 200, height: 30)
+        timeLabel.text = time.replacingOccurrences(of: "T", with: " ")
+        timeLabel.text = timeLabel.text?.replacingOccurrences(of: ".000Z", with: "")
     }
     
-    private func setupNameLabel() {
-        addSubview(nameLabel)
-        nameLabel.frame = CGRect(x: 105, y: 10, width: 130, height: 30)
-//        nameLabel.text = "This is title here..."
-        nameLabel.text = title
-        
-    }
+//    private func setupNameLabel() {
+//        addSubview(nameLabel)
+//        nameLabel.frame = CGRect(x: 105, y: 10, width: 130, height: 30)
+////        nameLabel.text = "This is title here..."
+//        nameLabel.text = title
+//
+//    }
     
     private func setupImageView() {
         addSubview(imageView)
-        imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive =  true
-        imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 75).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        imageView.frame = CGRect(x: 10, y: 15, width: 75, height: 75)
         
         imageView.layer.cornerRadius = 15
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleToFill
-        imageView.image = UIImage(named: "user")?.withRenderingMode(.alwaysTemplate)
+        imageView.image = UIImage(named: "logo")?.withRenderingMode(.alwaysOriginal)
     }
     
     

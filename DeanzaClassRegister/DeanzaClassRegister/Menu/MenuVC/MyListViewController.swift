@@ -85,7 +85,7 @@ class MyListViewController: MenuBaseViewController {
         let subscribeInfo = SubscribeJson(crn: data.crn!, type: type)
         let subscribeJson = try! JSONEncoder().encode(subscribeInfo)
         
-        let url = URL(string:"https://api.daclassplanner.com/subscribe")
+        let url = URL(string:"https://api.enrollment.plus/subscribe")
         var urlRequest = URLRequest(url: url!)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")

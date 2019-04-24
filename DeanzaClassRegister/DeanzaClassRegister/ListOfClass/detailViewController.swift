@@ -45,7 +45,7 @@ class detailViewController: UIViewController {
             
             SVProgressHUD.show(withStatus: "Loading...")
             SVProgressHUD.setBackgroundColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
-            let urlString = "https://api.daclassplanner.com/courses/" + String(id!)
+            let urlString = "https://api.enrollment.plus/courses/" + String(id!)
             guard let url = URL(string: urlString) else { return }
             
             URLSession.shared.dataTask(with: url) { (data, response, error) in

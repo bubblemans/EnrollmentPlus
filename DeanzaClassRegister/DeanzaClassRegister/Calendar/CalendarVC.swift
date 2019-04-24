@@ -49,7 +49,11 @@ class CalendarVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = maincolor
+        navigationController?.navigationBar.backgroundColor = alphacolor
+        navigationController?.navigationBar.tintColor = .black
+        navigationItem.title = "Calendar"
+    
         createObservers()
         setupScrollView()
         setupDayView()

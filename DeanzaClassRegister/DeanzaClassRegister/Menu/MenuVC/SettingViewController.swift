@@ -34,7 +34,7 @@ class SettingViewController: MenuBaseViewController {
         navigationController?.navigationBar.barTintColor = alphacolor
         
         setupPreferenceView()
-        setupNotiView()
+//        setupNotiView()
     }
     
     private func setupPreferenceView() {
