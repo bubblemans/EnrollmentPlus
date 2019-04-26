@@ -67,7 +67,9 @@ class NotificationViewController: MenuBaseViewController, UICollectionViewDelega
     
     let emptyView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "empty_noti")
+        view.image = UIImage(named: "empty_noti")?.withRenderingMode(.alwaysTemplate)
+        view.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        view.contentMode = .scaleAspectFit
         return view
     }()
     
