@@ -11,6 +11,7 @@ import SVProgressHUD
 import MobileCoreServices
 
 var userImage = UIImage(named: "user")?.withRenderingMode(.alwaysTemplate)
+//var userImage: UIImage?
 
 class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -71,6 +72,8 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
     lazy var profileView: UIImageView = {
         let view = UIImageView()
         view.image = userImage
+        view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        view.tintColor = .white
         return view
     }()
     
@@ -130,7 +133,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             profileView.layer.cornerRadius = 75
             profileView.contentMode = .scaleToFill
             profileView.clipsToBounds = true
-            profileView.tintColor = .black
+            profileView.tintColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
             
             // imageButton
             menuView.addSubview(imageButton)
@@ -269,6 +272,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
                 }
             } else {
                 DispatchQueue.main.async {
+                    guard let image = image else { return }
                     userImage = image
                     self.profileView.image = userImage
                 }

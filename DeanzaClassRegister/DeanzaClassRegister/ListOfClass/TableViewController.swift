@@ -127,6 +127,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             guard let data = data else { return }
             DispatchQueue.main.async {
+                userImage?.withRenderingMode(.alwaysTemplate)
                 userImage = UIImage(data: data)
                 menuLanucher.profileView.image = userImage
             }
