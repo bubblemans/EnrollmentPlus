@@ -247,7 +247,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "PATCH"
         urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        urlRequest.addValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.addValue(token, forHTTPHeaderField: "Authorization")
         urlRequest.httpBody = try! createBody(with: encodedImage, filename: filename, boundary: boundary)
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
@@ -376,7 +376,8 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
                             self.menuView.frame = CGRect(x: -250, y: 0, width: 250, height: window.frame.height)
                         }
                     })
-                    token = Token(auth_token: "")
+//                    token = Token(auth_token: "")
+                    token = ""
                     self.baseController?.navigationController?.popToRootViewController(animated: false)
                 }
             })
@@ -399,7 +400,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "GET"
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+            urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
             
             URLSession.shared.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
                 if let error = error {

@@ -10,7 +10,8 @@ import UIKit
 import SimpleCheckbox
 import SVProgressHUD
 
-var token = Token(auth_token: "")
+//var token = Token(auth_token: "")
+var token = ""
 
 class SignInViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate {
     var userLogoImageView = UIImageView()
@@ -451,7 +452,8 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
                     mimeType == "application/json",
                     let data = data {
                     DispatchQueue.main.async {
-                        token = try! JSONDecoder().decode(Token.self, from: data)
+                        var authtoken = try! JSONDecoder().decode(Token.self, from: data)
+                        token = authtoken.auth_token
                         SVProgressHUD.dismiss()
                         self.blackView.alpha = 0
                         let tabVC = TabBarController()

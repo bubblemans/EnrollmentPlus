@@ -67,7 +67,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                         self.downloadCourses()
                         self.present(alert, animated: true)
                     
-                        print ("server error when sign in")
+                        print ("server error when download course")
                         SVProgressHUD.dismiss()
                         self.blackView.alpha = 0
                     }
@@ -123,7 +123,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         var urlRequest = URLRequest(url: url)
         
         urlRequest.httpMethod = "GET"
-        urlRequest.addValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.addValue(token, forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             guard let data = data else { return }
             DispatchQueue.main.async {
@@ -138,7 +138,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.addValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.addValue(token, forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
                 if error?._code == NSURLErrorTimedOut {
@@ -177,7 +177,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
             
         var urlRequest = URLRequest(url: url)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
         urlRequest.httpMethod = "GET"
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
@@ -203,7 +203,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                     self.downloadSubscribeInfo()
                     self.present(alert, animated: true)
 
-                    print ("server error when sign in")
+                    print ("server error when download subscribe info")
                     SVProgressHUD.dismiss()
                     self.blackView.alpha = 0
                 }
@@ -225,7 +225,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         
         var urlRequest = URLRequest(url: url)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
         urlRequest.httpMethod = "GET"
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
@@ -251,7 +251,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                     alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
                     self.downloadCalendarInfo()
                     self.present(alert, animated: true)
-                    print ("server error when sign in")
+                    print ("server error when download calendar info")
                     SVProgressHUD.dismiss()
                     self.blackView.alpha = 0
                 }
@@ -281,7 +281,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         
         var urlRequest = URLRequest(url: url)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
         urlRequest.httpMethod = "GET"
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if error != nil {
@@ -688,7 +688,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         var urlRequest = URLRequest(url: url!)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
         urlRequest.httpBody = subscribeJson
         
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in

@@ -263,6 +263,16 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 
                 if let response = response as? HTTPURLResponse,
                     (200...299).contains(response.statusCode) {
+                    print(response)
+                    print("success")
+                    DispatchQueue.main.async {
+                        guard let data = data else { return }
+                        print(data)
+                        var signupUser = try! JSONDecoder().decode(SignupUser.self, from: data)
+                        token = signupUser.token
+                        let tabVC = TabBarController()
+                        self.present(tabVC, animated: true, completion: nil)
+                    }
                 } else {
                     guard let data = data else { return }
                     
@@ -281,16 +291,15 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                     return
                 }
                 
-                if let mimeType = response!.mimeType,
-                    mimeType == "application/json",
-                    data != nil {
-                    
-                    // if valid
-                    DispatchQueue.main.async {
-                        let tabVC = TabBarController()
-                        self.present(tabVC, animated: true, completion: nil)
-                    }
-                }
+//                if let mimeType = response!.mimeType, mimeType == "application/json", let data = data {
+//                    DispatchQueue.main.async {
+//                        token = try! JSONDecoder().decode(Token.self, from: data)
+//                        SVProgressHUD.dismiss()
+//                        self.blackView.alpha = 0
+//                        let tabVC = TabBarController()
+//                        self.present(tabVC, animated: true, completion: nil)
+//                    }
+//                }
                 
                 }.resume()
         }

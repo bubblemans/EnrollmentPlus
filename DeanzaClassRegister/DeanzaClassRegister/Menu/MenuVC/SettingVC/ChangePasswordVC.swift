@@ -71,7 +71,7 @@ class ChangePasswordVC: UIViewController {
             guard let url = URL(string: "https://api.enrollment.plus/users") else { return }
             var urlRequest = URLRequest(url: url)
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+            urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
             urlRequest.httpMethod = "PATCH"
             urlRequest.httpBody = userJson
 

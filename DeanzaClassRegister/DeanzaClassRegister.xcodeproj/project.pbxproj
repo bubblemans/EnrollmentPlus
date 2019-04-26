@@ -63,6 +63,7 @@
 		E1C727FD21714B9E0074ECA0 /* NotifactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */; };
 		E1C727FF2171542F0074ECA0 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */; };
 		E1C7E32521A7ABCD005EB72A /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C7E32421A7ABCD005EB72A /* CalendarCell.swift */; };
+		E1D1A5A52273839100E005BB /* SignupUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1A5A42273839100E005BB /* SignupUser.swift */; };
 		E1D65EFE220508BE005CFEC6 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D65EFD220508BE005CFEC6 /* Notifications.swift */; };
 		E1D65F00220509B7005CFEC6 /* NotiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D65EFF220509B7005CFEC6 /* NotiData.swift */; };
 		E1E15F9321B1F7CB008B5D6C /* SubscribeJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E15F9221B1F7CB008B5D6C /* SubscribeJson.swift */; };
@@ -136,6 +137,7 @@
 		E1C727FC21714B9E0074ECA0 /* NotifactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifactionView.swift; sourceTree = "<group>"; };
 		E1C727FE2171542F0074ECA0 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		E1C7E32421A7ABCD005EB72A /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		E1D1A5A42273839100E005BB /* SignupUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupUser.swift; sourceTree = "<group>"; };
 		E1D65EFD220508BE005CFEC6 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		E1D65EFF220509B7005CFEC6 /* NotiData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiData.swift; sourceTree = "<group>"; };
 		E1E15F9221B1F7CB008B5D6C /* SubscribeJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeJson.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				E1F05C0121C439F800DC0D96 /* Crns.swift */,
 				E1D65EFD220508BE005CFEC6 /* Notifications.swift */,
 				E1D65EFF220509B7005CFEC6 /* NotiData.swift */,
+				E1D1A5A42273839100E005BB /* SignupUser.swift */,
 				E1AF85452229F82500DEFECA /* WrongMessage.swift */,
 				E1C4FA3D2254216E00A7C1E3 /* ChangeInfo.swift */,
 				E1C4FA3B2254210F00A7C1E3 /* ChangeUser.swift */,
@@ -541,6 +544,7 @@
 				E1A6E47A22582A77004FDFF0 /* UserInfo.swift in Sources */,
 				E11EDB1122610782009306AB /* MainColor.swift in Sources */,
 				E138C496217A943900766FE4 /* OldPasswordTableViewCell.swift in Sources */,
+				E1D1A5A52273839100E005BB /* SignupUser.swift in Sources */,
 				E13665EC213250800009EF0D /* Courses.swift in Sources */,
 				E13665F72136C5EA0009EF0D /* TableViewCell.swift in Sources */,
 				E13EE0C020E3100800BBD60D /* AppDelegate.swift in Sources */,

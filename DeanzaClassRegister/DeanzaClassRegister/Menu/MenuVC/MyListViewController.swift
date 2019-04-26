@@ -89,7 +89,7 @@ class MyListViewController: MenuBaseViewController {
         var urlRequest = URLRequest(url: url!)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue(token.auth_token, forHTTPHeaderField: "Authorization")
+        urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
         urlRequest.httpBody = subscribeJson
         //        print(urlRequest.allHTTPHeaderFields)
         
