@@ -371,6 +371,23 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
             destination.selectedIndexPath = indexPath
             handlePushAnimate(title: title, destination: destination)
         case "Log out":
+//            UIView.animate(withDuration: 0.5, animations: {
+//                self.blackView.alpha = 0
+//                if let window = UIApplication.shared.keyWindow {
+//                    self.menuView.frame = CGRect(x: -250, y: 0, width: 250, height: window.frame.height)
+//                }
+//            })
+//            let destination = SignInViewController()
+//            baseController?.dismiss(animated: true, completion: {
+//                DispatchQueue.main.async {
+//                    token = ""
+//                    userImage = UIImage()
+//                    self.profileView.image = userImage
+//                    self.baseController?.navigationController?.popToRootViewController(animated: false)
+//
+//                    //                    token = Token(auth_token: "")
+//                }
+//            })
             let destination = SignInViewController()
             baseController?.present(destination, animated: true, completion: {
                 DispatchQueue.main.async {
@@ -382,13 +399,25 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
                     })
 //                    token = Token(auth_token: "")
                     token = ""
+                    userImage = UIImage()
+                    self.profileView.image = userImage
                     self.baseController?.navigationController?.popToRootViewController(animated: false)
+                    self.removeCookies()
                 }
             })
         default:
             let destination = TableViewController()
             isFirstTime = false
             destination.selectedIndexPath = indexPath
+        }
+    }
+    
+    func removeCookies(){
+        let cookie = HTTPCookie.self
+        let cookieJar = HTTPCookieStorage.shared
+        
+        for cookie in cookieJar.cookies! {
+            cookieJar.deleteCookie(cookie)
         }
     }
     
@@ -418,7 +447,7 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
                     print("no response")
                 }
                 
-
+                print("downloadnoti in menulauncher")
                 if let data = data {
                     DispatchQueue.main.async {
 //                                let decoder = JSONDecoder()
@@ -427,6 +456,8 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
 //                                decoder.dateDecodingStrategy = .formatted(dateFormatter)
                         
                         notiDatas = try! JSONDecoder().decode([Notifications].self, from: data)
+                        print(data)
+                        print(notiDatas)
                     }
                 } else {
                     print("no data")

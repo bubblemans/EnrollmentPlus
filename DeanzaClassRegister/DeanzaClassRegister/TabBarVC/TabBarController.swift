@@ -36,6 +36,10 @@ class TabBarController: UITabBarController {
         self.viewControllers = controllers
     }
     
+    deinit {
+        print("deinit tabbarVC")
+    }
+    
 
     /*
     // MARK: - Navigation

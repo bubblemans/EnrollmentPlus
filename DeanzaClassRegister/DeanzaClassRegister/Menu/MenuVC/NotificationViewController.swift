@@ -75,7 +75,7 @@ class NotificationViewController: MenuBaseViewController, UICollectionViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(notiDatas.count)
         if notiDatas.count == 0 {
             view.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
             setupEmptyNotiView()

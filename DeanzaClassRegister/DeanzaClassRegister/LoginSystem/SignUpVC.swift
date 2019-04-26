@@ -270,6 +270,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                         print(data)
                         var signupUser = try! JSONDecoder().decode(SignupUser.self, from: data)
                         token = signupUser.token
+                        print(token)
                         let tabVC = TabBarController()
                         self.present(tabVC, animated: true, completion: nil)
                     }

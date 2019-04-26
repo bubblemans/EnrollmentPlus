@@ -388,7 +388,6 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
     @objc func handleSignIn() {
         email = usernameTextfield.text
         oldPassword = passwordTextfield.text
-        
         saveUser()
         
         if let window = UIApplication.shared.keyWindow {
@@ -400,8 +399,8 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
             blackView.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
             
             let user = User()
-            user.email = usernameTextfield.text
-            user.password = passwordTextfield.text
+            user.email = email
+            user.password = oldPassword
             
             let info = Information(user: user)
             let userJson = try! JSONEncoder().encode(info)
@@ -414,7 +413,8 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             urlRequest.httpBody = userJson
             
-            URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            
+            let task = URLSession(configuration: .default).dataTask(with: urlRequest) { (data, response, error) in
                 if error != nil {
                     if error?._code == NSURLErrorTimedOut {
                         DispatchQueue.main.async {
@@ -428,6 +428,8 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
                     }
                     return
                 }
+                
+                print(response)
                 
                 if let response = response as? HTTPURLResponse,
                     (200...299).contains(response.statusCode) != true{
@@ -454,6 +456,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
                     DispatchQueue.main.async {
                         var authtoken = try! JSONDecoder().decode(Token.self, from: data)
                         token = authtoken.auth_token
+                        print("shit")
                         SVProgressHUD.dismiss()
                         self.blackView.alpha = 0
                         let tabVC = TabBarController()
@@ -461,6 +464,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
                     }
                 }
             }.resume()
+//            task.cancel()
         }
     }
 }

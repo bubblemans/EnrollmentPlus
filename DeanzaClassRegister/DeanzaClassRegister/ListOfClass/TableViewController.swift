@@ -125,8 +125,9 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         urlRequest.httpMethod = "GET"
         urlRequest.addValue(token, forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            guard let data = data else { return }
+            guard let data = data else { userImage = UIImage(); print("no image detect"); return  }
             DispatchQueue.main.async {
+                print("detect image")
                 userImage?.withRenderingMode(.alwaysTemplate)
                 userImage = UIImage(data: data)
                 menuLanucher.profileView.image = userImage
@@ -135,6 +136,7 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
     }
     
     private func getImageUrl() {
+        userImage = UIImage()
         guard let url = URL(string: "https://api.enrollment.plus/user/information") else { return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
