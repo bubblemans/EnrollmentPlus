@@ -403,6 +403,12 @@ class MenuLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelega
                     self.profileView.image = userImage
                     self.baseController?.navigationController?.popToRootViewController(animated: false)
                     self.removeCookies()
+                    calendarList = []
+                    subscribeList = []
+                    planList = []
+                    favoriteList = []
+                    currentCourses = BriefCourses2D(total: 0, data: [], departmentList: [], isExpanded: [])
+                    allCourses = BriefCourses2D(total: 0, data: [], departmentList: [], isExpanded: [])
                 }
             })
         default:

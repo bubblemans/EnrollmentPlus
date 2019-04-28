@@ -771,8 +771,18 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                 guard let newData = detailData else { return }
                 calendarList.append(newData)
                 self.postNotiCalendar()
+                self.removeCookies()
             }
         }.resume()
+    }
+    
+    func removeCookies(){
+        let cookie = HTTPCookie.self
+        let cookieJar = HTTPCookieStorage.shared
+        
+        for cookie in cookieJar.cookies! {
+            cookieJar.deleteCookie(cookie)
+        }
     }
     
     private func postNotiCalendar() {
