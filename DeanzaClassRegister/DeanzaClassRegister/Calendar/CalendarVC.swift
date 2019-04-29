@@ -264,6 +264,11 @@ class CalendarVC: UIViewController {
     }
     
     private func insertByTime(time: String) {
+        
+        if time.contains("TBA"){
+            return
+        }
+        
         let startHour = time[0..<2]
         let startMinute = time[3..<5]
         let endHour = time[9..<11]
