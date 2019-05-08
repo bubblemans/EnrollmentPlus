@@ -57,12 +57,13 @@ class PreferenceView: UIView, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if indexPath.row == 0 {
+//            let destination = EditProfileController()
+//            baseController?.present(destination, animated: true, completion: nil)
+//        } else
         if indexPath.row == 0 {
-            let destination = EditProfileController()
-            baseController?.present(destination, animated: true, completion: nil)
-        } else if indexPath.row == 1 {
             handleChangePhoto()
-        } else if indexPath.row == 2 {
+        } else if indexPath.row == 1 {
             let destination = ChangePasswordVC()
             baseController?.present(destination, animated: true, completion: nil)
         }

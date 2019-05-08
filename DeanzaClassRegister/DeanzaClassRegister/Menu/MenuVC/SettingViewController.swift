@@ -8,9 +8,11 @@
 
 import UIKit
 
-let preferenceOption = ["Edit Profile", "Change Photo", "Change Password"]
+//let preferenceOption = ["Edit Profile", "Change Photo", "Change Password"]
+let preferenceOption = ["Change Photo", "Change Password"]
 let notiOption = ["Push Notification", "Email Notification"]
-let prefIcon = ["profile", "camera", "lock"]
+//let prefIcon = ["profile", "camera", "lock"]
+let prefIcon = ["camera", "lock"]
 let notiIcon = ["subscribe", "mail"]
 
 class SettingViewController: MenuBaseViewController {

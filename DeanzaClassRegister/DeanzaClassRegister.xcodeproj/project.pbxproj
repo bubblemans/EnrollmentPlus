@@ -44,6 +44,7 @@
 		E149233121A5EB300090514F /* CalendarTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149233021A5EB300090514F /* CalendarTimeView.swift */; };
 		E149233521A5EDAC0090514F /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149233421A5EDAC0090514F /* CalendarDayView.swift */; };
 		E149233721A617270090514F /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149233621A617270090514F /* CalendarView.swift */; };
+		E15A62E2228394260042112C /* ChoosingSchoolVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A62E1228394260042112C /* ChoosingSchoolVC.swift */; };
 		E17A5BC221855ECB00C1F807 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17A5BC121855ECB00C1F807 /* TabBarController.swift */; };
 		E17EC3F6211EE5D100AA1D46 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */; };
 		E17EC3F8212AD60D00AA1D46 /* Courses2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */; };
@@ -118,6 +119,7 @@
 		E149233021A5EB300090514F /* CalendarTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTimeView.swift; sourceTree = "<group>"; };
 		E149233421A5EDAC0090514F /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		E149233621A617270090514F /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		E15A62E1228394260042112C /* ChoosingSchoolVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingSchoolVC.swift; sourceTree = "<group>"; };
 		E17A5BC121855ECB00C1F807 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E17EC3F5211EE5D100AA1D46 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		E17EC3F7212AD60D00AA1D46 /* Courses2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses2D.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 			children = (
 				9C320BB1216C0686007DD292 /* SignInViewController.swift */,
 				9C9423302175513A0079C986 /* SignUpVC.swift */,
+				E15A62E1228394260042112C /* ChoosingSchoolVC.swift */,
 				E1A6E47D2258351D004FDFF0 /* ForgetPasswordViewController.swift */,
 			);
 			path = LoginSystem;
@@ -531,6 +534,7 @@
 				E1012B4121A258DC009A59FF /* BriefCourses.swift in Sources */,
 				E1012B3F21A25838009A59FF /* Cached_lecture.swift in Sources */,
 				E1012B4521A2595C009A59FF /* BriefCourses2D.swift in Sources */,
+				E15A62E2228394260042112C /* ChoosingSchoolVC.swift in Sources */,
 				E1D65EFE220508BE005CFEC6 /* Notifications.swift in Sources */,
 				E1C4FA3C2254210F00A7C1E3 /* ChangeUser.swift in Sources */,
 				E13C5F8B214B93250046F80C /* SettingViewController.swift in Sources */,
@@ -701,6 +705,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -711,7 +716,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -769,6 +774,7 @@
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
+				GCC_OPTIMIZATION_LEVEL = 1;
 				GENERATE_MASTER_OBJECT_FILE = YES;
 				GENERATE_PROFILING_CODE = YES;
 				INFOPLIST_FILE = DeanzaClassRegister/Info.plist;

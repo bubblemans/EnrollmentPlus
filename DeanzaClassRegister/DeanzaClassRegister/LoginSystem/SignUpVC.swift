@@ -15,7 +15,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     let usernameTextfield : UITextField = {
         let userTextfield = UITextField()
-        userTextfield.attributedPlaceholder = NSAttributedString(string:"  Username ",attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        userTextfield.attributedPlaceholder = NSAttributedString(string:"  email ",attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         userTextfield.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 0.5)
         userTextfield.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         userTextfield.borderStyle = UITextField.BorderStyle.roundedRect
@@ -267,20 +267,42 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                     print("success")
                     DispatchQueue.main.async {
                         guard let data = data else { return }
-                        print(data)
                         var signupUser = try! JSONDecoder().decode(SignupUser.self, from: data)
                         token = signupUser.token
-                        print(token)
                         let tabVC = TabBarController()
                         self.present(tabVC, animated: true, completion: nil)
                     }
                 } else {
                     guard let data = data else { return }
+                    print(data)
+                    var message = try! JSONDecoder().decode(WrongUser.self, from: data)
                     
-                    var message = WrongMessage()
-                    message = try! JSONDecoder().decode(WrongMessage.self, from: data)
-                    
-                    let alert = UIAlertController(title: "Please try again!", message: message.error, preferredStyle: .alert)
+                    guard let email = message.email else {
+                        guard let password = message.password else {return}
+                        let alert = UIAlertController(title: "Please try again!", message: "password "+password[0], preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                        
+                        DispatchQueue.main.async {
+                            print ("server error when sign up")
+                            SVProgressHUD.dismiss()
+                            self.blackView.alpha = 0
+                        }
+                        return
+                    }
+                    guard let password = message.password else {
+                        let alert = UIAlertController(title: "Please try again!", message: "email "+message.email![0], preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                        
+                        DispatchQueue.main.async {
+                            print ("server error when sign up")
+                            SVProgressHUD.dismiss()
+                            self.blackView.alpha = 0
+                        }
+                        return
+                    }
+                    let alert = UIAlertController(title: "Please try again!", message: "email "+email[0]+"\npassword "+message.password![0], preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
                     self.present(alert, animated: true)
                     
@@ -291,18 +313,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                     }
                     return
                 }
-                
-//                if let mimeType = response!.mimeType, mimeType == "application/json", let data = data {
-//                    DispatchQueue.main.async {
-//                        token = try! JSONDecoder().decode(Token.self, from: data)
-//                        SVProgressHUD.dismiss()
-//                        self.blackView.alpha = 0
-//                        let tabVC = TabBarController()
-//                        self.present(tabVC, animated: true, completion: nil)
-//                    }
-//                }
-                
-                }.resume()
+            }.resume()
         }
     }
     

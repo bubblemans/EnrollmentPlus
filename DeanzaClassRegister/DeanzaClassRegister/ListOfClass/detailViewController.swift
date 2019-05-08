@@ -87,7 +87,7 @@ class detailViewController: UIViewController {
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentSize.height = 1500
+        view.contentSize.height = 1410
         view.backgroundColor = maincolor
         return view
     }()
@@ -288,7 +288,8 @@ class detailViewController: UIViewController {
 
         scrollView.addSubview(statsView)
         statsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 550).isActive = true
-        statsView.heightAnchor.constraint(equalToConstant: 197).isActive = true
+//        statsView.heightAnchor.constraint(equalToConstant: 197).isActive = true
+        statsView.heightAnchor.constraint(equalToConstant: 110).isActive = true
         statsView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         statsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
 
@@ -319,54 +320,54 @@ class detailViewController: UIViewController {
         trailingStatusLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
         trailingStatusLabel.frame = CGRect(x: 200, y: 55, width: 100, height: 30)
         statsView.addSubview(trailingStatusLabel)
-
-        let leadingSeatsAvailableLabel = UILabel()
-        leadingSeatsAvailableLabel.text = "Seats_available"
-        leadingSeatsAvailableLabel.textColor = .black
-        leadingSeatsAvailableLabel.frame = CGRect(x: 15, y: 85, width: 180, height: 30)
-        statsView.addSubview(leadingSeatsAvailableLabel)
-
-        let trailingSeatsAvailableLabel = UILabel()
-        if let seatsAvailable = detailData?.seats_available {
-            trailingSeatsAvailableLabel.text = String(seatsAvailable)
-        } else {
-            trailingSeatsAvailableLabel.text = "No Data provided."
-        }
-        trailingSeatsAvailableLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
-        trailingSeatsAvailableLabel.frame = CGRect(x: 200, y: 85, width: 100, height: 30)
-        statsView.addSubview(trailingSeatsAvailableLabel)
-
-        let leadingWaitlistSlotsAvailableLabel = UILabel()
-        leadingWaitlistSlotsAvailableLabel.text = "Waitlist_slots_available"
-        leadingWaitlistSlotsAvailableLabel.textColor = .black
-        leadingWaitlistSlotsAvailableLabel.frame = CGRect(x: 15, y: 115, width: 180, height: 30)
-        statsView.addSubview(leadingWaitlistSlotsAvailableLabel)
-
-        let trailingWaitlistSlotsAvailableLabel = UILabel()
-        if let waitlistSlotsAvailable = detailData?.waitlist_slots_available{
-            trailingWaitlistSlotsAvailableLabel.text = String(waitlistSlotsAvailable)
-        } else {
-            trailingWaitlistSlotsAvailableLabel.text = "No Data provided."
-        }
-        trailingWaitlistSlotsAvailableLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
-        trailingWaitlistSlotsAvailableLabel.frame = CGRect(x: 200, y: 115, width: 300, height: 30)
-        statsView.addSubview(trailingWaitlistSlotsAvailableLabel)
-
-        let leadingWaitlistSlotsCapacityLabel = UILabel()
-        leadingWaitlistSlotsCapacityLabel.text = "Waitlist_slots_capacity"
-        leadingWaitlistSlotsCapacityLabel.textColor = .black
-        leadingWaitlistSlotsCapacityLabel.frame = CGRect(x: 15, y: 145, width: 180, height: 30)
-        statsView.addSubview(leadingWaitlistSlotsCapacityLabel)
-
-        let trailingWaitlistSlotsCapacityLabel = UILabel()
-        if let waitlistSlotsCapacity = detailData?.waitlist_slots_capacity {
-            trailingWaitlistSlotsCapacityLabel.text = String(waitlistSlotsCapacity)
-        } else {
-            trailingWaitlistSlotsCapacityLabel.text = "No Data provided."
-        }
-        trailingWaitlistSlotsCapacityLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
-        trailingWaitlistSlotsCapacityLabel.frame = CGRect(x: 200, y: 145, width: 300, height: 30)
-        statsView.addSubview(trailingWaitlistSlotsCapacityLabel)
+//
+//        let leadingSeatsAvailableLabel = UILabel()
+//        leadingSeatsAvailableLabel.text = "Seats_available"
+//        leadingSeatsAvailableLabel.textColor = .black
+//        leadingSeatsAvailableLabel.frame = CGRect(x: 15, y: 85, width: 180, height: 30)
+//        statsView.addSubview(leadingSeatsAvailableLabel)
+//
+//        let trailingSeatsAvailableLabel = UILabel()
+//        if let seatsAvailable = detailData?.seats_available {
+//            trailingSeatsAvailableLabel.text = String(seatsAvailable)
+//        } else {
+//            trailingSeatsAvailableLabel.text = "No Data provided."
+//        }
+//        trailingSeatsAvailableLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
+//        trailingSeatsAvailableLabel.frame = CGRect(x: 200, y: 85, width: 100, height: 30)
+//        statsView.addSubview(trailingSeatsAvailableLabel)
+//
+//        let leadingWaitlistSlotsAvailableLabel = UILabel()
+//        leadingWaitlistSlotsAvailableLabel.text = "Waitlist_slots_available"
+//        leadingWaitlistSlotsAvailableLabel.textColor = .black
+//        leadingWaitlistSlotsAvailableLabel.frame = CGRect(x: 15, y: 115, width: 180, height: 30)
+//        statsView.addSubview(leadingWaitlistSlotsAvailableLabel)
+//
+//        let trailingWaitlistSlotsAvailableLabel = UILabel()
+//        if let waitlistSlotsAvailable = detailData?.waitlist_slots_available{
+//            trailingWaitlistSlotsAvailableLabel.text = String(waitlistSlotsAvailable)
+//        } else {
+//            trailingWaitlistSlotsAvailableLabel.text = "No Data provided."
+//        }
+//        trailingWaitlistSlotsAvailableLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
+//        trailingWaitlistSlotsAvailableLabel.frame = CGRect(x: 200, y: 115, width: 300, height: 30)
+//        statsView.addSubview(trailingWaitlistSlotsAvailableLabel)
+//
+//        let leadingWaitlistSlotsCapacityLabel = UILabel()
+//        leadingWaitlistSlotsCapacityLabel.text = "Waitlist_slots_capacity"
+//        leadingWaitlistSlotsCapacityLabel.textColor = .black
+//        leadingWaitlistSlotsCapacityLabel.frame = CGRect(x: 15, y: 145, width: 180, height: 30)
+//        statsView.addSubview(leadingWaitlistSlotsCapacityLabel)
+//
+//        let trailingWaitlistSlotsCapacityLabel = UILabel()
+//        if let waitlistSlotsCapacity = detailData?.waitlist_slots_capacity {
+//            trailingWaitlistSlotsCapacityLabel.text = String(waitlistSlotsCapacity)
+//        } else {
+//            trailingWaitlistSlotsCapacityLabel.text = "No Data provided."
+//        }
+//        trailingWaitlistSlotsCapacityLabel.textColor = #colorLiteral(red: 0.3921892404, green: 0.3921892404, blue: 0.3921892404, alpha: 1)
+//        trailingWaitlistSlotsCapacityLabel.frame = CGRect(x: 200, y: 145, width: 300, height: 30)
+//        statsView.addSubview(trailingWaitlistSlotsCapacityLabel)
     }
     
     private func  setupDetailView() {
@@ -375,7 +376,7 @@ class detailViewController: UIViewController {
         detailView.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.addSubview(detailView)
-        detailView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 750).isActive = true
+        detailView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 663).isActive = true
         detailView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         detailView.heightAnchor.constraint(equalToConstant: 667).isActive = true
         detailView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
@@ -526,7 +527,7 @@ class detailViewController: UIViewController {
         optionsView.backgroundColor = .white
 
         scrollView.addSubview(optionsView)
-        optionsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 1420).isActive = true
+        optionsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 1333).isActive = true
         optionsView.heightAnchor.constraint(equalToConstant: 75).isActive = true
         optionsView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         optionsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true

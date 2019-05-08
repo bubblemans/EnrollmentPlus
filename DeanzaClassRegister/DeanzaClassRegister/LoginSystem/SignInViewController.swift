@@ -22,7 +22,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
     var isSignUpable = false
     
     let checkboxKey = "checkboxKey"
-    let username = "username"
+    let username = "email"
     let password = "password"
     
 //    let backgroundImage: UIImageView = {
@@ -246,7 +246,7 @@ class SignInViewController: UIViewController, UINavigationControllerDelegate, UI
         usernameTextfield.centerXAnchor.constraint(equalTo: rectangleView.centerXAnchor, constant: 20).isActive = true
         usernameTextfield.widthAnchor.constraint(equalToConstant: 224).isActive = true
         usernameTextfield.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        usernameTextfield.placeholder = "Username"
+        usernameTextfield.placeholder = "email"
         usernameTextfield.layer.cornerRadius = 20
         usernameTextfield.autocorrectionType = .no
         usernameTextfield.autocapitalizationType = .none

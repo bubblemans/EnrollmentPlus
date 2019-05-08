@@ -65,7 +65,7 @@ class EditProfileController: UIViewController, UITableViewDelegate, UITableViewD
         navigationController?.navigationBar.barTintColor = alphacolor
         setupNavBar()
         setupPhotoView()
-        setupTableView()
+//        setupTableView()
     }
     
     let cancelButton: UIButton = {
@@ -124,13 +124,13 @@ class EditProfileController: UIViewController, UITableViewDelegate, UITableViewD
         cancelButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
         
         // save button
-        saveButton.setTitle("Save", for: .normal)
-        saveButton.setTitleColor(maincolor, for: .normal)
-        navigationView.addSubview(saveButton)
-        saveButton.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor).isActive = true
-        saveButton.bottomAnchor.constraint(equalTo: navigationView.bottomAnchor).isActive = true
-        saveButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        saveButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+//        saveButton.setTitle("Save", for: .normal)
+//        saveButton.setTitleColor(maincolor, for: .normal)
+//        navigationView.addSubview(saveButton)
+//        saveButton.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor).isActive = true
+//        saveButton.bottomAnchor.constraint(equalTo: navigationView.bottomAnchor).isActive = true
+//        saveButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+//        saveButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
         
         // title label
         navigationView.addSubview(titleLabel)
@@ -143,7 +143,8 @@ class EditProfileController: UIViewController, UITableViewDelegate, UITableViewD
     private func setupPhotoView() {
         view.addSubview(photoView)
         photoView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        photoView.topAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: 40).isActive = true
+//        photoView.topAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: 60).isActive = true
+        photoView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         photoView.widthAnchor.constraint(equalToConstant: 180).isActive = true
         photoView.heightAnchor.constraint(equalToConstant: 180).isActive = true
     
