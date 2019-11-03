@@ -301,9 +301,9 @@
 		E13EE0BE20E3100800BBD60D /* DeanzaClassRegister */ = {
 			isa = PBXGroup;
 			children = (
-				E13665F1213250E40009EF0D /* Model */,
 				E13EE0BF20E3100800BBD60D /* AppDelegate.swift */,
 				E13EE0C120E3100800BBD60D /* ViewController.swift */,
+				E13665F1213250E40009EF0D /* Model */,
 				E1C319E52183E45600CC6DDF /* LoginSystem */,
 				E1D65EF82205062E005CFEC6 /* TabBarVC */,
 				E1D65EF922050663005CFEC6 /* ListOfClass */,

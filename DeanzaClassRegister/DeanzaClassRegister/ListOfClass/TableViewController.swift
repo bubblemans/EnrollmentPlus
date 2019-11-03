@@ -125,7 +125,11 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
         urlRequest.httpMethod = "GET"
         urlRequest.addValue(token, forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            guard let data = data else { userImage = UIImage(); print("no image detect"); return  }
+            guard let data = data else {
+                userImage = UIImage()
+                print("no image detect")
+                return
+            }
             DispatchQueue.main.async {
                 print("detect image")
                 userImage?.withRenderingMode(.alwaysTemplate)
@@ -165,8 +169,8 @@ class TableViewController: UITableViewController, UIGestureRecognizerDelegate {
                 
                 DispatchQueue.main.async {
                     guard let data = data else { return }
-                    var info = try! JSONDecoder().decode(UserDict.self, from: data)
-                    if let urlString = info.user.avatar_url {
+                    var info = try? JSONDecoder().decode(UserDict.self, from: data)
+                    if let urlString = info?.user.avatar_url {
                         self.downloadPicture(urlString: urlString)
                     }
                 }
